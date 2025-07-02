@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS comentario (
 );
 """
 INSERIR = """
-INSERT INTO comentario (id_usuario, id_artigo, texto)
+INSERT INTO comentario (id_usuario, id_artigo, texto, data_comentario, data_moderacao)
 VALUES (?, ?, ?);
 """
 ATUALIZAR = """

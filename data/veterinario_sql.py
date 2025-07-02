@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS veterinario (
     crmv TEXT NOT NULL,
     verificado BOOLEAN DEFAULT 0,
     bio TEXT,
-    FOREIGN KEY (id_veterinario) REFERENCES usuario(id)
+    FOREIGN KEY (id_veterinario) REFERENCES usuario(id_usuario)
 );
 """
 
@@ -39,15 +39,16 @@ LIMIT ? OFFSET ?;
 
 OBTER_POR_ID = """
 SELECT 
-v.id_veterinario,
-u.nome,
-u.email,
-u.telefone,
-v.crmv,
-v.bio
+    v.id_veterinario,
+    u.nome,
+    u.email,
+    u.senha,
+    u.telefone,
+    v.crmv,
+    v.verificado,
+    v.bio
 FROM veterinario v
-INNER JOIN usuario u ON v.id_veterinario = u.id_usuario
-WHERE v.id_veterinario = ?;
+JOIN usuario u ON v.id_usuario = u.id_usuario
+WHERE v.id_veterinario = ?
 """
-
 

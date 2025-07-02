@@ -9,55 +9,52 @@ class TestVeterinarioRepo:
     def test_criar_tabela(self, test_db):
         # Arrange
         # Act
-        resultado = criar_tabela_tutor()
+        resultado = criar_tabela_veterinario()
         # Assert
         assert resultado == True, "A criação da tabela de veterinários deveria retornar True"
 
-
     def test_inserir_veterinario(self, test_db):
         # Arrange
-        criar_tabela_tutor()  # Cria a tabela veterinário
-        criar_tabela_usuario() # Certifique que a tabela usuário existe
-        
+        criar_tabela_veterinario()
+        criar_tabela_usuario()  # Certifique que a tabela usuário existe
         # Insere um usuário para a FK id_usuario
         usuario_id = inserir_usuario(Usuario(
             id_usuario=0,
             nome="Veterinario Teste",
-            email="vet@teste.com",
+            email="vet@gmail.com",
             senha="senha123",
             telefone="11999999999"
         ))
-        
         # Cria um veterinário associado a esse usuário
         veterinario_teste = Veterinario(
             id_usuario=usuario_id,        # FK para usuario
             id_veterinario=usuario_id,    # Geralmente igual ao id_usuario, pelo que vi no JOIN
             nome="Veterinario Teste",
-            email="vet@teste.com",
+            email="vet@gmail.com",
             senha="senha123",
             telefone="11999999999",
             crmv="SP-123456",
             verificado=False,
             bio="Veterinário para teste"
         )
-        
         # Act
         inserido = inserir_veterinario(veterinario_teste)
-        
         # Assert
-        assert inserido == True, "A inserção do veterinário deveria retornar True"
-        veterinario_db = obter_por_id(usuario_id)
+        assert inserido is not None, "A inserção do veterinário deveria retornar um ID válido"
+        veterinario_db = obter_por_id(inserido)
         assert veterinario_db is not None, "O veterinário inserido não deveria ser None"
         assert veterinario_db.id_veterinario == usuario_id, "O ID do veterinário inserido não confere"
         assert veterinario_db.nome == "Veterinario Teste", "O nome do veterinário inserido não confere"
         assert veterinario_db.crmv == "SP-123456", "O CRMV do veterinário inserido não confere"
-        assert veterinario_db.bio == "Veterinário para teste", "A bio do veterinário inserido não confere"
 
+
+    
 
     def test_atualizar_veterinario(self, test_db):
         # Arrange
-        criar_tabela_tutor()
+        criar_tabela_veterinario()
         veterinario_teste = Veterinario(
+            id_usuario=1,  # Adicionado
             id_veterinario=1,
             nome="Dr. Original",
             email="original@example.com",
@@ -67,6 +64,8 @@ class TestVeterinarioRepo:
             verificado=False,
             bio="Bio original"
         )
+
+        
         inserir_veterinario(veterinario_teste)
         veterinario_inserido = obter_por_id(veterinario_teste.id_veterinario)
 
@@ -89,7 +88,7 @@ class TestVeterinarioRepo:
 
     def test_excluir_veterinario(self, test_db):
         # Arrange
-        criar_tabela_tutor()
+        criar_tabela_veterinario()
         veterinario_teste = Veterinario(
             id_usuario=1,
             id_veterinario=1,
@@ -113,7 +112,9 @@ class TestVeterinarioRepo:
 
     def test_obter_todos_veterinarios(self, test_db):
         # Arrange
-        criar_tabela_tutor()
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+
         vet1 = Veterinario(
             id_usuario=1,
             id_veterinario=1,
@@ -147,3 +148,28 @@ class TestVeterinarioRepo:
         nomes = [v.nome for v in veterinarios]
         assert "Dr. A" in nomes, "O nome 'Dr. A' deveria estar na lista de veterinários"
         assert "Dr. B" in nomes, "O nome 'Dr. B' deveria estar na lista de veterinários"
+        
+    def test_obter_veterinario_por_id(self, test_db):
+        # Arrange
+        criar_tabela_veterinario()
+        veterinario_teste = Veterinario(
+            id_usuario=1,
+            id_veterinario=1,
+            nome="Dr. Teste",
+            email="vet@gmail.com",
+            senha="senha123",
+            telefone="11999999999",
+            crmv="SP-123456",
+            verificado=False,
+            bio="Veterinário para teste"
+        )
+        inserir_veterinario(veterinario_teste)
+        # Act
+        veterinario_db = obter_por_id(veterinario_teste.id_veterinario)
+        # Assert
+        assert veterinario_db is not None, "O veterinário obtido não deveria ser None"
+        assert veterinario_db.id_veterinario == veterinario_teste.id_veterinario, "O ID do veterinário obtido não confere"
+        assert veterinario_db.nome == "Dr. Teste", "O nome do veterinário obtido não confere"
+        assert veterinario_db.crmv == "SP-123456", "O CRMV do veterinário obtido não confere"
+        assert veterinario_db.bio == "Veterinário para teste", "A bio do veterinário obtido não confere"
+        

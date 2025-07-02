@@ -1,12 +1,13 @@
 from typing import Optional, List
 from data import usuario_repo
+from data import veterinario_sql
 from data.usuario_model import Usuario
 from data.veterinario_model import Veterinario
 from data.veterinario_sql import *
 from util import get_connection
 
 
-def criar_tabela_tutor() -> bool:
+def criar_tabela_veterinario() -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
@@ -19,8 +20,17 @@ def criar_tabela_tutor() -> bool:
 def inserir_veterinario(vet: Veterinario) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(INSERIR,(vet.id_veterinario, vet.crmv, vet.verificado, vet.bio))
-        return (cursor.rowcount > 0)
+
+        # Inserir dados do usuário (herdados)
+        id_veterinario = usuario_repo.inserir_usuario(vet, cursor)
+
+        # Inserir apenas os atributos exclusivos do veterinário
+        cursor.execute(
+            veterinario_sql.INSERIR,
+            (id_veterinario, vet.crmv, vet.verificado, vet.bio)
+        )
+
+        return id_veterinario
 
 
 def atualizar_veterinario(vet: Veterinario) -> bool:
@@ -73,15 +83,16 @@ def obter_por_id(id_veterinario: int) -> Optional[Veterinario]:
         cursor = conn.cursor()
         cursor.execute(OBTER_POR_ID, (id_veterinario,))
         row = cursor.fetchone()
+        if row is None:
+            return None
         veterinario = Veterinario(
-                id_veterinario=row["id_veterinario"], 
-                nome=row["nome"],
-                email=row["email"],
-                senha=row["senha"],
-                telefone=row["telefone"],
-                crmv=row["crmv"],
-                verificado=row["verificado"],
-                bio=row["bio"])
+            id_veterinario=row["id_veterinario"],
+            nome=row["nome"],
+            email=row["email"],
+            senha=row["senha"],
+            telefone=row["telefone"],
+            crmv=row["crmv"],
+            verificado=row["verificado"],
+            bio=row["bio"]
+        )
         return veterinario
-    
-
