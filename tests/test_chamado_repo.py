@@ -2,13 +2,13 @@ import os
 import sys
 
 from data.administrador_model import *
-from data.administrador_repo import *
+from data.postagem_feed_repo import *
 from data.chamado_model import Chamado
 from data.chamado_repo import *
 from data.usuario_model import Usuario
 from data.usuario_repo import *
 from data.usuario_sql import *
-from data.administrador_repo import criar_tabela_administrador, inserir_administrador
+from data.postagem_feed_repo import criar_tabela_administrador, inserir_administrador
 from data.administrador_model import Administrador
 
 class TestChamadoRepo:

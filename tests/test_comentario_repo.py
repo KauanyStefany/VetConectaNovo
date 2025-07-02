@@ -111,3 +111,5 @@ class TestComentarioRepo:
         assert resultado == True, "A atualização do comentário deveria retornar True"
         comentario_db = obter_todos_paginado(10, 0)[0]
         assert comentario_db.texto == "Comentário atualizado", "O texto do comentário atualizado não confere"
+
+
