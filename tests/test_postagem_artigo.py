@@ -330,4 +330,4 @@ class TestPostagemArtigoRepo:
         # Inserir dados necessários
         cursor.execute(
             "INSERT INTO veterinario (id_usuario, nome, email, senha, telefone, crmv, verificado, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (1, "Dr. João", "joao@gmail.com", "123", "999999999", "CRMV123", True, "Especialista em felinos")
+            (1, "Dr. João", "joao@gmail.com", "123", "999999999", "CRMV123", True, "Especialista em felinos"))

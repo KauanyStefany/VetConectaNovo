@@ -27,7 +27,7 @@ class TestRespostaChamadoRepo:
         # Cria tabelas necessárias no banco temporário
         criar_tabela_usuario()
         criar_tabela_administrador()
-        criar_tabela()  # cria tabela chamado
+        criar_tabela_chamado()  # cria tabela chamado
         criar_tabelas()  # cria tabela resposta_chamado
 
         # Insere usuário dummy e obtém ID
@@ -75,7 +75,7 @@ class TestRespostaChamadoRepo:
         # Cria tabelas necessárias
         criar_tabela_usuario()
         criar_tabela_administrador()
-        criar_tabela()
+        criar_tabela_chamado()
         criar_tabelas()
 
         # Insere usuário e administrador de teste
@@ -130,7 +130,7 @@ class TestRespostaChamadoRepo:
         # Arrange
         criar_tabela_usuario()
         criar_tabela_administrador()
-        criar_tabela()
+        criar_tabela_chamado()
         criar_tabelas()
 
         # Insere usuário e administrador de teste
@@ -174,7 +174,7 @@ class TestRespostaChamadoRepo:
         # Arrange: cria tabelas necessárias
         criar_tabela_usuario()
         criar_tabela_administrador()
-        criar_tabela()
+        criar_tabela_chamado()
         criar_tabelas()
 
         # Insere usuário e administrador de teste
@@ -229,7 +229,7 @@ class TestRespostaChamadoRepo:
         # Criar todas as tabelas necessárias
         criar_tabela_usuario()
         criar_tabela_administrador()
-        criar_tabela()
+        criar_tabela_chamado()
         criar_tabelas()
 
         # Inserir o usuário

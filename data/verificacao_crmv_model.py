@@ -5,7 +5,7 @@ from data.administrador_model import Administrador
 @dataclass
 class VerificacaoCRMV:
     id: int
-    veterinario: Veterinario
+    veterinario: int | Veterinario
     administrador: Administrador
     data_verificacao: str
     status_verificacao: str

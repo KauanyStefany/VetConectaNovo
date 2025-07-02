@@ -84,47 +84,42 @@ class TestVeterinarioRepo:
 
     def test_excluir_veterinario(self, test_db):
         # Arrange
+        criar_tabela_usuario()
         criar_tabela_veterinario()
-        veterinario_teste = Veterinario(
-            id_usuario=1,
-            id_veterinario=1,
-            nome="Dr. Remover",
-            email="remover@example.com",
+        novo_veterinario = Veterinario(
+            id_usuario=0,
+            nome="Veterinario Teste",
+            email="vet@gmail",
             senha="senha123",
             telefone="11999999999",
-            crmv="SP-54321",
+            crmv="SP-123456",
             verificado=False,
-            bio="Será removido"
+            bio="Veterinário para teste"
         )
-        inserir_veterinario(veterinario_teste)
-        
-        # Act
-        resultado = excluir_veterinario(veterinario_teste.id_veterinario)
-        
+        id_novo_veterinario = inserir_veterinario(novo_veterinario)
+        #act
+        resultado = excluir_veterinario(id_novo_veterinario)
         # Assert
-        assert resultado == True, "A exclusão do veterinário deveria retornar True"
-        veterinario_excluido = obter_por_id(veterinario_teste.id_veterinario)
+        assert resultado == True, "A exclusão do veterinário deveria retornar True" 
+        veterinario_excluido = obter_por_id(id_novo_veterinario)
         assert veterinario_excluido is None, "O veterinário excluído deveria ser None"
 
     def test_obter_todos_veterinarios(self, test_db):
         # Arrange
         criar_tabela_usuario()
         criar_tabela_veterinario()
-
         vet1 = Veterinario(
-            id_usuario=1,
-            id_veterinario=1,
-            nome="Dr. A",
-            email="a@example.com",
-            senha="senhaA",
-            telefone="11111111111",
-            crmv="CRMV-A",
+            id_usuario=0,
+            nome="Veterinario Teste",
+            email="vet@gmail.com",
+            senha="senha123",
+            telefone="11999999999",
+            crmv="SP-123456",
             verificado=False,
-            bio="Veterinário A"
-        )
+            bio="Veterinário para teste"
+        )     
         vet2 = Veterinario(
-            id_usuario=2,
-            id_veterinario=2,
+            id_usuario=1,
             nome="Dr. B",
             email="b@example.com",
             senha="senhaB",
@@ -137,20 +132,19 @@ class TestVeterinarioRepo:
         inserir_veterinario(vet2)
         
         # Act
-        veterinarios = obter_todos()
-        
+        veterinarios_db = obter_por_pagina(2, 0)    
         # Assert
-        assert len(veterinarios) >= 2, "Deveria retornar pelo menos dois veterinários"
-        nomes = [v.nome for v in veterinarios]
-        assert "Dr. A" in nomes, "O nome 'Dr. A' deveria estar na lista de veterinários"
-        assert "Dr. B" in nomes, "O nome 'Dr. B' deveria estar na lista de veterinários"
+        assert len(veterinarios_db) == 2, "Deveriam ser obtidos 2 veterinários"
+        assert veterinarios_db[0].nome == "Veterinario Teste", "O nome do primeiro veterinário obtido não confere"
+        assert veterinarios_db[1].nome == "Dr. B", "O nome do segundo veterinário obtido não confere"
+        
         
     def test_obter_veterinario_por_id(self, test_db):
         # Arrange
+        criar_tabela_usuario()
         criar_tabela_veterinario()
         veterinario_teste = Veterinario(
             id_usuario=1,
-            id_veterinario=1,
             nome="Dr. Teste",
             email="vet@gmail.com",
             senha="senha123",
@@ -161,10 +155,10 @@ class TestVeterinarioRepo:
         )
         inserir_veterinario(veterinario_teste)
         # Act
-        veterinario_db = obter_por_id(veterinario_teste.id_veterinario)
+        veterinario_db = obter_por_id(1)
         # Assert
         assert veterinario_db is not None, "O veterinário obtido não deveria ser None"
-        assert veterinario_db.id_veterinario == veterinario_teste.id_veterinario, "O ID do veterinário obtido não confere"
+        assert veterinario_db.id_usuario == veterinario_teste.id_usuario, "O ID do veterinário obtido não confere"
         assert veterinario_db.nome == "Dr. Teste", "O nome do veterinário obtido não confere"
         assert veterinario_db.crmv == "SP-123456", "O CRMV do veterinário obtido não confere"
         assert veterinario_db.bio == "Veterinário para teste", "A bio do veterinário obtido não confere"

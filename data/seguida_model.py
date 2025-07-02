@@ -7,6 +7,8 @@ from data.veterinario_model import Veterinario
 
 @dataclass
 class Seguida:
-    id_veterinario: Veterinario
-    id_tutor: Tutor
-    data_inicio: Optional[date] = None
+    id_veterinario: int
+    id_tutor: int
+    data_inicio: date
+    veterinario: Optional[Veterinario] = None
+    tutor: Optional[Tutor] = None
