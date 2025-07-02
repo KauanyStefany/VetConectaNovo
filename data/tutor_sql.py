@@ -27,14 +27,13 @@ ORDER BY u.nome
 LIMIT ? OFFSET ?;
 """
 
-
 OBTER_POR_ID = """
 SELECT 
-t.id_tutor,
-u.nome,
-u.email,
-u.telefone
+    t.id_tutor,
+    u.nome,
+    u.email,
+    u.telefone
 FROM tutor t
-INNER JOIN usuario u ON t.id_usuario = u.id_usuario
+INNER JOIN usuario u ON t.id_tutor = u.id_usuario
 WHERE t.id_tutor = ?;
 """
