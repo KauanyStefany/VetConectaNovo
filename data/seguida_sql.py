@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS seguida (
   id_tutor INTEGER NOT NULL,
   data_inicio DATE DEFAULT CURRENT_DATE,
   PRIMARY KEY (id_veterinario, id_tutor),
-  FOREIGN KEY (id_veterinario) REFERENCES veterinario(id_usuario),
-  FOREIGN KEY (id_tutor) REFERENCES tutor(id_usuario)
+  FOREIGN KEY (id_veterinario) REFERENCES veterinario(id_veterinario),
+  FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor)
 );
 """
 

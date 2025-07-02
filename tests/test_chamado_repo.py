@@ -2,12 +2,15 @@ import os
 import sys
 
 from data.administrador_model import *
-from data.administrador_repo import *
+from data.postagem_feed_repo import *
 from data.chamado_model import Chamado
 from data.chamado_repo import *
 from data.usuario_model import Usuario
 from data.usuario_repo import *
 from data.usuario_sql import *
+from data.postagem_feed_repo import criar_tabela_administrador, inserir_administrador
+from data.administrador_model import Administrador
+
 class TestChamadoRepo:
     def test_criar_tabelas(self, test_db):
         #Arrange
@@ -177,6 +180,61 @@ class TestChamadoRepo:
         assert len(chamados) == 2, "Deveria retornar dois chamados"
         assert chamados[0].titulo == "Chamado 1", "O título do primeiro chamado não confere"
         assert chamados[1].titulo == "Chamado 2", "O título do segundo chamado não confere"
+
+
+
+    def test_obter_chamado_por_id(self, test_db):
+        # Arrange
+        # Criar todas as tabelas necessárias
+        criar_tabela_usuario()
+        criar_tabela_administrador()
+        criar_tabela()
+
+        # Inserir o usuário (id_usuario=1)
+        usuario = Usuario(
+            id_usuario=0,
+            nome="Usuario Teste",
+            email="usuario@teste.com",
+            senha="12345678",
+            telefone="11999999999"
+        )
+        id_usuario = inserir_usuario(usuario)
+
+        # Inserir o administrador (id_admin=1)
+        admin = Administrador(
+            id_admin=0,
+            nome="Admin Teste",
+            email="admin@teste.com",
+            senha="12345678"
+        )
+        id_admin = inserir_administrador(admin)
+
+        # Criar o chamado referenciando os IDs válidos
+        chamado_teste = Chamado(
+            id=0,
+            id_usuario=id_usuario,
+            id_admin=id_admin,
+            titulo="Chamado Teste",
+            descricao="Descrição Teste",
+            status="aberto",
+            data="2024-01-01"
+        )
+
+        id_chamado_inserido = inserir_chamado(chamado_teste)
+
+        # Act
+        chamado_db = obter_chamado_por_id(id_chamado_inserido)
+
+        # Assert
+        assert chamado_db is not None
+        assert chamado_db.id == id_chamado_inserido
+        assert chamado_db.titulo == chamado_teste.titulo
+        assert chamado_db.descricao == chamado_teste.descricao
+        assert chamado_db.status == chamado_teste.status
+        assert chamado_db.data == chamado_teste.data
+        assert chamado_db.id_usuario == id_usuario
+        assert chamado_db.id_admin == id_admin
+
 
 
 

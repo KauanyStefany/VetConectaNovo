@@ -34,11 +34,12 @@ WHERE id = ?;
 """
 
 OBTER_TODOS_PAGINADO = """
-SELECT * 
-FROM chamado 
-ORDER BY data DESC
+SELECT id, id_usuario, id_admin, titulo, descricao, status, data
+FROM chamado
+ORDER BY id
 LIMIT ? OFFSET ?;
 """
+
 
 OBTER_POR_ID = """
 SELECT * 

@@ -14,50 +14,92 @@ def criar_tabela_tutor() -> bool:
             cursor.execute(tutor_sql.CRIAR_TABELA)
             return True
     except Exception as e:
-        print(f"Erro ao criar tabela de categorias: {e}")
+        print(f"Erro ao criar tabela de tutor: {e}")
         return False
 
     
 def inserir_tutor(tutor: Tutor) -> Optional[int]:
-    with get_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(tutor_sql.INSERIR, (tutor.id_usuario, tutor.nome, tutor.email, tutor.senha))
-        return cursor.lastrowid
-    
-
-
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            
+            # Primeiro inserir o usuário
+            cursor.execute(usuario_sql.INSERIR, (tutor.nome, tutor.email, tutor.senha, tutor.telefone))
+            id_usuario = cursor.lastrowid
+            
+            # Depois inserir na tabela tutor
+            cursor.execute(tutor_sql.INSERIR, (id_usuario,))
+            
+            return id_usuario
+    except Exception as e:
+        print(f"Erro ao inserir tutor: {e}")
+        return None
 
 def atualizar_tutor(tutor: Tutor) -> bool:
     return usuario_repo.atualizar_usuario(tutor)
     
 def excluir_tutor(id_tutor: int) -> bool:
-     with get_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(tutor_sql.EXCLUIR, (id_tutor,))
-        return (cursor.rowcount > 0)
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            
+            # Primeiro excluir da tabela tutor
+            cursor.execute(tutor_sql.EXCLUIR, (id_tutor,))
+            tutor_excluido = cursor.rowcount > 0
+            
+            # Depois excluir da tabela usuario
+            if tutor_excluido:
+                cursor.execute(usuario_sql.EXCLUIR, (id_tutor,))
+                usuario_excluido = cursor.rowcount > 0
+                return usuario_excluido
+            
+            return False
+    except Exception as e:
+        print(f"Erro ao excluir tutor: {e}")
+        return False
 
 def obter_todos_tutores_paginado(limite: int, offset: int) -> list[Tutor]:
-    with get_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(tutor_sql.OBTER_TODOS_PAGINADO, (limite, offset))
-        rows = cursor.fetchall()
-        tutores = [
-            Tutor(
-                id_tutor=row["id_tutor"],
-                nome=row["nome"],
-                email=row["email"],
-                telefone=row["telefone"]
-            )
-            for row in rows]
-        return tutores
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(tutor_sql.OBTER_TODOS_PAGINADO, (limite, offset))
+            rows = cursor.fetchall()
+            tutores = []
+            
+            for row in rows:
+                tutor = Tutor(
+                    id_usuario=row["id_tutor"],
+                    nome=row["nome"],
+                    email=row["email"],
+                    senha="",  # Não expor senha
+                    telefone=row["telefone"]
+                )
+                tutores.append(tutor)
+            
+            return tutores
+    except Exception as e:
+        print(f"Erro ao obter tutores paginado: {e}")
+        return []
 
     
 def obter_tutor_por_id(id_tutor: int) -> Optional[Tutor]:
-    with get_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(tutor_sql.OBTER_POR_ID, (id_tutor,))
-        row = cursor.fetchone()
-        tutor = Tutor(
-                id_tutor=row["id_tutor"], 
-                telefone=row["telefone"])
-        return tutor
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(tutor_sql.OBTER_POR_ID, (id_tutor,))
+            row = cursor.fetchone()
+            
+            if row is None:
+                return None
+                
+            tutor = Tutor(
+                id_usuario=row["id_tutor"],
+                nome=row["nome"],
+                email=row["email"],
+                senha="",  # Não expor senha
+                telefone=row["telefone"]
+            )
+            return tutor
+    except Exception as e:
+        print(f"Erro ao obter tutor por ID: {e}")
+        return None
