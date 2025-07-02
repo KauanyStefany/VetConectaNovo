@@ -20,7 +20,7 @@ def inserir(verificacao: VerificacaoCRMV) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(INSERIR, (
-            verificacao.veterinario.id_veterinario,
+            verificacao.veterinario.id_usuario,
             verificacao.administrador.id_admin,
             verificacao.status_verificacao
         ))

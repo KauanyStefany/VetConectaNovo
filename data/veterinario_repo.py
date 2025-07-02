@@ -42,14 +42,17 @@ def atualizar_veterinario(vet: Veterinario) -> bool:
         ))
         return (cursor.rowcount > 0)
 
-def excluir_veterinario(id_veterinario: int) -> bool:
+def excluir_veterinario(id: int) -> bool:
+    # Exclui o usuário com base no id herdado
+    excluiu_veterinario = False
+    excluiu_usuario = False
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(EXCLUIR, (id_veterinario,))
-        # usuario_repo.EXCLUIR(id_usuario, cursor)
-        return (cursor.rowcount > 0)
-    
-
+        cursor.execute(EXCLUIR, (id,))
+        excluiu_veterinario = cursor.rowcount > 0
+    if excluiu_veterinario:
+        excluiu_usuario = usuario_repo.excluir_usuario(id)
+    return excluiu_veterinario and excluiu_usuario
 
 def obter_todos(limit: int, offset: int) -> list[Veterinario]:
     with get_connection() as conn:
@@ -58,10 +61,10 @@ def obter_todos(limit: int, offset: int) -> list[Veterinario]:
         rows = cursor.fetchall()
         veterinarios = [
             Veterinario(
-                id_veterinario=row["id_veterinario"], 
+                id_usuario=row["id_veterinario"], 
                 nome=row["nome"],
                 email=row["email"],
-                senha=row["senha"],
+                senha="",
                 telefone=row["telefone"],
                 crmv=row["crmv"],
                 verificado=row["verificado"],
