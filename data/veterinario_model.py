@@ -7,4 +7,3 @@ class Veterinario(Usuario):
     crmv: str
     verificado: bool
     bio: str
-    id_veterinario: int 

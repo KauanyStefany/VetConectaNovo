@@ -15,20 +15,10 @@ class TestVeterinarioRepo:
 
     def test_inserir_veterinario(self, test_db):
         # Arrange
+        criar_tabela_usuario()
         criar_tabela_veterinario()
-        criar_tabela_usuario()  # Certifique que a tabela usuário existe
-        # Insere um usuário para a FK id_usuario
-        usuario_id = inserir_usuario(Usuario(
+        novo_veterinario = Veterinario(
             id_usuario=0,
-            nome="Veterinario Teste",
-            email="vet@gmail.com",
-            senha="senha123",
-            telefone="11999999999"
-        ))
-        # Cria um veterinário associado a esse usuário
-        veterinario_teste = Veterinario(
-            id_usuario=usuario_id,        # FK para usuario
-            id_veterinario=usuario_id,    # Geralmente igual ao id_usuario, pelo que vi no JOIN
             nome="Veterinario Teste",
             email="vet@gmail.com",
             senha="senha123",
@@ -37,54 +27,60 @@ class TestVeterinarioRepo:
             verificado=False,
             bio="Veterinário para teste"
         )
+        # Insere um usuário para a FK id_usuario        
+        id_novo_veterinario = inserir_veterinario(novo_veterinario)
         # Act
-        inserido = inserir_veterinario(veterinario_teste)
         # Assert
-        assert inserido is not None, "A inserção do veterinário deveria retornar um ID válido"
-        veterinario_db = obter_por_id(inserido)
+        assert id_novo_veterinario is not None, "A inserção do veterinário deveria retornar um ID válido"
+        veterinario_db = obter_por_id(id_novo_veterinario)
         assert veterinario_db is not None, "O veterinário inserido não deveria ser None"
-        assert veterinario_db.id_veterinario == usuario_id, "O ID do veterinário inserido não confere"
+        assert veterinario_db.id_usuario == id_novo_veterinario, "O ID do veterinário inserido não confere"
         assert veterinario_db.nome == "Veterinario Teste", "O nome do veterinário inserido não confere"
+        assert veterinario_db.email == "vet@gmail.com", "O email do veterinário inserido não confere"
+        assert veterinario_db.senha == "senha123", "A senha do veterinário inserido não confere"
+        assert veterinario_db.telefone == "11999999999", "O telefone do veterinário inserido não confere"
         assert veterinario_db.crmv == "SP-123456", "O CRMV do veterinário inserido não confere"
-
-
-    
+        assert veterinario_db.verificado == False, "O status de verificado do veterinário inserido não confere"
+        assert veterinario_db.bio == "Veterinário para teste", "A bio do veterinário inserido não confere"    
 
     def test_atualizar_veterinario(self, test_db):
         # Arrange
+        criar_tabela_usuario()
         criar_tabela_veterinario()
-        veterinario_teste = Veterinario(
-            id_usuario=1,  # Adicionado
-            id_veterinario=1,
-            nome="Dr. Original",
-            email="original@example.com",
+        novo_veterinario = Veterinario(
+            id_usuario=0,
+            nome="Veterinario Teste",
+            email="vet@gmail.com",
             senha="senha123",
             telefone="11999999999",
-            crmv="SP-12345",
+            crmv="SP-123456",
             verificado=False,
-            bio="Bio original"
-        )
-
+            bio="Veterinário para teste"
+        )        
+        id_novo_veterinario = inserir_veterinario(novo_veterinario)
+        veterinario_inserido = obter_por_id(id_novo_veterinario)
         
-        inserir_veterinario(veterinario_teste)
-        veterinario_inserido = obter_por_id(veterinario_teste.id_veterinario)
-
         # Act
-        veterinario_inserido.bio = "Bio atualizada"
-        veterinario_inserido.verificado = True
+        # Atualizando atributos herdados do usuário
         veterinario_inserido.nome = "Dr. Atualizado"
-        veterinario_inserido.email = "atualizado@example.com"
-        veterinario_inserido.senha = "novasenha"
-        
+        veterinario_inserido.email = "atualizado@example.com"        
+        veterinario_inserido.telefone = "11988888888"
+        # Atualizando atributos exclusivos do veterinário
+        veterinario_inserido.crmv = "SP-654321"
+        veterinario_inserido.verificado = True
+        veterinario_inserido.bio = "Bio atualizada"
+        # Chama a função de atualização        
         resultado = atualizar_veterinario(veterinario_inserido)
-
+        
         # Assert
         assert resultado == True, "A atualização do veterinário deveria retornar True"
-        veterinario_db = obter_por_id(veterinario_teste.id_veterinario)
-        assert veterinario_db.bio == "Bio atualizada", "A bio do veterinário não foi atualizada corretamente"
-        assert veterinario_db.verificado == True, "O status de verificado não foi atualizado corretamente"
+        veterinario_db = obter_por_id(id_novo_veterinario)
         assert veterinario_db.nome == "Dr. Atualizado", "O nome do veterinário não foi atualizado corretamente"
         assert veterinario_db.email == "atualizado@example.com", "O email do veterinário não foi atualizado corretamente"
+        assert veterinario_db.telefone == "11988888888", "O telefone do veterinário não foi atualizado corretamente"
+        assert veterinario_db.crmv == "SP-654321", "O CRMV do veterinário não foi atualizado corretamente"
+        assert veterinario_db.verificado == True, "O status de verificado não foi atualizado corretamente"
+        assert veterinario_db.bio == "Bio atualizada", "A bio do veterinário não foi atualizada corretamente"
 
     def test_excluir_veterinario(self, test_db):
         # Arrange
