@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+from typing import Optional
 
 from data.tutor_model import Tutor
 from data.veterinario_model import Veterinario
@@ -8,5 +9,4 @@ from data.veterinario_model import Veterinario
 class Seguida:
     id_veterinario: Veterinario
     id_tutor: Tutor
-    data_inicio: date
-# verificar se data_inicio est´CORRETO, verificar se os ints estao corretos
+    data_inicio: Optional[date] = None
