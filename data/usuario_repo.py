@@ -68,10 +68,13 @@ def obter_usuario_por_id(id_usuario: int) -> Optional[Usuario]:
         cursor = conn.cursor()
         cursor.execute(OBTER_POR_ID, (id_usuario,))
         row = cursor.fetchone()
-        usuario = Usuario(
-            id_usuario=row["id_usuario"], 
-            nome=row["nome"], 
-            email=row["email"], 
-            senha=row["senha"], 
-            telefone=row["telefone"])
-        return usuario
+        if row is None:
+            return None
+        return Usuario(
+            id_usuario=row["id_usuario"],
+            nome=row["nome"],
+            email=row["email"],
+            senha=row["senha"],
+            telefone=row["telefone"]
+        )
+

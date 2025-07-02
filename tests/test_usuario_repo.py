@@ -79,7 +79,13 @@ class TestUsuarioRepo:
     def test_excluir_usuario(self, test_db):
         # Arrange
         criar_tabela_usuario()
-        usuario_teste = Usuario(1, "Teste", "teste@email.com", "senha123", "11999999999")
+        usuario_teste = Usuario(
+            id_usuario=1, 
+            nome="Usuário Teste",
+            email="teste@teste.com", 
+            senha="12345678", 
+            telefone="12345678900"  
+        )
         id_usuario_inserido = inserir_usuario(usuario_teste)
         # Act
         resultado = excluir_usuario(id_usuario_inserido)
@@ -108,15 +114,19 @@ class TestUsuarioRepo:
     def test_obter_usuario_por_id(self, test_db):
         # Arrange
         criar_tabela_usuario()
-        usuario = Usuario(0, "Teste", "teste@email.com", "senha123", "11999999999")
-        id_usuario = inserir_usuario(usuario)
+        usuario_teste = Usuario(0, "Teste", "teste@email.com", "senha123", "11999999999")
+        id_usuario_inserido = inserir_usuario(usuario_teste)
 
         # Act
-        usuario_db = obter_usuario_por_id(id_usuario)
+        usuario_db = obter_usuario_por_id(id_usuario_inserido)
 
         # Assert
         assert usuario_db is not None, "O usuário obtido não deveria ser None"
-        assert usuario_db.id == id_usuario, "O ID do usuário obtido não confere"
-        assert usuario_db.nome == usuario.nome, "O nome do usuário obtido não confere"
+        assert usuario_db.id_usuario == id_usuario_inserido, "O ID do usuário obtido não confere"
+        assert usuario_db.nome == usuario_teste.nome, "O nome do usuário obtido não confere"
+        assert usuario_db.email == usuario_teste.email, "O email do usuário obtido não confere"
+        assert usuario_db.senha == usuario_teste.senha, "A senha do usuário obtido não confere"
+        assert usuario_db.telefone == usuario_teste.telefone, "O telefone do usuário obtido não confere"
+
 
         
