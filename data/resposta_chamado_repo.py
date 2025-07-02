@@ -24,6 +24,32 @@ def inserir_resposta(resposta: RespostaChamado) -> Optional[int]:
         ))
         return cursor.lastrowid
     
+def atualizar_resposta(resposta: RespostaChamado) -> bool:
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(ATUALIZAR, (
+                resposta.id_chamado,
+                resposta.titulo,
+                resposta.descricao,
+                resposta.data,
+                resposta.id
+            ))
+            return cursor.rowcount > 0
+    except Exception as e:
+        print(f"Erro ao atualizar resposta: {e}")
+        return False
+
+def excluir_resposta(id_resposta: int) -> bool:
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(EXCLUIR, (id_resposta,))
+            return cursor.rowcount > 0
+    except Exception as e:
+        print(f"Erro ao excluir resposta: {e}")
+        return False
+    
 def obter_todas_respostas_paginado(limite: int, offset: int) -> List[RespostaChamado]:
     with get_connection() as conn:
         cursor = conn.cursor()

@@ -16,9 +16,10 @@ VALUES (?, ?, ?, ?);
 
 ATUALIZAR = """
 UPDATE resposta_chamado 
-SET id_chamado, titulo = ?, descricao = ?, data = ?
-WHERE id = ?
+SET id_chamado = ?, titulo = ?, descricao = ?, data = ?
+WHERE id = ?;
 """
+
 
 EXCLUIR = """
 DELETE FROM resposta_chamado
