@@ -48,7 +48,7 @@ SELECT
     v.verificado,
     v.bio
 FROM veterinario v
-JOIN usuario u ON v.id_usuario = u.id_usuario
+JOIN usuario u ON v.id_veterinario = u.id_usuario
 WHERE v.id_veterinario = ?
 """
 

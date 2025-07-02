@@ -18,34 +18,27 @@ def criar_tabela_veterinario() -> bool:
         return False
 
 def inserir_veterinario(vet: Veterinario) -> Optional[int]:
+    # Inserir dados do usuário (herdados)
+    id_veterinario = usuario_repo.inserir_usuario(vet)
     with get_connection() as conn:
         cursor = conn.cursor()
-
-        # Inserir dados do usuário (herdados)
-        id_veterinario = usuario_repo.inserir_usuario(vet, cursor)
-
         # Inserir apenas os atributos exclusivos do veterinário
         cursor.execute(
             veterinario_sql.INSERIR,
             (id_veterinario, vet.crmv, vet.verificado, vet.bio)
         )
-
         return id_veterinario
 
 
 def atualizar_veterinario(vet: Veterinario) -> bool:
+    usuario_repo.atualizar_usuario(vet)
     with get_connection() as conn:
         cursor = conn.cursor()
-        usuario = Usuario(
-            vet.nome, 
-            vet.email, 
-            vet.senha)
-        usuario_repo.ATUALIZAR(usuario, cursor)
         cursor.execute(ATUALIZAR, (
-            vet.id_veterinario,
             vet.crmv,
             vet.verificado,
             vet.bio,
+            vet.id_usuario
         ))
         return (cursor.rowcount > 0)
 
@@ -86,7 +79,7 @@ def obter_por_id(id_veterinario: int) -> Optional[Veterinario]:
         if row is None:
             return None
         veterinario = Veterinario(
-            id_veterinario=row["id_veterinario"],
+            id_usuario=row["id_veterinario"],
             nome=row["nome"],
             email=row["email"],
             senha=row["senha"],
