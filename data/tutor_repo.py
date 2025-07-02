@@ -58,14 +58,13 @@ def excluir_tutor(id_tutor: int) -> bool:
         print(f"Erro ao excluir tutor: {e}")
         return False
 
-def obter_todos_tutores_paginado(limite: int, offset: int) -> list[Tutor]:
+def obter_tutores_por_pagina(limite: int, offset: int) -> list[Tutor]:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(tutor_sql.OBTER_TODOS_PAGINADO, (limite, offset))
             rows = cursor.fetchall()
             tutores = []
-            
             for row in rows:
                 tutor = Tutor(
                     id_usuario=row["id_tutor"],
@@ -82,7 +81,7 @@ def obter_todos_tutores_paginado(limite: int, offset: int) -> list[Tutor]:
         return []
 
     
-def obter_tutor_por_id(id_tutor: int) -> Optional[Tutor]:
+def obter_por_id(id_tutor: int) -> Optional[Tutor]:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()

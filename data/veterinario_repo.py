@@ -54,7 +54,7 @@ def excluir_veterinario(id: int) -> bool:
         excluiu_usuario = usuario_repo.excluir_usuario(id)
     return excluiu_veterinario and excluiu_usuario
 
-def obter_todos(limit: int, offset: int) -> list[Veterinario]:
+def obter_por_pagina(limit: int, offset: int) -> list[Veterinario]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(OBTER_VETERINARIO_PAGINADO, (limit, offset))

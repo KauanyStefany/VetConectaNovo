@@ -26,7 +26,7 @@ class TestTutorRepo:
         
         # Assert
         assert id_tutor_inserido is not None, "O ID do tutor inserido não deveria ser None"
-        tutor_obtido = obter_tutor_por_id(id_tutor_inserido)
+        tutor_obtido = obter_por_id(id_tutor_inserido)
         assert tutor_obtido is not None, "O tutor inserido não deveria ser None"
         assert tutor_obtido.id_usuario == id_tutor_inserido, f"O tutor inserido deveria ter ID igual a {id_tutor_inserido}"
         assert tutor_obtido.nome == "Tutor Teste", "O nome do tutor inserido não confere"
@@ -41,7 +41,7 @@ class TestTutorRepo:
         # Inserir tutor (repositório insere usuário automaticamente)
         tutor_exemplo = Tutor(0, "Tutor Teste", "tutor@gmail.com", "12345678", "123456789")
         id_tutor_inserido = inserir_tutor(tutor_exemplo)
-        tutor_inserido = obter_tutor_por_id(id_tutor_inserido)
+        tutor_inserido = obter_por_id(id_tutor_inserido)
         
         # Act
         tutor_inserido.nome = "Tutor Atualizado"
@@ -51,7 +51,7 @@ class TestTutorRepo:
         
         # Assert
         assert resultado == True, "A atualização do tutor deveria retornar True"
-        tutor_obtido = obter_tutor_por_id(id_tutor_inserido)
+        tutor_obtido = obter_por_id(id_tutor_inserido)
         assert tutor_obtido.nome == "Tutor Atualizado", "O nome do tutor atualizado não confere"
         assert tutor_obtido.email == "email_atualizado@gmail.com", "O email do tutor atualizado não confere"
         assert tutor_obtido.telefone == "987654321", "O telefone do tutor atualizado não confere"
@@ -89,7 +89,7 @@ class TestTutorRepo:
         
         # Assert
         assert resultado == True, "A exclusão do tutor deveria retornar True"
-        tutor_excluido = obter_tutor_por_id(id_tutor_inserido)
+        tutor_excluido = obter_por_id(id_tutor_inserido)
         assert tutor_excluido == None, "O tutor excluído deveria ser None"
 
     def test_obter_todos_tutores(self, test_db):
@@ -104,7 +104,7 @@ class TestTutorRepo:
         inserir_tutor(tutor2)
         
         # Act
-        tutores = obter_todos_tutores_paginado(10, 0)  # Passar limite e offset
+        tutores = obter_tutores_por_pagina(10, 0)  # Passar limite e offset
         
         # Assert
         assert len(tutores) == 2, "Deveria retornar dois tutores"
@@ -121,7 +121,7 @@ class TestTutorRepo:
         id_tutor_inserido = inserir_tutor(tutor_teste)
         
         # Act
-        tutor_obtido = obter_tutor_por_id(id_tutor_inserido)
+        tutor_obtido = obter_por_id(id_tutor_inserido)
         
         # Assert
         assert tutor_obtido is not None, "O tutor obtido não deveria ser None"

@@ -132,7 +132,7 @@ class TestVeterinarioRepo:
         inserir_veterinario(vet2)
         
         # Act
-        veterinarios_db = obter_todos(2, 0)    
+        veterinarios_db = obter_por_pagina(2, 0)    
         # Assert
         assert len(veterinarios_db) == 2, "Deveriam ser obtidos 2 veterinários"
         assert veterinarios_db[0].nome == "Veterinario Teste", "O nome do primeiro veterinário obtido não confere"
