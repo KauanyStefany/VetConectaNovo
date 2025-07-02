@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS postagem_artigo (
     id_categoria_artigo INTEGER NOT NULL,
     data_publicacao DATE DEFAULT CURRENT_DATE,
     visualizacoes INTEGER DEFAULT 0,
-    FOREIGN KEY (id_veterinario) REFERENCES veterinario(id_usuario),
+    FOREIGN KEY (id_veterinario) REFERENCES veterinario(id_veterinario),
     FOREIGN KEY (id_categoria_artigo) REFERENCES categoria_artigo(id)
 );
 """
