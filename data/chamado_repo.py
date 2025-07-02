@@ -4,7 +4,7 @@ from data.chamado_sql import *
 from util import get_connection
 
 
-def criar_tabelas() -> bool:
+def criar_tabela() -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
@@ -38,6 +38,15 @@ def atualizar_status_chamado(id_chamado: int, novo_status: str) -> bool:
         cursor.execute(ATUALIZAR, (novo_status, id_chamado))
         return cursor.rowcount > 0
 
+from data.chamado_sql import ATUALIZAR_STATUS
+
+def atualizar_status_chamado(id_chamado: int, novo_status: str) -> bool:
+    if novo_status not in ['aberto', 'em andamento', 'resolvido']:
+        raise ValueError("Status inválido. Use: 'aberto', 'em andamento' ou 'resolvido'.")
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(ATUALIZAR_STATUS, (novo_status, id_chamado))
+        return cursor.rowcount > 0
 
 def excluir_chamado(id_chamado: int) -> bool:
     with get_connection() as conn:

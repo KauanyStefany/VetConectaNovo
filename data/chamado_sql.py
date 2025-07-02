@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS chamado (
     descricao TEXT NOT NULL,
     status TEXT CHECK(status IN ('aberto', 'em andamento', 'resolvido')) DEFAULT 'aberto',
     data DATE DEFAULT CURRENT_DATE,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_admin) REFERENCES administrador(id_admin)
 );
 """
@@ -21,6 +21,11 @@ ATUALIZAR = """
 UPDATE chamado 
 SET id_usuario = ?, id_admin = ?, titulo = ?, descricao = ?, status = ?, data = ?
 WHERE id = ?
+"""
+ATUALIZAR_STATUS = """
+UPDATE chamado
+SET status = ?
+WHERE id = ?;
 """
 
 EXCLUIR = """

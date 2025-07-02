@@ -79,7 +79,8 @@ class TestAdministradorRepo:
         inserir_administrador(admin1)
         inserir_administrador(admin2)   
         # Act
-        administradores = OBTER_ADMINISTRADORES_PAGINADO()
+        administradores = obter_administradores_paginado(0, 10)
+
         # Assert
         assert len(administradores) == 2, "Deveria haver 2 administradores"
         assert administradores[0].nome == "Admin 1", "O nome do primeiro administrador não confere"

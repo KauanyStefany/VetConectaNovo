@@ -32,6 +32,7 @@ class TestComentarioRepo:
         assert comentario_db.data_comentario == "Data Comentario", "A data do comentário não confere"
         assert comentario_db.data_moderacao == "Data Moderação", "A data da moderação não confere"
 
+
     def test_atualizar(self, test_db):
         # Arrange
         criar_tabela()

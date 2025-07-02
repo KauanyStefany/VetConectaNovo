@@ -15,11 +15,10 @@ class TestTutorRepo:
     def test_inserir_tutor(self, test_db):
         # Arrange
         criar_tabela_tutor()
-
-        tutor_exemplo = Tutor(1, "Tutor Teste", "tutor@gmail.com", "12345678", "123456789")
+        tutor_teste = Tutor(1, "Tutor Teste", "tutor@gmail.com", "12345678", "123456789")
         
             # Act
-        id_tutor_inserido = inserir_tutor(tutor_exemplo)
+        id_tutor_inserido = inserir_tutor(tutor_teste)
             # Assert
         tutor_obtido = obter_tutor_por_id(id_tutor_inserido)
         assert tutor_obtido is not None, "O tutor inserido não deveria ser None"
@@ -28,6 +27,21 @@ class TestTutorRepo:
         assert tutor_obtido.email == "tutor@gmail.com", "O email do tutor inserido não confere"
         assert tutor_obtido.senha == "12345678", "A senha do tutor inserido não confere"
         assert tutor_obtido.telefone == "123456789", "O telefone do tutor inserido não confere"
+
+
+    def test_inserir_administrador(self, test_db):
+        # Arrange
+        criar_tabela_administrador()
+        admin_teste = Administrador(0, "Admin Teste", "admin@gmail.com", "12345678")
+            # Act
+        id_admin_inserido = inserir_administrador(admin_teste)
+            # Assert
+        admin_db = obter_administrador_por_id(id_admin_inserido)
+        assert admin_db is not None, "O administrador inserido não deveria ser None"
+        assert admin_db.id_admin == 1, "O administrador inserido deveria ter um ID igual a 1"
+        assert admin_db.nome == "Admin Teste", "O nome do administrador inserido não confere"
+        assert admin_db.email == "admin@gmail.com", "O email do administrador inserido não confere"
+        assert admin_db.senha == "12345678", "A senha do administrador inserido não confere"
 
 
 
