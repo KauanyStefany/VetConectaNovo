@@ -45,7 +45,8 @@ OBTER_POR_ID = """
 SELECT 
 id_usuario, 
 nome, 
-email, 
+email,
+senha,
 telefone
 FROM usuario 
 WHERE id_usuario = ?;
