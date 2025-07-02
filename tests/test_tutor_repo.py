@@ -17,6 +17,7 @@ class TestTutorRepo:
         criar_tabela_tutor()
 
         tutor_exemplo = Tutor(1, "Tutor Teste", "tutor@gmail.com", "12345678", "123456789")
+        
             # Act
         id_tutor_inserido = inserir_tutor(tutor_exemplo)
             # Assert
