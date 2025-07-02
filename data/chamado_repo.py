@@ -4,7 +4,7 @@ from data.chamado_sql import *
 from util import get_connection
 
 
-def criar_tabela() -> bool:
+def criar_tabela_chamado() -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
