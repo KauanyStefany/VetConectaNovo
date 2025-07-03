@@ -56,6 +56,7 @@ class TestVerificacaoCRMVRepo:
         assert verificacao_db is not None, "A verificação de CRMV inserida não deveria ser None"
         assert verificacao_db.veterinario.id_usuario == veterinario_id, "O ID do veterinário da verificação inserida não confere"
         assert verificacao_db.administrador.id_admin == admin_id, "O ID do administrador da verificação inserida não confere"
+        assert verificacao_db.data_verificacao == "2025-06-30", "A data da verificação inserida não confere"
         assert verificacao_db.status_verificacao == "pendente", "O status da verificação inserida não confere"
         
     def test_atualizar_verificacao(self, test_db):
