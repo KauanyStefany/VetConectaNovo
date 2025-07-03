@@ -21,12 +21,11 @@ def inserir(comentario: Comentario) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(INSERIR, (
-        comentario.id_usuario,
-        comentario.id_artigo,
-        comentario.texto,
+            comentario.id_usuario.id_usuario,
+            comentario.id_artigo.id,
+            comentario.texto
         ))
         return cursor.lastrowid
-
 
 def atualizar(comentario: Comentario) -> bool:
     with get_connection() as conn:

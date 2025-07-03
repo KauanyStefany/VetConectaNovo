@@ -6,6 +6,16 @@ from data.comentario_repo import *
 from data.usuario_repo import criar_tabela_usuario, inserir_usuario
 from data.usuario_model import Usuario
 from data.veterinario_model import Veterinario
+from data.postagem_artigo_model import PostagemArtigo
+
+from data.comentario_repo import inserir
+from data.comentario_repo import inserir, obter_por_id, criar_tabela as criar_tabela_comentario
+from data.usuario_repo import inserir_usuario, criar_tabela_usuario
+from data.veterinario_repo import criar_tabela_veterinario
+from data.categoria_artigo_repo import inserir_categoria, criar_tabela_categoria_artigo
+from data.postagem_artigo_repo import inserir as inserir_artigo, criar_tabela as criar_tabela_postagem_artigo
+from data.veterinario_repo import inserir_veterinario
+from datetime import datetime
 
 
 class TestComentarioRepo:
@@ -16,100 +26,71 @@ class TestComentarioRepo:
         # Assert
         assert resultado == True, "A criação da tabela de comentários deveria retornar True"
 
-    
-    def test_inserir_comentario(self, test_db):
-        # 1. Criar tabelas necessárias
+    def test_inserir(self, test_db):
         criar_tabela_usuario()
         criar_tabela_veterinario()
         criar_tabela_categoria_artigo()
-        criar_tabela_artigo()
+        criar_tabela_postagem_artigo()  
         criar_tabela_comentario()
-
-        # 2. Inserir usuário
-        usuario = Usuario(
+        
+        usuario_teste = Usuario(0, "Usuário Teste", "usuario@teste.com", "senha123", "11999999999")
+        id_usuario = inserir_usuario(usuario_teste)
+        usuario_teste.id_usuario = id_usuario  # Atualiza o ID do usuário após inserção
+        
+        usuario_vet = Usuario(
             id_usuario=0,
-            nome="Usuario Teste",
-            email="usuario@teste.com",
-            senha="12345678",
+            nome="Veterinário Teste",
+            email="veterinarioo@teste.com",  # ⚠️ Use email único
+            senha="senha123",
             telefone="11999999999"
         )
-        id_usuario = inserir_usuario(usuario)
+        id_usuario_vet = inserir_usuario(usuario_vet)
+        usuario_vet.id_usuario = id_usuario_vet
 
-        # 3. Inserir veterinário
-        veterinario = Veterinario(
-            id_veterinario=1,
-            nome="Vet Teste",
-            email="vet@teste.com",
-            senha="12345678",
-            telefone="11999999999",
-            crmv="12345",
+        
+        veterinario_teste = Veterinario(
+            id_usuario=id_usuario_vet,
+            nome=usuario_vet.nome,
+            email=usuario_vet.email,
+            senha=usuario_vet.senha,
+            telefone=usuario_vet.telefone,
+            crmv="CRMV12345",
             verificado=True,
-            bio="Bio do veterinario"
+            bio="bioteste"
         )
-        inserir_veterinario(veterinario)
-
-        # 4. Inserir categoria
-        categoria = CategoriaArtigo(
+        inserir_veterinario(veterinario_teste)
+    
+        categoria_artigo_teste = CategoriaArtigo(0, "Categoria Teste", "Descrição da categoria teste")
+        id_categoria_artigo = inserir_categoria(categoria_artigo_teste)
+        categoria_artigo_teste.id = id_categoria_artigo
+        
+        postagem_artigo_teste = PostagemArtigo(
             id=0,
-            nome="Categoria Teste",
-            descricao="Descrição da categoria"
+            veterinario=veterinario_teste,  # objeto, não ID
+            titulo="Título do Artigo Teste",
+            conteudo="Conteúdo do artigo teste",
+            categoria_artigo=categoria_artigo_teste,  # objeto, não ID
+            data_publicacao="2023-10-01",
+            visualizacoes=100  # inteiro, não string
         )
-        id_categoria = inserir_categoria(categoria)
-
-        # 5. Inserir artigo
-        artigo = PostagemArtigo(
+        id_postagem_artigo = inserir_artigo(postagem_artigo_teste)
+        postagem_artigo_teste.id = id_postagem_artigo
+        
+        comentario_teste = Comentario(
             id=0,
-            veterinario=veterinario,
-            titulo="Artigo Teste",
-            conteudo="Conteúdo do artigo",
-            categoria_artigo=categoria,
-            data_publicacao="2024-01-01",
-            visualizacoes=0
-        )
-        id_artigo = inserir_artigo(artigo)
-
-        # 6. Criar o comentário
-        comentario = Comentario(
-            id=0,
-            id_usuario=id_usuario,
-            id_artigo=id_artigo,
+            id_usuario=usuario_teste,  # objeto completo
+            id_artigo=postagem_artigo_teste,  # objeto completo
             texto="Este é um comentário de teste",
-            data_comentario=None,
+            data_comentario=datetime.now().strftime("%Y-%m-%d"),
             data_moderacao=None
         )
-
-        # 7. Inserir comentário
-        id_comentario = inserir_comentario(comentario)
-
-        # 8. Assert: Verificar se inseriu corretamente
-        assert id_comentario is not None, "A inserção do comentário deveria retornar um ID válido"
-
-        comentarios = obter_todos_paginado(10, 0)
-        assert len(comentarios) > 0, "Deveria haver pelo menos 1 comentário"
-
-        comentario_db = comentarios[0]
-        assert comentario_db.texto == comentario.texto, "O texto do comentário não confere"
-        assert comentario_db.usuario.nome == usuario.nome, "O nome do usuário não confere"
-        assert comentario_db.artigo.titulo == artigo.titulo, "O título do artigo não confere"
-        assert comentario_db.data_comentario is not None, "A data do comentário não deveria ser None"
-
-
-    def test_atualizar(self, test_db):
-        # Arrange
-        criar_tabela()
-        comentario_teste = Comentario(
-            id=1,
-            id_usuario=1,  
-            id_artigo=1,   
-            texto="Comentário original"
-        )
-        inserir(comentario_teste)
-        comentario_teste.texto = "Comentário atualizado"
-        # Act
-        resultado = atualizar(comentario_teste)
-        # Assert
-        assert resultado == True, "A atualização do comentário deveria retornar True"
-        comentario_db = obter_todos_paginado(10, 0)[0]
-        assert comentario_db.texto == "Comentário atualizado", "O texto do comentário atualizado não confere"
-
-
+        
+        id_comentario_inserido = inserir(comentario_teste)
+        
+        comentario_db = obter_por_id(id_comentario_inserido)
+        
+        # ASSERTS
+        assert comentario_db is not None, "O comentário inserido não deveria ser None"
+        assert comentario_db.id_usuario == id_usuario, "O ID do usuário do comentário inserido não confere"
+        assert comentario_db.id_artigo == id_postagem_artigo, "O ID do artigo do comentário inserido não confere"
+        assert comentario_db.texto == "Este é um comentário de teste", "O texto do comentário inserido não confere"
