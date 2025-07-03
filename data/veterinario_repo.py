@@ -21,6 +21,7 @@ def inserir_veterinario(vet: Veterinario) -> Optional[int]:
     # Inserir dados do usuário (herdados)
     with get_connection() as conn:
         cursor = conn.cursor()
+        id_veterinario = usuario_repo.inserir_usuario(vet)
         # Inserir apenas os atributos exclusivos do veterinário
         cursor.execute(
             veterinario_sql.INSERIR,
