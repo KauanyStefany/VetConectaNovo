@@ -63,7 +63,7 @@ def obter_todos_paginado(limite: int, offset: int) -> List[VerificacaoCRMV]:
                     id_admin=row["id_admin"],
                     nome=row["nome_admin"],
                     email=row["email_admin"],
-                    senha=row["senha_admin"]  # <-- ADICIONADO
+                    senha=""  # <-- ADICIONADO
                 ),
                 data_verificacao=row["data_verificacao"],
                 status_verificacao=row["status_verificacao"]
@@ -93,7 +93,7 @@ def obter_por_id(id: int) -> Optional[VerificacaoCRMV]:
                     id_admin=row["id_admin"],
                     nome=row["nome_admin"],
                     email=row["email_admin"],
-                    senha=row["senha_admin"]  # <-- ADICIONADO
+                    senha=""  # <-- ADICIONADO
                 ),
                 data_verificacao=row["data_verificacao"],
                 status=row["status_verificacao"]

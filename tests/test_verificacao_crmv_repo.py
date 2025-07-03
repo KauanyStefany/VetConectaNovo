@@ -2,11 +2,12 @@ import os
 import sys
 from data.administrador_repo import criar_tabela_administrador, inserir_administrador
 from data.administrador_model import Administrador
+from data.usuario_model import Usuario
 from data.verificacao_crmv_model import VerificacaoCRMV
 from data.verificacao_crmv_repo import *
 from data.veterinario_repo import criar_tabela_veterinario, inserir_veterinario   
 from data.veterinario_model import Veterinario
-from data.usuario_repo import criar_tabela_usuario
+from data.usuario_repo import criar_tabela_usuario, inserir_usuario
 
 class TestVerificacaoCRMVRepo:
     def test_criar_tabela(self, test_db):
@@ -164,38 +165,48 @@ class TestVerificacaoCRMVRepo:
         assert resultado[0].status_verificacao == "pendente", "O status da verificação retornada não confere"
         
     def test_obter_por_id(self, test_db):
-        # Arrange
-        criar_tabela_usuario()
-        criar_tabela_veterinario()
-        criar_tabela_administrador()
-        criar_tabela()
-        
-        veterinario = Veterinario(
-            id_usuario=0, nome="Veterinário Teste", email="email123@gmail.com", 
-            senha="senha123", telefone="12345678900", crmv="CRMV123", verificado=False, bio=""
-        )
-        veterinario_id = inserir_veterinario(veterinario)
-        
-        admin = Administrador(
-            id_admin=0, nome="Admin Teste", email="email12345@gmail.com", senha="senha12345"
-        )
-        admin_id = inserir_administrador(admin)
-        
-        verificacao = VerificacaoCRMV(
-            id=0,
-            veterinario=Veterinario(id_usuario=veterinario_id, nome="Veterinário Teste", email="email123@gmail.com", senha="senha123", telefone="12345678900", crmv="CRMV123", verificado=False, bio=""),
-            administrador=Administrador(id_admin=admin_id, nome="Admin Teste", email="email12345@gmail.com", senha="senha12345"),
-            data_verificacao="2025-06-30",
-            status_verificacao="pendente"
-        )
-        verificacao_id = inserir(verificacao)
-        
-        # Act
-        resultado = obter_por_id(verificacao_id)
-        
-        # Assert
-        assert resultado is not None, "A consulta de verificação de CRMV deveria retornar um resultado"
-        assert resultado.id == verificacao_id, "O ID da verificação retornada não confere"
-        assert resultado.veterinario.id_usuario == veterinario_id, "O ID do veterinário na verificação retornada não confere"
-        assert resultado.administrador.id_admin == admin_id, "O ID do administrador na verificação retornada não confere"
-        assert resultado.status_verificacao == "pendente", "O status da verificação retornada não confere"
+            # Arrange
+            criar_tabela_usuario()
+            criar_tabela_veterinario()
+            criar_tabela_administrador()
+            criar_tabela()
+            
+            veterinario = Veterinario(
+                id_usuario=1, 
+                nome="Veterinário Teste", 
+                email="vet@gmail.com", 
+                senha="senha123", 
+                telefone="12345678900", 
+                crmv="CRMV123",
+                verificado=False,
+                bio="Bio teste"
+            )
+            veterinario_id = inserir_veterinario(veterinario)
+            
+            admin = Administrador(
+                id_admin=1, 
+                nome="Admin Teste", 
+                email="admin@gmail.com", 
+                senha="senha12345"
+            )
+            admin_id = inserir_administrador(admin)
+            
+            verificacao = VerificacaoCRMV(
+                id=1,
+                veterinario=veterinario_id,
+                administrador=admin_id,
+                data_verificacao="2025-06-30",
+                status_verificacao="pendente"
+            )
+            verificacao_id = inserir(verificacao)
+            
+            # Act
+            resultado = obter_por_id(verificacao_id)
+            
+            # Assert
+            assert resultado is not None, "A consulta de verificação de CRMV deveria retornar um resultado"
+            assert resultado.id == verificacao_id, "O ID da verificação retornada não confere"
+            assert resultado.veterinario.id_usuario == veterinario_id, "O ID do veterinário na verificação retornada não confere"
+            assert resultado.administrador.id_admin == admin_id, "O ID do administrador na verificação retornada não confere"
+            assert resultado.status_verificacao == "pendente", "O status da verificação retornada não confere"
+            assert resultado.data_verificacao is not None, "A data da verificação retornada não deveria ser None"
