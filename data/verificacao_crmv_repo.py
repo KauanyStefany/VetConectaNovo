@@ -78,7 +78,7 @@ def obter_por_id(id: int) -> Optional[VerificacaoCRMV]:
         row = cursor.fetchone()
         if row:
             return VerificacaoCRMV(
-                id_verificacao=row["id"],
+                id=row["id"],  # Corrigido: era 'id_verificacao'
                 veterinario=Veterinario(
                     id_usuario=row["id_veterinario"],
                     nome=row["nome_veterinario"],
@@ -93,9 +93,9 @@ def obter_por_id(id: int) -> Optional[VerificacaoCRMV]:
                     id_admin=row["id_admin"],
                     nome=row["nome_admin"],
                     email=row["email_admin"],
-                    senha=""  # <-- ADICIONADO
+                    senha=""  # senha não exposta por segurança
                 ),
                 data_verificacao=row["data_verificacao"],
-                status=row["status_verificacao"]
+                status_verificacao=row["status_verificacao"]  # Corrigido: era 'status'
             )
-    return None
+        return None
