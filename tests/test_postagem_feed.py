@@ -17,6 +17,7 @@ class TestPostagemFeedRepo:
         # Assert
         assert resultado == True, "A criação da tabela deveria retornar True"
 
+
     def test_inserir_postagem_feed(self, test_db):
 
         # 1. Criar tabelas na ordem correta
@@ -24,16 +25,27 @@ class TestPostagemFeedRepo:
         tutor_repo.criar_tabela_tutor()  # Assumindo que existe
         postagem_feed_repo.criar_tabela()
         
-        # 3. Inserir tutor
-        tutor = Tutor(
+        # 2. Criar usuário primeiro
+        usuario = Usuario(
             id_usuario=0,
             nome="Tutor Teste",
             email="tutor@teste.com",
             senha="12345678",
             telefone="11999999999"
         )
-        tutor = tutor_repo.inserir_tutor(tutor)  # Use a função correta do tutor_repo
-        assert tutor == None, "Falha ao inserir tutor"
+        id_usuario = usuario_repo.inserir_usuario(usuario)
+        assert id_usuario is not None, "Falha ao inserir usuário"
+        
+        # 3. Inserir tutor
+        tutor = Tutor(
+            id_usuario=id_usuario,
+            nome="Tutor Teste",
+            email="tutor@teste.com",
+            senha="12345678",
+            telefone="11999999999"
+        )
+        id_tutor = tutor_repo.inserir_tutor(tutor)  # Use a função correta do tutor_repo
+        assert id_tutor is not None, "Falha ao inserir tutor"
         
         # 4. Criar objeto Tutor para a postagem
         tutor_obj = Tutor(
@@ -57,12 +69,11 @@ class TestPostagemFeedRepo:
         assert id_postagem_inserido is not None, "A inserção deveria retornar um ID válido"
         
         postagem_db = postagem_feed_repo.obter_por_id(id_postagem_inserido)
-        assert postagem_db == None, "A postagem inserida não deveria ser None"
+        assert postagem_db is not None, "A postagem inserida não deveria ser None"
         assert postagem_db.id_postagem_feed == id_postagem_inserido
         assert postagem_db.imagem == "imagem_teste.jpg"
         assert postagem_db.descricao == "Descrição da postagem de teste"
         assert postagem_db.tutor.id == id_tutor
         assert postagem_db.data_postagem is not None
-
 
         
