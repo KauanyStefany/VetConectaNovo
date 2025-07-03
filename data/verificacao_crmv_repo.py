@@ -13,7 +13,7 @@ def criar_tabela() -> bool:
             cursor.execute(CRIAR_TABELA)
             return True
     except Exception as e:
-        print(f"Erro ao criar tabela de categorias: {e}")
+        print(f"Erro ao criar tabela de verificação CRMV: {e}")
         return False
 
 def inserir(verificacao: VerificacaoCRMV) -> Optional[int]:
@@ -27,10 +27,10 @@ def inserir(verificacao: VerificacaoCRMV) -> Optional[int]:
         return cursor.lastrowid
 
 
-def atualizar(id_veterinario: int, novo_status: str) -> bool:
+def atualizar(id_veterinario: int, novo_status: str, id_admin: int) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(ATUALIZAR, (novo_status, id_veterinario))
+        cursor.execute(ATUALIZAR, (novo_status, id_admin, id_veterinario))
         return cursor.rowcount > 0
 
 
@@ -49,17 +49,26 @@ def obter_todos_paginado(limite: int, offset: int) -> List[VerificacaoCRMV]:
         return [
             VerificacaoCRMV(
                 id=row["id"],
-                veterinario=Veterinario(id_veterinario=row["id_veterinario"], nome=row["nome_veterinario"]),
+                veterinario=Veterinario(
+                    id_usuario=row["id_veterinario"], 
+                    nome=row["nome_veterinario"],
+                    email=row["email_veterinario"],
+                    senha="",
+                    telefone=row["telefone_veterinario"],
+                    crmv=row["crmv"],
+                    verificado=row["veterinario_verificado"],
+                    bio=row["bio_veterinario"]
+                ),
                 administrador=Administrador(
                     id_admin=row["id_admin"],
                     nome=row["nome_admin"],
-                    email=row["email_admin"]
+                    email=row["email_admin"],
+                    senha=row["senha_admin"]  # <-- ADICIONADO
                 ),
                 data_verificacao=row["data_verificacao"],
                 status_verificacao=row["status_verificacao"]
             )
             for row in rows]
-
 
 
 def obter_por_id(id: int) -> Optional[VerificacaoCRMV]:
@@ -69,9 +78,24 @@ def obter_por_id(id: int) -> Optional[VerificacaoCRMV]:
         row = cursor.fetchone()
         if row:
             return VerificacaoCRMV(
-                id=row["id"],
-                veterinario=Veterinario(id_veterinario=row["id_veterinario"]),
-                administrador=Administrador(id_admin=row["id_admin"],nome=row["nome_admin"],email=row["email_admin"]),
+                id_verificacao=row["id"],
+                veterinario=Veterinario(
+                    id_usuario=row["id_veterinario"],
+                    nome=row["nome_veterinario"],
+                    email=row["email_veterinario"],
+                    senha="",  # se quiser, pode buscar senha do veterinário, mas normalmente não se expõe
+                    telefone=row["telefone_veterinario"],
+                    crmv=row["crmv"],
+                    verificado=row["veterinario_verificado"],
+                    bio=row["bio_veterinario"]
+                ),
+                administrador=Administrador(
+                    id_admin=row["id_admin"],
+                    nome=row["nome_admin"],
+                    email=row["email_admin"],
+                    senha=row["senha_admin"]  # <-- ADICIONADO
+                ),
                 data_verificacao=row["data_verificacao"],
-                status_verificacao=row["status_verificacao"])
-        return None
+                status=row["status_verificacao"]
+            )
+    return None
