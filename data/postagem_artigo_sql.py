@@ -1,5 +1,3 @@
-# 
-
 CRIAR_TABELA = """
 CREATE TABLE IF NOT EXISTS postagem_artigo (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,7 +19,13 @@ VALUES (?, ?, ?, ?);
 
 ATUALIZAR = """
 UPDATE postagem_artigo 
-SET titulo = ?, conteudo = ?, id_categoria_artigo = ?, visualizacoes = ?
+SET titulo = ?, conteudo = ?, id_categoria_artigo = ?
+WHERE id = ?;
+"""
+
+INCREMENTAR_VISUALIZACOES = """
+UPDATE postagem_artigo
+SET visualizacoes = visualizacoes + 1
 WHERE id = ?;
 """
 
@@ -32,49 +36,27 @@ WHERE id = ?;
 
 OBTER_TODOS_PAGINADO = """
 SELECT 
-    p.id,
-    p.id_veterinario,
-    v.nome AS nome_veterinario,
-    v.email AS email_veterinario,
-    v.senha AS senha_veterinario,
-    v.telefone AS telefone_veterinario,
-    v.crmv AS crmv_veterinario,
-    v.verificado AS verificado_veterinario,
-    v.bio AS bio_veterinario,
-    p.titulo,
-    p.conteudo,
-    p.id_categoria_artigo,
-    c.nome AS nome_categoria,
-    c.descricao AS descricao_categoria,
-    p.data_publicacao,
-    p.visualizacoes
-FROM postagem_artigo p
-JOIN categoria_artigo c ON p.id_categoria_artigo = c.id
-JOIN veterinario v ON p.id_veterinario = v.id_usuario
-ORDER BY p.data_publicacao DESC
+    id,
+    id_veterinario,
+    titulo,
+    conteudo,
+    id_categoria_artigo,
+    data_publicacao,
+    visualizacoes
+FROM postagem_artigo
+ORDER BY data_publicacao DESC
 LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
 SELECT 
-    p.id,
-    p.id_veterinario,
-    v.nome AS nome_veterinario,
-    v.email AS email_veterinario,
-    v.senha AS senha_veterinario,
-    v.telefone AS telefone_veterinario,
-    v.crmv AS crmv_veterinario,
-    v.verificado AS verificado_veterinario,
-    v.bio AS bio_veterinario,
-    p.titulo,
-    p.conteudo,
-    p.id_categoria_artigo,
-    c.nome AS nome_categoria,
-    c.descricao AS descricao_categoria,
-    p.data_publicacao,
-    p.visualizacoes
-FROM postagem_artigo p
-JOIN categoria_artigo c ON p.id_categoria_artigo = c.id
-JOIN veterinario v ON p.id_veterinario = v.id_usuario
-WHERE p.id = ?;
+    id,
+    id_veterinario,
+    titulo,
+    conteudo,
+    id_categoria_artigo,
+    data_publicacao,
+    visualizacoes
+FROM postagem_artigo
+WHERE id = ?;
 """

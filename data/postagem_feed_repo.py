@@ -20,9 +20,11 @@ def inserir(postagem: PostagemFeed) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(INSERIR, (
-            postagem.tutor.id,  # <- CORRETO: usar o ID do objeto tutor
+            postagem.id_postagem_feed,
+            postagem.tutor.id_usuario,
             postagem.imagem,
-            postagem.descricao
+            postagem.descricao,
+            postagem.data_postagem
         ))
         return cursor.lastrowid
 
