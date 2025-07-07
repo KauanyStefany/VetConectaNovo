@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import os
 import sys
 from data.seguida_repo import *
@@ -176,22 +177,36 @@ class TestSeguidaRepo:
         criar_tabela_veterinario()
         criar_tabela_seguida()
         
-        # Inserir usuário + veterinário
-        usuario_vet = Usuario(id_usuario=0, nome="Dr. João", email="vet@email.com", senha="123", telefone="999999999")
-        vet = Veterinario(**usuario_vet.__dict__, crmv="CRMV123", verificado=True, bio="Especialista")
+        # Inserir veterinário
+        vet = Veterinario(
+            id_usuario=0, 
+            nome="Dr. João", 
+            email="vet@email.com", 
+            senha="123", 
+            telefone="999999999", 
+            crmv="CRMV123", 
+            verificado=True, 
+            bio="Especialista")
         id_vet = inserir_veterinario(vet)
         
-        # Inserir usuário + tutor
-        usuario_tutor = Usuario(id_usuario=0, nome="Maria", email="maria@email.com", senha="321", telefone="888888888")
-        tutor = Tutor(**usuario_tutor.__dict__)
+        # Inserir tutor        
+        tutor = Tutor(
+            id_usuario=0, 
+            nome="Maria",
+            email="maria@email.com",
+            senha="321",
+            telefone="888888888"
+        )
         id_tutor = inserir_tutor(tutor)
         
-        # Criar e inserir seguida
+        # Criar seguida (usando apenas os IDs, não os objetos completos)
         seguida_teste = Seguida(
-            id_veterinario=Veterinario(id_usuario=id_vet, nome=vet.nome, email=vet.email, senha=vet.senha, telefone=vet.telefone, crmv=vet.crmv, verificado=vet.verificado, bio=vet.bio),
-            id_tutor=Tutor(id_usuario=id_tutor, nome=tutor.nome, email=tutor.email, senha=tutor.senha, telefone=tutor.telefone),
+            id_veterinario=id_vet,
+            id_tutor=id_tutor,
             data_inicio=date.today()
         )
+        
+        # Inserir seguida
         inserir_seguida(seguida_teste)
         
         # Act
@@ -202,6 +217,11 @@ class TestSeguidaRepo:
         assert seguida_db.id_veterinario == id_vet, "O ID do veterinário obtido não confere"
         assert seguida_db.id_tutor == id_tutor, "O ID do tutor obtido não confere"
         assert seguida_db.data_inicio is not None, "A data de início não deveria ser None"
+        # Verificar se os objetos relacionados foram carregados corretamente
+        assert seguida_db.veterinario is not None, "O objeto veterinário não deveria ser None"
+        assert seguida_db.tutor is not None, "O objeto tutor não deveria ser None"
+        assert seguida_db.veterinario.nome == "Dr. João", "O nome do veterinário não confere"
+        assert seguida_db.tutor.nome == "Maria", "O nome do tutor não confere"
 
     def test_obter_seguida_inexistente(self, test_db):
         # Arrange
