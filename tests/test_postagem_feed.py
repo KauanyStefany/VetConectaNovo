@@ -31,7 +31,7 @@ class TestPostagemFeedRepo:
 
         postagem = PostagemFeed(
             id_postagem_feed=0,
-            tutor=id_tutor,
+            id_tutor=id_tutor,
             imagem="imagem.jpg",
             descricao="Descrição da postagem",
             data_postagem=datetime.today().date())

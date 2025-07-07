@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS postagem_feed (
     descricao TEXT,
     data_postagem DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (id_tutor) REFERENCES tutor(id_usuario)
+
 );
 """
 
