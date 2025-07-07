@@ -15,12 +15,10 @@ def criar_tabela() -> bool:
         print(f"Erro ao criar tabela de categorias: {e}")
         return False
 
-
 def inserir(postagem: PostagemFeed) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(INSERIR, (
-            postagem.id_postagem_feed,
             postagem.tutor.id_usuario,
             postagem.imagem,
             postagem.descricao,
