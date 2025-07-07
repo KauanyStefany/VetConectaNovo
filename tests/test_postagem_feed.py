@@ -20,7 +20,7 @@ class TestPostagemFeedRepo:
         usuario_repo.criar_tabela_usuario()
         tutor_repo.criar_tabela_tutor()
         postagem_feed_repo.criar_tabela()
-
+        
         tutor = Tutor(
             id_usuario=0,
             nome="Maria",
@@ -41,6 +41,8 @@ class TestPostagemFeedRepo:
         assert id_post is not None, "A inserção deveria retornar um ID válido"
         postagem_db = postagem_feed_repo.obter_por_id(id_post)
         assert postagem_db is not None, "A postagem deveria ser inserida e recuperada"
+        assert postagem_db.tutor.id_usuario == postagem.tutor.id_usuario, "O tutor da postagem recuperada está incorreto"
         assert postagem_db.imagem == postagem.imagem, "A imagem da postagem recuperada está incorreta"
         assert postagem_db.descricao == postagem.descricao, "A descrição da postagem recuperada está incorreta"
         assert postagem_db.data_postagem == postagem.data_postagem, "A data da postagem recuperada está incorreta"
+    

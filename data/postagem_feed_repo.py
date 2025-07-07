@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional, List
 from data.postagem_feed_model import PostagemFeed
 from data.postagem_feed_sql import *
@@ -19,14 +20,11 @@ def inserir(postagem: PostagemFeed) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(INSERIR, (
-            postagem.tutor.id_usuario,
+            postagem.id_tutor,
             postagem.imagem,
-            postagem.descricao,
-            postagem.data_postagem
+            postagem.descricao
         ))
         return cursor.lastrowid
-
-
     
 def atualizar(postagem: PostagemFeed) -> bool:
     with get_connection() as conn:
@@ -44,7 +42,9 @@ def excluir(id_postagem_feed: int) -> bool:
         cursor.execute(EXCLUIR, (id_postagem_feed,))
         return cursor.rowcount > 0
 
-def obter_todos_paginado(limite: int, offset: int) -> List[PostagemFeed]:
+def obter_todos_paginado(pagina: int, tamanho_pagina: int) -> List[PostagemFeed]:
+    limite = tamanho_pagina
+    offset = (pagina - 1) * tamanho_pagina
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(OBTER_TODOS_PAGINADO, (limite, offset))
@@ -52,15 +52,14 @@ def obter_todos_paginado(limite: int, offset: int) -> List[PostagemFeed]:
         return [
             PostagemFeed(
                 id_postagem_feed=row["id_postagem_feed"],
-                tutor=Tutor(id=row["id_tutor"], nome=row["nome_tutor"]),
+                id_tutor=row["id_tutor"],
                 imagem=row["imagem"],
                 descricao=row["descricao"],
-                data_postagem=row["data_postagem"]
+                data_publicacao=datetime.strptime(row["data_publicacao"], "%Y-%m-%d").date(),
+                tutor=Tutor(id=row["id_tutor"], nome=row["nome_tutor"])
             )
             for row in rows
         ]
-
-
 
 def obter_por_id(id_postagem_feed: int) -> Optional[PostagemFeed]:
     with get_connection() as conn:
@@ -70,9 +69,10 @@ def obter_por_id(id_postagem_feed: int) -> Optional[PostagemFeed]:
         if row:
             return PostagemFeed(
                 id_postagem_feed=row["id_postagem_feed"],
-                tutor=Tutor(id=row["id_tutor"], nome=row["nome_tutor"]),
+                id_tutor=row["id_tutor"],
                 imagem=row["imagem"],
                 descricao=row["descricao"],
-                data_postagem=row["data_postagem"]
+                data_publicacao=datetime.strptime(row["data_publicacao"], "%Y-%m-%d").date(),
+                tutor=Tutor(id=row["id_tutor"], nome=row["nome_tutor"])
             )
         return None

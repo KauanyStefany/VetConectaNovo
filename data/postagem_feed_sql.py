@@ -27,30 +27,23 @@ WHERE id_postagem_feed = ?;
 
 OBTER_TODOS_PAGINADO = """
 SELECT 
-    pf.id_postagem_feed,
-    pf.id_tutor,
-    u.nome AS nome_tutor,
-    pf.imagem,
-    pf.descricao,
-    pf.data_postagem
-FROM postagem_feed pf
-JOIN tutor t ON pf.id_tutor = t.id_usuario
-JOIN usuario u ON t.id_usuario = u.id_usuario
-ORDER BY pf.data_postagem DESC
+    id_postagem_feed,
+    id_tutor,    
+    imagem,
+    descricao,
+    data_postagem
+FROM postagem_feed
+ORDER BY data_postagem DESC
 LIMIT ? OFFSET ?;
 """
 
-
 OBTER_POR_ID = """
 SELECT 
-    pf.id_postagem_feed,
-    pf.id_tutor,
-    u.nome AS nome_tutor,
-    pf.imagem,
-    pf.descricao,
-    pf.data_postagem
-FROM postagem_feed pf
-JOIN tutor t ON pf.id_tutor = t.id_usuario
-JOIN usuario u ON t.id_usuario = u.id_usuario
-WHERE pf.id_postagem_feed = ?;
+    id_postagem_feed,
+    id_tutor,
+    imagem,
+    descricao,
+    data_postagem
+FROM postagem_feed
+WHERE id_postagem_feed = ?;
 """

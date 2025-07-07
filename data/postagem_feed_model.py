@@ -6,7 +6,8 @@ from data.tutor_model import Tutor
 @dataclass
 class PostagemFeed:
     id_postagem_feed: int
-    tutor: Optional[Tutor] = None
-    imagem: str
+    id_tutor: int
+    imagem: Optional[str]
     descricao: str
     data_postagem: date
+    tutor: Optional[Tutor] = None
