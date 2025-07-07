@@ -137,4 +137,4 @@ class TestCurtidaArtigoRepo:
         resultado = excluir_curtida(999, 999)
         
         # Assert
-        assert resultado == False, "Excluir curtida inexistente deveria retornar False"
+        assert resultado == False, "Excluir curtida inexistente deveria retornar "
