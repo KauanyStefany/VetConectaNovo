@@ -1,10 +1,10 @@
 from datetime import datetime
 import os
 import sys
-from data import usuario_repo ,tutor_repo, postagem_feed_repo
-from data.postagem_feed_model import PostagemFeed
-from data.usuario_model import Usuario
-from data.tutor_model import Tutor
+from repo import usuario_repo ,tutor_repo, postagem_feed_repo
+from model.postagem_feed_model import PostagemFeed
+from model.usuario_model import Usuario
+from model.tutor_model import Tutor
 
 
 class TestPostagemFeedRepo:
@@ -41,7 +41,7 @@ class TestPostagemFeedRepo:
         assert id_post is not None, "A inserção deveria retornar um ID válido"
         postagem_db = postagem_feed_repo.obter_por_id(id_post)
         assert postagem_db is not None, "A postagem deveria ser inserida e recuperada"
-        assert postagem_db.tutor.id_usuario == postagem.tutor.id_usuario, "O tutor da postagem recuperada está incorreto"
+        assert postagem_db.id_tutor == postagem.id_tutor, "O tutor da postagem recuperada está incorreto"
         assert postagem_db.imagem == postagem.imagem, "A imagem da postagem recuperada está incorreta"
         assert postagem_db.descricao == postagem.descricao, "A descrição da postagem recuperada está incorreta"
         assert postagem_db.data_postagem == postagem.data_postagem, "A data da postagem recuperada está incorreta"

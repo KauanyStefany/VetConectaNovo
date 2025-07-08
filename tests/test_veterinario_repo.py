@@ -1,9 +1,9 @@
 import os
 import sys
-from data.veterinario_repo import *
-from data.veterinario_model import Veterinario
-from data.usuario_model import Usuario
-from data.usuario_repo import *
+from repo.veterinario_repo import *
+from model.veterinario_model import Veterinario
+from model.usuario_model import Usuario
+from repo.usuario_repo import *
 
 class TestVeterinarioRepo:
     def test_criar_tabela(self, test_db):

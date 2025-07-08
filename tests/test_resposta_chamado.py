@@ -2,16 +2,16 @@ import os
 import sys
 from datetime import date
 
-from data.administrador_model import *
-from data.administrador_repo import *
-from data.chamado_model import Chamado
-from data.chamado_repo import *
-from data.usuario_model import Usuario
-from data.usuario_repo import *
-from data.resposta_chamado_model import RespostaChamado
-from data.resposta_chamado_repo import *
-from data.administrador_repo import criar_tabela_administrador, inserir_administrador
-from data.administrador_model import Administrador
+from model.administrador_model import *
+from repo.administrador_repo import *
+from model.chamado_model import Chamado
+from repo.chamado_repo import *
+from model.usuario_model import Usuario
+from repo.usuario_repo import *
+from model.resposta_chamado_model import RespostaChamado
+from repo.resposta_chamado_repo import *
+from repo.administrador_repo import criar_tabela_administrador, inserir_administrador
+from model.administrador_model import Administrador
 
 class TestRespostaChamadoRepo:
     
@@ -40,7 +40,7 @@ class TestRespostaChamadoRepo:
 
         # Cria chamado usando IDs válidos
         chamado_teste = Chamado(
-            id=0,
+            id_chamado=0,
             id_usuario=id_usuario,
             id_admin=id_admin,
             titulo="Título Chamado",
@@ -52,7 +52,7 @@ class TestRespostaChamadoRepo:
 
         # Cria resposta usando ID do chamado válido
         resposta_teste = RespostaChamado(
-            id=None,
+            id_resposta_chamado=None,
             id_chamado=id_chamado_inserido,
             titulo="Resposta ao chamado",
             descricao="Esta é uma resposta ao chamado",
@@ -87,7 +87,7 @@ class TestRespostaChamadoRepo:
 
         # Cria chamado
         chamado_teste = Chamado(
-            id=0,
+            id_chamado=0,
             id_usuario=id_usuario,
             id_admin=id_admin,
             titulo="Título Chamado",
@@ -99,7 +99,7 @@ class TestRespostaChamadoRepo:
 
         # Cria resposta inicial
         resposta_teste = RespostaChamado(
-            id=None,
+            id_resposta_chamado=None,
             id_chamado=id_chamado_inserido,
             titulo="Resposta Original",
             descricao="Descrição Original",
@@ -109,7 +109,7 @@ class TestRespostaChamadoRepo:
 
         # Atualiza resposta
         resposta_atualizada = RespostaChamado(
-            id=id_resposta_inserida,
+            id_resposta_chamado=id_resposta_inserida,
             id_chamado=id_chamado_inserido,
             titulo="Resposta Atualizada",
             descricao="Descrição Atualizada",
@@ -142,7 +142,7 @@ class TestRespostaChamadoRepo:
 
         # Cria chamado
         chamado_teste = Chamado(
-            id=0,
+            id_chamado=0,
             id_usuario=id_usuario,
             id_admin=id_admin,
             titulo="Título Chamado",
@@ -154,7 +154,7 @@ class TestRespostaChamadoRepo:
 
         # Insere resposta
         resposta_teste = RespostaChamado(
-            id=None,
+            id_resposta_chamado=None,
             id_chamado=id_chamado_inserido,
             titulo="Resposta para exclusão",
             descricao="Esta resposta será excluída",
@@ -186,7 +186,7 @@ class TestRespostaChamadoRepo:
 
         # Cria chamado
         chamado_teste = Chamado(
-            id=0,
+            id_chamado=0,
             id_usuario=id_usuario,
             id_admin=id_admin,
             titulo="Título Chamado",
@@ -198,14 +198,14 @@ class TestRespostaChamadoRepo:
 
         # Cria duas respostas válidas
         resposta1 = RespostaChamado(
-            id=None,
+            id_resposta_chamado=None,
             id_chamado=id_chamado_inserido,
             titulo="Resposta 1",
             descricao="Descrição 1",
             data=date(2025, 6, 30)
         )
         resposta2 = RespostaChamado(
-            id=None,
+            id_resposta_chamado=None,
             id_chamado=id_chamado_inserido,
             titulo="Resposta 2",
             descricao="Descrição 2",
@@ -253,7 +253,7 @@ class TestRespostaChamadoRepo:
 
         # Criar o chamado referenciando os IDs válidos
         chamado_teste = Chamado(
-            id=0,
+            id_chamado=0,
             id_usuario=id_usuario,
             id_admin=id_admin,
             titulo="Chamado Teste",
@@ -265,7 +265,7 @@ class TestRespostaChamadoRepo:
 
         # Criar a resposta referenciando o ID do chamado válido
         resposta_teste = RespostaChamado(
-            id=None,
+            id_resposta_chamado=None,
             id_chamado=id_chamado_inserido,
             titulo="Resposta Teste",
             descricao="Descrição da Resposta Teste",
@@ -278,7 +278,7 @@ class TestRespostaChamadoRepo:
 
         # Assert
         assert resposta_db is not None
-        assert resposta_db.id == id_resposta_inserida
+        assert resposta_db.id_resposta_chamado == id_resposta_inserida
         assert resposta_db.id_chamado == id_chamado_inserido
         assert resposta_db.titulo == resposta_teste.titulo
         assert resposta_db.descricao == resposta_teste.descricao

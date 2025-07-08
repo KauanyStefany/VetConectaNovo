@@ -1,13 +1,14 @@
 import os
 import sys
-from data import usuario_repo
-from data import usuario_model
-from data import tutor_repo
-from data import tutor_model
-from data import postagem_feed_repo
-from data import postagem_feed_model
-from data import curtida_feed_model
-from data import curtida_feed_repo
+from datetime import date
+from repo import usuario_repo
+from model import usuario_model
+from repo import tutor_repo
+from model import tutor_model
+from repo import postagem_feed_repo
+from model import postagem_feed_model
+from model import curtida_feed_model
+from repo import curtida_feed_repo
 
 class TestCurtidaFeedRepo:
     def test_criar_tabela(self, test_db):
@@ -24,36 +25,27 @@ class TestCurtidaFeedRepo:
         postagem_feed_repo.criar_tabela()
         curtida_feed_repo.criar_tabela()
         
-        # Insere um usuário
-        usuario = usuario_model.Usuario(
-            id_usuario=0, nome="Usuario Teste", email="usuario@gmail.com", 
-            senha="senha123", telefone="12345678900"
-        )
-        usuario_id = usuario_repo.inserir_usuario(usuario)
-        
-        # Insere um tutor
+        # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-            senha="senha123", telefone="12345678900", cpf="12345678901", 
-            endereco="Endereço Teste", verificado=False, bio=""
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste@gmail.com", 
+            senha="senha123", telefone="12345678901", quantidade_pets=2, 
+            descricao_pets="Dois gatos"
         )
-        tutor_repo.inserir_tutor(tutor)
+        tutor_id = tutor_repo.inserir_tutor(tutor)
         
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
-            tutor=tutor_model.Tutor(id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-                       senha="senha123", telefone="12345678900", cpf="12345678901", 
-                       endereco="Endereço Teste", verificado=False, bio=""),
+            id_tutor=tutor_id,
             imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
-            data_postagem=""
+            data_postagem=date.today()
         )
         postagem_id = postagem_feed_repo.inserir(postagem)
         
         # Cria uma curtida
         curtida = curtida_feed_model.CurtidaFeed(
-            id_usuario=usuario_id,
+            id_usuario=tutor_id,
             id_postagem_feed=postagem_id
         )
         
@@ -62,9 +54,9 @@ class TestCurtidaFeedRepo:
         
         # Assert
         assert resultado == True, "A inserção da curtida deveria retornar True"
-        curtida_db = curtida_feed_repo.obter_por_id(usuario_id, postagem_id)
+        curtida_db = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
         assert curtida_db is not None, "A curtida inserida não deveria ser None"
-        assert curtida_db.id_usuario == usuario_id, "O ID do usuário da curtida inserida não confere"
+        assert curtida_db.id_usuario == tutor_id, "O ID do usuário da curtida inserida não confere"
         assert curtida_db.id_postagem_feed == postagem_id, "O ID da postagem da curtida inserida não confere"
         assert curtida_db.data_curtida is not None, "A data da curtida inserida não deveria ser None"
 
@@ -75,46 +67,37 @@ class TestCurtidaFeedRepo:
         postagem_feed_repo.criar_tabela()
         curtida_feed_repo.criar_tabela()
         
-        # Insere um usuário
-        usuario = usuario_model.Usuario(
-            id_usuario=0, nome="Usuario Teste", email="usuario@gmail.com", 
-            senha="senha123", telefone="12345678900"
-        )
-        usuario_id = usuario_repo.inserir_usuario(usuario)
-        
-        # Insere um tutor
+        # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-            senha="senha123", telefone="12345678900", cpf="12345678901", 
-            endereco="Endereço Teste", verificado=False, bio=""
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste2@gmail.com", 
+            senha="senha123", telefone="12345678911", quantidade_pets=2, 
+            descricao_pets="Dois gatos"
         )
-        tutor_repo.inserir_tutor(tutor)
+        tutor_id = tutor_repo.inserir_tutor(tutor)
         
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
-            tutor=tutor_model.Tutor(id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-                       senha="senha123", telefone="12345678900", cpf="12345678901", 
-                       endereco="Endereço Teste", verificado=False, bio=""),
+            id_tutor=tutor_id,
             imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
-            data_postagem=""
+            data_postagem=date.today()
         )
         postagem_id = postagem_feed_repo.inserir(postagem)
         
         # Insere uma curtida
         curtida = curtida_feed_model.CurtidaFeed(
-            id_usuario=usuario_id,
+            id_usuario=tutor_id,
             id_postagem_feed=postagem_id
         )
         curtida_feed_repo.inserir(curtida)
         
         # Act
-        resultado = curtida_feed_repo.excluir(usuario_id, postagem_id)
+        resultado = curtida_feed_repo.excluir(tutor_id, postagem_id)
         
         # Assert
         assert resultado == True, "A exclusão da curtida deveria retornar True"
-        curtida_db = curtida_feed_repo.obter_por_id(usuario_id, postagem_id)
+        curtida_db = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
         assert curtida_db is None, "A curtida excluída deveria ser None após exclusão"
     
     def test_obter_todas_paginado(self, test_db):
@@ -124,36 +107,27 @@ class TestCurtidaFeedRepo:
         postagem_feed_repo.criar_tabela()
         curtida_feed_repo.criar_tabela()
         
-        # Insere um usuário
-        usuario = usuario_model.Usuario(
-            id_usuario=0, nome="Usuario Teste", email="usuario@gmail.com", 
-            senha="senha123", telefone="12345678900"
-        )
-        usuario_id = usuario_repo.inserir_usuario(usuario)
-        
-        # Insere um tutor
+        # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-            senha="senha123", telefone="12345678900", cpf="12345678901", 
-            endereco="Endereço Teste", verificado=False, bio=""
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste3@gmail.com", 
+            senha="senha123", telefone="12345678921", quantidade_pets=2, 
+            descricao_pets="Dois gatos"
         )
-        tutor_repo.inserir_tutor(tutor)
+        tutor_id = tutor_repo.inserir_tutor(tutor)
         
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
-            tutor=tutor_model.Tutor(id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-                       senha="senha123", telefone="12345678900", cpf="12345678901", 
-                       endereco="Endereço Teste", verificado=False, bio=""),
+            id_tutor=tutor_id,
             imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
-            data_postagem=""
+            data_postagem=date.today()
         )
         postagem_id = postagem_feed_repo.inserir(postagem)
         
         # Insere uma curtida
         curtida = curtida_feed_model.CurtidaFeed(
-            id_usuario=usuario_id,
+            id_usuario=tutor_id,
             id_postagem_feed=postagem_id
         )
         curtida_feed_repo.inserir(curtida)
@@ -162,10 +136,9 @@ class TestCurtidaFeedRepo:
         resultado = curtida_feed_repo.obter_todos_paginado(10, 0)
         
         # Assert
-        
         assert resultado is not None, "A consulta de curtidas deveria retornar resultados"
         assert len(resultado) > 0, "A consulta de curtidas deveria retornar mais de 0 resultados"
-        assert resultado[0].id_usuario == usuario_id, "O ID do usuário na curtida retornada não confere"
+        assert resultado[0].id_usuario == tutor_id, "O ID do usuário na curtida retornada não confere"
         assert resultado[0].id_postagem_feed == postagem_id, "O ID da postagem na curtida retornada não confere"
         assert resultado[0].data_curtida is not None, "A data da curtida retornada não deveria ser None"
         
@@ -176,46 +149,36 @@ class TestCurtidaFeedRepo:
         postagem_feed_repo.criar_tabela()
         curtida_feed_repo.criar_tabela()
         
-        # Insere um usuário
-        usuario = usuario_model.Usuario(
-            id_usuario=0, nome="Usuario Teste", email="usuario@gmail.com", 
-            senha="senha123", telefone="12345678900"
-        )
-        usuario_id = usuario_repo.inserir_usuario(usuario)
-        
-        # Insere um tutor
+        # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-            senha="senha123", telefone="12345678900", cpf="12345678901", 
-            endereco="Endereço Teste", verificado=False, bio=""
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste4@gmail.com", 
+            senha="senha123", telefone="12345678931", quantidade_pets=2, 
+            descricao_pets="Dois gatos"
         )
-        tutor_repo.inserir_tutor(tutor)
+        tutor_id = tutor_repo.inserir_tutor(tutor)
         
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
-            tutor=tutor_model.Tutor(id_usuario=usuario_id, nome="Tutor Teste", email="tutor@gmail.com", 
-                       senha="senha123", telefone="12345678900", cpf="12345678901", 
-                       endereco="Endereço Teste", verificado=False, bio=""),
+            id_tutor=tutor_id,
             imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
-            data_postagem=""
+            data_postagem=date.today()
         )
         postagem_id = postagem_feed_repo.inserir(postagem)
         
         # Insere uma curtida
         curtida = curtida_feed_model.CurtidaFeed(
-            id_usuario=usuario_id,
+            id_usuario=tutor_id,
             id_postagem_feed=postagem_id
-            
         )
         curtida_feed_repo.inserir(curtida)
         
         # Act
-        resultado = curtida_feed_repo.obter_por_id(usuario_id, postagem_id)
+        resultado = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
         
         # Assert
         assert resultado is not None, "A consulta de curtida deveria retornar um resultado"
-        assert resultado.id_usuario == usuario_id, "O ID do usuário na curtida retornada não confere"
+        assert resultado.id_usuario == tutor_id, "O ID do usuário na curtida retornada não confere"
         assert resultado.id_postagem_feed == postagem_id, "O ID da postagem na curtida retornada não confere"
         assert resultado.data_curtida is not None, "A data da curtida retornada não deveria ser None"

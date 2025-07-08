@@ -1,197 +1,293 @@
-import os
-import sys
-from data.administrador_model import Administrador
-from data.denuncia_repo import *
-from data.usuario_repo import *
-from data.postagem_feed_repo import *
-from data.denuncia_model import Denuncia
-from data.usuario_model import Usuario
-from data.administrador_repo import inserir_administrador, criar_tabela_administrador
+import pytest
+from datetime import datetime
+from repo.denuncia_repo import *
+from repo.usuario_repo import *
+from repo.administrador_repo import *
+from model.denuncia_model import Denuncia
+from model.usuario_model import Usuario
+from model.administrador_model import Administrador
+from model.enums import DenunciaStatus
+
 
 class TestDenunciaRepo:
-    def test_criar_tabela_denuncia(self, test_db):
-        # Arrange
+    """Testes para o repositório de denúncias"""
+    
+    @pytest.fixture(autouse=True)
+    def setup(self, test_db):
+        """Setup executado antes de cada teste"""
+        # Criar tabelas necessárias
+        criar_tabela_usuario()
+        criar_tabela_administrador()
+        criar_tabela_denuncia()
+        
+        # Criar dados base para os testes
+        self.usuario = Usuario(0, "João Silva", "joao@email.com", "senha123", "11999998888")
+        self.id_usuario = inserir_usuario(self.usuario)
+        
+        self.admin = Administrador(0, "Admin Silva", "admin@email.com", "senha456")
+        self.id_admin = inserir_administrador(self.admin)
+        
+    def test_criar_tabela(self, test_db):
+        """Testa a criação da tabela de denúncias"""
+        # Arrange - já feito no setup
         # Act
         resultado = criar_tabela_denuncia()
+        
         # Assert
         assert resultado == True, "A criação da tabela deveria retornar True"
 
-    def test_inserir_denuncia(self, test_db):
+    def test_inserir_denuncia_sucesso(self, test_db):
+        """Testa inserção de denúncia com sucesso"""
         # Arrange
-        criar_tabela_usuario()       # Certifique que a tabela usuario existe
-        criar_tabela_administrador() # Certifique que a tabela administrador existe
-        criar_tabela_denuncia()      # Crie a tabela denuncia
-        
-        # Insere um usuário para a FK id_usuario
-        usuario_id = inserir_usuario(Usuario(
-            id_usuario=0, nome="Usuário Teste", email="teste@teste.com", senha="12345678", telefone="12345678900"
-        ))
-    
-        # Insere um administrador para a FK id_admin
-        admin_id = inserir_administrador(Administrador(
-            id_admin=0, nome="Admin Teste", email="admin@teste.com", senha="admin123"
-        ))
-        
-        # Cria uma denúncia com os IDs válidos
-        denuncia_teste = Denuncia(
+        denuncia = Denuncia(
             id_denuncia=0,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Teste",
-            data_denuncia="2025-06-30",
-            status="pendente"  
+            id_usuario=self.id_usuario,
+            id_admin=self.id_admin,
+            motivo="Conteúdo inapropriado",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.PENDENTE
         )
         
         # Act
-        id_denuncia_inserida = inserir_denuncia(denuncia_teste)
+        id_inserido = inserir_denuncia(denuncia)
         
         # Assert
-        denuncia_db = obter_denuncia_por_id(id_denuncia_inserida)
-        assert denuncia_db is not None, "A denúncia inserida não deveria ser None"
-        assert denuncia_db.id_usuario == usuario_id, "O ID do usuário da denúncia inserida não confere"
-        assert denuncia_db.id_denuncia == 1, "A denúncia inserida deveria ter um ID igual a 1"
-        assert denuncia_db.motivo == "Motivo Teste", "O motivo da denuncia da denúncia inserida não confere"
-        assert denuncia_db.status == "pendente", "O status da denúncia inserida não confere"
+        assert id_inserido is not None, "ID da denúncia inserida não deveria ser None"
+        assert id_inserido > 0, "ID deveria ser maior que zero"
+        
+        # Verificar se foi salvo corretamente
+        denuncia_db = obter_denuncia_por_id(id_inserido)
+        assert denuncia_db is not None, "Denúncia deveria existir no banco"
+        assert denuncia_db.motivo == denuncia.motivo
+        assert denuncia_db.status == DenunciaStatus.PENDENTE
+        assert denuncia_db.id_usuario == self.id_usuario
+        assert denuncia_db.id_admin == self.id_admin
 
-    def test_atualizar_denuncia(self, test_db):
+    def test_inserir_denuncia_sem_admin(self, test_db):
+        """Testa inserção de denúncia sem admin atribuído"""
         # Arrange
-        criar_tabela_usuario()       # Certifique que a tabela usuario existe
-        criar_tabela_administrador() # Certifique que a tabela administrador existe
-        criar_tabela_denuncia()      # Crie a tabela denuncia   
-        # Insere um usuário para a FK id_usuario
-        usuario_id = inserir_usuario(Usuario(id_usuario=0, nome="Usuário Teste", email="usuario@gmail.com", senha="12345678", telefone="12345678900"))
-        # Insere um administrador para a FK id_admin
-        admin_id = inserir_administrador(Administrador(id_admin=0, nome="Admin Teste", email="admin@gmail.com", senha="admin123"))
-        # Insere uma denúncia
-        denuncia_id = inserir_denuncia(Denuncia(
+        denuncia = Denuncia(
             id_denuncia=0,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Teste",
-            data_denuncia="2025-30-06",
-            status="pendente"
-        ))
-        # Atualiza a denúncia
+            id_usuario=self.id_usuario,
+            id_admin=None,  # Sem admin atribuído
+            motivo="Spam",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.PENDENTE
+        )
+        
+        # Act
+        id_inserido = inserir_denuncia(denuncia)
+        
+        # Assert
+        assert id_inserido is not None, "Deveria permitir inserir denúncia sem admin"
+        
+        denuncia_db = obter_denuncia_por_id(id_inserido)
+        assert denuncia_db is not None, "Denúncia deveria ter sido inserida"
+        assert denuncia_db.id_admin is None
+
+    def test_atualizar_denuncia_sucesso(self, test_db):
+        """Testa atualização de denúncia com sucesso"""
+        # Arrange
+        denuncia_original = Denuncia(
+            id_denuncia=0,
+            id_usuario=self.id_usuario,
+            id_admin=self.id_admin,
+            motivo="Motivo original",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.PENDENTE
+        )
+        id_denuncia = inserir_denuncia(denuncia_original)
+        
+        # Act
         denuncia_atualizada = Denuncia(
-            id_denuncia=denuncia_id,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Atualizado",
-            data_denuncia="2025-01-07",
-            status="aprovada"
+            id_denuncia=id_denuncia,
+            id_usuario=self.id_usuario,
+            id_admin=self.id_admin,
+            motivo="Motivo atualizado",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.RESOLVIDA
         )
-        # Act
         resultado = atualizar_denuncia(denuncia_atualizada)
+        
         # Assert
-        assert resultado == True, "A atualização da denúncia deveria retornar True"
-        denuncia_db = obter_denuncia_por_id(denuncia_id)
-        assert denuncia_db is not None, "A denúncia atualizada não deveria ser None"    
-        assert denuncia_db.id_denuncia == denuncia_id, "O ID da denúncia atualizada não confere"
-        assert denuncia_db.motivo == "Motivo Atualizado", "O motivo da denúncia atualizada não confere"
-        assert denuncia_db.data_denuncia == "2025-01-07", "A data da denúncia atualizada não confere"
-        assert denuncia_db.status == "aprovada", "O status da denúncia atualizada não confere"
+        assert resultado == True, "Atualização deveria retornar True"
+        
+        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        assert denuncia_db.motivo == "Motivo atualizado"
+        assert denuncia_db.status == DenunciaStatus.RESOLVIDA
 
-    def test_excluir_denuncia(self, test_db):
+    def test_atualizar_denuncia_inexistente(self, test_db):
+        """Testa atualização de denúncia inexistente"""
         # Arrange
-        criar_tabela_usuario()       # Certifique que a tabela usuario existe
-        criar_tabela_administrador() # Certifique que a tabela administrador existe
-        criar_tabela_denuncia()      # Crie a tabela denuncia
-        # Insere um usuário para a FK id_usuario
-        usuario_id = inserir_usuario(Usuario(id_usuario=0, nome="Usuário Teste", email="usuario@gmail.com", senha="12345678", telefone="12345678900"))
-        # Insere um administrador para a FK id_admin
-        admin_id = inserir_administrador(Administrador(id_admin=0, nome="Admin Teste", email="admin@gmail.com", senha="admin123"))
-        # Insere uma denúncia
-        denuncia_id = inserir_denuncia(Denuncia(
-            id_denuncia=0,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Teste",
-            data_denuncia="2025-06-30",
-            status="pendente"
-        ))
+        denuncia_inexistente = Denuncia(
+            id_denuncia=9999,
+            id_usuario=self.id_usuario,
+            id_admin=self.id_admin,
+            motivo="Não existe",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.PENDENTE
+        )
+        
         # Act
-        resultado = excluir_denuncia(denuncia_id)
+        resultado = atualizar_denuncia(denuncia_inexistente)
+        
         # Assert
-        assert resultado == True, "A exclusão da denúncia deveria retornar True"
-        denuncia_db = obter_denuncia_por_id(denuncia_id)
-        assert denuncia_db is None, "A denúncia excluída deveria ser None"
+        assert resultado == False, "Atualização de denúncia inexistente deveria retornar False"
+
+    def test_excluir_denuncia_sucesso(self, test_db):
+        """Testa exclusão de denúncia com sucesso"""
+        # Arrange
+        denuncia = Denuncia(
+            id_denuncia=0,
+            id_usuario=self.id_usuario,
+            id_admin=self.id_admin,
+            motivo="Para excluir",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.PENDENTE
+        )
+        id_denuncia = inserir_denuncia(denuncia)
+        
+        # Act
+        resultado = excluir_denuncia(id_denuncia)
+        
+        # Assert
+        assert resultado == True, "Exclusão deveria retornar True"
+        
+        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        assert denuncia_db is None, "Denúncia não deveria mais existir"
+
+    def test_excluir_denuncia_inexistente(self, test_db):
+        """Testa exclusão de denúncia inexistente"""
+        # Arrange
+        id_inexistente = 9999
+        
+        # Act
+        resultado = excluir_denuncia(id_inexistente)
+        
+        # Assert
+        assert resultado == False, "Exclusão de denúncia inexistente deveria retornar False"
 
     def test_obter_todas_denuncias_paginadas(self, test_db):
+        """Testa obtenção paginada de denúncias"""
         # Arrange
-        criar_tabela_usuario()       # Certifique que a tabela usuario existe
-        criar_tabela_administrador() # Certifique que a tabela administrador existe
-        criar_tabela_denuncia()      # Crie a tabela denuncia   
-        # Insere um usuário para a FK id_usuario
-        usuario_id = inserir_usuario(Usuario(id_usuario=0, nome="Usuário Teste", email="usuario@gmail.com", senha="12345678", telefone="12345678900"))
-        # Insere um administrador para a FK id_admin
-        admin_id = inserir_administrador(Administrador(id_admin=0, nome="Admin Teste", email="admin@gmail.com", senha="admin123"))
-        # Insere uma denúncia
-        inserir_denuncia(Denuncia(
-            id_denuncia=0,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Teste 1",
-            data_denuncia="2025-06-30",
-            status="pendente"
-        ))
-        inserir_denuncia(Denuncia(
-            id_denuncia=0,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Teste 2",
-            data_denuncia="2025-07-01",
-            status="aprovada"
-        ))
-        inserir_denuncia(Denuncia(
-            id_denuncia=0,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Teste 3",
-            data_denuncia="2025-07-02",
-            status="rejeitada"
-        ))
-        # Act
-        denuncias = obter_todas_denuncias_paginadas(limite=2, offset=0)
-        # Assert    
-        assert len(denuncias) == 2, "Deveria retornar 2 denúncias"
-        motivos = [d.motivo for d in denuncias]
-        assert "Motivo Teste 1" in motivos, "Motivo Teste 1 não encontrado"
-        assert "Motivo Teste 2" in motivos, "Motivo Teste 2 não encontrado"
-
-
-    
-
-    def test_obter_denuncia_por_id(self, test_db):
-        # Arrange
-        criar_tabela_usuario()       # Certifique que a tabela usuario existe
-        criar_tabela_administrador() # Certifique que a tabela administrador existe
-        criar_tabela_denuncia()      # Crie a tabela denuncia
-        # Insere um usuário para a FK id_usuario
-        usuario_id = inserir_usuario(Usuario(id_usuario=0, nome="Usuário Teste", email="emailteste@gmail.com",senha="12345678", telefone="12345678900"))
-        # Insere um administrador para a FK id_admin
-        admin_id = inserir_administrador(Administrador(id_admin=0, nome="Admin Teste", email="adminTeste@gmail.com", senha="admin123"))
-        # Insere uma denúncia
-        denuncia_id = inserir_denuncia(Denuncia(
-            id_denuncia=0,
-            id_usuario=usuario_id,
-            id_admin=admin_id,
-            motivo="Motivo Teste",
-            data_denuncia="2025-06-30",
-            status="pendente"
-        ))
-        # Act
-        denuncia_obtida = obter_denuncia_por_id(denuncia_id)
+        denuncias = [
+            Denuncia(0, self.id_usuario, self.id_admin, "Motivo 1", datetime.now(), DenunciaStatus.PENDENTE),
+            Denuncia(0, self.id_usuario, None, "Motivo 2", datetime.now(), DenunciaStatus.RESOLVIDA),
+            Denuncia(0, self.id_usuario, self.id_admin, "Motivo 3", datetime.now(), DenunciaStatus.REJEITADA),
+            Denuncia(0, self.id_usuario, None, "Motivo 4", datetime.now(), DenunciaStatus.PENDENTE),
+            Denuncia(0, self.id_usuario, self.id_admin, "Motivo 5", datetime.now(), DenunciaStatus.RESOLVIDA)
+        ]
+        
+        for denuncia in denuncias:
+            inserir_denuncia(denuncia)
+        
+        # Act - primeira página
+        pagina1 = obter_todas_denuncias_paginadas(limite=3, offset=0)
+        
         # Assert
-        assert denuncia_obtida is not None, "A denúncia obtida não deveria ser None"
-        assert denuncia_obtida.id_denuncia == denuncia_id, "O ID da denúncia obtida não confere"
-        assert denuncia_obtida.id_usuario == usuario_id, "O ID do usuário da denúncia obtida não confere"
-        assert denuncia_obtida.id_admin == admin_id, "O ID do administrador da denúncia obtida não confere"
-        assert denuncia_obtida.motivo == "Motivo Teste", "O motivo da denúncia obtida não confere"
-        assert denuncia_obtida.data_denuncia == "2025-06-30", "A data da denúncia obtida não confere"
-        assert denuncia_obtida.status == "pendente", "O status da denúncia obtida não confere"
+        assert len(pagina1) == 3, "Primeira página deveria ter 3 denúncias"
+        
+        # Act - segunda página
+        pagina2 = obter_todas_denuncias_paginadas(limite=3, offset=3)
+        
+        # Assert
+        assert len(pagina2) == 2, "Segunda página deveria ter 2 denúncias"
 
- 
+    def test_obter_todas_denuncias_paginadas_vazio(self, test_db):
+        """Testa obtenção paginada quando não há denúncias"""
+        # Arrange - sem inserir denúncias adicionais
+        # Act
+        denuncias = obter_todas_denuncias_paginadas(limite=10, offset=0)
+        
+        # Assert
+        assert isinstance(denuncias, list), "Deveria retornar uma lista"
+        assert len(denuncias) == 0, "Lista deveria estar vazia"
 
+    def test_obter_denuncia_por_id_existente(self, test_db):
+        """Testa obtenção de denúncia por ID existente"""
+        # Arrange
+        denuncia = Denuncia(
+            id_denuncia=0,
+            id_usuario=self.id_usuario,
+            id_admin=self.id_admin,
+            motivo="Teste de busca",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.PENDENTE
+        )
+        id_denuncia = inserir_denuncia(denuncia)
+        
+        # Act
+        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        
+        # Assert
+        assert denuncia_db is not None, "Denúncia deveria existir"
+        assert denuncia_db.id_denuncia == id_denuncia
+        assert denuncia_db.motivo == denuncia.motivo
+        assert denuncia_db.status == denuncia.status
 
-    
-      
+    def test_obter_denuncia_por_id_inexistente(self, test_db):
+        """Testa obtenção de denúncia por ID inexistente"""
+        # Arrange
+        id_inexistente = 9999
+        
+        # Act
+        denuncia = obter_denuncia_por_id(id_inexistente)
+        
+        # Assert
+        assert denuncia is None, "Denúncia não deveria existir"
+
+    def test_fluxo_completo_denuncia(self, test_db):
+        """Testa fluxo completo: criar, atualizar e resolver denúncia"""
+        # Arrange
+        denuncia = Denuncia(
+            id_denuncia=0,
+            id_usuario=self.id_usuario,
+            id_admin=None,  # Inicialmente sem admin
+            motivo="Conteúdo inadequado",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.PENDENTE
+        )
+        
+        # Act 1 - Criar denúncia
+        id_denuncia = inserir_denuncia(denuncia)
+        assert id_denuncia is not None
+        
+        # Act 2 - Admin analisa a denúncia
+        denuncia_atualizada = Denuncia(
+            id_denuncia=id_denuncia,
+            id_usuario=self.id_usuario,
+            id_admin=self.id_admin,  # Agora com admin
+            motivo="Conteúdo inadequado",
+            data_denuncia=datetime.now(),
+            status=DenunciaStatus.RESOLVIDA
+        )
+        resultado = atualizar_denuncia(denuncia_atualizada)
+        assert resultado == True
+        
+        # Verificar aprovação
+        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        assert denuncia_db.status == DenunciaStatus.RESOLVIDA
+        assert denuncia_db.id_admin == self.id_admin
+
+    def test_enum_status_valores(self, test_db):
+        """Testa se os valores dos enums estão corretos"""
+        # Arrange
+        denuncias = [
+            Denuncia(0, self.id_usuario, self.id_admin, "Teste 1", datetime.now(), DenunciaStatus.PENDENTE),
+            Denuncia(0, self.id_usuario, self.id_admin, "Teste 2", datetime.now(), DenunciaStatus.RESOLVIDA),
+            Denuncia(0, self.id_usuario, self.id_admin, "Teste 3", datetime.now(), DenunciaStatus.REJEITADA)
+        ]
+        
+        ids = []
+        for denuncia in denuncias:
+            ids.append(inserir_denuncia(denuncia))
+        
+        # Act & Assert
+        denuncia1 = obter_denuncia_por_id(ids[0])
+        assert denuncia1.status == DenunciaStatus.PENDENTE
+        
+        denuncia2 = obter_denuncia_por_id(ids[1])
+        assert denuncia2.status == DenunciaStatus.RESOLVIDA
+        
+        denuncia3 = obter_denuncia_por_id(ids[2])
+        assert denuncia3.status == DenunciaStatus.REJEITADA

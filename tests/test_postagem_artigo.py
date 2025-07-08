@@ -1,10 +1,10 @@
 from datetime import datetime
 import os
 import sys
-from data import usuario_repo, veterinario_repo, categoria_artigo_repo, postagem_artigo_repo
-from data.categoria_artigo_model import CategoriaArtigo
-from data.postagem_artigo_model import PostagemArtigo
-from data.veterinario_model import Veterinario
+from repo import usuario_repo, veterinario_repo, categoria_artigo_repo, postagem_artigo_repo
+from model.categoria_artigo_model import CategoriaArtigo
+from model.postagem_artigo_model import PostagemArtigo
+from model.veterinario_model import Veterinario
 from util import get_connection
 
 class TestPostagemArtigoRepo:
@@ -25,7 +25,7 @@ class TestPostagemArtigoRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="joao@email.com",
+            email="joao1@email.com",
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
@@ -33,11 +33,11 @@ class TestPostagemArtigoRepo:
             bio="Especialista em felinos")
         id_vet = veterinario_repo.inserir_veterinario(vet)
 
-        categoria = CategoriaArtigo(id=0, nome="Saúde Felina", descricao="Cuidados com gatos")
+        categoria = CategoriaArtigo(id_categoria_artigo=0, nome="Saúde Felina", descricao="Cuidados com gatos")
         id_cat = categoria_artigo_repo.inserir_categoria(categoria)
 
         postagem = PostagemArtigo(
-            id=0,
+            id_postagem_artigo=0,
             id_veterinario=id_vet,
             titulo="Vacinação de Gatos",
             conteudo="Texto do artigo",
@@ -67,7 +67,7 @@ class TestPostagemArtigoRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="joao@email.com",
+            email="joao2@email.com",
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
@@ -75,11 +75,11 @@ class TestPostagemArtigoRepo:
             bio="Especialista em felinos")
         id_vet = veterinario_repo.inserir_veterinario(vet)
 
-        categoria = CategoriaArtigo(id=0, nome="Saúde Felina", descricao="Cuidados com gatos")
+        categoria = CategoriaArtigo(id_categoria_artigo=0, nome="Saúde Felina", descricao="Cuidados com gatos")
         id_cat = categoria_artigo_repo.inserir_categoria(categoria)
 
         postagem = PostagemArtigo(
-            id=0,
+            id_postagem_artigo=0,
             id_veterinario=id_vet,
             titulo="Vacinação de Gatos",
             conteudo="Texto do artigo",
@@ -107,17 +107,17 @@ class TestPostagemArtigoRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="joao@email.com",
+            email="joao3@email.com",
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
             verificado=True, 
             bio="Especialista em felinos")
         id_vet = veterinario_repo.inserir_veterinario(vet)
-        categoria = CategoriaArtigo(id=0, nome="Saúde Felina", descricao="Cuidados com gatos")
+        categoria = CategoriaArtigo(id_categoria_artigo=0, nome="Saúde Felina", descricao="Cuidados com gatos")
         id_cat = categoria_artigo_repo.inserir_categoria(categoria)
         postagem = PostagemArtigo(
-            id=0,
+            id_postagem_artigo=0,
             id_veterinario=id_vet,
             titulo="Vacinação de Gatos",
             conteudo="Texto do artigo",
@@ -149,17 +149,17 @@ class TestPostagemArtigoRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="joao@email.com",
+            email="joao4@email.com",
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
             verificado=True, 
             bio="Especialista em felinos")
         id_vet = veterinario_repo.inserir_veterinario(vet)
-        categoria = CategoriaArtigo(id=0, nome="Saúde Felina", descricao="Cuidados com gatos")
+        categoria = CategoriaArtigo(id_categoria_artigo=0, nome="Saúde Felina", descricao="Cuidados com gatos")
         id_cat = categoria_artigo_repo.inserir_categoria(categoria)
         postagem = PostagemArtigo(
-            id=0,
+            id_postagem_artigo=0,
             id_veterinario=id_vet,
             titulo="Vacinação de Gatos",
             conteudo="Texto do artigo",
@@ -186,19 +186,19 @@ class TestPostagemArtigoRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="joao@email.com",
+            email="joao5@email.com",
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
             verificado=True, 
             bio="Especialista em felinos")
         id_vet = veterinario_repo.inserir_veterinario(vet)
-        categoria = CategoriaArtigo(id=0, nome="Saúde Felina", descricao="Cuidados com gatos")
+        categoria = CategoriaArtigo(id_categoria_artigo=0, nome="Saúde Felina", descricao="Cuidados com gatos")
         id_cat = categoria_artigo_repo.inserir_categoria(categoria)
         ids_posts = []
         for i in range(10):
             postagem = PostagemArtigo(
-                id=0,
+                id_postagem_artigo=0,
                 id_veterinario=id_vet,
                 titulo=f"Vacinação de Gatos {i}",
                 conteudo=f"Texto do artigo {i}",
@@ -214,6 +214,6 @@ class TestPostagemArtigoRepo:
         # Assert
         assert len(pagina1) == 6, "A primeira página deveria conter 6 postagens"
         assert len(pagina2) == 4, "A segunda página deveria conter 4 postagens"
-        assert pagina1[0].id == ids_posts[0], "A primeira postagem da primeira página está incorreta"
-        assert pagina2[0].id == ids_posts[6], "A primeira postagem da segunda página está incorreta"
+        assert pagina1[0].id_postagem_artigo == ids_posts[0], "A primeira postagem da primeira página está incorreta"
+        assert pagina2[0].id_postagem_artigo == ids_posts[6], "A primeira postagem da segunda página está incorreta"
         
