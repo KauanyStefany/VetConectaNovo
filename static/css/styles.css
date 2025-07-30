@@ -1,0 +1,15 @@
+ /* Estilo para mudar o coração quando clicado */
+  input[type="checkbox"]:checked+label i {
+    color: #e63946;
+  }
+
+  /* Muda o ícone do coração para preenchido */
+  input[type="checkbox"]:checked+label i::before {
+    content: "\f415";
+  }
+
+.titulo_categorias{
+    background-color: #FFE5B3; 
+    border-radius: 30px;
+
+}
