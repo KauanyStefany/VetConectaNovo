@@ -71,7 +71,7 @@ cython_debug/
 .ipynb_checkpoints
 
 # VS Code
-.vscode/
+#.vscode/
 
 # Arquivos de configuração do PyCharm
 .idea/
