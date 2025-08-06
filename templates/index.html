@@ -12,54 +12,47 @@
 
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #FFE6B9;">
-        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+<!-- Faixa superior: Logo centralizada -->
+    <div class="w-100 d-flex justify-content-center align-items-center py-3 bg-cream">
+    <img src="static/img/pata_icon.png" alt="Ícone Pata" style="height: 60px;">
+    <img src="static/img/nome_icon.png" alt="Logo VetConecta" style="height: 30px; margin-left: 8px; margin-top: 5px;">
+    </div>
 
-            <!-- Esquerda: Logos -->
-            <div class="d-flex align-items-center gap-2">
-                <img src="static/img/pata_icon.png" alt="Ícone Pata" style="height: 40px;">
-                <img src="static/img/nome_icon.png" alt="Logo VetConecta" style="height: 25px; margin-top: 8px;">
-            </div>
+    <!-- Navbar com fundo roxo -->
+    <nav class="navbar navbar-expand-lg fundo_navbar py-3 " style="background-color: #5D3A79; margin-bottom: 50px;">
+    <div class="container-fluid d-flex justify-content-between align-items-center px-4">
 
-            <!-- Centro: barra de pesquisa mais longa -->
-            <form class="d-flex mx-5" style="width: 450px;">
-                <input class="form-control rounded-pill px-4 py-2" type="search" placeholder="O que seu pet necessita?">
-            </form>
+        <!-- Esquerda: Link -->
+        <a href="#" class="nav-link text-white fs-6">Quem Somos?</a>
 
-            <!-- Direita: categorias maiores -->
-            <div class="d-flex align-items-center fs-5 ">
-                <a href="#" class="nav-link text-dark mx-3">Sobre nós</a>
-                <a href="#" class="nav-link text-dark mx-3">Cachorro</a>
-                <a href="#" class="nav-link text-dark mx-3">Gato</a>
-                <a href="#" class="nav-link text-dark mx-3">Aves</a>
-                <div class="dropdown mx-2">
-                    <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#">Mais Pets</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Roedores</a></li>
-                        <li><a class="dropdown-item" href="#">Peixes</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown ms-3">
-                    <button class="btn btn-light rounded-circle dropdown-toggle p-0" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false" style="width: 40px; height: 40px;">
-                        <img src="static/img/person-circle.svg" alt="Perfil" style="width: 100%; height: 100%;">
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
-                    </ul>
-                </div>
-
-            </div>
+        <!-- Centro: Barra de pesquisa -->
+        <form class="d-flex w-50 justify-content-center">
+        <div class="input-group w-100 search-group">
+            <input class="form-control" type="search" placeholder="O que seu pet necessita?">
+            <span class="input-group-text bg-white">
+            <i class="bi bi-search"></i>
+            </span>
         </div>
+        </form>
+
+        <!-- Direita: Ícone de perfil -->
+        <div class="dropdown">
+        <button class="btn dropdown-toggle p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="static/img/person-circle.svg" alt="Perfil" style="width: 40px; height: 40px; border-radius: 50%;">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sair</a></li>
+        </ul>
+        </div>
+
+    </div>
     </nav>
 
+
     <!-- Carrossel -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin: 50px;">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -69,7 +62,7 @@
                 aria-label="Slide 3"></button>
         </div>
 
-        <div class="carousel-inner" style="height: 400px;">
+        <div class="carousel-inner" style="height: 400px;  ">
             <div class="carousel-item active">
                 <img src="static/img/anuncio8.jpg" class="d-block w-100" alt="Família"
                     style="height: 400px; object-fit: cover;" />
@@ -98,153 +91,150 @@
     </div>
 
     <!-- Categorias -->
-    <div class="d-flex justify-content-center flex-wrap gap-5 text-center m-5">
-        <div>
-            <img src="static/img/gato_icon.jpg" alt="Gatos"
-                style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; border: 3px solid white;" />
-            <div class="d-flex justify-content-center flex-wrap gap-3">
-                <button class="btn fw-bold px-4 py-2 m-4"
-                    style="background-color: #FFE5B3; border-radius: 30px;">Gatos</button>
+<!-- Artigos recentes -->
+    <div class="container-fluid px-3 py-5">
+    <h3 class="fw-bold mb-4">Artigos recentes</h3>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+
+        <!-- CARD 1 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #4C2A64;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Cachorro e humano">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Abril Laranja: mês dedicado à prevenção da crueldade animal.</h6>
+            <p class="mb-1 small">03 de Junho de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-secondary">Cuidados</span>
             </div>
         </div>
-        <div>
-            <img src="static/img/cao_icon.jpg" alt="Cachorros"
-                style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; border: 3px solid white;" />
-            <div class="d-flex justify-content-center flex-wrap gap-3">
-                <button class="btn fw-bold px-4 py-2 m-4"
-                    style="background-color: #FFE5B3; border-radius: 30px;">Cachorros</button>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #F88E2B;">
+            <img src="" class="card-img-top" alt="Gato comendo">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Ração para gato filhote: conheça 5 opções</h6>
+            <p class="mb-1 small">02 de Junho de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-light text-dark">Cuidados</span>
             </div>
         </div>
-        <div>
-            <img src="static/img/roedor_icon.jpg" alt="Roedores"
-                style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; border: 3px solid white;" />
-            <div class="d-flex justify-content-center flex-wrap gap-3">
-                <button class="btn fw-bold px-4 py-2 m-4"
-                    style="background-color: #FFE5B3; border-radius: 30px;">Roedores</button>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #355EAD;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Papagaio branco voando">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Aves que falam: conheça 15 pássaros imitadores</h6>
+            <p class="mb-1 small">01 de Junho de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-secondary">Cuidados</span>
             </div>
         </div>
-        <div>
-            <img src="static/img/passarao.jpg" alt="Aves"
-                style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; border: 3px solid white;" />
-            <div class="d-flex justify-content-center flex-wrap gap-3">
-                <button class="btn fw-bold px-4 py-2 m-4"
-                    style="background-color: #FFE5B3; border-radius: 30px;">Aves</button>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #477276;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Peixe laranja">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Tudo sobre peixes em aquário pequeno</h6>
+            <p class="mb-1 small">31 de Maio de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-secondary">Cuidados</span>
             </div>
         </div>
-        <div>
-            <img src="static/img/tartaruga_icon.jpg" alt="Répteis e Anfíbios"
-                style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; border: 3px solid white;" />
-            <div class="d-flex justify-content-center flex-wrap gap-3">
-                <button class="btn fw-bold px-4 py-2 m-4"
-                    style="background-color: #FFE5B3; border-radius: 30px;">Répteis e
-                    Peixes</button>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #D8438C;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Roedor branco na mão">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Brinquedos para roedores domésticos: confira 10 opções</h6>
+            <p class="mb-1 small">30 de Maio de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-light text-dark">Cuidados</span>
             </div>
         </div>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #1D4D4A;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Lagarto verde">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Alimentos Naturais para Répteis: Como Preparar em Casa</h6>
+            <p class="mb-1 small">29 de Maio de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-secondary">Cuidados</span>
+            </div>
+        </div>
+        </div>
+
+        <!-- CARD 7 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #4B2C79;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Outro artigo">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Novo artigo especial sobre bem-estar animal</h6>
+            <p class="mb-1 small">28 de Maio de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-secondary">Cuidados</span>
+            </div>
+        </div>
+        </div>
+
+        <!-- CARD 8 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #C74A4A;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Gato e veterinário">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Vacinação em dia: importância e calendário</h6>
+            <p class="mb-1 small">27 de Maio de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-light text-dark">Saúde</span>
+            </div>
+        </div>
+        </div>
+
+        <!-- CARD 9 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #2C698D;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Pet com brinquedos">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Top 5 brinquedos para pets ativos</h6>
+            <p class="mb-1 small">26 de Maio de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-secondary">Dicas</span>
+            </div>
+        </div>
+        </div>
+
+        <!-- CARD 10 -->
+        <div class="col">
+        <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #7A3C8F;">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Pequeno animal no colo">
+            <div class="card-body text-white">
+            <h6 class="fw-bold">Primeiros socorros para pets: saiba como agir</h6>
+            <p class="mb-1 small">25 de Maio de 2025</p>
+            <p class="mb-2 small">@veterinario</p>
+            <span class="badge bg-light text-dark">Emergência</span>
+            </div>
+        </div>
+        </div>
+
     </div>
-    </div>
 
-    <!-- Artigos recentes -->
-    <div class="container my-5">
-        <h3 class="fw-bold mb-4">Artigos recentes</h3>
-        <div class="row g-4">
+  <!-- Botão Ver Mais -->
+  <div class="text-center mt-4">
+    <button class="btn rounded-pill px-4 py-2 fw-bold" style="background-color: #FFE2B8;">Ver Mais</button>
+  </div>
+</div>
 
-            <!-- Cards de artigos -->
-            <div class="col-lg-9">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-
-                    <!-- Card 1 -->
-                    <div class="col">
-                        <div class="card text-white h-100 border-0"
-                            style="background-color: #5D3A79; border-radius: 12px;">
-                            <img src="static/img/cao.webp" class="card-img-top" alt="Abril Laranja"
-                                style="height: 300px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                            <div class="card-body">
-                                <h6 class="fw-bold fs-6">Abril Laranja: mês dedicado à prevenção da crueldade animal.
-                                </h6>
-                                <small class="text-light">03 de Junho de 2025</small><br>
-                                <span class="badge mt-3 py-1 px-3"
-                                    style="background-color: #4b2e63; border-radius: 15px;">Cuidados</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="col">
-                        <div class="card text-white h-100 border-0"
-                            style="background-color: #FA7F2D; border-radius: 15px;">
-                            <img src="static/img/gatinho.jpeg" class="card-img-top" alt="Ração para gato filhote"
-                                style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                            <div class="card-body">
-                                <h6 class="fw-bold">Ração para gato filhote: 5 opções recomendadas.</h6>
-                                <small class="text-light">02 de Junho de 2025</small><br>
-                                <span class="badge mt-3 py-2 px-3"
-                                    style="background-color: #ce641e; border-radius: 20px;">Cuidados</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="col">
-                        <div class="card text-white h-100 border-0"
-                            style="background-color: #2C4C84; border-radius: 15px;">
-                            <img src="static/img/calopsita.jpeg" class="card-img-top" alt="Aves que falam"
-                                style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                            <div class="card-body">
-                                <h6 class="fw-bold">Melhores tipos de sementes para pássaros.</h6>
-                                <small class="text-light">01 de Junho de 2025</small><br>
-                                <span class="badge mt-3 py-2 px-3"
-                                    style="background-color: #20395f; border-radius: 20px;">Cuidados</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="col">
-                        <div class="card text-white h-100 border-0"
-                            style="background-color: #1D4F4E; border-radius: 15px;">
-                            <img src="static/img/peixe.jpg" class="card-img-top" alt="Peixes em aquário"
-                                style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                            <div class="card-body">
-                                <h6 class="fw-bold">Tudo sobre peixes em aquário pequeno.</h6>
-                                <small class="text-light">31 de Maio de 2025</small><br>
-                                <span class="badge mt-3 py-2 px-3"
-                                    style="background-color: #143534; border-radius: 20px;">Cuidados</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="col">
-                        <div class="card text-white h-100 border-0"
-                            style="background-color: #EC4A8C; border-radius: 15px;">
-                            <img src="static/img/roedor.jpeg" class="card-img-top" alt="Brinquedos para roedores"
-                                style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                            <div class="card-body">
-                                <h6 class="fw-bold">Brinquedos para roedores domésticos: 10 ideias.</h6>
-                                <small class="text-light">30 de Maio de 2025</small><br>
-                                <span class="badge mt-3 py-2 px-3"
-                                    style="background-color: #b33a6f; border-radius: 20px;">Cuidados</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="col">
-                        <div class="card text-white h-100 border-0"
-                            style="background-color: #1F463C; border-radius: 15px;">
-                            <img src="static/img/reptil.webp" class="card-img-top" alt="Alimentos para répteis"
-                                style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                            <div class="card-body">
-                                <h6 class="fw-bold">Alimentos naturais para répteis: como preparar em casa.</h6>
-                                <small class="text-light">29 de Maio de 2025</small><br>
-                                <span class="badge mt-3 py-2 px-3"
-                                    style="background-color: #14362f; border-radius: 20px;">Cuidados</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
 
             <!-- Anúncio com imagem -->
             <div class="col-lg-3">
@@ -339,13 +329,26 @@
     </div>
 
     <!-- Footer -->
-    <footer class="text-dark text-center py-4" style="background-color: #FFE6B9;">
-        <div class="container">
-            <p class="mb-0">© 2025 VetConecta. Todos os direitos reservados.</p>
-            <p class="mb-0">Desenvolvido por <a href="#" class="text-dark fw-bold">VetConecta</a></p>
+    <footer class=" text-center py-4" style="background-color: #;">
+    <div class="container">
+        <p class="mb-3 fw-semibold fs-6">VetConecta: cuidar é se informar!</p>
 
+        <!-- Logo centralizada -->
+        <div class="d-flex justify-content-center align-items-center mb-3">
+        <img src="static/img/pata_icon.png" alt="Ícone Pata" style="height: 40px;">
+        <img src="static/img/nome_icon.png" alt="Logo VetConecta" style="height: 25px; margin-left: 8px;">
         </div>
+
+        <!-- Informações legais -->
+        <p class="mb-1 small text-muted">
+        Informações seguras - A VetConecta garante segurança nas informações prestadas
+        </p>
+        <p class="small text-muted">
+        Copyright 2025 © Todos os direitos reservados à VetConecta
+        </p>
+    </div>
     </footer>
+
     <script src="/static/js/script.js"></script>
 </body>
 
