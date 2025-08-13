@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Faixa superior: Logo centralizada -->
-    <div class="w-100 d-flex justify-content-center align-items-center py-3 bg-cream">
+    <div class="w-100 d-flex justify-content-center align-items-center py-3">
     <img src="static/img/pata_icon.png" alt="Ícone Pata" style="height: 60px;">
     <img src="static/img/nome_icon.png" alt="Logo VetConecta" style="height: 30px; margin-left: 8px; margin-top: 5px;">
     </div>
@@ -23,7 +23,18 @@
     <div class="container-fluid d-flex justify-content-between align-items-center px-4">
 
         <!-- Esquerda: Link -->
-        <a href="#" class="nav-link text-white fs-6">Quem Somos?</a>
+        <button type="button" class="btn btn-link custom-btn-link">Sobre Nós</button>
+
+        <style>
+        .custom-btn-link {
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+        }
+        .custom-btn-link:hover {
+            color: var(--bs-primary); /* azul do Bootstrap no hover */
+        }
+        </style>
 
         <!-- Centro: Barra de pesquisa -->
         <form class="d-flex w-50 justify-content-center">
@@ -92,7 +103,7 @@
 
     <!-- Categorias -->
 <!-- Artigos recentes -->
-    <div class="container-fluid px-3 py-5">
+    <div class="container px-3 py-5">
     <h3 class="fw-bold mb-4">Artigos recentes</h3>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">

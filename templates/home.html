@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>VetConecta - Home</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #fff; margin: 0; }
+        header { background: #FFF8F0; padding: 16px 0; display: flex; align-items: center; justify-content: space-between; }
+        .logo { margin-left: 32px; font-size: 1.8rem; font-weight: bold; color: #3C3C3C; display: flex; align-items: center; }
+        .logo img { height: 40px; margin-right: 10px; }
+        .search-bar { display: flex; align-items: center; gap: 8px; }
+        .search-bar input { padding: 8px; border-radius: 20px; border: 1px solid #ccc; width: 220px; }
+        .profile { margin-right: 32px; }
+        .profile-icon { width: 36px; height: 36px; border-radius: 50%; background: #ccc; display: inline-block; }
+        .carousel { margin: 32px auto 16px auto; width: 90%; max-width: 700px; border-radius: 18px; overflow: hidden; }
+        .carousel img { width: 100%; display: block; }
+        .categories { display: flex; justify-content: center; gap: 32px; margin: 24px 0; }
+        .category { text-align: center; }
+        .category-icon { width: 60px; height: 60px; border-radius: 50%; background: #F7E6D9; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; font-size: 2rem; }
+        h2 { margin-left: 48px; color: #3C3C3C; }
+        .recent-articles { display: flex; flex-wrap: wrap; gap: 24px; margin: 24px 48px; }
+        .article-card { background: #F7E6D9; border-radius: 16px; padding: 16px; width: 220px; min-height: 180px; box-shadow: 0 2px 8px #eee; }
+        .article-card img { width: 100%; border-radius: 10px; margin-bottom: 8px; }
+        .article-title { font-weight: bold; margin-bottom: 6px; }
+        .article-desc { font-size: 0.95rem; color: #555; margin-bottom: 8px; }
+        .article-category { font-size: 0.85rem; color: #888; }
+        .ver-mais-btn { display: block; margin: 16px auto; background: #FFD580; color: #3C3C3C; border: none; border-radius: 20px; padding: 10px 32px; font-weight: bold; cursor: pointer; }
+        .petgram-section { background: linear-gradient(#FFF8F0 60%, #FFD6E0 100%); padding: 32px 0; text-align: center; }
+        .petgram-title { font-size: 1.5rem; font-weight: bold; color: #E57373; margin-bottom: 8px; }
+        .petgram-desc { color: #3C3C3C; margin-bottom: 24px; }
+        .pet-cards { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; }
+        .pet-card { background: #fff; border-radius: 16px; box-shadow: 0 2px 8px #eee; padding: 16px; width: 180px; }
+        .pet-card img { width: 100%; border-radius: 10px; margin-bottom: 8px; }
+        .pet-nome { font-weight: bold; color: #E57373; }
+        .pet-desc { font-size: 0.95rem; color: #555; margin-bottom: 8px; }
+        .mostrar-pets-btn { background: #FFD580; color: #3C3C3C; border: none; border-radius: 20px; padding: 10px 32px; font-weight: bold; cursor: pointer; }
+        footer { background: #FFF8F0; text-align: center; padding: 16px 0; color: #888; font-size: 0.95rem; margin-top: 32px; }
+        .footer-logo { margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/static/img/logo.png" alt="VetConecta Logo">
+            VetConecta
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="O que seu pet precisa?">
+        </div>
+        <div class="profile">
+            <span class="profile-icon"></span>
+        </div>
+    </header>
+
+    <div class="carousel">
+        <img src="/static/img/banner.png" alt="Banner Promoção">
+    </div>
+
+    <div class="categories">
+        <div class="category">
+            <div class="category-icon">🐱</div>
+            Gatos
+        </div>
+        <div class="category">
+            <div class="category-icon">🐶</div>
+            Cachorros
+        </div>
+        <div class="category">
+            <div class="category-icon">🐰</div>
+            Roedores
+        </div>
+        <div class="category">
+            <div class="category-icon">🐦</div>
+            Aves
+        </div>
+        <div class="category">
+            <div class="category-icon">🐢</div>
+            Répteis & Peixes
+        </div>
+    </div>
+
+    <h2>Artigos recentes</h2>
+    <div class="recent-articles">
+        <div class="article-card">
+            <img src="/static/img/artigo1.jpg" alt="Artigo 1">
+            <div class="article-title">Aprenda sobre gatos</div>
+            <div class="article-desc">Dicas de cuidados, alimentação e saúde para felinos.</div>
+            <div class="article-category">Gatos</div>
+        </div>
+        <div class="article-card">
+            <img src="/static/img/artigo2.jpg" alt="Artigo 2">
+            <div class="article-title">Higiene para cães</div>
+            <div class="article-desc">Como manter seu cachorro limpo e saudável.</div>
+            <div class="article-category">Cachorros</div>
+        </div>
+        <div class="article-card">
+            <img src="/static/img/artigo3.jpg" alt="Artigo 3">
+            <div class="article-title">Aves que falam</div>
+            <div class="article-desc">Conheça espécies de aves que podem aprender a falar.</div>
+            <div class="article-category">Aves</div>
+        </div>
+        <div class="article-card">
+            <img src="/static/img/artigo4.jpg" alt="Artigo 4">
+            <div class="article-title">Tudo sobre peixes em aquário</div>
+            <div class="article-desc">Cuidados essenciais para manter peixes saudáveis.</div>
+            <div class="article-category">Peixes</div>
+        </div>
+        <div class="article-card">
+            <img src="/static/img/artigo5.jpg" alt="Artigo 5">
+            <div class="article-title">Alimentos naturais para roedores</div>
+            <div class="article-desc">Veja opções saudáveis para hamsters e porquinhos-da-índia.</div>
+            <div class="article-category">Roedores</div>
+        </div>
+        <div class="article-card">
+            <img src="/static/img/artigo6.jpg" alt="Artigo 6">
+            <div class="article-title">Alimentos ideais para répteis</div>
+            <div class="article-desc">Como alimentar tartarugas, lagartos e outros répteis.</div>
+            <div class="article-category">Répteis</div>
+        </div>
+    </div>
+    <button class="ver-mais-btn">Ver Mais</button>
+
+    <div class="petgram-section">
+        <div class="petgram-title">🐾 PetGram</div>
+        <div class="petgram-desc">Conheça nossos pets<br>Aqui você pode acompanhar e admirar os pets mais fofos do Brasil!</div>
+        <div class="pet-cards">
+            <div class="pet-card">
+                <img src="/static/img/pet1.jpg" alt="Pet 1">
+                <div class="pet-nome">@nenem1</div>
+                <div class="pet-desc">Raça, idade, comportamento, descrição...</div>
+            </div>
+            <div class="pet-card">
+                <img src="/static/img/pet2.jpg" alt="Pet 2">
+                <div class="pet-nome">@nenem1</div>
+                <div class="pet-desc">Raça, idade, comportamento, descrição...</div>
+            </div>
+            <div class="pet-card">
+                <img src="/static/img/pet3.jpg" alt="Pet 3">
+                <div class="pet-nome">@nenem1</div>
+                <div class="pet-desc">Raça, idade, comportamento, descrição...</div>
+            </div>
+        </div>
+        <button class="mostrar-pets-btn">+ Mostrar mais pets</button>
+    </div>
+
+    <footer>
+        VetConecta: cuidar é se informar!
+        <div class="footer-logo">
+            <img src="/static/img/logo.png" alt="VetConecta Logo" height="28">
+        </div>
+        <div style="font-size:0.85rem; color:#aaa; margin-top:8px;">
+            © 2025 VetConecta. Todos os direitos reservados. As informações aqui não substituem o acompanhamento veterinário.
+        </div>
+    </footer>
+</body>
+</html>
