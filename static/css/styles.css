@@ -39,3 +39,74 @@
     background-color: #FFE5B3;
 }
 
+#--------------------------------------------------cards--------------------------------------------------
+
+/* Carrossel */
+.custom-carousel {
+  height: 400px;
+}
+.custom-carousel-img {
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Categorias */
+.categoria-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+.categoria-btn {
+  background-color: #FFE5B3;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin: 15px 0;
+}
+
+/* Cards de artigos */
+.artigo-card img {
+  object-fit: cover;
+}
+
+/* Fundos personalizados por categoria */
+.bg-cachorro { background-color: #44345A; }  
+.bg-gato     { background-color: #FA811D; }   
+.bg-aves     { background-color: #3569A6; }   
+.bg-repteis  { background-color: #295A5D; }   
+.bg-roedores { background-color: #ED6291; }  
+
+.ver-mais-btn {
+  background-color: #FFE2B8;
+}
+
+/* PetGram */
+.petgram-bg {
+  background: linear-gradient(to bottom, #ffffff, #FFF0D1, #ED6291);
+}
+.petgram-title {
+  color: #F25CA2;
+}
+.petgram-subtitle {
+  color: #2C4C84;
+}
+.petgram-card {
+  border: 10px solid #F25CA2;
+  border-radius: 20px;
+}
+.petgram-img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 450px;
+  object-fit: cover;
+}
+.petgram-btn {
+  background-color: #FFF0D1;
+  width: 300px;
+  font-size: 20px;
+  border-color: #F25CA2;
+}
+.like-icon {
+  cursor: pointer;
+}
