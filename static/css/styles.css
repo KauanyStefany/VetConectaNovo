@@ -71,11 +71,13 @@
 }
 
 /* Fundos personalizados por categoria */
-.bg-cachorro { background-color: #44345A; }  
-.bg-gato     { background-color: #FA811D; }   
-.bg-aves     { background-color: #3569A6; }   
-.bg-repteis  { background-color: #295A5D; }   
-.bg-roedores { background-color: #ED6291; }  
+.bg-cachorros { 
+  background-color: #44345A !important;
+}  
+.bg-gatos     { background-color: #FA811D  !important; }   
+.bg-aves     { background-color: #3569A6  !important; }   
+.bg-repteis  { background-color: #295A5D  !important; }   
+.bg-roedores { background-color: #ED6291  !important; }  
 
 .ver-mais-btn {
   background-color: #FFE2B8;
