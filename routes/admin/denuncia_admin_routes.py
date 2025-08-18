@@ -8,6 +8,9 @@ from repo import denuncia_repo
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
+
+
+
 @router.get("/admin/denuncia/listar")
 async def listar_denuncias(request: Request, limite: int = 10, offset: int = 0):
     denuncias = denuncia_repo.obter_todas_denuncias_paginadas(limite, offset)
@@ -25,6 +28,7 @@ async def obter_denuncia(request: Request, id_denuncia: int):
 # async def cadastrar_denuncia(
 #     request: Request,
 #     id_usuario: int = Form(...),
+
 #     motivo: str = Form(...),
 #     descricao: str = Form(...),
 #     data: str = Form(...)
