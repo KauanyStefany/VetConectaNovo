@@ -11,7 +11,7 @@ templates = Jinja2Templates(directory="templates")
 @router.get("/veterinario/seguida/listar")
 async def listar_seguidores(request: Request, id_veterinario: int, pagina: int = 1, tamanho_pagina: int = 10):
     # Lista todos que seguem este veterinário
-    seguidas = seguida_repo.obter_seguidores_veterinario(id_veterinario, pagina, tamanho_pagina)
+    seguidas = seguida_repo.obter_seguidas_paginado(id_veterinario, pagina, tamanho_pagina)
     return templates.TemplateResponse("veterinario/listar_seguidores.html", {"request": request, "seguidas": seguidas})
 
 
