@@ -9,3 +9,4 @@ templates = Jinja2Templates(directory="templates")
 async def get_root():
     response = templates.TemplateResponse("publico/index.html", {"request": {}})
     return response
+
