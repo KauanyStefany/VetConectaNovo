@@ -1,7 +1,5 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 import uvicorn
 
 from routes.admin import categoria_artigo_routes, chamado_routes, comentario_admin_routes, denuncia_admin_routes, resposta_chamado_routes, verificação_crmv_routes
@@ -12,7 +10,6 @@ from routes.veterinario import comentario_veterinario_routes, curtida_artigo_vet
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
 
 app.include_router(public_routes.router)
 app.include_router(categoria_artigo_routes.router, prefix="/admin", tags=["admin"])
