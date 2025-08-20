@@ -27,11 +27,7 @@ async def get_categoria_artigo_cadastrar():
 #     return templates.TemplateResponse("admin/cadastrar_categoria_artigo.html", {"request": {}, "mensagem": "Erro ao cadastrar categoria de artigo."})
 
 @router.get("/admin/categoria_artigo/alterar/{id_categoria_artigo}")
-async def get_alterar_categoria_artigo_(id_categoria_artigo: int):
-    categoria_artigo = categoria_artigo_repo.obter_categoria_por_id(id_categoria_artigo)
-    if categoria_artigo:
-        response = templates.TemplateResponse("admin/alterar_categoria_artigo.html", {"request": {}, "categoria": categoria_artigo})
-        return response
+async def get_alterar_categoria_artigo_(id_categoria_artigo: int):   
     return templates.TemplateResponse("admin/listar_categoria_artigo.html", {"request": {}, "mensagem": "Categoria de artigo não encontrada."})
 
 # @router.post("/admin/categoria_artigo/alterar")
@@ -42,13 +38,9 @@ async def get_alterar_categoria_artigo_(id_categoria_artigo: int):
 #     return templates.TemplateResponse("admin/alterar_categoria_artigo.html", {"request": {}, "mensagem": "Erro ao atualizar categoria de artigo."})
 
 @router.get("/admin/categoria_artigo/excluir/{id_categoria_artigo}")
-async def get_excluir_categoria_artigo(id_categoria_artigo: int):
-    if categoria_artigo_repo.excluir_categoria(id_categoria_artigo):
-        return templates.TemplateResponse("admin/listar_categoria_artigo.html", {"request": {}, "mensagem": "Categoria de artigo excluída com sucesso!"})
+async def get_excluir_categoria_artigo(id_categoria_artigo: int): 
     return templates.TemplateResponse("admin/listar_categoria_artigo.html", {"request": {}, "mensagem": "Erro ao excluir categoria de artigo."})
 
 @router.get("/admin/categoria_artigo/obter/{id_categoria_artigo}")
 async def get_obter_categoria_artigo(id_categoria_artigo: int):
-    categoria_artigo = categoria_artigo_repo.obter_categorias_paginado
-    response = templates.TemplateResponse("admin/obter_categoria_artigo.html", {"request": {}, "categoria": categoria_artigo})
-    return response
+    return templates.TemplateResponse("admin/obter_categoria_artigo.html", {"request": {}})    
