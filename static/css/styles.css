@@ -1,45 +1,88 @@
- /* Estilo para mudar o coração quando clicado */
-  input[type="checkbox"]:checked+label i {
-    color: #e63946;
-  }
+/* ------------------------------ PáginaBase ------------------------------ */
 
-  /* Muda o ícone do coração para preenchido */
-  input[type="checkbox"]:checked+label i::before {
-    content: "\f415";
-  }
-
-.titulo_categorias{
-    background-color: #FFE5B3; 
-    border-radius: 30px;
-
-}
-
-.bg-cream {
-  background-color: #FFF7EC;
-}
-
+/* Navbar */
 .fundo_navbar {
-    background-color: #4B3869;
+  background-color: #5D3A79;
 }
 
-.search-group input {
-  border-radius: 10px 0 0 10px;
-  padding-left: 1rem;
-  font-size: 0.95rem;
+.custom-btn-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
 }
 
-.search-group .input-group-text {
-  border-radius: 0 10px 10px 0;
-  cursor: pointer;
-  padding-left: 1rem;
-  padding-right: 1rem;
+.custom-btn-link:hover {
+  color: var(--bs-primary); /* azul Bootstrap no hover */
 }
 
-.bg-cream {
-    background-color: #FFE5B3;
+/* Ícones/logo */
+.logo-pata {
+  height: 60px;
 }
 
-#--------------------------------------------------cards--------------------------------------------------
+.logo-nome {
+  height: 30px;
+  margin-left: 8px;
+  margin-top: 5px;
+}
+
+.perfil-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* Footer */
+.footer-bg {
+  background-color: #ecdec0;
+}
+
+.footer-pata {
+  height: 40px;
+}
+
+.footer-nome {
+  height: 25px;
+  margin-left: 8px;
+}
+
+
+/*------------------------------PáginaIndex------------------------------/*
+
+/* Ícone de coração */
+input[type="checkbox"]:checked+label i {
+  color: #e63946;
+}
+input[type="checkbox"]:checked+label i::before {
+  content: "\f415";
+}
+
+/* Categorias */
+.titulo_categorias {
+  background-color: #FFE5B3;
+  border-radius: 30px;
+}
+.categoria-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+
+.categoria-btn { 
+  background-color: #FFE5B3;
+  border-radius: 30px; 
+  padding: 10px 20px; 
+  margin: 15px 0; }
+
+/* Botão Ver mais */
+.ver-mais-btn {
+  background-color: #FFE5B3;
+  text-decoration: none;
+  display: inline-block;
+}
 
 /* Carrossel */
 .custom-carousel {
@@ -50,38 +93,15 @@
   object-fit: cover;
 }
 
-/* Categorias */
-.categoria-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid white;
-}
-.categoria-btn {
-  background-color: #FFE5B3;
-  border-radius: 30px;
-  padding: 10px 20px;
-  margin: 15px 0;
-}
-
-/* Cards de artigos */
+/* Artigos */
 .artigo-card img {
   object-fit: cover;
 }
-
-/* Fundos personalizados por categoria */
-.bg-cachorros { 
-  background-color: #44345A !important;
-}  
-.bg-gatos     { background-color: #FA811D  !important; }   
-.bg-aves     { background-color: #3569A6  !important; }   
-.bg-repteis  { background-color: #295A5D  !important; }   
-.bg-roedores { background-color: #ED6291  !important; }  
-
-.ver-mais-btn {
-  background-color: #FFE2B8;
-}
+.bg-cachorros { background-color: #44345A !important; }
+.bg-gatos     { background-color: #FA811D !important; }
+.bg-aves      { background-color: #3569A6 !important; }
+.bg-repteis   { background-color: #295A5D !important; }
+.bg-roedores  { background-color: #ED6291 !important; }
 
 /* PetGram */
 .petgram-bg {
