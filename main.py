@@ -5,7 +5,7 @@ import uvicorn
 from routes.admin import categoria_artigo_routes, chamado_routes, comentario_admin_routes, denuncia_admin_routes, resposta_chamado_routes, verificação_crmv_routes
 from routes.publico import public_routes
 from routes.tutor import comentario_tutor_routes, curtida_artigo_tutor_routes, curtida_feed_tutor_routes, denuncia_tutor_routes, postagem_feed_routes, seguida_tutor_routes
-from routes.veterinario import comentario_veterinario_routes, curtida_artigo_veterinario_routes, curtida_feed_veterinario_routes, denuncia_veterinario_routes, postagem_artigo_routes, seguida_veterinario_routes
+from routes.veterinario import comentario_veterinario_routes, estatisticas_routes, postagem_artigo_routes
 
 
 app = FastAPI()
@@ -27,11 +27,10 @@ app.include_router(postagem_feed_routes.router, prefix="/tutor", tags=["tutor"])
 app.include_router(seguida_tutor_routes.router, prefix="/tutor", tags=["tutor"]) #só o tutor pode seguir? E o veterinario não pode seguir outro veterinario?
 
 app.include_router(comentario_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"])
-app.include_router(curtida_artigo_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"])
-app.include_router(curtida_feed_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"])
-app.include_router(denuncia_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"])
+# app.include_router(denuncia_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"])
 app.include_router(postagem_artigo_routes.router, prefix="/veterinario", tags=["veterinario"])
-app.include_router(seguida_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"]) #só o veterinario pode seguir? E o tutor não pode seguir outro tutor?
+# app.include_router(seguida_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"]) 
+app.include_router(estatisticas_routes.router, prefix="/veterinario", tags=["veterinario"])
 
 
 if __name__ == "__main__":

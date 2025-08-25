@@ -1,32 +1,27 @@
-from fastapi import APIRouter
-from fastapi.responses import RedirectResponse
+from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 
-from model.postagem_artigo_model import PostagemArtigo
-from repo import postagem_artigo_repo
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
-@router.get("/artigos/{id_postagem_artigo}")
-async def get_artigo_id(id_postagem_artigo: int):
-    postagem_artigo = postagem_artigo_repo.obter_por_id(id_postagem_artigo)
-    response = templates.TemplateResponse("veterinario/artigo.html", {"request": {}, "postagem_artigo": postagem_artigo})
-    return response
+@router.get("/")
+async def get_root(request: Request):
+    response = templates.TemplateResponse("veterinario/veterinario_home.html", {"request": request})
+    return response   
 
-@router.get("/veterinario/artigos")
-async def get_artigos():
-    artigos = postagem_artigo_repo.obter_todos_paginado()
-    response = templates.TemplateResponse("veterinario/listar_artigos.html", {"request": {}, "artigos": artigos})
-    return response
+@router.get("/listar_postagem_artigo")
+async def pagina_postagem_artigo(request: Request):
+    return templates.TemplateResponse("veterinario/listar_postagem_artigo.html", {"request": request})
 
-@router.get("/veterinario/artigo/postar")
-async def get_artigo_postar():
-    response = templates.TemplateResponse("veterinario/postar_artigo.html", {"request": {}})
-    return response
+@router.get("/alterar_postagem_artigo/{id_postagem_artigo}")
+async def pagina_categoria_artigo(request: Request, id_postagem_artigo: int):
+    return templates.TemplateResponse("veterinario/alterar_postagem_artigo.html", {"request": request})
 
-@router.get("/veterinario/artigo/excluir/{id_postagem_artigo}")
-async def get_excluir_artigo(id_postagem_artigo: int):
-    if postagem_artigo_repo.excluir(id_postagem_artigo):
-        return RedirectResponse("/veterinario/artigos", status_code=303)
+@router.get("/cadastrar_postagem_artigo")
+async def pagina_postagem_artigo(request: Request):
+    return templates.TemplateResponse("veterinario/cadastrar_postagem_artigo.html", {"request": request})
 
+@router.get("/excluir_postagem_artigo/{id_postagem_artigo}")
+async def pagina_postagem_artigo(request: Request, id_postagem_artigo: int):
+    return templates.TemplateResponse("veterinario/excluir_postagem_artigo.html", {"request": request})

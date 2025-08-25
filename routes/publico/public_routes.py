@@ -10,11 +10,11 @@ async def get_root(request: Request):
     response = templates.TemplateResponse("publico/index.html", {"request": request})
     return response
 
-@router.get("/veterinario/{id_veterinario}")
+@router.get("/veterinario/detalhes/{id_veterinario}")
 async def get_veterinario(request: Request, id_veterinario: int):
     return templates.TemplateResponse("publico/veterinario.html", {"request": request})
 
-@router.get("/tutor/{id_tutor}")
+@router.get("/tutor/detalhes/{id_tutor}")
 async def get_tutor(request: Request, id_tutor: int):
     return templates.TemplateResponse("publico/tutor.html", {"request": request})
 
