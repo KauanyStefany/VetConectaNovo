@@ -14,10 +14,10 @@ async def get_root(request: Request):
     response = templates.TemplateResponse("tutor/home_tutor.html", {"request": request})
     return response
 
-@router.get("/fazer_comentario")
-async def pagina_comentario(request: Request):
-    return templates.TemplateResponse("tutor/fazer_comentario.html", {"request": request})
+@router.get("/alterar_dados")
+async def pagina_alterar_dados(request: Request):
+    return templates.TemplateResponse("tutor/alterar_dados.html", {"request": request})
 
-@router.get("/excluir_comentario/{id_comentario}")
-async def pagina_comentario(request: Request, id_comentario: int):
-    return templates.TemplateResponse("tutor/excluir_comentario.html", {"request": request})
+@router.get("/alterar_senha")
+async def pagina_alterar_dados(request: Request):
+    return templates.TemplateResponse("tutor/alterar_senha.html", {"request": request})
