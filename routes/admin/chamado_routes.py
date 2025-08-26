@@ -28,42 +28,6 @@ async def get_excluir_chamado(id_chamado: int):
     return templates.TemplateResponse("admin/listar_chamados.html", {"request": {}, "mensagem": "Erro ao excluir chamado."})
 
 
-#METODOS DE POST
 
-# @router.post("/chamados")
-# async def criar_chamado(
-#     request: Request,
-#     id_usuario: int = Form(...),
-#     id_admin: int = Form(...),
-#     titulo: str = Form(...),
-#     descricao: str = Form(...),
-#     status: str = Form(...),
-#     data: str = Form(...)
-# ):
-#     chamado = Chamado(
-#         id_chamado=0,
-#         id_usuario=id_usuario,
-#         id_admin=id_admin,
-#         titulo=titulo,
-#         descricao=descricao,
-#         status=ChamadoStatus(status),
-#         data=data
-#     )
-#     chamado_repo.inserir_chamado(chamado)
-#     return RedirectResponse(url="/chamados", status_code=status.HTTP_303_SEE_OTHER)
-
-# @router.post("/chamados/{id_chamado}/status")
-# async def atualizar_status_chamado(id_chamado: int, novo_status: str = Form(...)):
-#     sucesso = chamado_repo.atualizar_status_chamado(id_chamado, ChamadoStatus(novo_status))
-#     if not sucesso:
-#         raise HTTPException(status_code=404, detail="Chamado não encontrado ou status inválido")
-#     return RedirectResponse(url=f"/chamados/{id_chamado}", status_code=status.HTTP_303_SEE_OTHER)
-
-# @router.post("/chamados/{id_chamado}/excluir")
-# async def excluir_chamado(id_chamado: int):
-#     sucesso = chamado_repo.excluir_chamado(id_chamado)
-#     if not sucesso:
-#         raise HTTPException(status_code=404, detail="Chamado não encontrado")
-#     return RedirectResponse(url="/chamados", status_code=status.HTTP_303_SEE_OTHER)
 
 
