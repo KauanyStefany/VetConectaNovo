@@ -138,3 +138,8 @@ input[type="checkbox"]:checked+label i::before {
 .like-icon {
   cursor: pointer;
 }
+
+.fonte-titulo {
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
