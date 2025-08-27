@@ -1,0 +1,26 @@
+/* Modal mais "janela" */
+.window-card {
+  border-radius: 15px;
+  max-width: 750px;   /* limite da largura */
+  margin: auto;
+}
+
+/* Foto do pet mais quadrada e com margem */
+.modal-pet-img {
+  max-width: 100%;
+  max-height: 350px;  /* deixa mais quadrada */
+  border-radius: 12px;
+  margin-left: 10px;  /* margem da esquerda */
+  object-fit: cover;  /* mantém proporção sem distorcer */
+}
+
+
+/* Garante que todos os cards tenham mesma altura */
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex: 1 1 auto; /* força o body a crescer igualmente */
+}

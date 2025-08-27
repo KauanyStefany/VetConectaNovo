@@ -148,12 +148,9 @@ input[type="checkbox"]:checked+label i::before {
 
 .petgram-card {
   border: 10px solid #F25CA2;
-  border-radius: 20px;
 }
 
 .petgram-img {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
   height: 450px;
   object-fit: cover;
 }
@@ -222,4 +219,9 @@ footer {
   font-size: 0.9rem !important;
   /* margin-top: 40px !important; */
   color: #000000 !important;
+}
+
+.link{
+  color: #000000 !important;
+  text-decoration: none !important;
 }
