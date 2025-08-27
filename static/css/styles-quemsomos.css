@@ -1,0 +1,31 @@
+
+.titulo_destaque {
+    font-weight: bold !important;
+    color: #000000 !important;
+}
+
+.team {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    justify-content: space-around !important;
+    margin-top: 30px !important;
+}
+
+.team-member {
+    text-align: center !important;
+    width: 200px !important;
+}
+
+.team-member img {
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1) !important;
+    margin-bottom: 10px !important;
+}
+
+.quemsomos-bg {
+    background: linear-gradient(to bottom, #ffffff, #FFF0D1, #ED6291) !important;
+}

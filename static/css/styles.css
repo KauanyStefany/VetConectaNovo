@@ -12,7 +12,8 @@
 }
 
 .custom-btn-link:hover {
-  color: var(--bs-primary); /* azul Bootstrap no hover */
+  color: var(--bs-primary);
+  /* azul Bootstrap no hover */
 }
 
 /* Ícones/logo */
@@ -33,10 +34,6 @@
 }
 
 /* Footer */
-.footer-bg {
-  background-color: #ecdec0;
-}
-
 .footer-pata {
   height: 40px;
 }
@@ -59,6 +56,7 @@
 input[type="checkbox"]:checked+label i {
   color: #e63946;
 }
+
 input[type="checkbox"]:checked+label i::before {
   content: "\f415";
 }
@@ -68,6 +66,7 @@ input[type="checkbox"]:checked+label i::before {
   background-color: #FFE5B3;
   border-radius: 30px;
 }
+
 .categoria-img {
   width: 200px;
   height: 200px;
@@ -77,11 +76,14 @@ input[type="checkbox"]:checked+label i::before {
 }
 
 
-.categoria-btn { 
+.categoria-btn {
   background-color: #FFE5B3;
-  border-radius: 30px; 
-  padding: 10px 20px; 
-  margin: 15px 0; }
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin: 15px 0;
+  text-decoration: none;
+  display: inline-block;
+}
 
 /* Botão Ver mais */
 .ver-mais-btn {
@@ -94,47 +96,75 @@ input[type="checkbox"]:checked+label i::before {
 .custom-carousel {
   height: 400px;
 }
+
 .custom-carousel-img {
   height: 400px;
   object-fit: cover;
 }
 
 /* Artigos */
+
+/* .artigo-card {
+  opacity: 0.8;
+  transition: transform 0.3s, box-shadow 0.3s;
+} */
+
 .artigo-card img {
   object-fit: cover;
 }
-.bg-cachorros { background-color: #44345A !important; }
-.bg-gatos     { background-color: #FA811D !important; }
-.bg-aves      { background-color: #3569A6 !important; }
-.bg-repteis   { background-color: #295A5D !important; }
-.bg-roedores  { background-color: #ED6291 !important; }
+
+.bg-cachorros {
+  background-color: #44345A !important;
+}
+
+.bg-gatos {
+  background-color: #FA811D !important;
+}
+
+.bg-aves {
+  background-color: #3569A6 !important;
+}
+
+.bg-repteis {
+  background-color: #295A5D !important;
+}
+
+.bg-roedores {
+  background-color: #ED6291 !important;
+}
 
 /* PetGram */
 .petgram-bg {
-  background: linear-gradient(to bottom, #ffffff , #FFF0D1, #ED6291);
+  background: linear-gradient(to bottom, #f9f5f0, #FFF0D1, #ED6291);
 }
+
 .petgram-title {
   color: #F25CA2;
 }
+
 .petgram-subtitle {
   color: #2C4C84;
 }
+
 .petgram-card {
   border: 10px solid #F25CA2;
   border-radius: 20px;
 }
+
 .petgram-img {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   height: 450px;
   object-fit: cover;
 }
+
 .petgram-btn {
   background-color: #FFF0D1;
   width: 300px;
   font-size: 20px;
   border-color: #F25CA2;
 }
+
 .like-icon {
   cursor: pointer;
 }
@@ -144,6 +174,53 @@ input[type="checkbox"]:checked+label i::before {
   font-weight: bold;
 }
 
-.quemsomos-bg {
-  background: linear-gradient(to bottom, #ffffff , #FFF0D1, #ED6291);
+
+body {
+  font-family: 'Montserrat', sans-serif !important;
+  background-color: #f9f5f0 !important;
+  /* Bege */
+  color: #333 !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+header {
+  background-color: #ffeed1 !important;
+  /* Laranja principal */
+  color: white !important;
+  text-align: center !important;
+  padding: 20px 10px !important;
+}
+
+header h1 {
+  margin: 0 !important;
+  font-size: 2rem !important;
+}
+
+main {
+  /* max-width: 1000px !important; */
+  margin: auto !important;
+  /* padding: 40px 20px !important; */
+}
+
+h2 {
+  color: #d35400 !important;
+  font-size: 1.8rem !important;
+  margin-bottom: 20px !important;
+}
+
+p {
+  margin-bottom: 15px !important;
+  font-size: 1.05rem !important;
+}
+
+
+footer {
+  text-align: center !important;
+  background-color: #ffeed1 !important;
+  padding: 10px !important;
+  font-size: 0.9rem !important;
+  /* margin-top: 40px !important; */
+  color: #666 !important;
 }

@@ -1,75 +1,15 @@
 {% extends "base_publica.html" %}
-{% block conteudo %}
+{% block head %}
 <title>Quem Somos - VetConecta</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/styles-quemsomos.css">
+{% endblock %}
+{% block conteudo %}
 <style>
-    body {
-        font-family: 'Montserrat', sans-serif;
-        background-color: #f9f5f0; /* Bege */
-        color: #333;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        background-color: #d35400; /* Laranja principal */
-        color: white;
-        text-align: center;
-        padding: 20px 10px;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 2rem;
-    }
-    main {
-        max-width: 1000px;
-        margin: auto;
-        padding: 40px 20px;
-    }
-    h2 {
-        color: #d35400;
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-    }
-    p {
-        margin-bottom: 15px;
-        font-size: 1.05rem;
-    }
-    .titulo_destaque {
-        font-weight: bold;
-        color: #000000;
-    }
-    .team {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: space-around;
-        margin-top: 30px;
-    }
-    .team-member {
-        text-align: center;
-        width: 200px;
-    }
-    .team-member img {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 50%;
-        box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-        margin-bottom: 10px;
-    }
-    footer {
-        text-align: center;
-        background-color: #f1f1f1;
-        padding: 10px;
-        font-size: 0.9rem;
-        margin-top: 40px;
-        color: #666;
-    }
+   
 </style>
 </head>
 <body class="quemsomos-bg">
-
     <main>
         <h1 class="titulo_destaque">Quem Somos</h1><br>
         <p>O <span class="titulo_destaque">VetConecta</span> é um espaço criado para unir tutores de animais e veterinários especializados em um ambiente digital que valoriza informação de qualidade, cuidado responsável e amor pelos pets. Nosso propósito é oferecer <strong>conteúdos confiáveis, revisados por profissionais</strong>, que abordam temas como saúde, nutrição, comportamento e cuidados preventivos, ajudando tutores a tomarem decisões seguras e conscientes.</p>
@@ -84,29 +24,23 @@
         <div class="team">
             <div class="team-member">
                 <img src="/static/img/brenda.jpg" alt="Brenda Souza Oliveira">
-                <h3>Brenda Souza Oliveira</h3>
-                <p>Co-fundadora & Desenvolvedora</p>
+                <h3>Brenda Souza</h3>
             </div>
             <div class="team-member">
                 <img src="/static/img/kauany.jpg" alt="Kauany Stefany Gomes de Oliveira">
-                <h3>Kauany Stefany Gomes de Oliveira</h3>
-                <p>Co-fundadora & Designer</p>
+                <h3>Kauany Stefany</h3>
             </div>
             <div class="team-member">
                 <img src="/static/img/luana.jpg" alt="Luana Santos Neves">
-                <h3>Luana Santos Neves</h3>
-                <p>Co-fundadora & Analista de Sistemas</p>
+                <h3>Luana Santos</h3>
             </div>
             <div class="team-member">
                 <img src="/static/img/sofia.jpg" alt="Sofia Koppe Fernandes Bettcher">
-                <h3>Sofia Koppe Fernandes Bettcher</h3>
-                <p>Co-fundadora & Gestora de Conteúdo</p>
+                <h3>Sofia Koppe</h3>
             </div>
         </div>
     </main>
 
 </body>
 </html>
-
-
 {% endblock %}
