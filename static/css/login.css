@@ -1,0 +1,115 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.bg-full {
+  background: url('/static/img/plano_de_fundo.png') no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 30px 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.login-title {
+  font-size: 30px;
+}
+
+.logo-img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.brand-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.brand-title span:first-child {
+  color: #f26d21;
+  font-size: 40px;
+}
+
+.brand-subtitle {
+  color: #295A5D;
+  font-size: 40px;
+}
+
+input.form-control {
+  border-radius: 10px;
+}
+
+.btn-login {
+  background-color: #f26d21;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.btn-login:hover {
+  background-color: #d45c1a;
+}
+
+
+#-------------------------------------------------------------CadastreSe-------------------------------------------------------------
+
+
+.text-primary {
+  color: #007bff;
+  text-decoration: none;
+  font-size: small;
+}
+
+.text-primary:hover {
+  text-decoration: underline;
+  font-size: small;
+}
+
+
+#---------------------------------------------------------AceitoTermos-----------------------------------------------------------------
+.text-primary {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.text-primary:hover {
+  text-decoration: underline;
+}
+
+#-----------------------------------------------------LoginOpcoes ---------------------------------------------------------------------
+
+.btn-loginopcoes {
+  background-color: #3569A6;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-loginopcoes:hover {
+  background-color: #2e5c90;
+}
+
+.form-label {
+    font-size: 20px;
+  font-weight: bold;
+}
