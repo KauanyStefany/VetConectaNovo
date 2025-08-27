@@ -63,8 +63,8 @@ input[type="checkbox"]:checked+label i::before {
 
 /* Categorias */
 .titulo_categorias {
-  background-color: #FFE5B3;
-  border-radius: 30px;
+  background-color: #FFE5B3 !important;
+  border-radius: 30px !important;
 }
 
 .categoria-img {
@@ -87,9 +87,9 @@ input[type="checkbox"]:checked+label i::before {
 
 /* Botão Ver mais */
 .ver-mais-btn {
-  background-color: #FFE5B3;
-  text-decoration: none;
-  display: inline-block;
+  background-color: #FFE5B3 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
 }
 
 /* Carrossel */
@@ -215,12 +215,11 @@ p {
   font-size: 1.05rem !important;
 }
 
-
 footer {
   text-align: center !important;
   background-color: #ffeed1 !important;
   padding: 10px !important;
   font-size: 0.9rem !important;
   /* margin-top: 40px !important; */
-  color: #666 !important;
+  color: #000000 !important;
 }
