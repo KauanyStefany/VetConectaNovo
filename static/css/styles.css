@@ -1,22 +1,8 @@
 /* ------------------------------ PáginaBase ------------------------------ */
-
-/* Navbar */
 .fundo_navbar {
   background-color: #5D3A79;
 }
 
-.custom-btn-link {
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-}
-
-.custom-btn-link:hover {
-  color: var(--bs-primary);
-  /* azul Bootstrap no hover */
-}
-
-/* Ícones/logo */
 .logo-pata {
   height: 60px;
 }
@@ -27,13 +13,6 @@
   margin-top: 5px;
 }
 
-.perfil-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-/* Footer */
 .footer-pata {
   height: 40px;
 }
@@ -48,6 +27,20 @@
   bottom: 0;
   width: 100%;
   z-index: 1000;
+}
+
+footer {
+  text-align: center !important;
+  background-color: #ffeed1 !important;
+  padding: 10px !important;
+  font-size: 0.9rem !important;
+  /* margin-top: 40px !important; */
+  color: #000000 !important;
+}
+
+.fonte-titulo {
+  font-family: 'Montserrat';
+  font-weight: bold;
 }
 
 /*------------------------------PáginaIndex------------------------------/*
@@ -104,11 +97,6 @@ input[type="checkbox"]:checked+label i::before {
 
 /* Artigos */
 
-/* .artigo-card {
-  opacity: 0.8;
-  transition: transform 0.3s, box-shadow 0.3s;
-} */
-
 .artigo-card img {
   object-fit: cover;
 }
@@ -133,6 +121,7 @@ input[type="checkbox"]:checked+label i::before {
   background-color: #ED6291 !important;
 }
 
+
 /* PetGram */
 .petgram-bg {
   background: linear-gradient(to bottom, #f9f5f0, #FFF0D1, #ED6291);
@@ -147,7 +136,7 @@ input[type="checkbox"]:checked+label i::before {
 }
 
 .petgram-card {
-  border: 10px solid #F25CA2;
+  border: 2px solid #F25CA2 !important;
 }
 
 .petgram-img {
@@ -166,10 +155,7 @@ input[type="checkbox"]:checked+label i::before {
   cursor: pointer;
 }
 
-.fonte-titulo {
-  font-family: 'Montserrat';
-  font-weight: bold;
-}
+
 
 
 body {
@@ -212,14 +198,6 @@ p {
   font-size: 1.05rem !important;
 }
 
-footer {
-  text-align: center !important;
-  background-color: #ffeed1 !important;
-  padding: 10px !important;
-  font-size: 0.9rem !important;
-  /* margin-top: 40px !important; */
-  color: #000000 !important;
-}
 
 .link{
   color: #000000 !important;
