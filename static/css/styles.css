@@ -31,7 +31,7 @@
 
 footer {
   text-align: center !important;
-  background-color: #ffeed1 !important;
+  background-color: #FFE5B3 !important;
   padding: 10px !important;
   font-size: 0.9rem !important;
   /* margin-top: 40px !important; */
@@ -97,6 +97,20 @@ input[type="checkbox"]:checked+label i::before {
 
 /* Artigos */
 
+
+
+.artigo-card,
+.petgram-card {
+  transition: transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.3s;
+  box-shadow: 0 16px 18px -8px rgba(0,0,0,0.55); /* sombra só embaixo, bem evidente */
+}
+.artigo-card:hover,
+.petgram-card:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 28px 32px -8px rgba(0,0,0,0.65); /* sombra inferior ainda mais forte no hover */
+  z-index: 2;
+}
+
 .artigo-card img {
   object-fit: cover;
 }
@@ -135,7 +149,7 @@ input[type="checkbox"]:checked+label i::before {
   color: #2C4C84;
 }
 
-.petgram-card {
+.petgram-borda {
   border: 2px solid #F25CA2 !important;
 }
 
