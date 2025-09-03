@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 import uvicorn
+from starlette.middleware.sessions import SessionMiddleware
+import secrets
 
 from routes.admin import categoria_artigo_routes, chamado_routes, comentario_admin_routes, denuncia_admin_routes, chamado_routes, verificação_crmv_routes
 from routes.publico import public_routes
@@ -10,6 +12,19 @@ from routes.veterinario import estatisticas_routes, postagem_artigo_routes, soli
 
 
 app = FastAPI()
+
+# Gerar chave secreta (em produção, use variável de ambiente!)
+SECRET_KEY = secrets.token_urlsafe(32)
+
+# Adicionar middleware de sessão
+app.add_middleware(
+    SessionMiddleware, 
+    secret_key=SECRET_KEY,
+    max_age=3600,  # Sessão expira em 1 hora
+    same_site="lax",
+    https_only=False  # Em produção, mude para True com HTTPS
+)
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(public_routes.router)

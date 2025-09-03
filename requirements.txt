@@ -9,3 +9,7 @@ itsdangerous
 pytest
 pytest-asyncio
 pytest-cov
+
+passlib[bcrypt]
+python-jose[cryptography]
+itsdangerous

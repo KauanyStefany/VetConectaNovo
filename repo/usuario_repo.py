@@ -21,7 +21,12 @@ def inserir_usuario(usuario: Usuario) -> Optional[int]:
             usuario.nome,
             usuario.email,
             usuario.senha,
-            usuario.telefone))
+            usuario.telefone,
+            usuario.perfil,
+            usuario.foto,
+            usuario.token_redefinicao,
+            usuario.data_token,
+            usuario.data_cadastro))
         return cursor.lastrowid
 
 
@@ -58,7 +63,12 @@ def obter_todos_usuarios_paginado(limite: int, offset: int) -> list[Usuario]:
                 nome=row["nome"], 
                 email=row["email"], 
                 senha=row["senha"], 
-                telefone=row["telefone"]
+                telefone=row["telefone"],
+                perfil=row["perfil"],
+                foto=row["foto"],
+                token_redefinicao=row["token_redefinicao"],
+                data_token=row["data_token"],
+                data_cadastro=row["data_cadastro"]
             ) 
             for row in rows]
         return usuarios
@@ -75,6 +85,94 @@ def obter_usuario_por_id(id_usuario: int) -> Optional[Usuario]:
             nome=row["nome"],
             email=row["email"],
             senha=row["senha"],
-            telefone=row["telefone"]
+            telefone=row["telefone"],
+            perfil=row["perfil"],
+            foto=row["foto"],
+            token_redefinicao=row["token_redefinicao"],
+            data_token=row["data_token"],
+            data_cadastro=row["data_cadastro"]
         )
+    
+
+def obter_por_email(email: str) -> Optional[Usuario]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_POR_EMAIL, (email,))
+        row = cursor.fetchone()
+        if row:
+            usuario = Usuario(
+                    id=row["id"], 
+                    nome=row["nome"],
+                    email=row["email"],
+                    senha=row["senha"],
+                    telefone=row["telefone"],
+                    perfil=row["perfil"],
+                    foto=row["foto"],
+                    token_redefinicao=row["token_redefinicao"],
+                    data_token=row["data_token"],
+                    data_cadastro=row["data_cadastro"]
+            )
+            return usuario
+        return None
+
+def atualizar_token(email: str, token: str, data_expiracao: str) -> bool:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(ATUALIZAR_TOKEN, (token, data_expiracao, email))
+        return (cursor.rowcount > 0)
+
+def atualizar_foto(id: int, caminho_foto: str) -> bool:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(ATUALIZAR_FOTO, (caminho_foto, id))
+        return (cursor.rowcount > 0)
+
+def obter_por_token(token: str) -> Optional[Usuario]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_POR_TOKEN, (token,))
+        row = cursor.fetchone()
+        if row:
+            usuario = Usuario(
+                    id=row["id"], 
+                    nome=row["nome"],
+                    email=row["email"],
+                    senha=row["senha"],
+                    telefone=row["telefone"],
+                    perfil=row["perfil"],
+                    foto=row["foto"],
+                    token_redefinicao=row["token_redefinicao"],
+                    data_token=row["data_token"],
+                    data_cadastro=row["data_cadastro"]
+            )
+            return usuario
+        return None
+
+def limpar_token(id: int) -> bool:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("UPDATE usuario SET token_redefinicao=NULL, data_token=NULL WHERE id=?", (id,))
+        return (cursor.rowcount > 0)
+
+def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM usuario WHERE perfil=? ORDER BY nome", (perfil,))
+        rows = cursor.fetchall()
+        usuarios = []
+        for row in rows:
+            usuario = Usuario(
+                id=row["id"], 
+                nome=row["nome"],
+                email=row["email"],
+                senha=row["senha"],
+                telefone=row["telefone"],
+                perfil=row["perfil"],
+                foto=row["foto"],
+                token_redefinicao=row["token_redefinicao"],
+                data_token=row["data_token"],
+                data_cadastro=row["data_cadastro"]
+            )
+            usuarios.append(usuario)
+        return usuarios
 
