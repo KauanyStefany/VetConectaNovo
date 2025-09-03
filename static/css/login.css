@@ -50,9 +50,7 @@ body, html {
   font-size: 40px;
 }
 
-input.form-control {
-  border-radius: 10px;
-}
+
 
 .btn-login {
   background-color: #f26d21;
