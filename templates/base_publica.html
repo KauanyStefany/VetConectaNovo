@@ -33,7 +33,40 @@
                 </form>
 
                 <!-- Direita: Ícone de perfil -->
-                <div class="dropdown">
+                 {% if request.session.get('usuario') %}
+                    <!-- Menu Admin -->
+                    {% if request.session.get('usuario').perfil == 'admin' %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            Administrar
+                        </a>
+                        <i class="bi bi-person-circle fs-2 text-white"></i>                        
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/usuarios">Usuários</a></li>
+                            <li><a class="dropdown-item" href="/admin/relatorios">Relatórios</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                    
+                    <!-- Menu do Usuário -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            {{ request.session.get('usuario').nome }}
+                        </a>
+                        <i class="bi bi-person-circle fs-2 text-white"></i>                        
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <!-- Menu para não logados -->
+                    <i class="bi bi-person-circle fs-2 text-white"></i>                     
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/cadastro">Cadastre-se</a>
+                {% endif %}
+                <!-- <div class="dropdown">
                     <button
                         class="btn dropdown-toggle p-0 text-white"
                         type="button"
@@ -47,7 +80,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Sair</a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </nav>
 

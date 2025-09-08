@@ -25,7 +25,7 @@ def inserir_veterinario(vet: Veterinario) -> Optional[int]:
         # Inserir apenas os atributos exclusivos do veterinário
         cursor.execute(
             veterinario_sql.INSERIR,
-            (id_veterinario, vet.crmv, vet.verificado, vet.bio)
+            (id_veterinario, vet.crmv, vet.bio)
         )
         return id_veterinario
 
@@ -40,6 +40,12 @@ def atualizar_veterinario(vet: Veterinario) -> bool:
             vet.bio,
             vet.id_usuario
         ))
+        return (cursor.rowcount > 0)
+    
+def atualizar_verificacao(id_veterinario: int, verificado: bool) -> bool:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(ATUALIZAR_VERIFICACAO, (verificado, id_veterinario))
         return (cursor.rowcount > 0)
 
 def excluir_veterinario(id: int) -> bool:

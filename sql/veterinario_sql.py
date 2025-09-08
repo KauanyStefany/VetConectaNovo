@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS veterinario (
 """
 
 INSERIR = """
-INSERT INTO veterinario (id_veterinario, crmv)
+INSERT INTO veterinario (id_veterinario, crmv, bio)
 VALUES (?, ?);
 """
 

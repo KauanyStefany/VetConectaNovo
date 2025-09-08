@@ -5,7 +5,7 @@ from starlette.middleware.sessions import SessionMiddleware
 import secrets
 
 from routes.admin import categoria_artigo_routes, chamado_routes, comentario_admin_routes, denuncia_admin_routes, chamado_routes, verificação_crmv_routes
-from routes.publico import public_routes
+from routes.publico import auth_routes, public_routes
 from routes.tutor import postagem_feed_routes
 from routes.usuario import usuario_routes
 from routes.veterinario import estatisticas_routes, postagem_artigo_routes, solicitacao_crmv_routes
@@ -49,6 +49,8 @@ app.include_router(usuario_routes.router, prefix="/usuario", tags=["usuario"])
 
 app.include_router(public_routes.router, prefix="/publico", tags=["publico"])
 
+app.include_router(auth_routes)
+app.include_router(perfil_router)
 
 
 if __name__ == "__main__":
