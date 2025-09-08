@@ -8,7 +8,7 @@ class Usuario:
     email: str
     senha: str
     telefone: str
-    perfil: str = 'cliente'
+    perfil: str = 'tutor'
     foto: Optional[str] = None
     token_redefinicao: Optional[str] = None
     data_token: Optional[str] = None

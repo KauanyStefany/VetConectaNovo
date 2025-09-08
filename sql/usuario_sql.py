@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS usuario (
     id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    senha CHAR(8) NOT NULL,
-    telefone CHAR(11) NOT NULL,
+    senha TEXT NOT NULL,
+    telefone TEXT NOT NULL,
     perfil TEXT NOT NULL DEFAULT 'tutor',
     foto TEXT,
     token_redefinicao TEXT,
@@ -14,12 +14,13 @@ CREATE TABLE IF NOT EXISTS usuario (
 """
 
 INSERIR = """
-INSERT INTO usuario (nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token, data_cadastro)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO usuario (nome, email, senha, telefone, perfil)
+VALUES (?, ?, ?, ?, ?);
 """
+
 ATUALIZAR = """
 UPDATE usuario 
-SET nome = ?, email = ?, telefone = ?, perfil = ?, foto = ?, token_redefinicao = ?, data_token = ?, data_cadastro = ?
+SET nome = ?, email = ?, telefone = ?, foto = ?
 WHERE id_usuario = ?;
 """
 
@@ -33,6 +34,7 @@ EXCLUIR = """
 DELETE FROM usuario 
 WHERE id_usuario = ?;
 """
+
 OBTER_TODOS_PAGINADO = """
 SELECT 
     id_usuario, 
@@ -49,7 +51,6 @@ FROM usuario
 ORDER BY nome
 LIMIT ? OFFSET ?;
 """
-
 
 OBTER_POR_ID = """
 SELECT 

@@ -3,13 +3,15 @@ from fastapi.responses import RedirectResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from model.usuario_model import Usuario
-from repo import usuario_repo
+from model.tutor_model import Tutor
+from model.veterinario_model import Veterinario
+from repo import usuario_repo, tutor_repo, veterinario_repo
 from util.security import criar_hash_senha, verificar_senha, gerar_token_redefinicao, obter_data_expiracao_token, validar_forca_senha
 from util.auth_decorator import criar_sessao, destruir_sessao, obter_usuario_logado, esta_logado
 from util.template_util import criar_templates
 
 router = APIRouter()
-templates = criar_templates("templates/auth")
+templates = criar_templates("templates/publico")
 
 
 @router.get("/login")
@@ -29,7 +31,6 @@ async def post_login(
     request: Request,
     email: str = Form(...),
     senha: str = Form(...),
-    telefone: str = Form(...),
     redirect: str = Form(None)
 ):
     # Buscar usuário pelo email
@@ -51,6 +52,7 @@ async def post_login(
         "id": usuario.id,
         "nome": usuario.nome,
         "email": usuario.email,
+        "telefone": usuario.telefone,
         "perfil": usuario.perfil,
         "foto": usuario.foto
     }
@@ -81,11 +83,20 @@ async def post_cadastro(
     request: Request,
     nome: str = Form(...),
     email: str = Form(...),
-    cpf: str = Form(...),
     telefone: str = Form(...),
     senha: str = Form(...),
-    confirmar_senha: str = Form(...)
+    confirmar_senha: str = Form(...),
+    perfil: str = Form(...), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
+    crmv: str = Form(None)
 ):
+    # Veterinario
+    # verificado: bool -> definido depois
+    # bio: str -> cadastrado depois
+
+    # Tutor
+    # quantidade_pets: int = 0 -> cadastrado depois
+    # descricao_pets: Optional[str] = None -> cadastrado depois
+
     # Validações
     if senha != confirmar_senha:
         return templates.TemplateResponse(
@@ -94,9 +105,10 @@ async def post_cadastro(
                 "request": request,
                 "erro": "As senhas não coincidem",
                 "nome": nome,
-                "email": email,
-                "cpf": cpf,
-                "telefone": telefone
+                "email": email,                
+                "telefone": telefone,
+                "perfil": perfil,
+                "crmv": crmv
             }
         )
     
@@ -110,8 +122,9 @@ async def post_cadastro(
                 "erro": msg_erro,
                 "nome": nome,
                 "email": email,
-                "cpf": cpf,
-                "telefone": telefone
+                "telefone": telefone,
+                "perfil": perfil,
+                "crmv": crmv
             }
         )
     
@@ -121,50 +134,48 @@ async def post_cadastro(
             "cadastro.html",
             {
                 "request": request,
-                "erro": "Este email já está cadastrado",
+                "erro": msg_erro,
                 "nome": nome,
-                "cpf": cpf,
-                "telefone": telefone
+                "email": email,
+                "telefone": telefone,
+                "perfil": perfil,
+                "crmv": crmv
             }
         )
     
     try:
+        id_usuario = None
+        if perfil == 'tutor':
         # Criar usuário com senha hash
-        usuario = Usuario(
-            id=0,
-            nome=nome,
-            email=email,
-            senha=criar_hash_senha(senha),
-            perfil='cliente'
-        )
-        
-        # Inserir usuário e cliente
-        from util.db_util import get_connection
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            
-            # Inserir usuário
-            usuario_id = usuario_repo.inserir(usuario, cursor)
-            
-            # Inserir dados do cliente
-            cliente = Cliente(
-                id=usuario_id,
-                cpf=cpf,
-                telefone=telefone
+            tutor = Tutor(
+                id=0,
+                nome=nome,
+                email=email,
+                senha=criar_hash_senha(senha),
+                telefone=telefone,
+                perfil=perfil
             )
-            cursor.execute(
-                "INSERT INTO cliente (id, cpf, telefone) VALUES (?, ?, ?)",
-                (cliente.id, cliente.cpf, cliente.telefone)
+            id_usuario = tutor_repo.inserir_tutor(tutor)
+        else:
+            veterinario = Veterinario(
+                id=0,
+                nome=nome,
+                email=email,
+                senha=criar_hash_senha(senha),
+                telefone=telefone,
+                perfil=perfil,
+                crmv=crmv
             )
-            
-            conn.commit()
+            id_usuario = veterinario_repo.inserir_veterinario(veterinario)
+
         
         # Fazer login automático após cadastro
         usuario_dict = {
-            "id": usuario_id,
+            "id": id_usuario,
             "nome": nome,
             "email": email,
-            "perfil": 'cliente',
+            "telefone": telefone,
+            "perfil": perfil,
             "foto": None
         }
         criar_sessao(request, usuario_dict)
@@ -176,11 +187,12 @@ async def post_cadastro(
             "cadastro.html",
             {
                 "request": request,
-                "erro": "Erro ao criar cadastro. Tente novamente.",
+                "erro": f"Erro ao criar cadastro. Tente novamente. {e}",
                 "nome": nome,
-                "email": email,
-                "cpf": cpf,
-                "telefone": telefone
+                "email": email,                
+                "telefone": telefone,
+                "perfil": perfil,
+                "crmv": crmv
             }
         )
 

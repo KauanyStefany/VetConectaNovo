@@ -21,16 +21,6 @@ async def get_veterinario(request: Request, id_veterinario: int):
 async def get_tutor(request: Request, id_tutor: int):
     return templates.TemplateResponse("publico/tutor.html", {"request": request})
 
-@router.get("/cadastro")
-async def get_cadastro(request: Request):
-    return templates.TemplateResponse("publico/cadastro.html", {"request": request})
-
-
-@router.get("/login")
-async def get_login(request: Request):
-    return templates.TemplateResponse("publico/login.html", {"request": request})
-
-
 @router.get("/quemsomos")
 async def get_sobre(request: Request):
     return templates.TemplateResponse("publico/quemsomos.html", {"request": request})

@@ -9,12 +9,17 @@ CREATE TABLE IF NOT EXISTS veterinario (
 """
 
 INSERIR = """
-INSERT INTO veterinario (id_veterinario, crmv, verificado, bio)
-VALUES (?, ?, ?, ?);
+INSERT INTO veterinario (id_veterinario, crmv)
+VALUES (?, ?);
 """
 
 ATUALIZAR = """
 UPDATE veterinario SET crmv = ?, verificado = ?, bio = ?
+WHERE id_veterinario = ?;
+"""
+
+ATUALIZAR_VERIFICACAO = """
+UPDATE veterinario SET verificado = ?
 WHERE id_veterinario = ?;
 """
 

@@ -22,11 +22,7 @@ def inserir_usuario(usuario: Usuario) -> Optional[int]:
             usuario.email,
             usuario.senha,
             usuario.telefone,
-            usuario.perfil,
-            usuario.foto,
-            usuario.token_redefinicao,
-            usuario.data_token,
-            usuario.data_cadastro))
+            usuario.perfil))
         return cursor.lastrowid
 
 
