@@ -1,5 +1,8 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Form
+from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
+
+from repo import usuario_repo
 
 
 router = APIRouter()
@@ -22,9 +25,11 @@ async def get_tutor(request: Request, id_tutor: int):
 async def get_cadastro(request: Request):
     return templates.TemplateResponse("publico/cadastro.html", {"request": request})
 
+
 @router.get("/login")
 async def get_login(request: Request):
     return templates.TemplateResponse("publico/login.html", {"request": request})
+
 
 @router.get("/quemsomos")
 async def get_sobre(request: Request):

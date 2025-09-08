@@ -1,5 +1,7 @@
 fastapi[standard]
 uvicorn[standard]
+pydantic
+pydantic_core
 jinja2
 Babel
 python-multipart
