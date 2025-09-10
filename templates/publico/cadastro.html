@@ -1,5 +1,60 @@
-{% extends "base_publica.html" %}
+{% extends "base_publica_login.html" %}
+{% block head %}
+<title>Quem Somos - VetConecta</title>
+<link rel="stylesheet" href="/static/css/login.css">
+<link rel="stylesheet" href="/static/css/styles.css">
+{% endblock %}
 {% block conteudo %}
-<h1>Cadastro de Usuário</h1>
-<hr>
+<body>
+
+  <div class="bg-full">
+    <div class="login-box">
+      <img src="img/logo.png" alt="Logo VetConecta" class="logo-img">
+      <div class="brand-title">
+        <span>Vet</span><span class="brand-subtitle">Conecta</span>
+      </div>
+      <h5 class="mb-4 fw-semibold login-title">Login</h5>
+
+      <form>
+        <div class="mb-3 text-start">
+          <label class="form-label">Se cadastrar como:</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="perfil" id="tutor" value="tutor" required>
+            <label class="form-check-label" for="tutor">Tutor</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="perfil" id="veterinario" value="veterinario" required>
+            <label class="form-check-label" for="veterinario">Veterinário</label>
+          </div>
+        </div>
+        <div class="mb-3 text-start">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" required>
+        </div>
+        <div class="mb-3 text-start">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+        </div>
+        <div class="mb-3 text-start">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone" required>
+        </div>
+        <div class="mb-3 text-start" id="crmv-field" style="display: none;">
+          <label for="crmv" class="form-label">CRMV</label>
+          <input type="text" class="form-control" id="crmv" placeholder="Digite seu CRMV">
+        </div>
+        <div class="mb-3 text-start">
+          <label for="senha" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
+        </div>
+        <button type="submit" class="btn btn-login w-100">Entrar</button><br>
+        <div class="form-check text-start mb-3">
+          <input class="form-check-input" type="checkbox" id="termos" required>
+          <label class="form-check-label" for="termos">Aceito os <a href="termos.html" class="text-primary fw-semibold">Termos de privacidade.</a>
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/static/js/scripts_cadastro.js"></script>
 {% endblock %}
