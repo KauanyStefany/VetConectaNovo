@@ -1,4 +1,3 @@
-
 .titulo_destaque {
     font-weight: bold !important;
     color: #000000 !important;
@@ -9,7 +8,8 @@
     flex-wrap: wrap !important;
     gap: 20px !important;
     justify-content: space-around !important;
-    margin-top: 30px !important;
+    background: #3569A6 !important;
+    margin:0 unset !important;
 }
 
 .team-member {
@@ -26,6 +26,11 @@
     margin-bottom: 10px !important;
 }
 
-.quemsomos-bg {
+/* .quemsomos-bg {
     background: linear-gradient(to bottom, #ffffff, #FFF0D1, #ED6291) !important;
+} */
+
+.wave-container {
+    margin-top: -30px;
+    line-height: 0;
 }
