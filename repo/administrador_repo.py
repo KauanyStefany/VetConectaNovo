@@ -1,7 +1,7 @@
 from typing import Optional, List
 from model.administrador_model import Administrador
 from sql.administrador_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_administrador() -> bool:

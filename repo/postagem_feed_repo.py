@@ -3,7 +3,7 @@ from typing import Optional, List
 from model.postagem_feed_model import PostagemFeed
 from sql.postagem_feed_sql import *
 from model.tutor_model import Tutor
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:

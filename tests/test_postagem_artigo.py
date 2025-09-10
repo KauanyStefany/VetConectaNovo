@@ -5,7 +5,7 @@ from repo import usuario_repo, veterinario_repo, categoria_artigo_repo, postagem
 from model.categoria_artigo_model import CategoriaArtigo
 from model.postagem_artigo_model import PostagemArtigo
 from model.veterinario_model import Veterinario
-from util import get_connection
+from util.db_util import get_connection
 
 class TestPostagemArtigoRepo:
     def test_criar_tabela(self, test_db):

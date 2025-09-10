@@ -4,7 +4,7 @@ from repo import tutor_repo, veterinario_repo
 from model.seguida_model import Seguida
 from sql.seguida_sql import *
 from model.tutor_model import Tutor
-from util import get_connection
+from util.db_util import get_connection
 from model.veterinario_model import Veterinario
 
 

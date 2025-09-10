@@ -4,7 +4,7 @@ from sql import veterinario_sql
 from model.usuario_model import Usuario
 from model.veterinario_model import Veterinario
 from sql.veterinario_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_veterinario() -> bool:

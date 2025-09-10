@@ -2,7 +2,7 @@ from typing import Optional, List
 from model.chamado_model import Chamado
 from model.enums import ChamadoStatus
 from sql.chamado_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_chamado() -> bool:

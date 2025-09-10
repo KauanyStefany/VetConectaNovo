@@ -1,7 +1,7 @@
 from typing import Optional, List
 from model.curtida_feed_model import CurtidaFeed
 from sql.curtida_feed_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:

@@ -1,7 +1,7 @@
 from typing import Optional, List
 from model.resposta_chamado_model import RespostaChamado
 from sql.resposta_chamado_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 def criar_tabelas() -> bool:
     try:

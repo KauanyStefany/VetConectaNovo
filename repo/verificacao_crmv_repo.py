@@ -2,7 +2,7 @@ from typing import Optional, List
 from model.verificacao_crmv_model import VerificacaoCRMV
 from model.enums import VerificacaoStatus
 from sql.verificacao_crmv_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:

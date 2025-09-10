@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Optional, List
 from model.postagem_artigo_model import PostagemArtigo
 from sql.postagem_artigo_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:

@@ -35,7 +35,7 @@ async def get_perfil(request: Request, usuario_logado: dict = None):
         dados_perfil = veterinario_repo.obter_por_id(usuario.id)
     elif perfil == 'administrador':
         from repo import administrador_repo
-        dados_perfil = administrador_repo.obter_por_id(usuario.id)
+        dados_perfil = administrador_repo.obter_administrador_por_id(usuario.id)
 
     return templates.TemplateResponse(
         "dados.html",
@@ -52,17 +52,16 @@ async def post_perfil(
     request: Request,
     nome: str = Form(...),
     email: str = Form(...),
-    cpf: str = Form(None),
     telefone: str = Form(None),
     usuario_logado: dict = None
 ):
-    usuario = usuario_repo.obter_por_id(usuario_logado['id'])
+    usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
     
     # Verificar se o email já está em uso por outro usuário
     usuario_existente = usuario_repo.obter_por_email(email)
     if usuario_existente and usuario_existente.id != usuario.id:
-        cliente_dados = None
-        if usuario.perfil == 'cliente':
+        tutor_dados = None
+        if usuario.perfil == 'tutor':
             try:
                 from util.db_util import get_connection
                 with get_connection() as conn:
@@ -70,8 +69,7 @@ async def post_perfil(
                     cursor.execute("SELECT cpf, telefone FROM cliente WHERE id=?", (usuario.id,))
                     row = cursor.fetchone()
                     if row:
-                        cliente_dados = {
-                            'cpf': row['cpf'],
+                        tutor_dados = {
                             'telefone': row['telefone']
                         }
             except:
@@ -82,7 +80,7 @@ async def post_perfil(
             {
                 "request": request,
                 "usuario": usuario,
-                "cliente_dados": cliente_dados,
+                "tutor_dados":tutor_dados,
                 "erro": "Este email já está em uso"
             }
         )
@@ -90,21 +88,21 @@ async def post_perfil(
     # Atualizar dados do usuário
     usuario.nome = nome
     usuario.email = email
-    usuario_repo.alterar(usuario)
+    usuario_repo.atualizar_usuario(usuario)
     
     # Se for cliente, atualizar dados adicionais
-    if usuario.perfil == 'cliente' and cpf and telefone:
+    if usuario.perfil == 'tutor' and telefone:
         try:
             from util.db_util import get_connection
             with get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(
-                    "UPDATE cliente SET cpf=?, telefone=? WHERE id=?",
-                    (cpf, telefone, usuario.id)
+                    "UPDATE cliente SET telefone=? WHERE id=?",
+                    (telefone, usuario.id)
                 )
                 conn.commit()
-        except:
-            pass
+        except Exception as e:
+            print(f"Erro ao atualizar telefone do tutor: {e}")
     
     # Atualizar sessão
     from util.auth_decorator import criar_sessao
@@ -138,7 +136,7 @@ async def post_alterar_senha(
     confirmar_senha: str = Form(...),
     usuario_logado: dict = None
 ):
-    usuario = usuario_repo.obter_por_id(usuario_logado['id'])
+    usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
     
     # Verificar senha atual
     if not verificar_senha(senha_atual, usuario.senha):

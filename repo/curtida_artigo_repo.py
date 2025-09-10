@@ -2,7 +2,7 @@ from typing import Optional, List
 from datetime import datetime
 from model.curtida_artigo_model import CurtidaArtigo
 from sql.curtida_artigo_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_curtida_artigo() -> bool:

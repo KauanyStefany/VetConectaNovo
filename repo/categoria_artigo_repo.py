@@ -1,7 +1,7 @@
 from typing import Optional, List
 from model.categoria_artigo_model import CategoriaArtigo
 from sql.categoria_artigo_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_categoria_artigo() -> bool:

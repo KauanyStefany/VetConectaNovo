@@ -3,7 +3,7 @@ from model.comentario_model import Comentario
 from sql.comentario_sql import *
 from model.postagem_artigo_model import PostagemArtigo
 from model.usuario_model import Usuario
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:

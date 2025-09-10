@@ -124,7 +124,7 @@ class Administrador:
 from typing import Any, Optional, List
 from data.administrador_model import Administrador
 from data.administrador_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_administrador() -> bool:
@@ -247,7 +247,7 @@ class CategoriaArtigo:
 from typing import Optional, List
 from data.categoria_artigo_model import CategoriaArtigo
 from data.categoria_artigo_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_categoria_artigo() -> bool:
@@ -360,7 +360,7 @@ class Chamado:
 from typing import Optional, List
 from data.chamado_model import Chamado
 from data.chamado_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:
@@ -539,7 +539,7 @@ from data.comentario_model import Comentario
 from data.comentario_sql import *
 from data.postagem_artigo_model import PostagemArtigo
 from data.usuario_model import Usuario
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:
@@ -700,7 +700,7 @@ from data.curtida_artigo_model import CurtidaArtigo
 from data.curtida_artigo_sql import *
 from data.postagem_artigo_model import PostagemArtigo
 from data.usuario_model import Usuario
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:
@@ -834,7 +834,7 @@ class CurtidaFeed:
 from typing import Optional, List
 from data.curtida_feed_model import CurtidaFeed
 from data.curtida_feed_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:
@@ -973,7 +973,7 @@ class Denuncia:
 from typing import Optional, List
 from data.denuncia_model import Denuncia
 from data.denuncia_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_denuncia() -> bool:
@@ -1189,7 +1189,7 @@ from typing import Optional, List
 from data.categoria_artigo_model import CategoriaArtigo
 from data.postagem_artigo_model import PostagemArtigo
 from data.postagem_artigo_sql import *
-from util import get_connection
+from util.db_util import get_connection
 from data.veterinario_model import Veterinario
 
 
@@ -1367,7 +1367,7 @@ from typing import Optional, List
 from data.postagem_feed_model import PostagemFeed
 from data.postagem_feed_sql import *
 from data.tutor_model import Tutor
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela() -> bool:
@@ -1527,7 +1527,7 @@ class RespostaChamado:
 from typing import Optional, List
 from data.resposta_chamado_model import RespostaChamado
 from data.resposta_chamado_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 def criar_tabelas() -> bool:
     try:
@@ -1653,7 +1653,7 @@ from typing import Optional, List
 from data.seguida_model import Seguida
 from data.seguida_sql import *
 from data.tutor_model import Tutor
-from util import get_connection
+from util.db_util import get_connection
 from data.veterinario_model import Veterinario
 
 
@@ -1789,7 +1789,7 @@ from data.tutor_model import Tutor
 import data.tutor_sql as tutor_sql
 from data.usuario_model import Usuario
 import data.usuario_sql as usuario_sql
-from util import get_connection
+from util.db_util import get_connection
 
   
 def criar_tabela_tutor() -> bool:
@@ -1913,7 +1913,7 @@ class Usuario:
 from typing import Any, Optional
 from data.usuario_model import Usuario
 from data.usuario_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_usuario() -> bool:
@@ -2074,7 +2074,7 @@ class VerificacaoCRMV:
 from typing import Optional, List
 from data.verificacao_crmv_model import VerificacaoCRMV
 from data.verificacao_crmv_sql import *
-from util import get_connection
+from util.db_util import get_connection
 from data.veterinario_model import Veterinario
 from data.administrador_model import Administrador
 
@@ -2239,7 +2239,7 @@ from data import veterinario_sql
 from data.usuario_model import Usuario
 from data.veterinario_model import Veterinario
 from data.veterinario_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_veterinario() -> bool:

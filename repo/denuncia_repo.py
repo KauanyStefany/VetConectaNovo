@@ -2,7 +2,7 @@ from typing import Optional, List
 from model.denuncia_model import Denuncia
 from model.enums import DenunciaStatus
 from sql.denuncia_sql import *
-from util import get_connection
+from util.db_util import get_connection
 
 
 def criar_tabela_denuncia() -> bool:

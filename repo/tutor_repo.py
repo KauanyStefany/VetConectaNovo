@@ -4,7 +4,7 @@ from model.tutor_model import Tutor
 import sql.tutor_sql as tutor_sql
 from model.usuario_model import Usuario
 import sql.usuario_sql as usuario_sql
-from util import get_connection
+from util.db_util import get_connection
 
   
 def criar_tabela_tutor() -> bool:
