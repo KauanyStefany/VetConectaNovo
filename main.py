@@ -30,27 +30,25 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(public_routes.router)
-app.include_router(categoria_artigo_routes.router, prefix="/admin", tags=["admin"])
-app.include_router(chamado_routes.router, prefix="/admin", tags=["admin"])
-app.include_router(comentario_admin_routes.router, prefix="/admin", tags=["admin"])
-app.include_router(denuncia_admin_routes.router, prefix="/admin", tags=["admin"])
-app.include_router(chamado_routes.router, prefix="/admin", tags=["admin"])
-app.include_router(verificação_crmv_routes.router, prefix="/admin", tags=["admin"])
+app.include_router(auth_routes.router)
 
-app.include_router(postagem_feed_routes.router, prefix="/tutor", tags=["tutor"])
+app.include_router(categoria_artigo_routes.router, prefix="/admin")
+app.include_router(chamado_routes.router, prefix="/admin")
+app.include_router(comentario_admin_routes.router, prefix="/admin")
+app.include_router(denuncia_admin_routes.router, prefix="/admin")
+app.include_router(chamado_routes.router, prefix="/admin")
+app.include_router(verificação_crmv_routes.router, prefix="/admin")
 
-# app.include_router(denuncia_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"])
-app.include_router(postagem_artigo_routes.router, prefix="/veterinario", tags=["veterinario"])
-# app.include_router(seguida_veterinario_routes.router, prefix="/veterinario", tags=["veterinario"]) 
-app.include_router(estatisticas_routes.router, prefix="/veterinario", tags=["veterinario"])
-app.include_router(solicitacao_crmv_routes.router, prefix="/veterinario", tags=["veterinario"])
+app.include_router(postagem_feed_routes.router, prefix="/tutor")
+# app.include_router(denuncia_veterinario_routes.router, prefix="/veterinario")
+app.include_router(postagem_artigo_routes.router, prefix="/veterinario")
+# app.include_router(seguida_veterinario_routes.router, prefix="/veterinario") 
+app.include_router(estatisticas_routes.router, prefix="/veterinario")
+app.include_router(solicitacao_crmv_routes.router, prefix="/veterinario")
 
-app.include_router(usuario_routes.router, prefix="/usuario", tags=["usuario"])
+app.include_router(usuario_routes.router, prefix="/usuario")
+app.include_router(perfil_routes.router, prefix="/perfil")
 
-app.include_router(public_routes.router, prefix="/publico", tags=["publico"])
-
-app.include_router(auth_routes)
-app.include_router(perfil_routes)
 
 
 if __name__ == "__main__":

@@ -1,13 +1,11 @@
 from fastapi import APIRouter, Form, Request, status
-from fastapi.responses import RedirectResponse, HTMLResponse
-from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
 
-from model.usuario_model import Usuario
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
 from repo import usuario_repo, tutor_repo, veterinario_repo
 from util.security import criar_hash_senha, verificar_senha, gerar_token_redefinicao, obter_data_expiracao_token, validar_forca_senha
-from util.auth_decorator import criar_sessao, destruir_sessao, obter_usuario_logado, esta_logado
+from util.auth_decorator import criar_sessao, destruir_sessao, esta_logado
 from util.template_util import criar_templates
 
 router = APIRouter()
