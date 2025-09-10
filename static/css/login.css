@@ -68,15 +68,14 @@ body, html {
 #-------------------------------------------------------------CadastreSe-------------------------------------------------------------
 
 
-.text-primary {
-  color: #007bff;
-  text-decoration: none;
-  font-size: small;
+.link-padrao {
+  color: #007bff !important;
+  text-decoration: none !important;
+  font-size: small !important;
 }
 
-.text-primary:hover {
-  text-decoration: underline;
-  font-size: small;
+.link-padrao:hover {
+  text-decoration: underline !important;
 }
 
 

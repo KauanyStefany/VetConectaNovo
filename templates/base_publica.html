@@ -33,7 +33,8 @@
                 </form>
 
                 <!-- Direita: Ícone de perfil -->
-                 {% if request.session.get('usuario') %}
+                {% if request.session.get('usuario') %}
+                <ul>
                     <!-- Menu Admin -->
                     {% if request.session.get('usuario').perfil == 'admin' %}
                     <li class="nav-item dropdown">
@@ -46,25 +47,26 @@
                             <li><a class="dropdown-item" href="/admin/relatorios">Relatórios</a></li>
                         </ul>
                     </li>
-                    {% endif %}
-                    
+                    {% endif %}                    
                     <!-- Menu do Usuário -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            {{ request.session.get('usuario').nome }}
-                        </a>
-                        <i class="bi bi-person-circle fs-2 text-white"></i>                        
+                            <i class="bi bi-person-circle fs-2 text-white"></i>
+                            <!-- {{ request.session.get('usuario').nome }} -->
+                        </a>                        
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/logout">Sair</a></li>
                         </ul>
                     </li>
+                </ul>
                 {% else %}
                     <!-- Menu para não logados -->
-                    <i class="bi bi-person-circle fs-2 text-white"></i>                     
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/cadastro">Cadastre-se</a>
+                    <div class="text-white d-flex gap-3">
+                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="/cadastro">Cadastre-se</a>
+                    </div>
                 {% endif %}
                 <!-- <div class="dropdown">
                     <button

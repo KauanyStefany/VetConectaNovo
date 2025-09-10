@@ -49,7 +49,5 @@ app.include_router(solicitacao_crmv_routes.router, prefix="/veterinario")
 app.include_router(usuario_routes.router, prefix="/usuario")
 app.include_router(perfil_routes.router, prefix="/perfil")
 
-
-
 if __name__ == "__main__":
     uvicorn.run(app="main:app", host="127.0.0.1", port=8000, reload=True)
