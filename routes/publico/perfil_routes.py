@@ -29,13 +29,13 @@ async def get_perfil(request: Request, usuario_logado: dict = None):
     perfil = usuario.perfil.lower()
 
     if perfil == 'tutor':
-        dados_perfil = tutor_repo.obter_por_id(usuario.id)
+        dados_perfil = tutor_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'veterinario':
         from repo import veterinario_repo
-        dados_perfil = veterinario_repo.obter_por_id(usuario.id)
+        dados_perfil = veterinario_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'administrador':
         from repo import administrador_repo
-        dados_perfil = administrador_repo.obter_administrador_por_id(usuario.id)
+        dados_perfil = administrador_repo.obter_administrador_por_id(usuario.id_usuario)
 
     return templates.TemplateResponse(
         "dados.html",

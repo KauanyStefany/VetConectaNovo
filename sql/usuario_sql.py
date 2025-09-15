@@ -70,7 +70,7 @@ WHERE id_usuario = ?;
 
 OBTER_POR_EMAIL = """
 SELECT 
-id, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token, data_cadastro
+id_usuario, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token, data_cadastro
 FROM usuario
 WHERE email=?
 """

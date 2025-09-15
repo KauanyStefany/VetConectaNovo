@@ -5,5 +5,5 @@ from model.usuario_model import Usuario
 
 @dataclass
 class Tutor(Usuario):
-    quantidade_pets: int = 0
-    descricao_pets: Optional[str] = None
+    quantidade_pets: int
+    descricao_pets: Optional[str]

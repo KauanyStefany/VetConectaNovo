@@ -15,14 +15,17 @@
       </div>
       <h5 class="mb-4 fw-semibold login-title">Login</h5>
 
-      <form>
+      <form action="/login" method="post">
+        {% if redirect: %}
+        <input type="hidden" name="next" value="{{ redirect }}">
+        {% endif %}
         <div class="mb-3 text-start">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+          <input type="email" class="form-control" id="email" placeholder="Digite seu email" required name="email">
         </div>
         <div class="mb-3 text-start">
           <label for="senha" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
+          <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required name="senha">
         </div>
         <button type="submit" class="btn btn-login w-100">Entrar</button>
         <a href="/esqueci-senha" class="btn btn-link">Esqueci minha senha</a>
