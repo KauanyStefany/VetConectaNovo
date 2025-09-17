@@ -1,4 +1,11 @@
 /* ------------------------------ PáginaBase ------------------------------ */
+header {
+  background-color: #ffeed1 !important;
+  /* Laranja principal */
+  color: white !important;
+  text-align: center !important;
+  padding: 20px 10px !important;
+}
 .fundo_navbar {
   background-color: #5D3A79;
 }
@@ -31,7 +38,7 @@
 
 footer {
   text-align: center !important;
-  background-color: #FFF0D1 !important;
+  background-color: #ffeed1 !important;
   padding: 10px !important;
   font-size: 0.9rem !important;
   /* margin-top: 40px !important; */
@@ -43,7 +50,8 @@ footer {
   font-weight: bold;
 }
 
-/*------------------------------PáginaIndex------------------------------/*
+/* ----------------------------------------------------- PAGINA INDEX --------------------------------------------------------- */
+
 
 /* Ícone de coração */
 input[type="checkbox"]:checked+label i {
@@ -95,9 +103,14 @@ input[type="checkbox"]:checked+label i::before {
   object-fit: cover;
 }
 
-/* Artigos */
+/* ---------------------------------------------------------- CARDS-------------------------------------------------------------- */
 
-
+.card-perfil {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 12px rgba(0,0,0,0.1);
+}
 
 .artigo-card,
 .petgram-card {
@@ -114,6 +127,9 @@ input[type="checkbox"]:checked+label i::before {
 .artigo-card img {
   object-fit: cover;
 }
+
+/* ---------------------------------------------------------- PALETA DE CORES -------------------------------------------------------------- */
+
 
 .bg-cachorros {
   background-color: #44345A !important;
@@ -134,6 +150,8 @@ input[type="checkbox"]:checked+label i::before {
 .bg-roedores {
   background-color: #ED6291 !important;
 }
+
+/* ---------------------------------------------------------- PETGRAM -------------------------------------------------------------- */
 
 
 /* PetGram */
@@ -182,13 +200,6 @@ body {
   padding: 0 !important;
 }
 
-header {
-  background-color: #ffeed1 !important;
-  /* Laranja principal */
-  color: white !important;
-  text-align: center !important;
-  padding: 20px 10px !important;
-}
 
 header h1 {
   margin: 0 !important;
@@ -201,9 +212,21 @@ main {
   /* padding: 40px 20px !important; */
 }
 
+h1 {
+  color: #000000 !important;
+  font-size: 1.6rem !important;
+  margin-bottom: 20px !important;
+}
+
 h2 {
   color: #d35400 !important;
   font-size: 1.8rem !important;
+  margin-bottom: 20px !important;
+}
+
+h3 {
+  color: #ffffff !important;
+  font-size: 1.6rem !important;
   margin-bottom: 20px !important;
 }
 

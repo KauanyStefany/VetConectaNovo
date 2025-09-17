@@ -1,0 +1,90 @@
+/* Importa a fonte Montserrat do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.articles-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.article {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 700px;
+    min-height: 180px;
+    box-shadow: none;
+}
+
+.article img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.article-content {
+    padding: 18px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #fff;
+    width: 100%;
+}
+
+.article.orange {
+    background: #f58220;
+}
+
+.article.blue {
+    background: #3b5b89;
+}
+
+.article.teal {
+    background: #2d6d6d;
+}
+
+.article.pink {
+    background: #f05d8c;
+}
+
+.article-content h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    margin-top: 0;
+}
+
+.article-content p {
+    margin-bottom: 6px;
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.article .btn {
+    background: #fff;
+    color: #222;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+}
+
+.article .btn:hover {
+    background: #eee;
+}
+
+.articles-container,
+.article,
+.article-content,
+.article-content h3,
+.article-content p,
+.article .btn {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
