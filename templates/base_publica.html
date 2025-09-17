@@ -41,7 +41,7 @@
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                             Administrar
                         </a>
-                        <i class="bi bi-person-circle fs-2 text-white"></i>                        
+                        <i class="bi bi-person-circle fs-2 text-white mr-5"></i>                        
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/admin/usuarios">Usuários</a></li>
                             <li><a class="dropdown-item" href="/admin/relatorios">Relatórios</a></li>
@@ -49,17 +49,21 @@
                     </li>
                     {% endif %}                    
                     <!-- Menu do Usuário -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                    <div class="dropdown">
+                        <button
+                            class="btn dropdown-toggle p-0 text-white"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
                             <i class="bi bi-person-circle fs-2 text-white"></i>
-                            <!-- {{ request.session.get('usuario').nome }} -->
-                        </a>                        
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                            <li><a class="dropdown-item" href="#">Sair</a></li>
                         </ul>
-                    </li>
+                    </div>
                 </ul>
                 {% else %}
                     <!-- Menu para não logados -->
@@ -68,21 +72,6 @@
                         <a class="nav-link" href="/cadastro">Cadastre-se</a>
                     </div>
                 {% endif %}
-                <!-- <div class="dropdown">
-                    <button
-                        class="btn dropdown-toggle p-0 text-white"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        <i class="bi bi-person-circle fs-2 text-white"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
-                    </ul>
-                </div> -->
             </div>
         </nav>
 

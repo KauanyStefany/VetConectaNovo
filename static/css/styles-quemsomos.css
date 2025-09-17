@@ -1,7 +1,3 @@
-.titulo_destaque {
-    font-weight: bold !important;
-    color: #000000 !important;
-}
 
 .team {
     display: flex !important;
@@ -33,4 +29,8 @@
 .wave-container {
     margin-top: -30px;
     line-height: 0;
+}
+
+.nossa-equipe{
+    color: white !important;
 }

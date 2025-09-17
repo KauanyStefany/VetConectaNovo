@@ -46,8 +46,8 @@ footer {
 }
 
 .fonte-titulo {
-  font-family: 'Montserrat';
-  font-weight: bold;
+  font-family: 'Montserrat' !important;
+  font-weight: bold !important;
 }
 
 /* ----------------------------------------------------- PAGINA INDEX --------------------------------------------------------- */
