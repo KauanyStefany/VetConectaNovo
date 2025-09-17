@@ -56,6 +56,10 @@ async def post_login(
     }
     criar_sessao(request, usuario_dict)
     
+    if usuario.perfil == "admin":
+        url_redirect = "/perfil"
+        return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+    
     # Redirecionar para a página solicitada ou home
     url_redirect = redirect if redirect else "/"
     return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
