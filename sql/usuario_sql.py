@@ -84,12 +84,20 @@ WHERE email=?
 ATUALIZAR_FOTO = """
 UPDATE usuario
 SET foto=?
-WHERE id=?
+WHERE id_usuario=?
+"""
+
+ADICIONAR_COLUNA_FOTO = """
+ALTER TABLE usuario ADD COLUMN foto TEXT
+"""
+
+ATUALIZAR_FOTO = """
+UPDATE usuario SET foto = ? WHERE id_usuario = ?
 """
 
 OBTER_POR_TOKEN = """
 SELECT 
-id, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token
+id_usuario, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token
 FROM usuario
 WHERE token_redefinicao=? AND data_token > datetime('now')
 """
