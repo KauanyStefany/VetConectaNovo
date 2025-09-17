@@ -1,3 +1,6 @@
+/* Importa a fonte Montserrat do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 .articles-container {
     display: flex;
     flex-direction: column;
@@ -75,4 +78,13 @@
 
 .article .btn:hover {
     background: #eee;
+}
+
+.articles-container,
+.article,
+.article-content,
+.article-content h3,
+.article-content p,
+.article .btn {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
