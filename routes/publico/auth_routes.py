@@ -47,7 +47,7 @@ async def post_login(
     
     # Criar sessão
     usuario_dict = {
-        "id": usuario.id,
+        "id": usuario.id_usuario,
         "nome": usuario.nome,
         "email": usuario.email,
         "telefone": usuario.telefone,
@@ -55,6 +55,10 @@ async def post_login(
         "foto": usuario.foto
     }
     criar_sessao(request, usuario_dict)
+    
+    if usuario.perfil == "admin":
+        url_redirect = "/perfil"
+        return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
     
     # Redirecionar para a página solicitada ou home
     url_redirect = redirect if redirect else "/"
@@ -146,39 +150,43 @@ async def post_cadastro(
         if perfil == 'tutor':
         # Criar usuário com senha hash
             tutor = Tutor(
-                id=0,
-                nome=nome,
-                email=email,
-                senha=criar_hash_senha(senha),
-                telefone=telefone,
-                perfil=perfil
-            )
-            id_usuario = tutor_repo.inserir_tutor(tutor)
-        else:
-            veterinario = Veterinario(
-                id=0,
+                id_usuario=0,
                 nome=nome,
                 email=email,
                 senha=criar_hash_senha(senha),
                 telefone=telefone,
                 perfil=perfil,
-                crmv=crmv
+                foto=None,
+                token_redefinicao=None,
+                data_token=None,
+                data_cadastro=None,
+                quantidade_pets=0,
+                descricao_pets=None
+            )
+            id_usuario = tutor_repo.inserir_tutor(tutor)
+            
+        else:
+            veterinario = Veterinario(                                
+                id_usuario=0,
+                nome=nome,
+                email=email,
+                senha=criar_hash_senha(senha),
+                telefone=telefone,
+                perfil=perfil,
+                foto=None,
+                token_redefinicao=None,
+                data_token=None,
+                data_cadastro=None,
+                crmv=crmv, 
+                verificado=False,
+                bio=None
             )
             id_usuario = veterinario_repo.inserir_veterinario(veterinario)
-
         
-        # Fazer login automático após cadastro
-        usuario_dict = {
-            "id": id_usuario,
-            "nome": nome,
-            "email": email,
-            "telefone": telefone,
-            "perfil": perfil,
-            "foto": None
-        }
-        criar_sessao(request, usuario_dict)
+        if not id_usuario:
+            raise Exception("Erro ao inserir usuário no banco de dados.")
         
-        return RedirectResponse("/perfil", status.HTTP_303_SEE_OTHER)
+        return RedirectResponse("/login", status.HTTP_303_SEE_OTHER)
         
     except Exception as e:
         return templates.TemplateResponse(
@@ -303,7 +311,7 @@ async def post_redefinir_senha(
     
     # Atualizar senha e limpar token
     senha_hash = criar_hash_senha(senha)
-    usuario_repo.atualizar_senha(usuario.id, senha_hash)
+    usuario_repo.atualizar_senha_usuario(usuario.id_usuario, senha_hash)
     usuario_repo.limpar_token(usuario.id)
     
     return templates.TemplateResponse(

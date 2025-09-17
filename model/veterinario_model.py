@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from model.usuario_model import Usuario
 
@@ -6,4 +7,4 @@ from model.usuario_model import Usuario
 class Veterinario(Usuario):
     crmv: str
     verificado: bool
-    bio: str
+    bio: Optional[str]

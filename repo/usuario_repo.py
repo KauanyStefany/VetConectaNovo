@@ -97,7 +97,7 @@ def obter_por_email(email: str) -> Optional[Usuario]:
         row = cursor.fetchone()
         if row:
             usuario = Usuario(
-                    id=row["id"], 
+                    id_usuario=row["id_usuario"], 
                     nome=row["nome"],
                     email=row["email"],
                     senha=row["senha"],
@@ -130,7 +130,7 @@ def obter_por_token(token: str) -> Optional[Usuario]:
         row = cursor.fetchone()
         if row:
             usuario = Usuario(
-                    id=row["id"], 
+                    id_usuario=row["id_usuario"], 
                     nome=row["nome"],
                     email=row["email"],
                     senha=row["senha"],
@@ -144,10 +144,10 @@ def obter_por_token(token: str) -> Optional[Usuario]:
             return usuario
         return None
 
-def limpar_token(id: int) -> bool:
+def limpar_token(id_usuario: int) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute("UPDATE usuario SET token_redefinicao=NULL, data_token=NULL WHERE id=?", (id,))
+        cursor.execute("UPDATE usuario SET token_redefinicao=NULL, data_token=NULL WHERE id=?", (id_usuario,))
         return (cursor.rowcount > 0)
 
 def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
@@ -158,7 +158,7 @@ def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
         usuarios = []
         for row in rows:
             usuario = Usuario(
-                id=row["id"], 
+                id_usuario=row["id_usuario"], 
                 nome=row["nome"],
                 email=row["email"],
                 senha=row["senha"],
@@ -172,3 +172,9 @@ def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
             usuarios.append(usuario)
         return usuarios
 
+def atualizar_foto(id: int, caminho_foto: str) -> bool:
+    """Atualiza apenas a foto do usuário"""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(ATUALIZAR_FOTO, (caminho_foto, id))
+        return cursor.rowcount > 0

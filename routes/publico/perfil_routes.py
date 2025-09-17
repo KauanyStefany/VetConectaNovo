@@ -13,15 +13,19 @@ from util.template_util import criar_templates
 router = APIRouter()
 templates = criar_templates("templates/publico")
 
-
-@router.get("/perfil")
+@router.get("/")
 @requer_autenticacao()
-async def get_perfil(request: Request, usuario_logado: dict = None):
-    # Buscar dados completos do usuário
+async def perfil(request: Request, usuario_logado: dict = None):
     usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
-    
-    # Se for cliente, buscar dados adicionais mudanças que eu fiz aqui
-@router.get("/perfil")
+    return templates.TemplateResponse(
+        "perfil.html",
+        {
+            "request": request,
+            "usuario": usuario
+        }
+    )
+
+@router.get("/alterar")
 @requer_autenticacao()
 async def get_perfil(request: Request, usuario_logado: dict = None):
     usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
@@ -29,13 +33,13 @@ async def get_perfil(request: Request, usuario_logado: dict = None):
     perfil = usuario.perfil.lower()
 
     if perfil == 'tutor':
-        dados_perfil = tutor_repo.obter_por_id(usuario.id)
+        dados_perfil = tutor_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'veterinario':
         from repo import veterinario_repo
-        dados_perfil = veterinario_repo.obter_por_id(usuario.id)
+        dados_perfil = veterinario_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'administrador':
         from repo import administrador_repo
-        dados_perfil = administrador_repo.obter_administrador_por_id(usuario.id)
+        dados_perfil = administrador_repo.obter_administrador_por_id(usuario.id_usuario)
 
     return templates.TemplateResponse(
         "dados.html",
@@ -46,7 +50,7 @@ async def get_perfil(request: Request, usuario_logado: dict = None):
         }
     )
 
-@router.post("/perfil")
+@router.post("/alterar")
 @requer_autenticacao()
 async def post_perfil(
     request: Request,
@@ -118,7 +122,7 @@ async def post_perfil(
     return RedirectResponse("/perfil?sucesso=1", status.HTTP_303_SEE_OTHER)
 
 
-@router.get("/perfil/alterar-senha")
+@router.get("/alterar-senha")
 @requer_autenticacao()
 async def get_alterar_senha(request: Request, usuario_logado: dict = None):
     return templates.TemplateResponse(
@@ -127,7 +131,7 @@ async def get_alterar_senha(request: Request, usuario_logado: dict = None):
     )
 
 
-@router.post("/perfil/alterar-senha")
+@router.post("/alterar-senha")
 @requer_autenticacao()
 async def post_alterar_senha(
     request: Request,
@@ -182,7 +186,7 @@ async def post_alterar_senha(
     )
 
 
-@router.post("/perfil/alterar-foto")
+@router.post("/alterar-foto")
 @requer_autenticacao()
 async def alterar_foto(
     request: Request,
@@ -222,4 +226,46 @@ async def alterar_foto(
     except Exception as e:
         return RedirectResponse("/perfil?erro=upload_falhou", status.HTTP_303_SEE_OTHER)
     
+    return RedirectResponse("/perfil?foto_sucesso=1", status.HTTP_303_SEE_OTHER)
+
+@router.post("/perfil/alterar-foto")
+@requer_autenticacao()
+async def alterar_foto(
+    request: Request,
+    foto: UploadFile = File(...),  # ← Recebe arquivo de foto
+    usuario_logado: dict = None
+):
+    # 1. Validar tipo de arquivo
+    tipos_permitidos = ["image/jpeg", "image/png", "image/jpg"]
+    if foto.content_type not in tipos_permitidos:
+        return RedirectResponse("/perfil?erro=tipo_invalido", status.HTTP_303_SEE_OTHER)
+
+    # 2. Criar diretório se não existir
+    upload_dir = "static/uploads/usuarios"
+    os.makedirs(upload_dir, exist_ok=True)
+
+    # 3. Gerar nome único para evitar conflitos
+    import secrets
+    extensao = foto.filename.split(".")[-1]
+    nome_arquivo = f"{usuario_logado['id']}_{secrets.token_hex(8)}.{extensao}"
+    caminho_arquivo = os.path.join(upload_dir, nome_arquivo)
+
+    # 4. Salvar arquivo no sistema
+    try:
+        conteudo = await foto.read()  # ← Lê conteúdo do arquivo
+        with open(caminho_arquivo, "wb") as f:
+            f.write(conteudo)
+
+        # 5. Salvar caminho no banco de dados
+        caminho_relativo = f"/static/uploads/usuarios/{nome_arquivo}"
+        usuario_repo.atualizar_foto(usuario_logado['id'], caminho_relativo)
+
+        # 6. Atualizar sessão do usuário
+        usuario_logado['foto'] = caminho_relativo
+        from util.auth_decorator import criar_sessao
+        criar_sessao(request, usuario_logado)
+
+    except Exception as e:
+        return RedirectResponse("/perfil?erro=upload_falhou", status.HTTP_303_SEE_OTHER)
+
     return RedirectResponse("/perfil?foto_sucesso=1", status.HTTP_303_SEE_OTHER)

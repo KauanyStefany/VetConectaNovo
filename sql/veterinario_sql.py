@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS veterinario (
 
 INSERIR = """
 INSERT INTO veterinario (id_veterinario, crmv, bio)
-VALUES (?, ?);
+VALUES (?, ?, ?);
 """
 
 ATUALIZAR = """
