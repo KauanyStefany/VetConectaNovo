@@ -13,15 +13,19 @@ from util.template_util import criar_templates
 router = APIRouter()
 templates = criar_templates("templates/publico")
 
-
-@router.get("/perfil")
+@router.get("/")
 @requer_autenticacao()
-async def get_perfil(request: Request, usuario_logado: dict = None):
-    # Buscar dados completos do usuário
+async def perfil(request: Request, usuario_logado: dict = None):
     usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
-    
-    # Se for cliente, buscar dados adicionais mudanças que eu fiz aqui
-@router.get("/perfil")
+    return templates.TemplateResponse(
+        "perfil.html",
+        {
+            "request": request,
+            "usuario": usuario
+        }
+    )
+
+@router.get("/alterar")
 @requer_autenticacao()
 async def get_perfil(request: Request, usuario_logado: dict = None):
     usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
@@ -46,7 +50,7 @@ async def get_perfil(request: Request, usuario_logado: dict = None):
         }
     )
 
-@router.post("/perfil")
+@router.post("/alterar")
 @requer_autenticacao()
 async def post_perfil(
     request: Request,
@@ -118,7 +122,7 @@ async def post_perfil(
     return RedirectResponse("/perfil?sucesso=1", status.HTTP_303_SEE_OTHER)
 
 
-@router.get("/perfil/alterar-senha")
+@router.get("/alterar-senha")
 @requer_autenticacao()
 async def get_alterar_senha(request: Request, usuario_logado: dict = None):
     return templates.TemplateResponse(
@@ -127,7 +131,7 @@ async def get_alterar_senha(request: Request, usuario_logado: dict = None):
     )
 
 
-@router.post("/perfil/alterar-senha")
+@router.post("/alterar-senha")
 @requer_autenticacao()
 async def post_alterar_senha(
     request: Request,
@@ -182,7 +186,7 @@ async def post_alterar_senha(
     )
 
 
-@router.post("/perfil/alterar-foto")
+@router.post("/alterar-foto")
 @requer_autenticacao()
 async def alterar_foto(
     request: Request,
@@ -223,3 +227,5 @@ async def alterar_foto(
         return RedirectResponse("/perfil?erro=upload_falhou", status.HTTP_303_SEE_OTHER)
     
     return RedirectResponse("/perfil?foto_sucesso=1", status.HTTP_303_SEE_OTHER)
+
+
