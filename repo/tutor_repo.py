@@ -17,26 +17,18 @@ def criar_tabela_tutor() -> bool:
         print(f"Erro ao criar tabela de tutor: {e}")
         return False
 
-    
 def inserir_tutor(tutor: Tutor) -> Optional[int]:
-    try:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            
-            # Primeiro inserir o usuário
-            cursor.execute(usuario_sql.INSERIR, (tutor.nome, tutor.email, tutor.senha, tutor.telefone))
-            id_usuario = cursor.lastrowid
-            
-            # Depois inserir na tabela tutor
-            cursor.execute(tutor_sql.INSERIR, (id_usuario, tutor.quantidade_pets, tutor.descricao_pets))
-            
-            return id_usuario
-    except Exception as e:
-        print(f"Erro ao inserir tutor: {e}")
-        return None
-
+    id_tutor = usuario_repo.inserir_usuario(tutor)
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            tutor_sql.INSERIR,
+            (id_tutor, tutor.quantidade_pets, tutor.descricao_pets)
+        )
+        return id_tutor
+    
 def atualizar_tutor(tutor: Tutor) -> bool:
-    # Atualizar dados do usuario
+    # Atualizar dados do usuario tutor
     usuario_atualizado = usuario_repo.atualizar_usuario(tutor)
     if usuario_atualizado:
         with get_connection() as conn:

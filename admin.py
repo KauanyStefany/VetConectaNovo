@@ -14,7 +14,7 @@ def criar_admin_padrao():
             senha=senha_hash,
             perfil="admin"
         )
-        usuario_repo.inserir(admin)
+        usuario_repo.inserir_usuario(admin)
         print("Admin criado: admin@admin.com / admin123")
 
 if __name__ == "__main__":

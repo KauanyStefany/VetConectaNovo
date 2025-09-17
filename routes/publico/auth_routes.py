@@ -160,6 +160,7 @@ async def post_cadastro(
                 descricao_pets=None
             )
             id_usuario = tutor_repo.inserir_tutor(tutor)
+            
         else:
             veterinario = Veterinario(                                
                 id_usuario=0,
@@ -306,7 +307,7 @@ async def post_redefinir_senha(
     
     # Atualizar senha e limpar token
     senha_hash = criar_hash_senha(senha)
-    usuario_repo.atualizar_senha(usuario.id, senha_hash)
+    usuario_repo.atualizar_senha_usuario(usuario.id_usuario, senha_hash)
     usuario_repo.limpar_token(usuario.id)
     
     return templates.TemplateResponse(
