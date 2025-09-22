@@ -93,6 +93,11 @@ def obter_por_id(id_veterinario: int) -> Optional[Veterinario]:
             email=row["email"],
             senha=row["senha"],
             telefone=row["telefone"],
+            perfil=row["perfil"],
+            foto=row["foto"],
+            data_cadastro=row["data_cadastro"],
+            data_token=row["data_token"],
+            token_redefinicao=row["token_redefinicao"],
             crmv=row["crmv"],
             verificado=row["verificado"],
             bio=row["bio"]

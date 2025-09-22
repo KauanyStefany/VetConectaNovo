@@ -9,6 +9,7 @@ from repo import usuario_repo, tutor_repo
 from util.security import criar_hash_senha, verificar_senha, validar_forca_senha
 from util.auth_decorator import requer_autenticacao, obter_usuario_logado
 from util.template_util import criar_templates
+from repo import veterinario_repo
 
 router = APIRouter()
 templates = criar_templates("templates/publico")
@@ -16,12 +17,12 @@ templates = criar_templates("templates/publico")
 @router.get("/")
 @requer_autenticacao()
 async def perfil(request: Request, usuario_logado: dict = None):
-    usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
+    veterinario = veterinario_repo.obter_por_id(usuario_logado['id'])
     return templates.TemplateResponse(
         "perfil.html",
         {
             "request": request,
-            "usuario": usuario
+            "usuario": veterinario
         }
     )
 
@@ -35,7 +36,7 @@ async def get_perfil(request: Request, usuario_logado: dict = None):
     if perfil == 'tutor':
         dados_perfil = tutor_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'veterinario':
-        from repo import veterinario_repo
+        
         dados_perfil = veterinario_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'administrador':
         from repo import administrador_repo
