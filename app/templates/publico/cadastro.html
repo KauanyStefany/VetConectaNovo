@@ -1,7 +1,6 @@
-{% extends "base_publica.html" %}
+{% extends "base/base_publica.html" %}
 {% block head %}
 <title>Cadastro - VetConecta</title>
-<link rel="stylesheet" href="/static/css/login.css">
 {% endblock %}
 {% block conteudo %}
 <div class="container my-5">
@@ -71,7 +70,7 @@
                         required
                     >
                 </div>
-                <div class="mb-3 text-start" id="crmv-field" style="display: none;">
+                <div class="mb-3 text-start d-none" id="crmv-field">
                     <label for="crmv" class="form-label">CRMV</label>
                     <input
                         type="text"

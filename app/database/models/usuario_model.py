@@ -3,13 +3,13 @@ from typing import Optional
 
 @dataclass
 class Usuario:
-    id_usuario: int
+    id: int
     nome: str
     email: str
     senha: str
-    telefone: str
-    perfil: str
-    foto: Optional[str]
-    token_redefinicao: Optional[str]
-    data_token: Optional[str]
-    data_cadastro: Optional[str]
+    perfil: str = 'tutor'
+    telefone: Optional[str] = None
+    foto: Optional[str] = None
+    token_redefinicao: Optional[str] = None
+    data_token: Optional[str] = None
+    data_cadastro: Optional[str] = None

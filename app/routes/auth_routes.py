@@ -4,7 +4,11 @@ from fastapi.responses import RedirectResponse
 from app.database.models.tutor_model import Tutor
 from app.database.models.veterinario_model import Veterinario
 from app.database.repositories import usuario_repo, tutor_repo, veterinario_repo
-from app.core.security import criar_hash_senha, verificar_senha, gerar_token_redefinicao, obter_data_expiracao_token, validar_forca_senha
+from app.core.security import (
+    criar_hash_senha, verificar_senha, gerar_token_redefinicao,
+    obter_data_expiracao_token, validar_forca_senha, validar_cpf,
+    validar_telefone, validar_crmv, formatar_cpf, formatar_telefone
+)
 from app.core.auth_decorator import criar_sessao, destruir_sessao, esta_logado
 from app.core.template_util import criar_templates
 
@@ -136,7 +140,7 @@ async def post_cadastro(
             "cadastro.html",
             {
                 "request": request,
-                "erro": msg_erro,
+                "erro": "Este email já está cadastrado",
                 "nome": nome,
                 "email": email,
                 "telefone": telefone,

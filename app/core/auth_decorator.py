@@ -1,6 +1,8 @@
 """
 Decorator para proteger rotas com autenticação e autorização
+Baseado no sistema da loja2025, adaptado para VetConecta
 """
+import asyncio
 from functools import wraps
 from typing import List, Optional
 from fastapi import Request, HTTPException, status
@@ -61,7 +63,7 @@ def destruir_sessao(request: Request) -> None:
         request.session.clear()
 
 
-def requer_autenticacao(perfis_autorizados: List[str] = None):
+def requer_autenticacao(perfis_autorizados: Optional[List[str]] = None):
     """
     Decorator para proteger rotas que requerem autenticação
     
@@ -112,7 +114,7 @@ def requer_autenticacao(perfis_autorizados: List[str] = None):
             
             # Verifica autorização se perfis foram especificados
             if perfis_autorizados:
-                perfil_usuario = usuario.get('perfil', 'cliente')
+                perfil_usuario = usuario.get('perfil', 'tutor')  # Padrão para tutor
                 if perfil_usuario not in perfis_autorizados:
                     # Retorna erro 403 se não autorizado
                     raise HTTPException(
@@ -132,5 +134,3 @@ def requer_autenticacao(perfis_autorizados: List[str] = None):
     return decorator
 
 
-# Importação necessária para funções assíncronas
-import asyncio
