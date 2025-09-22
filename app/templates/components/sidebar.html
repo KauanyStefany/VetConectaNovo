@@ -1,0 +1,101 @@
+<div class="sidebar-sticky pt-3">
+    <ul class="nav flex-column">
+        {% if request.session.get('usuario') %}
+            {% set perfil = request.session.get('usuario').perfil %}
+
+            <!-- Menu comum a todos usuários logados -->
+            <li class="nav-item">
+                <a class="nav-link" href="/usuario/dashboard">
+                    <i class="bi bi-house"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/usuario/perfil">
+                    <i class="bi bi-person"></i> Meu Perfil
+                </a>
+            </li>
+
+            <hr>
+
+            <!-- Menu específico por perfil -->
+            {% if perfil == 'admin' or perfil == 'administrador' %}
+                <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">Administração</h6>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/usuarios">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/categorias">
+                        <i class="bi bi-tags"></i> Categorias
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/denuncias">
+                        <i class="bi bi-exclamation-triangle"></i> Denúncias
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/verificacao-crmv">
+                        <i class="bi bi-check-circle"></i> Verificação CRMV
+                    </a>
+                </li>
+
+            {% elif perfil == 'veterinario' %}
+                <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">Veterinário</h6>
+                <li class="nav-item">
+                    <a class="nav-link" href="/veterinario/artigos">
+                        <i class="bi bi-file-text"></i> Meus Artigos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/veterinario/chamados">
+                        <i class="bi bi-chat-dots"></i> Chamados
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/veterinario/estatisticas">
+                        <i class="bi bi-graph-up"></i> Estatísticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/veterinario/crmv/status">
+                        <i class="bi bi-award"></i> Status CRMV
+                    </a>
+                </li>
+
+            {% elif perfil == 'tutor' %}
+                <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">Tutor</h6>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tutor/feed">
+                        <i class="bi bi-card-image"></i> Feed
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tutor/meus_pets">
+                        <i class="bi bi-heart"></i> Meus Pets
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tutor/fazer_postagem_feed">
+                        <i class="bi bi-plus-circle"></i> Nova Postagem
+                    </a>
+                </li>
+            {% endif %}
+
+            <hr>
+
+            <!-- Menu comum final -->
+            <li class="nav-item">
+                <a class="nav-link" href="/usuario/configuracoes">
+                    <i class="bi bi-gear"></i> Configurações
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger" href="/logout">
+                    <i class="bi bi-box-arrow-right"></i> Sair
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,12 @@
+{% extends "base/base_usuario.html" %}
+
+{% block title %}Admin - VetConecta{% endblock %}
+
+{% block main_content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{% block page_title %}Painel Administrativo{% endblock %}</h1>
+    {% block page_actions %}{% endblock %}
+</div>
+
+{% block admin_content %}{% endblock %}
+{% endblock %}

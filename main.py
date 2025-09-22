@@ -2,56 +2,39 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 from starlette.middleware.sessions import SessionMiddleware
-import secrets
 
-from repo import administrador_repo, tutor_repo, usuario_repo, veterinario_repo
-from routes.admin import categoria_artigo_routes, chamado_routes, comentario_admin_routes, denuncia_admin_routes, chamado_routes, verificação_crmv_routes
-from routes.publico import auth_routes, perfil_routes, public_routes
-from routes.tutor import postagem_feed_routes
-from routes.usuario import usuario_routes
-from routes.veterinario import estatisticas_routes, postagem_artigo_routes, solicitacao_crmv_routes
+from app.core.config import settings
+from app.database.repositories import administrador_repo, tutor_repo, usuario_repo, veterinario_repo
+from app.routes import auth_routes, public_routes, usuario_routes, tutor_routes, veterinario_routes, admin_routes
 
 
+# Criar tabelas do banco de dados
 usuario_repo.criar_tabela_usuario()
 tutor_repo.criar_tabela_tutor()
 veterinario_repo.criar_tabela_veterinario()
 administrador_repo.criar_tabela_administrador()
 
-app = FastAPI()
-
-# Gerar chave secreta (em produção, use variável de ambiente!)
-SECRET_KEY = secrets.token_urlsafe(32)
+app = FastAPI(title="VetConecta", version="1.0.0")
 
 # Adicionar middleware de sessão
 app.add_middleware(
-    SessionMiddleware, 
-    secret_key=SECRET_KEY,
-    max_age=3600,  # Sessão expira em 1 hora
+    SessionMiddleware,
+    secret_key=settings.SECRET_KEY,
+    max_age=settings.SESSION_MAX_AGE,
     same_site="lax",
     https_only=False  # Em produção, mude para True com HTTPS
 )
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# Servir arquivos estáticos
+app.mount("/static", StaticFiles(directory=settings.STATIC_DIR), name="static")
 
+# Incluir rotas
 app.include_router(public_routes.router)
 app.include_router(auth_routes.router)
-
-app.include_router(categoria_artigo_routes.router, prefix="/admin")
-app.include_router(chamado_routes.router, prefix="/admin")
-app.include_router(comentario_admin_routes.router, prefix="/admin")
-app.include_router(denuncia_admin_routes.router, prefix="/admin")
-app.include_router(chamado_routes.router, prefix="/admin")
-app.include_router(verificação_crmv_routes.router, prefix="/admin")
-
-app.include_router(postagem_feed_routes.router, prefix="/tutor")
-# app.include_router(denuncia_veterinario_routes.router, prefix="/veterinario")
-app.include_router(postagem_artigo_routes.router, prefix="/veterinario")
-# app.include_router(seguida_veterinario_routes.router, prefix="/veterinario") 
-app.include_router(estatisticas_routes.router, prefix="/veterinario")
-app.include_router(solicitacao_crmv_routes.router, prefix="/veterinario")
-
 app.include_router(usuario_routes.router, prefix="/usuario")
-app.include_router(perfil_routes.router, prefix="/perfil")
+app.include_router(tutor_routes.router, prefix="/tutor")
+app.include_router(veterinario_routes.router, prefix="/veterinario")
+app.include_router(admin_routes.router, prefix="/admin")
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", host="127.0.0.1", port=8000, reload=True)

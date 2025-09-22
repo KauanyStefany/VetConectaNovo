@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/static/img/pata_icon.png" alt="VetConecta" height="30">
+            VetConecta
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/artigos">Artigos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/quemsomos">Quem Somos</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if request.session.get('usuario') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            {% if request.session.get('usuario').foto %}
+                                <img src="{{ request.session.get('usuario').foto }}" alt="Avatar" class="rounded-circle me-1" width="24" height="24">
+                            {% else %}
+                                <i class="bi bi-person-circle"></i>
+                            {% endif %}
+                            {{ request.session.get('usuario').nome }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            {% if request.session.get('usuario').perfil == 'admin' %}
+                                <li><a class="dropdown-item" href="/admin/">Painel Admin</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% elif request.session.get('usuario').perfil == 'veterinario' %}
+                                <li><a class="dropdown-item" href="/veterinario/">Dashboard</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% elif request.session.get('usuario').perfil == 'tutor' %}
+                                <li><a class="dropdown-item" href="/tutor/">Feed</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="/usuario/perfil">Meu Perfil</a></li>
+                            <li><a class="dropdown-item" href="/usuario/configuracoes">Configurações</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cadastro">Cadastrar</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

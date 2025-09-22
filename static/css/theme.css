@@ -1,0 +1,63 @@
+/* Bootstrap 5.3.8 – tema VetConecta */
+:root {
+    /* Tema principal */
+    --bs-primary: #5e2a86;
+    /* roxo principal (header/brand) */
+    --bs-primary-rgb: 94, 42, 134;
+
+    --bs-secondary: #ff7a00;
+    /* laranja vivo (chips/badges) */
+    --bs-secondary-rgb: 255, 122, 0;
+
+    --bs-info: #ff4da6;
+    /* rosa (cards/realces) */
+    --bs-info-rgb: 255, 77, 166;
+
+    --bs-success: #2fbf71;
+    /* verde (estados positivos) */
+    --bs-success-rgb: 47, 191, 113;
+
+    --bs-warning: #f9b233;
+    /* âmbar (avisos) */
+    --bs-warning-rgb: 249, 178, 51;
+
+    --bs-danger: #e64c3c;
+    /* vermelho (erros) */
+    --bs-danger-rgb: 230, 76, 60;
+
+    /* Corpo da página */
+    --bs-body-bg: #f9f5f0;
+    /* bege claro do fundo */
+    --bs-body-color: #2b2133;
+    /* texto principal (contraste bom no bege) */
+    --bs-link-color: var(--bs-primary);
+    --bs-link-hover-color: #4a206a;
+
+    /* Bordas e divisórias */
+    --bs-border-color: #e6ded3;
+
+    /* Opacidades utilitárias (Bootstrap usa alpha via *-rgb + --bs-*-opacity) */
+    --bs-bg-opacity: 1;
+    --bs-text-opacity: 1;
+}
+
+/* Opcional: modo escuro/cromático via data-bs-theme */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #201a26;
+    --bs-body-color: #f6f2fb;
+    --bs-border-color: #3a2f45;
+
+    /* Ajuste leve nas cores para fundo escuro */
+    --bs-primary: #a06bd6;
+    --bs-primary-rgb: 160, 107, 214;
+    --bs-secondary: #ff9a33;
+    --bs-secondary-rgb: 255, 154, 51;
+    --bs-info: #ff79bf;
+    --bs-info-rgb: 255, 121, 191;
+    --bs-success: #52d691;
+    --bs-success-rgb: 82, 214, 145;
+    --bs-warning: #ffcc66;
+    --bs-warning-rgb: 255, 204, 102;
+    --bs-danger: #ff6e61;
+    --bs-danger-rgb: 255, 110, 97;
+}

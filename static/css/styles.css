@@ -126,6 +126,9 @@ input[type="checkbox"]:checked+label i::before {
 
 .artigo-card img {
   object-fit: cover;
+  aspect-ratio: 1 / 1;
+  height: 200px;
+  width: 100%;
 }
 
 /* ---------------------------------------------------------- PALETA DE CORES -------------------------------------------------------------- */
@@ -172,8 +175,10 @@ input[type="checkbox"]:checked+label i::before {
 }
 
 .petgram-img {
-  height: 450px;
+  height: 300px;
+  width: 100%;
   object-fit: cover;
+  aspect-ratio: 1 / 1;
 }
 
 .petgram-btn {

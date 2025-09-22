@@ -1,27 +1,22 @@
-body, html {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.bg-full {
-  background: url('/static/img/plano_de_fundo.png') no-repeat center center;
-  background-size: cover;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* Remove estilos específicos de body para evitar conflitos */
 
 .login-box {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 30px 40px;
   border-radius: 20px;
   text-align: center;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(93, 58, 121, 0.1);
+  margin: 0 auto;
+}
+
+/* Fix para layout flexbox do body */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 0;
 }
 
 .login-title {
@@ -50,8 +45,6 @@ body, html {
   font-size: 40px;
 }
 
-
-
 .btn-login {
   background-color: #f26d21;
   border: none;
@@ -65,10 +58,7 @@ body, html {
 }
 
 
-#-------------------------------------------------------------CadastreSe-------------------------------------------------------------
-
-
-.link-padrao {
+#-------------------------------------------------------------CadastreSe------------------------------------------------------------- .link-padrao {
   color: #007bff !important;
   text-decoration: none !important;
   font-size: small !important;
@@ -79,8 +69,7 @@ body, html {
 }
 
 
-#---------------------------------------------------------AceitoTermos-----------------------------------------------------------------
-.text-primary {
+#---------------------------------------------------------AceitoTermos----------------------------------------------------------------- .text-primary {
   color: #007bff;
   text-decoration: none;
 }
@@ -89,9 +78,7 @@ body, html {
   text-decoration: underline;
 }
 
-#-----------------------------------------------------LoginOpcoes ---------------------------------------------------------------------
-
-.btn-loginopcoes {
+#-----------------------------------------------------LoginOpcoes --------------------------------------------------------------------- .btn-loginopcoes {
   background-color: #3569A6;
   border: none;
   color: white;
@@ -107,6 +94,6 @@ body, html {
 }
 
 .form-label {
-    font-size: 20px;
+  font-size: 20px;
   font-weight: bold;
 }
