@@ -1,14 +1,20 @@
 import os
 import sys
+import time
 from datetime import date
-from repo import usuario_repo
-from model import usuario_model
-from repo import tutor_repo
-from model import tutor_model
-from repo import postagem_feed_repo
-from model import postagem_feed_model
-from model import curtida_feed_model
-from repo import curtida_feed_repo
+from app.database.repositories import usuario_repo
+from app.database.models import usuario_model
+from app.database.repositories import tutor_repo
+from app.database.models import tutor_model
+from app.database.repositories import postagem_feed_repo
+from app.database.models import postagem_feed_model
+from app.database.models import curtida_feed_model
+from app.database.repositories import curtida_feed_repo
+
+def unique_email(prefix="test"):
+    """Gera um email único para testes"""
+    timestamp = str(int(time.time() * 1000000))
+    return f"{prefix}_{timestamp}@test.com"
 
 class TestCurtidaFeedRepo:
     def test_criar_tabela(self, test_db):
@@ -27,8 +33,8 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste@gmail.com", 
-            senha="senha123", telefone="12345678901", quantidade_pets=2, 
+            id_usuario=0, nome="Tutor Teste", email=unique_email("tutor"),
+            senha="senha123", telefone="12345678901", quantidade_pets=2,
             descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)
@@ -69,8 +75,8 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste2@gmail.com", 
-            senha="senha123", telefone="12345678911", quantidade_pets=2, 
+            id_usuario=0, nome="Tutor Teste", email=unique_email("tutor2"),
+            senha="senha123", telefone="12345678911", quantidade_pets=2,
             descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)
@@ -109,8 +115,8 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste3@gmail.com", 
-            senha="senha123", telefone="12345678921", quantidade_pets=2, 
+            id_usuario=0, nome="Tutor Teste", email=unique_email("tutor3"),
+            senha="senha123", telefone="12345678921", quantidade_pets=2,
             descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)
@@ -138,9 +144,16 @@ class TestCurtidaFeedRepo:
         # Assert
         assert resultado is not None, "A consulta de curtidas deveria retornar resultados"
         assert len(resultado) > 0, "A consulta de curtidas deveria retornar mais de 0 resultados"
-        assert resultado[0].id_usuario == tutor_id, "O ID do usuário na curtida retornada não confere"
-        assert resultado[0].id_postagem_feed == postagem_id, "O ID da postagem na curtida retornada não confere"
-        assert resultado[0].data_curtida is not None, "A data da curtida retornada não deveria ser None"
+
+        # Verificar se nossa curtida está na lista
+        nossa_curtida = None
+        for curtida in resultado:
+            if curtida.id_usuario == tutor_id and curtida.id_postagem_feed == postagem_id:
+                nossa_curtida = curtida
+                break
+
+        assert nossa_curtida is not None, "Nossa curtida deveria estar na lista retornada"
+        assert nossa_curtida.data_curtida is not None, "A data da curtida retornada não deveria ser None"
         
     def test_obter_por_id(self, test_db):
         # Arrange
@@ -151,8 +164,8 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste4@gmail.com", 
-            senha="senha123", telefone="12345678931", quantidade_pets=2, 
+            id_usuario=0, nome="Tutor Teste", email=unique_email("tutor4"),
+            senha="senha123", telefone="12345678931", quantidade_pets=2,
             descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)

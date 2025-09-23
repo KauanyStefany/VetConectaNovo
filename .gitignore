@@ -84,3 +84,4 @@ cython_debug/
 *.sw?
 CLAUDE.md
 .claude
+.playwright-mcp

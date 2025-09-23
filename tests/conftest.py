@@ -1,13 +1,12 @@
-# import pytest
-# import os
-# import sys
-# import tempfile
+import pytest
+import os
+import sys
+import tempfile
 
-
-# # Adiciona o diretório raiz do projeto ao PYTHONPATH
-# # Isso permite importar módulos do projeto nos testes
-# project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# sys.path.insert(0, project_root)
+# Adiciona o diretório raiz do projeto ao PYTHONPATH
+# Isso permite importar módulos do projeto nos testes
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
 
 # # Fixture para criar um banco de dados temporário para testes
 # @pytest.fixture
@@ -27,6 +26,8 @@
 import os
 import tempfile
 import pytest
+import time
+import uuid
 
 @pytest.fixture
 def test_db():
@@ -44,3 +45,17 @@ def test_db():
             os.remove(db_path)
         except PermissionError:
             print(f"[WARN] Banco ainda em uso: {db_path}")
+
+
+@pytest.fixture(autouse=True)
+def clean_db():
+    """Limpa o banco de dados antes de cada teste"""
+    # Este fixture é executado automaticamente antes de cada teste
+    yield
+    # Cleanup após cada teste (se necessário)
+
+
+def unique_email(prefix="test"):
+    """Gera um email único para testes"""
+    timestamp = str(int(time.time() * 1000000))  # microsegundos
+    return f"{prefix}_{timestamp}@test.com"

@@ -1,20 +1,26 @@
 import os
 import sys
-from model.categoria_artigo_model import CategoriaArtigo
-from model.comentario_model import Comentario
-from repo.comentario_repo import *
-from repo.usuario_repo import criar_tabela_usuario, inserir_usuario
-from model.usuario_model import Usuario
-from model.veterinario_model import Veterinario
-from model.postagem_artigo_model import PostagemArtigo
+import time
+from app.database.models.categoria_artigo_model import CategoriaArtigo
+from app.database.models.comentario_model import Comentario
+from app.database.repositories.comentario_repo import *
+from app.database.repositories.usuario_repo import criar_tabela_usuario, inserir_usuario
+from app.database.models.usuario_model import Usuario
+from app.database.models.veterinario_model import Veterinario
+from app.database.models.postagem_artigo_model import PostagemArtigo
 
-from repo.comentario_repo import inserir
-from repo.comentario_repo import inserir, obter_por_id, criar_tabela as criar_tabela_comentario
-from repo.usuario_repo import inserir_usuario, criar_tabela_usuario
-from repo.veterinario_repo import criar_tabela_veterinario
-from repo.categoria_artigo_repo import inserir_categoria, criar_tabela_categoria_artigo
-from repo.postagem_artigo_repo import inserir as inserir_artigo, criar_tabela as criar_tabela_postagem_artigo
-from repo.veterinario_repo import inserir_veterinario
+def unique_email(prefix="test"):
+    """Gera um email único para testes"""
+    timestamp = str(int(time.time() * 1000000))
+    return f"{prefix}_{timestamp}@test.com"
+
+from app.database.repositories.comentario_repo import inserir
+from app.database.repositories.comentario_repo import inserir, obter_por_id, criar_tabela as criar_tabela_comentario
+from app.database.repositories.usuario_repo import inserir_usuario, criar_tabela_usuario
+from app.database.repositories.veterinario_repo import criar_tabela_veterinario
+from app.database.repositories.categoria_artigo_repo import inserir_categoria, criar_tabela_categoria_artigo
+from app.database.repositories.postagem_artigo_repo import inserir as inserir_artigo, criar_tabela as criar_tabela_postagem_artigo
+from app.database.repositories.veterinario_repo import inserir_veterinario
 from datetime import datetime
 
 
@@ -33,7 +39,7 @@ class TestComentarioRepo:
         criar_tabela_postagem_artigo()  
         criar_tabela_comentario()
         
-        usuario_teste = Usuario(0, "Usuário Teste", "usuario@teste.com", "senha123", "11999999999")
+        usuario_teste = Usuario(id_usuario=0, nome="Usuário Teste", email=unique_email("usuario"), senha="senha123", telefone="11999999999")
         id_usuario = inserir_usuario(usuario_teste)
         usuario_teste.id_usuario = id_usuario  # Atualiza o ID do usuário após inserção
         
@@ -41,7 +47,7 @@ class TestComentarioRepo:
         veterinario_teste = Veterinario(
             id_usuario=0,
             nome="Veterinário Teste",
-            email="veterinario_unico@teste.com",  # Email único
+            email=unique_email("veterinario"),  # Email único
             senha="senha123",
             telefone="11888888888",
             crmv="CRMV12345",

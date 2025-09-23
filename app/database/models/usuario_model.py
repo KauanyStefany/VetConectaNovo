@@ -3,7 +3,7 @@ from typing import Optional
 
 @dataclass
 class Usuario:
-    id: int
+    id_usuario: int
     nome: str
     email: str
     senha: str

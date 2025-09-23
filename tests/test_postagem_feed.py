@@ -1,10 +1,16 @@
 from datetime import datetime
 import os
 import sys
-from repo import usuario_repo ,tutor_repo, postagem_feed_repo
-from model.postagem_feed_model import PostagemFeed
-from model.usuario_model import Usuario
-from model.tutor_model import Tutor
+import time
+from app.database.repositories import usuario_repo, tutor_repo, postagem_feed_repo
+from app.database.models.postagem_feed_model import PostagemFeed
+from app.database.models.usuario_model import Usuario
+from app.database.models.tutor_model import Tutor
+
+def unique_email(prefix="test"):
+    """Gera um email único para testes"""
+    timestamp = str(int(time.time() * 1000000))
+    return f"{prefix}_{timestamp}@test.com"
 
 
 class TestPostagemFeedRepo:
@@ -24,7 +30,7 @@ class TestPostagemFeedRepo:
         tutor = Tutor(
             id_usuario=0,
             nome="Maria",
-            email="maria@email.com",
+            email=unique_email("maria"),
             senha="123",
             telefone="999999999")
         id_tutor = tutor_repo.inserir_tutor(tutor)

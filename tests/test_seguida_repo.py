@@ -1,14 +1,21 @@
 from dataclasses import dataclass
 import os
 import sys
-from repo.seguida_repo import *
-from model.seguida_model import Seguida
-from model.tutor_model import Tutor
-from model.veterinario_model import Veterinario
-from model.usuario_model import Usuario
-from repo.tutor_repo import criar_tabela_tutor, inserir_tutor
-from repo.veterinario_repo import criar_tabela_veterinario, inserir_veterinario
-from repo.usuario_repo import criar_tabela_usuario
+import time
+from app.database.repositories.seguida_repo import *
+from app.database.models.seguida_model import Seguida
+from app.database.models.tutor_model import Tutor
+from app.database.models.veterinario_model import Veterinario
+from app.database.models.usuario_model import Usuario
+from app.database.repositories.tutor_repo import criar_tabela_tutor, inserir_tutor
+from app.database.repositories.veterinario_repo import criar_tabela_veterinario, inserir_veterinario
+from app.database.repositories import veterinario_repo, tutor_repo
+
+def unique_email(prefix="test"):
+    """Gera um email único para testes"""
+    timestamp = str(int(time.time() * 1000000))
+    return f"{prefix}_{timestamp}@test.com"
+from app.database.repositories.usuario_repo import criar_tabela_usuario
 from datetime import date
 
 class TestSeguidaRepo:
@@ -30,7 +37,7 @@ class TestSeguidaRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="vet@email.com", 
+            email=unique_email(), 
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
@@ -42,7 +49,7 @@ class TestSeguidaRepo:
         tutor = Tutor(
             id_usuario=0, 
             nome="Maria",
-            email="maria@email.com",
+            email=unique_email(),
             senha="321",
             telefone="888888888"
         )
@@ -76,7 +83,7 @@ class TestSeguidaRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="vet@email.com", 
+            email=unique_email(), 
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
@@ -88,7 +95,7 @@ class TestSeguidaRepo:
         tutor = Tutor(
             id_usuario=0, 
             nome="Maria",
-            email="maria@email.com",
+            email=unique_email(),
             senha="321",
             telefone="888888888"
         )
@@ -125,7 +132,7 @@ class TestSeguidaRepo:
             veterinario = Veterinario(
                 id_usuario=0, 
                 nome=f"Veterinário {i+1}", 
-                email=f"vet{i+1}@email.com", 
+                email=unique_email(f"vet{i+1}"), 
                 senha="123", 
                 telefone="999999999", 
                 crmv="CRMV123", 
@@ -138,9 +145,9 @@ class TestSeguidaRepo:
         tutores = []
         for i in range(10):
             tutor = Tutor(
-                id_usuario=0, 
+                id_usuario=0,
                 nome=f"Tutor {i+1}",
-                email=f"tutor{i+1}@email.com",
+                email=unique_email(f"tutor{i+1}"),
                 senha="321",
                 telefone="888888888"
             )
@@ -181,7 +188,7 @@ class TestSeguidaRepo:
         vet = Veterinario(
             id_usuario=0, 
             nome="Dr. João", 
-            email="vet@email.com", 
+            email=unique_email(), 
             senha="123", 
             telefone="999999999", 
             crmv="CRMV123", 
@@ -193,7 +200,7 @@ class TestSeguidaRepo:
         tutor = Tutor(
             id_usuario=0, 
             nome="Maria",
-            email="maria@email.com",
+            email=unique_email(),
             senha="321",
             telefone="888888888"
         )

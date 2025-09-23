@@ -33,6 +33,7 @@ def atualizar_usuario(usuario: Usuario) -> bool:
             usuario.nome,
             usuario.email,
             usuario.telefone,
+            usuario.foto,
             usuario.id_usuario))
         return cursor.rowcount > 0
     
