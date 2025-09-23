@@ -26,7 +26,7 @@
     --bs-danger-rgb: 230, 76, 60;
 
     /* Corpo da página */
-    --bs-body-bg: #f9f5f0;
+    --bs-body-bg: #f6e9da;
     /* bege claro do fundo */
     --bs-body-color: #2b2133;
     /* texto principal (contraste bom no bege) */
@@ -39,6 +39,16 @@
     /* Opacidades utilitárias (Bootstrap usa alpha via *-rgb + --bs-*-opacity) */
     --bs-bg-opacity: 1;
     --bs-text-opacity: 1;
+
+    /* Cores do Logotipo*/
+    --logo-orange: #FA7625;
+    --logo-purple: #4F2754;
+    --logo-pink: #CA567C;
+    --logo-teal: #2E5D5D;
+
+    /* Outras cores */
+    --header-bg: #ffebd2;
+    --footer-bg: #ffebd2;
 }
 
 /* Opcional: modo escuro/cromático via data-bs-theme */
@@ -63,6 +73,29 @@
 }
 
 /* Classes utilitárias personalizadas */
+
+header {
+    background-color: var(--header-bg);
+    color: var(--bs-body-color);
+}
+
+footer {
+    background-color: var(--footer-bg);
+    color: var(--bs-body-color);
+}
+
+/* Hover para cartões de seleção */
+.hover-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: var(--bs-primary) !important;
+}
+
 .profile-img {
     width: 100px;
     height: 100px;
@@ -84,30 +117,30 @@
 /* Login / Autenticação */
 .bg-full {
     background: linear-gradient(135deg, #f9f5f0, #FFF0D1, #ED6291);
+}
+
+.bg-img {
+    background: linear-gradient(135deg, #f9f5f0, #FFF0D1, #ED6291);
     min-height: 100vh;
+    background-image: url('/static/img/vetconecta-bg-img.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .login-box {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 2rem 2.5rem;
     border-radius: 1.25rem;
-    text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(93, 58, 121, 0.1);
-    max-width: 400px;
-    width: 100%;
     margin: 0 auto;
-}
-
-.login-title {
-    font-size: 1.875rem;
-    color: var(--bs-primary);
-}
-
-.logo-img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
 }
 
 .brand-title {
@@ -126,19 +159,13 @@
     font-size: 2.5rem;
 }
 
-.btn-login {
-    background-color: var(--bs-secondary);
-    border: none;
-    color: white;
-    border-radius: 0.625rem;
-    font-weight: 600;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+.btn-orange {
+    background-color: var(--logo-orange) !important;
+    color: white !important;
 }
 
-.btn-login:hover {
-    background-color: #d45c1a;
-    color: white;
+.btn-orange:hover {
+    background-color: #d26019 !important;
 }
 
 .btn-loginopcoes {

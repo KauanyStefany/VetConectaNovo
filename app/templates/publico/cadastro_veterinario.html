@@ -1,0 +1,101 @@
+{% extends "base/base_publica.html" %}
+{% block head %}
+<title>Cadastro de Veterinário - VetConecta</title>
+{% endblock %}
+{% block conteudo %}
+<div class="container d-flex align-items-center justify-content-center flex-grow-1 my-4">
+  <div class="row w-100 justify-content-center">
+    <div class="col-12 col-xl-10">
+      <div class="login-box">
+        <div class="d-flex flex-column align-items-center mb-4">
+          <!-- Logo -->
+          <img src="/static/img/vetconecta-logo-v.svg" alt="Logo VetConecta" width="220">
+          <!-- Título -->
+          <h2 class="fs-2 mt-4 fw-semibold text-center badge bg-primary">Cadastro de Veterinário</h2>
+        </div>
+
+        {% if erro %}
+        <div class="alert alert-danger" role="alert">
+          {{ erro }}
+        </div>
+        {% endif %}
+
+        <form action="/cadastro/veterinario" method="post">
+          <!-- Primeira linha: Nome Completo e Data de Nascimento -->
+          <div class="row mb-3">
+            <div class="col-12 col-xxl-6 mb-3 mb-xxl-0">
+              <label for="nome" class="form-label text-start">Nome Completo</label>
+              <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo"
+                required autofocus value="{{ nome or '' }}">
+            </div>
+            <div class="col-12 col-xxl-6">
+              <div class="row">
+                <div class="col-12 col-xxl-6 mb-xxl-0 mb-3">
+                  <label for="data_nascimento" class="form-label text-start">Data de Nascimento</label>
+                  <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required
+                    value="{{ data_nascimento or '' }}">
+                </div>
+                <div class="col-12 col-xxl-6">
+                  <label for="crmv" class="form-label text-start">CRMV</label>
+                  <input type="text" class="form-control" id="crmv" name="crmv"
+                    placeholder="Digite seu registro CRMV" required value="{{ crmv or '' }}">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Segunda linha: E-mail e Telefone -->
+          <div class="row mb-3">
+            <div class="col-12 col-xxl-6 mb-3 mb-xxl-0">
+              <label for="email" class="form-label text-start">E-mail</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required
+                value="{{ email or '' }}">
+            </div>
+            <div class="col-12 col-xxl-6">
+              <label for="telefone" class="form-label text-start">Telefone</label>
+              <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite seu telefone"
+                required value="{{ telefone or '' }}">
+            </div>
+          </div>
+
+          <!-- Terceira linha: Senha e Confirmação de Senha -->
+          <div class="row mb-3">
+            <div class="col-12 col-xxl-6 mb-3 mb-xxl-0">
+              <label for="senha" class="form-label text-start">Senha</label>
+              <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha"
+                required>
+            </div>
+            <div class="col-12 col-xxl-6">
+              <label for="confirmar_senha" class="form-label text-start">Confirmação de Senha</label>
+              <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha"
+                placeholder="Confirme sua senha" required>
+            </div>
+          </div>
+
+          <!-- Checkbox de termos -->
+          <div class="form-check mb-4 text-start">
+            <input class="form-check-input" type="checkbox" id="termos" name="termos" required>
+            <label class="form-check-label" for="termos">
+              Aceito os <a href="/termos" class="text-primary fw-semibold">termos de uso</a>
+            </label>
+          </div>
+
+          <div class="row g-4 mb-3">
+            <div class="col-6">
+              <a href="/cadastro" class="btn btn-outline-secondary btn-lg w-100">Voltar</a>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-orange btn-lg w-100">Cadastrar</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="mt-4 text-center">
+          <span>Já tem uma conta? </span>
+          <a href="/login" class="text-primary fw-semibold text-decoration-none">Faça login!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

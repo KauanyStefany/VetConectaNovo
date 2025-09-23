@@ -3,59 +3,52 @@
 <title>Login - VetConecta</title>
 {% endblock %}
 {% block conteudo %}
-<div class="container my-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+<div class="container d-flex align-items-center justify-content-center flex-grow-1">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
       <div class="login-box">
+        <div class="d-flex flex-column align-items-center mb-4">
           <!-- Logo -->
-          <div class="text-center mb-4">
-            <img src="/static/img/pata_icon.png" alt="Logo VetConecta" class="logo-img">
-            <div class="brand-title">
-              <span>Vet</span><span class="brand-subtitle">Conecta</span>
-            </div>
-          </div>
-
+          <img src="/static/img/vetconecta-logo-v.svg" alt="Logo VetConecta" width="220">
           <!-- Título -->
-          <h5 class="mb-4 fw-semibold login-title text-center">Login</h5>
+          <h2 class="fs-2 mt-4 fw-semibold text-center badge bg-primary">Login</h2>
+        </div>
 
-          {% if erro %}
-          <div class="alert alert-danger" role="alert">
-            {{ erro }}
-          </div>
+        <!-- Mensagem de erro -->
+        {% if erro %}
+        <div class="alert alert-danger" role="alert">
+          {{ erro }}
+        </div>
+        {% endif %}
+
+        <!-- Formulário de Login -->
+        <form action="/login" method="post">
+          {% if redirect %}
+          <input type="hidden" name="redirect" value="{{ redirect }}">
           {% endif %}
 
-          <form action="/login" method="post">
-            {% if redirect %}
-            <input type="hidden" name="redirect" value="{{ redirect }}">
-            {% endif %}
-
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email"
-                     placeholder="Digite seu email" required autofocus
-                     value="{{ email or '' }}">
-            </div>
-
-            <div class="mb-3">
-              <label for="senha" class="form-label">Senha</label>
-              <input type="password" class="form-control" id="senha" name="senha"
-                     placeholder="Digite sua senha" required>
-            </div>
-
-            <button type="submit" class="btn btn-login w-100 mb-3">Entrar</button>
-
-            <div class="text-center">
-              <a href="/esqueci-senha" class="btn btn-link p-0">Esqueci minha senha</a>
-            </div>
-          </form>
-
-          <div class="mt-4 text-center">
-            <span>Não tem uma conta? </span>
-            <a href="/cadastro" class="text-primary fw-semibold text-decoration-none">Cadastre-se!</a>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required
+              autofocus value="{{ email or '' }}">
           </div>
+
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
+          </div>
+
+          <button type="submit" class="btn btn-orange btn-lg w-100 mb-3">Entrar</button>
+
+          <div class="text-center">
+            <a href="/esqueci-senha" class="btn btn-link text-decoration-none p-0">Esqueci minha senha</a>
+          </div>
+        </form>
+
+        <div class="mt-4 text-center">
+          <span>Não tem uma conta? </span>
+          <a href="/cadastro" class="text-primary fw-semibold text-decoration-none">Cadastre-se!</a>
         </div>
       </div>
     </div>
-  </div>
 </div>
 {% endblock %}

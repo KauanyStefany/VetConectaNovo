@@ -84,16 +84,71 @@ async def get_cadastro(request: Request):
     return templates.TemplateResponse("cadastro.html", {"request": request})
 
 
-@router.post("/cadastro")
-async def post_cadastro(
+@router.get("/cadastro/tutor")
+async def get_cadastro_tutor(request: Request):
+    # Se já está logado, redirecionar
+    if esta_logado(request):
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
+    return templates.TemplateResponse("cadastro_tutor.html", {"request": request})
+
+
+@router.get("/cadastro/veterinario")
+async def get_cadastro_veterinario(request: Request):
+    # Se já está logado, redirecionar
+    if esta_logado(request):
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
+    return templates.TemplateResponse("cadastro_veterinario.html", {"request": request})
+
+
+@router.post("/cadastro/tutor")
+async def post_cadastro_tutor(
     request: Request,
     nome: str = Form(...),
     email: str = Form(...),
     telefone: str = Form(...),
     senha: str = Form(...),
     confirmar_senha: str = Form(...),
-    perfil: str = Form(...), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
-    crmv: str = Form(None)
+    termos: str = Form(None)
+):
+    return await processar_cadastro(
+        request, nome, email, telefone, senha, confirmar_senha, "tutor", None, "cadastro_tutor.html"
+    )
+
+
+@router.post("/cadastro/veterinario")
+async def post_cadastro_veterinario(
+    request: Request,
+    nome: str = Form(...),
+    email: str = Form(...),
+    telefone: str = Form(...),
+    crmv: str = Form(...),
+    senha: str = Form(...),
+    confirmar_senha: str = Form(...),
+    termos: str = Form(None)
+):
+    return await processar_cadastro(
+        request, nome, email, telefone, senha, confirmar_senha, "veterinario", crmv, "cadastro_veterinario.html"
+    )
+
+
+@router.post("/cadastro")
+async def post_cadastro_redirect(request: Request):
+    # Redireciona para a página de seleção se acessarem o POST direto
+    return RedirectResponse("/cadastro", status.HTTP_303_SEE_OTHER)
+
+
+async def processar_cadastro(
+    request: Request,
+    nome: str,
+    email: str,
+    telefone: str,
+    senha: str,
+    confirmar_senha: str,
+    perfil: str,
+    crmv: str = None,
+    template_name: str = "cadastro.html"
 ):
     # Veterinario
     # verificado: bool -> definido depois
@@ -106,14 +161,13 @@ async def post_cadastro(
     # Validações
     if senha != confirmar_senha:
         return templates.TemplateResponse(
-            "cadastro.html",
+            template_name,
             {
                 "request": request,
                 "erro": "As senhas não coincidem",
                 "nome": nome,
                 "email": email,
                 "telefone": telefone,
-                "perfil": perfil,
                 "crmv": crmv
             }
         )
@@ -122,14 +176,13 @@ async def post_cadastro(
     senha_valida, msg_erro = validar_forca_senha(senha)
     if not senha_valida:
         return templates.TemplateResponse(
-            "cadastro.html",
+            template_name,
             {
                 "request": request,
                 "erro": msg_erro,
                 "nome": nome,
                 "email": email,
                 "telefone": telefone,
-                "perfil": perfil,
                 "crmv": crmv
             }
         )
@@ -137,14 +190,13 @@ async def post_cadastro(
     # Verificar se email já existe
     if usuario_repo.obter_por_email(email):
         return templates.TemplateResponse(
-            "cadastro.html",
+            template_name,
             {
                 "request": request,
                 "erro": "Este email já está cadastrado",
                 "nome": nome,
                 "email": email,
                 "telefone": telefone,
-                "perfil": perfil,
                 "crmv": crmv
             }
         )
@@ -194,14 +246,13 @@ async def post_cadastro(
 
     except Exception as e:
         return templates.TemplateResponse(
-            "cadastro.html",
+            template_name,
             {
                 "request": request,
                 "erro": f"Erro ao criar cadastro. Tente novamente. {e}",
                 "nome": nome,
                 "email": email,
                 "telefone": telefone,
-                "perfil": perfil,
                 "crmv": crmv
             }
         )
