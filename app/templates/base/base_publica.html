@@ -24,58 +24,95 @@
         </div>
         <!-- Navbar com fundo roxo -->
         <nav class="navbar navbar-expand-lg py-3 bg-primary w-100">
-            <div class="container-fluid d-flex justify-content-between align-items-center px-4">
-                <!-- Esquerda: Link -->
-                <a href="/quemsomos" class="text-decoration-none text-white">Quem Somos</a>
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavPublic">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <!-- Centro: Barra de pesquisa -->
-                <form class="d-flex w-50 justify-content-center">
-                    <div class="input-group w-100 search-group">
-                        <input class="form-control" type="search" placeholder="O que seu pet necessita?">
-                        <span class="input-group-text bg-white">
-                            <i class="bi bi-search"></i>
-                        </span>
-                    </div>
-                </form>
+                <div class="collapse navbar-collapse" id="navbarNavPublic">
+                    <!-- Barra de navegação dividida em 3 seções -->
+                    <div class="row w-100 align-items-center">
+                        <!-- Seção 1: Quem Somos (col-3) -->
+                        <div class="col-3 d-flex justify-content-start">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="/quemsomos">Quem Somos</a>
+                                </li>
+                            </ul>
+                        </div>
 
-                <!-- Direita: Ícone de perfil -->
-                {% if request.session.get('usuario') %}
-                <ul>
-                    <!-- Menu Admin -->
-                    {% if request.session.get('usuario').perfil == 'admin' %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            Administrar
-                        </a>
-                        <i class="bi bi-person-circle fs-2 text-white mr-5"></i>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/admin/usuarios">Usuários</a></li>
-                            <li><a class="dropdown-item" href="/admin/relatorios">Relatórios</a></li>
-                        </ul>
-                    </li>
-                    {% endif %}
-                    <!-- Menu do Usuário -->
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle p-0 text-white" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="bi bi-person-circle fs-2 text-white"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sair</a></li>
-                        </ul>
+                        <!-- Seção 2: Campo de busca (col-6) -->
+                        <div class="col-6">
+                            <form class="row justify-content-center" method="GET" action="/buscar">
+                                <div class="col-12 col-lg-8">
+                                    <div class="input-group w-100 search-group">
+                                        <input class="form-control" type="search" name="q"
+                                            placeholder="O que seu pet necessita?" aria-label="Buscar">
+                                        <button class="btn btn-outline-light" type="submit">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Seção 3: Login/Cadastro ou Menu do usuário (col-3) -->
+                        <div class="col-3 d-flex justify-content-end">
+                            {% if request.session.get('usuario') %}
+                            <!-- Menu do Usuário Logado -->
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                                        {% if request.session.get('usuario').foto %}
+                                        <img src="{{ request.session.get('usuario').foto }}" alt="Avatar"
+                                            class="rounded-circle me-1" width="24" height="24">
+                                        {% else %}
+                                        <i class="bi bi-person-circle"></i>
+                                        {% endif %}
+                                        {{ request.session.get('usuario').nome }}
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        {% if request.session.get('usuario').perfil == 'admin' %}
+                                        <li><a class="dropdown-item" href="/admin/">Painel Admin</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        {% elif request.session.get('usuario').perfil == 'veterinario' %}
+                                        <li><a class="dropdown-item" href="/veterinario/">Dashboard</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        {% elif request.session.get('usuario').perfil == 'tutor' %}
+                                        <li><a class="dropdown-item" href="/tutor/">Feed</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        {% endif %}
+                                        <li><a class="dropdown-item" href="/usuario/perfil">Meu Perfil</a></li>
+                                        <li><a class="dropdown-item" href="/usuario/configuracoes">Configurações</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            {% else %}
+                            <!-- Menu para não logados -->
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="/login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="/cadastro">Cadastre-se</a>
+                                </li>
+                            </ul>
+                            {% endif %}
+                        </div>
                     </div>
-                </ul>
-                {% else %}
-                <!-- Menu para não logados -->
-                <div class="text-white d-flex gap-3">
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/cadastro">Cadastre-se</a>
                 </div>
-                {% endif %}
             </div>
         </nav>
     </header>

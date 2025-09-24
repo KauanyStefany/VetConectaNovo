@@ -85,3 +85,4 @@ cython_debug/
 CLAUDE.md
 .claude
 .playwright-mcp
+.mcp.json

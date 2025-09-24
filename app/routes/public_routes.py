@@ -23,7 +23,7 @@ async def get_tutor(request: Request, id_tutor: int):
 
 @router.get("/quemsomos")
 async def get_sobre(request: Request):
-    return templates.TemplateResponse("publico/quemsomos.html", {"request": request})
+    return templates.TemplateResponse("publico/quem_somos.html", {"request": request})
 
 @router.get("/posts")
 async def get_posts(request: Request):
