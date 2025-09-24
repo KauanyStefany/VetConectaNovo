@@ -106,7 +106,7 @@ input[type="checkbox"]:checked+label i::before {
 /* ---------------------------------------------------------- CARDS-------------------------------------------------------------- */
 
 .card-perfil {
-  border: none;
+  border: 02px solid #adadad;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 12px rgba(0,0,0,0.1);

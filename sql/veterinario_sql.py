@@ -50,6 +50,11 @@ SELECT
     u.email,
     u.senha,
     u.telefone,
+    u.perfil,
+    u.foto,
+    u.token_redefinicao,
+    u.data_token,
+    u.data_cadastro,
     v.crmv,
     v.verificado,
     v.bio
