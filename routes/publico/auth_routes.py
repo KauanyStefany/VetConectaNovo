@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import RedirectResponse
+from pydantic_core import ValidationError
 
+from dtos.login_dto import LoginDTO
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
 from repo import usuario_repo, tutor_repo, veterinario_repo
@@ -27,42 +29,76 @@ async def get_login(request: Request, redirect: str = None):
 @router.post("/login")
 async def post_login(
     request: Request,
-    email: str = Form(...),
-    senha: str = Form(...),
+    email: str = Form(),
+    senha: str = Form(),
     redirect: str = Form(None)
 ):
-    # Buscar usuário pelo email
-    usuario = usuario_repo.obter_por_email(email)
-    
-    if not usuario or not verificar_senha(senha, usuario.senha):
-        return templates.TemplateResponse(
-            "login.html",
-            {
-                "request": request,
-                "erro": "Email ou senha inválidos",
-                "email": email,
-                "redirect": redirect
-            }
-        )
-    
-    # Criar sessão
-    usuario_dict = {
-        "id": usuario.id_usuario,
-        "nome": usuario.nome,
-        "email": usuario.email,
-        "telefone": usuario.telefone,
-        "perfil": usuario.perfil,
-        "foto": usuario.foto
+    dados_formulario = {
+        "email": email
     }
-    criar_sessao(request, usuario_dict)
     
-    if usuario.perfil == "admin":
-        url_redirect = "/perfil"
+    try:
+        login_dto = LoginDTO(email=email, senha=senha)
+        
+        # Buscar usuário pelo email
+        usuario = usuario_repo.obter_por_email(login_dto.email)
+        
+        if not usuario or not verificar_senha(login_dto.senha, usuario.senha):
+            return templates.TemplateResponse(
+                "login.html",
+                {
+                    "request": request,
+                    "erro": "Email ou senha inválidos",
+                    "email": email,
+                    "redirect": redirect
+                }
+            )
+        
+        # Criar sessão
+        usuario_dict = {
+            "id": usuario.id_usuario,
+            "nome": usuario.nome,
+            "email": usuario.email,
+            "telefone": usuario.telefone,
+            "perfil": usuario.perfil,
+            "foto": usuario.foto
+        }
+        criar_sessao(request, usuario_dict)
+        
+        if usuario.perfil == "admin":
+            url_redirect = "/perfil"
+            return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+        
+        # Redirecionar para a página solicitada ou home
+        url_redirect = redirect if redirect else "/"
         return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
     
-    # Redirecionar para a página solicitada ou home
-    url_redirect = redirect if redirect else "/"
-    return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+    except ValidationError as e:
+        # Extrair mensagens de erro do Pydantic
+        erros = []
+        for erro in e.errors():
+            campo = erro['loc'][0] if erro['loc'] else 'campo'
+            mensagem = erro['msg']
+            erros.append(f"{campo.capitalize()}: {mensagem}")
+
+        erro_msg = " | ".join(erros)
+        # logger.warning(f"Erro de validação no cadastro: {erro_msg}")
+
+        # Retornar template com dados preservados e erro
+        return templates.TemplateResponse("login.html.html", {
+            "request": request,
+            "erro": erro_msg,
+            "dados": dados_formulario  # Preservar dados digitados
+        })
+
+    except Exception as e:
+        # logger.error(f"Erro ao processar cadastro: {e}")
+
+        return templates.TemplateResponse("login.html.html", {
+            "request": request,
+            "erro": "Erro ao processar cadastro. Tente novamente.",
+            "dados": dados_formulario
+        })
 
 
 @router.get("/logout")

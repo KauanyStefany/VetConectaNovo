@@ -20,7 +20,7 @@ def validar_crmv(cpf: Optional[str]) -> Optional[str]:
 
     # Verificar se todos os dígitos são iguais
     if cpf_limpo == cpf_limpo[0] * 6:
-        raise ValidacaoError('CPF inválido')
+        raise ValidacaoError('CRMV inválido')
 
     # Validar dígito verificador
     def calcular_digito(cpf_parcial):
