@@ -122,12 +122,12 @@ async def get_cadastro(request: Request):
 @router.post("/cadastro")
 async def post_cadastro(
     request: Request,
-    nome: str = Form(...),
-    email: str = Form(...),
-    telefone: str = Form(...),
-    senha: str = Form(...),
-    confirmar_senha: str = Form(...),
-    perfil: str = Form(...), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
+    nome: str = Form(),
+    email: str = Form(),
+    telefone: str = Form(),
+    senha: str = Form(),
+    confirmar_senha: str = Form(),
+    perfil: str = Form(), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
     crmv: str = Form(None)
 ):
     # Veterinario
@@ -240,6 +240,8 @@ async def post_cadastro(
                 "crmv": crmv
             }
         )
+    
+    
 
 
 @router.get("/esqueci-senha")
