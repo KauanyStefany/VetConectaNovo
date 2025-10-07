@@ -7,7 +7,7 @@ from pydantic import EmailStr, Field, field_validator
 from typing import Optional
 from .base_dto import BaseDTO
 from util.validacoes_dto import (
-    validar_texto_obrigatorio, validar_cpf, validar_telefone
+    validar_texto_obrigatorio, validar_telefone, validar_crmv
 )
 
 
@@ -32,10 +32,7 @@ class CriarUsuarioDTO(BaseDTO):
         min_length=10,
         description="Telefone com DDD"
     )
-    cpf: Optional[str] = Field(
-        None,
-        description="CPF (opcional)"
-    )
+
 
     @field_validator('nome')
     @classmethod
@@ -45,17 +42,6 @@ class CriarUsuarioDTO(BaseDTO):
                 valor, campo, min_chars=2, max_chars=100
             ),
             "Nome"
-        )
-        return validador(v)
-
-    @field_validator('cpf')
-    @classmethod
-    def validar_cpf_campo(cls, v: Optional[str]) -> Optional[str]:
-        if not v:
-            return v
-        validador = cls.validar_campo_wrapper(
-            lambda valor, campo: validar_cpf(valor),
-            "CPF"
         )
         return validador(v)
 
@@ -75,7 +61,6 @@ class CriarUsuarioDTO(BaseDTO):
             "nome": "João Silva",
             "email": "joao.silva@email.com",
             "telefone": "(11) 99999-9999",
-            "cpf": "123.456.789-01"
         }
         exemplo.update(overrides)
         return exemplo

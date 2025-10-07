@@ -8,33 +8,33 @@ class ValidacaoError(ValueError):
     pass
 
 
-def validar_crmv(cpf: Optional[str]) -> Optional[str]:
-    if not cpf:
+def validar_crmv(crmv: Optional[str]) -> Optional[str]:
+    if not crmv:
         return None
 
     # Remover caracteres especiais
-    cpf_limpo = re.sub(r'[^0-9]', '', cpf)
+    crmv_limpo = re.sub(r'[^0-9]', '', crmv)
 
-    if len(cpf_limpo) != 6:
-        raise ValidacaoError('CPF deve ter 11 dígitos')
+    if len(crmv_limpo) != 6:
+        raise ValidacaoError('crmv deve ter 11 dígitos')
 
     # Verificar se todos os dígitos são iguais
-    if cpf_limpo == cpf_limpo[0] * 6:
+    if crmv_limpo == crmv_limpo[0] * 6:
         raise ValidacaoError('CRMV inválido')
 
     # Validar dígito verificador
-    def calcular_digito(cpf_parcial):
-        soma = sum(int(cpf_parcial[i]) * (len(cpf_parcial) + 1 - i) for i in range(len(cpf_parcial)))
+    def calcular_digito(crmv_parcial):
+        soma = sum(int(crmv_parcial[i]) * (len(crmv_parcial) + 1 - i) for i in range(len(crmv_parcial)))
         resto = soma % 11
         return 0 if resto < 2 else 11 - resto
 
-    if int(cpf_limpo[9]) != calcular_digito(cpf_limpo[:9]):
-        raise ValidacaoError('CPF inválido')
+    if int(crmv_limpo[9]) != calcular_digito(crmv_limpo[:9]):
+        raise ValidacaoError('crmv inválido')
 
-    if int(cpf_limpo[10]) != calcular_digito(cpf_limpo[:10]):
-        raise ValidacaoError('CPF inválido')
+    if int(crmv_limpo[10]) != calcular_digito(crmv_limpo[:10]):
+        raise ValidacaoError('crmv inválido')
 
-    return cpf_limpo
+    return crmv_limpo
 
 
 def validar_telefone(telefone: str) -> str:

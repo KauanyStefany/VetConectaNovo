@@ -66,12 +66,15 @@ async def post_login(
         criar_sessao(request, usuario_dict)
         
         if usuario.perfil == "admin":
-            url_redirect = "/perfil"
+            url_redirect = "/perfil/{usuario.id_usuario}"
             return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
         
         # Redirecionar para a página solicitada ou home
-        url_redirect = redirect if redirect else "/"
+        # url_redirect = redirect if redirect else "/"
+        # return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+        url_redirect = f"/perfil/{usuario.id_usuario}"
         return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+    
     
     except ValidationError as e:
         # Extrair mensagens de erro do Pydantic
@@ -85,7 +88,7 @@ async def post_login(
         # logger.warning(f"Erro de validação no cadastro: {erro_msg}")
 
         # Retornar template com dados preservados e erro
-        return templates.TemplateResponse("login.html.html", {
+        return templates.TemplateResponse("login.html", {
             "request": request,
             "erro": erro_msg,
             "dados": dados_formulario  # Preservar dados digitados
@@ -94,7 +97,7 @@ async def post_login(
     except Exception as e:
         # logger.error(f"Erro ao processar cadastro: {e}")
 
-        return templates.TemplateResponse("login.html.html", {
+        return templates.TemplateResponse("login.html", {
             "request": request,
             "erro": "Erro ao processar cadastro. Tente novamente.",
             "dados": dados_formulario
