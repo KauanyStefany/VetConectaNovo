@@ -22,3 +22,5 @@ class LoginDTO(BaseModel):
         if len(senha) < 6:
             raise ValueError('Senha deve ter pelo menos 6 caracteres')
         return senha
+    
+    
