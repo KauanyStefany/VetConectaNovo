@@ -20,7 +20,7 @@
                     <br>
                     <div class="form-check form-check-inline">
                         <input
-                            class="form-check-input"
+                            class="form-check-input "
                             type="radio"
                             name="perfil"
                             id="tutor"
@@ -45,55 +45,74 @@
                     <label for="nome" class="form-label">Nome</label>
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control {% if erro and 'nome' in erro.lower() %}is-invalid{% endif %}"
                         id="nome"
+                        value="{{dados.nome if dados else '' }}"
                         name="nome"
                         placeholder="Digite seu nome"
                         required
                     >
+                    {% if erro and 'nome' in erro.lower() %}
+                    <div class="invalid-feedback">{{ erro }}</div>
+                    {% endif %}
                 </div>
                 <div class="mb-3 text-start">
                     <label for="email" class="form-label">Email</label>
                     <input
                         type="email"
-                        class="form-control"
+                        class="form-control {% if erro and 'nome' in erro.lower() %}is-invalid{% endif %}"
                         id="email"
+                        value="{{dados.email if dados else '' }}"
                         name="email"
                         placeholder="Digite seu email"
                         required
                     >
+                    {% if erro and 'email' in erro.lower() %}
+                    <div class="invalid-feedback">{{ erro }}</div>
+                    {% endif %}
                 </div>
                 <div class="mb-3 text-start">
                     <label for="telefone" class="form-label">Telefone</label>
                     <input
                         type="tel"
-                        class="form-control"
+                        class="form-control {% if erro and 'nome' in erro.lower() %}is-invalid{% endif %}"
                         id="telefone"
+                        value="{{dados.telefone if dados else '' }}"
                         name="telefone"
                         placeholder="Digite seu telefone"
                         required
                     >
+                    {% if erro and 'telefone' in erro.lower() %}
+                    <div class="invalid-feedback">{{ erro }}</div>
+                    {% endif %}
                 </div>
                 <div class="mb-3 text-start" id="crmv-field" style="display: none;">
                     <label for="crmv" class="form-label">CRMV</label>
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control {% if erro and 'nome' in erro.lower() %}is-invalid{% endif %}"
                         id="crmv"
+                        value="{{dados.crmv if dados else '' }}"
                         name="crmv"
                         placeholder="Digite seu CRMV"
                     >
+                    {% if erro and 'crmv' in erro.lower() %}
+                    <div class="invalid-feedback">{{ erro }}</div>  
+                    {% endif %}
                 </div>
                 <div class="mb-3 text-start">
                     <label for="senha" class="form-label">Senha</label>
                     <input
                         type="password"
-                        class="form-control"
+                        class="form-control {% if erro and 'nome' in erro.lower() %}is-invalid{% endif %}"
                         id="senha"
                         name="senha"
                         placeholder="Digite sua senha"
                         required
                     >
+                    {% if erro and 'senha' in erro.lower() %}
+                    <div class="invalid-feedback">{{ erro }}</div>
+                    {% endif %}
                 </div>
                 <div class="mb-3 text-start">
                     <label for="confirmar_senha" class="form-label">Confirmar Senha</label>
@@ -116,7 +135,8 @@
                         name="termos"
                         required
                     >
-                    <label class="form-check-label" for="termos">Aceito os
+                    <label class="form-check-label" for="termos">
+                        Aceito os
                         <a href="termos.html" class="text-primary fw-semibold">Termos de privacidade.</a>
                     </label>
                 </div>
