@@ -65,14 +65,16 @@ async def post_login(
         }
         criar_sessao(request, usuario_dict)
         
-        if usuario.perfil == "admin":
-            url_redirect = "/perfil/{usuario.id_usuario}"
-            return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+        # if usuario.perfil == "admin":
+        #     url_redirect = "/perfil/{usuario.id_usuario}"
+        #     return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
         
         # Redirecionar para a página solicitada ou home
         # url_redirect = redirect if redirect else "/"
         # return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
-        url_redirect = f"/perfil/{usuario.id_usuario}"
+        # url_redirect = f"/perfil/{usuario.id_usuario}"
+        # 
+        url_redirect = f"/"
         return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
     
     
@@ -130,61 +132,46 @@ async def post_cadastro(
     perfil: str = Form(), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
     crmv: str = Form(None)
 ):
-    # Veterinario
-    # verificado: bool -> definido depois
-    # bio: str -> cadastrado depois
+    dados_formulario = {
+        "nome": nome,
+        "email": email,
+        "telefone": telefone,
+        "perfil": perfil,
+        "crmv": crmv
+    }
 
-    # Tutor
-    # quantidade_pets: int = 0 -> cadastrado depois
-    # descricao_pets: Optional[str] = None -> cadastrado depois
-
-    # Validações
-    if senha != confirmar_senha:
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": "As senhas não coincidem",
-                "nome": nome,
-                "email": email,                
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
-    
-    # Validar força da senha
-    senha_valida, msg_erro = validar_forca_senha(senha)
-    if not senha_valida:
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": msg_erro,
-                "nome": nome,
-                "email": email,
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
-    
-    # Verificar se email já existe
-    if usuario_repo.obter_por_email(email):
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": msg_erro,
-                "nome": nome,
-                "email": email,
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
-    
     try:
+        if senha != confirmar_senha:
+            return templates.TemplateResponse(
+                "cadastro.html",
+                {
+                    "request": request,
+                    "erro": "As senhas não coincidem",
+                    "dados": dados_formulario
+                }
+            )
+
+        senha_valida, msg_erro = validar_forca_senha(senha)
+        if not senha_valida:
+            return templates.TemplateResponse(
+                "cadastro.html",
+                {
+                    "request": request,
+                    "erro": msg_erro,
+                    "dados": dados_formulario
+                }
+            )
+
+        if usuario_repo.obter_por_email(email):
+            return templates.TemplateResponse(
+                "cadastro.html",
+                {
+                    "request": request,
+                    "erro": "Email já cadastrado",
+                    "dados": dados_formulario
+                }
+            )
+
         id_usuario = None
         if perfil == 'tutor':
         # Criar usuário com senha hash
@@ -216,32 +203,37 @@ async def post_cadastro(
                 token_redefinicao=None,
                 data_token=None,
                 data_cadastro=None,
-                crmv=crmv, 
+                crmv=crmv,
                 verificado=False,
                 bio=None
             )
             id_usuario = veterinario_repo.inserir_veterinario(veterinario)
-        
+
         if not id_usuario:
             raise Exception("Erro ao inserir usuário no banco de dados.")
-        
+
         return RedirectResponse("/login", status.HTTP_303_SEE_OTHER)
-        
+
+    except ValidationError as e:
+        erros = []
+        for erro in e.errors():
+            campo = erro['loc'][0] if erro['loc'] else 'campo'
+            mensagem = erro['msg']
+            erros.append(f"{campo.capitalize()}: {mensagem}")
+
+        erro_msg = " | ".join(erros)
+        return templates.TemplateResponse("cadastro.html", {
+            "request": request,
+            "erro": erro_msg,
+            "dados": dados_formulario
+        })
+
     except Exception as e:
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": f"Erro ao criar cadastro. Tente novamente. {e}",
-                "nome": nome,
-                "email": email,                
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
-    
-    
+        return templates.TemplateResponse("cadastro.html", {
+            "request": request,
+            "erro": f"Erro ao criar cadastro. Tente novamente. {e}",
+            "dados": dados_formulario
+        })
 
 
 @router.get("/esqueci-senha")
