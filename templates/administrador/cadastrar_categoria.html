@@ -1,5 +1,46 @@
 {% extends "base_publica.html" %}
 {% block conteudo %}
-<h1>Cadastrar Categoria</h1>
-<hr>
+<div class="container py-4" style="max-width: 600px;">
+    <h1 class="fonte-titulo titulo_categorias mb-4">Cadastrar Categoria</h1>
+    <form id="categoriaForm" autocomplete="off" novalidate>
+        <!-- Nome do animal -->
+        <div class="mb-3">
+            <label for="nomeAnimal" class="form-label fw-semibold">Nome do animal <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="nomeAnimal" name="nomeAnimal" required maxlength="50" placeholder="Digite o nome do animal">
+            <div class="invalid-feedback">O nome do animal é obrigatório.</div>
+        </div>
+        <!-- Upload de fotos -->
+        <div class="mb-3">
+            <label for="fotos" class="form-label fw-semibold">Adicione uma imagem</label>
+            <input class="form-control" type="file" id="fotos" name="fotos" accept="image/*">
+            <small class="form-text text-muted">Formato permitido: JPG.</small>
+            <div id="preview" class="d-flex flex-wrap gap-2 mt-2"></div>
+            <div class="invalid-feedback d-block" id="fotosError" style="display:none;"></div>
+        </div>
+        <!-- Seletor de cor -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Cor da categoria</label>
+            <div id="colorPickerContainer" class="mb-2"></div>
+            <input type="hidden" id="corCategoria" name="corCategoria" value="#ed6291">
+            <input type="color">
+            
+        </div>
+        <!-- Botão salvar -->
+        <button type="submit" class="btn btn-success px-4 py-2 fw-semibold" style="border-radius: 10px;">Salvar</button>
+    </form>
+</div>
+
+<!-- CSS mínimo para thumbnails -->
+<style>
+#preview img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+.swatch:focus { outline: 2px solid #333; }
+#colorPickerContainer { max-width: 260px; }
+</style>
+
 {% endblock %}
