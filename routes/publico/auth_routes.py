@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import RedirectResponse
+from pydantic_core import ValidationError
 
+from dtos.login_dto import LoginDTO
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
 from repo import usuario_repo, tutor_repo, veterinario_repo
@@ -27,42 +29,81 @@ async def get_login(request: Request, redirect: str = None):
 @router.post("/login")
 async def post_login(
     request: Request,
-    email: str = Form(...),
-    senha: str = Form(...),
+    email: str = Form(),
+    senha: str = Form(),
     redirect: str = Form(None)
 ):
-    # Buscar usuário pelo email
-    usuario = usuario_repo.obter_por_email(email)
-    
-    if not usuario or not verificar_senha(senha, usuario.senha):
-        return templates.TemplateResponse(
-            "login.html",
-            {
-                "request": request,
-                "erro": "Email ou senha inválidos",
-                "email": email,
-                "redirect": redirect
-            }
-        )
-    
-    # Criar sessão
-    usuario_dict = {
-        "id": usuario.id_usuario,
-        "nome": usuario.nome,
-        "email": usuario.email,
-        "telefone": usuario.telefone,
-        "perfil": usuario.perfil,
-        "foto": usuario.foto
+    dados_formulario = {
+        "email": email
     }
-    criar_sessao(request, usuario_dict)
     
-    if usuario.perfil == "admin":
-        url_redirect = "/perfil"
+    try:
+        login_dto = LoginDTO(email=email, senha=senha)
+        
+        # Buscar usuário pelo email
+        usuario = usuario_repo.obter_por_email(login_dto.email)
+        
+        if not usuario or not verificar_senha(login_dto.senha, usuario.senha):
+            return templates.TemplateResponse(
+                "login.html",
+                {
+                    "request": request,
+                    "erro": "Email ou senha inválidos",
+                    "email": email,
+                    "redirect": redirect
+                }
+            )
+        
+        # Criar sessão
+        usuario_dict = {
+            "id": usuario.id_usuario,
+            "nome": usuario.nome,
+            "email": usuario.email,
+            "telefone": usuario.telefone,
+            "perfil": usuario.perfil,
+            "foto": usuario.foto
+        }
+        criar_sessao(request, usuario_dict)
+        
+        # if usuario.perfil == "admin":
+        #     url_redirect = "/perfil/{usuario.id_usuario}"
+        #     return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+        
+        # Redirecionar para a página solicitada ou home
+        # url_redirect = redirect if redirect else "/"
+        # return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+        # url_redirect = f"/perfil/{usuario.id_usuario}"
+        # 
+        url_redirect = f"/"
         return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
     
-    # Redirecionar para a página solicitada ou home
-    url_redirect = redirect if redirect else "/"
-    return RedirectResponse(url_redirect, status.HTTP_303_SEE_OTHER)
+    
+    except ValidationError as e:
+        # Extrair mensagens de erro do Pydantic
+        erros = []
+        for erro in e.errors():
+            campo = erro['loc'][0] if erro['loc'] else 'campo'
+            mensagem = erro['msg']
+            erros.append(f"{campo.capitalize()}: {mensagem}")
+
+        erro_msg = " | ".join(erros)
+        # logger.warning(f"Erro de validação no cadastro: {erro_msg}")
+
+        # Retornar template com dados preservados e erro
+        return templates.TemplateResponse("login.html", {
+            "request": request,
+            "erro": erro_msg,
+            "dados": dados_formulario  # Preservar dados digitados
+        })
+
+    except Exception as e:
+        # logger.error(f"Erro ao processar cadastro: {e}")
+
+        return templates.TemplateResponse("login.html", {
+            "request": request,
+            "erro": "Erro ao processar cadastro. Tente novamente.",
+            "dados": dados_formulario
+        })
 
 
 @router.get("/logout")
@@ -83,69 +124,54 @@ async def get_cadastro(request: Request):
 @router.post("/cadastro")
 async def post_cadastro(
     request: Request,
-    nome: str = Form(...),
-    email: str = Form(...),
-    telefone: str = Form(...),
-    senha: str = Form(...),
-    confirmar_senha: str = Form(...),
-    perfil: str = Form(...), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
+    nome: str = Form(),
+    email: str = Form(),
+    telefone: str = Form(),
+    senha: str = Form(),
+    confirmar_senha: str = Form(),
+    perfil: str = Form(), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
     crmv: str = Form(None)
 ):
-    # Veterinario
-    # verificado: bool -> definido depois
-    # bio: str -> cadastrado depois
+    dados_formulario = {
+        "nome": nome,
+        "email": email,
+        "telefone": telefone,
+        "perfil": perfil,
+        "crmv": crmv
+    }
 
-    # Tutor
-    # quantidade_pets: int = 0 -> cadastrado depois
-    # descricao_pets: Optional[str] = None -> cadastrado depois
-
-    # Validações
-    if senha != confirmar_senha:
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": "As senhas não coincidem",
-                "nome": nome,
-                "email": email,                
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
-    
-    # Validar força da senha
-    senha_valida, msg_erro = validar_forca_senha(senha)
-    if not senha_valida:
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": msg_erro,
-                "nome": nome,
-                "email": email,
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
-    
-    # Verificar se email já existe
-    if usuario_repo.obter_por_email(email):
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": msg_erro,
-                "nome": nome,
-                "email": email,
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
-    
     try:
+        if senha != confirmar_senha:
+            return templates.TemplateResponse(
+                "cadastro.html",
+                {
+                    "request": request,
+                    "erro": "As senhas não coincidem",
+                    "dados": dados_formulario
+                }
+            )
+
+        senha_valida, msg_erro = validar_forca_senha(senha)
+        if not senha_valida:
+            return templates.TemplateResponse(
+                "cadastro.html",
+                {
+                    "request": request,
+                    "erro": msg_erro,
+                    "dados": dados_formulario
+                }
+            )
+
+        if usuario_repo.obter_por_email(email):
+            return templates.TemplateResponse(
+                "cadastro.html",
+                {
+                    "request": request,
+                    "erro": "Email já cadastrado",
+                    "dados": dados_formulario
+                }
+            )
+
         id_usuario = None
         if perfil == 'tutor':
         # Criar usuário com senha hash
@@ -177,30 +203,37 @@ async def post_cadastro(
                 token_redefinicao=None,
                 data_token=None,
                 data_cadastro=None,
-                crmv=crmv, 
+                crmv=crmv,
                 verificado=False,
                 bio=None
             )
             id_usuario = veterinario_repo.inserir_veterinario(veterinario)
-        
+
         if not id_usuario:
             raise Exception("Erro ao inserir usuário no banco de dados.")
-        
+
         return RedirectResponse("/login", status.HTTP_303_SEE_OTHER)
-        
+
+    except ValidationError as e:
+        erros = []
+        for erro in e.errors():
+            campo = erro['loc'][0] if erro['loc'] else 'campo'
+            mensagem = erro['msg']
+            erros.append(f"{campo.capitalize()}: {mensagem}")
+
+        erro_msg = " | ".join(erros)
+        return templates.TemplateResponse("cadastro.html", {
+            "request": request,
+            "erro": erro_msg,
+            "dados": dados_formulario
+        })
+
     except Exception as e:
-        return templates.TemplateResponse(
-            "cadastro.html",
-            {
-                "request": request,
-                "erro": f"Erro ao criar cadastro. Tente novamente. {e}",
-                "nome": nome,
-                "email": email,                
-                "telefone": telefone,
-                "perfil": perfil,
-                "crmv": crmv
-            }
-        )
+        return templates.TemplateResponse("cadastro.html", {
+            "request": request,
+            "erro": f"Erro ao criar cadastro. Tente novamente. {e}",
+            "dados": dados_formulario
+        })
 
 
 @router.get("/esqueci-senha")

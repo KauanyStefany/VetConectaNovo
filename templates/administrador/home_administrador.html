@@ -1,5 +1,63 @@
-{% extends "base_publica.html" %}
-{% block conteudo %}
-<h1>Home do Administrador</h1>
-<hr>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetConecta - Admin</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="topo">
+            <div class="topo-logo">
+                <img src="/static/img/pata_icon.png" alt="Logo Pata" class="logo-pata" height="50">
+                <img src="/static/img/nome_icon.png" alt="Logo Pata" class="logo-pata" height="50">
+            
+        </div>
+    </header>
+
+    <!-- Layout -->
+    <div class="layout">
+
+        <!-- Menu lateral -->
+        <nav class="sidebar">
+            <ul class="menu">
+                <li class="menu-item ativo">
+                    <i class="fas fa-user-shield"></i> Admin
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i> Tutor
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-stethoscope"></i> Veterinário
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo">
+            <h1>Página Inicial do Admin</h1>
+
+            <div class="cards-grid">
+                <div class="card"><i class="fas fa-folder"></i> Categorias</div>
+                <div class="card"><i class="fas fa-comments"></i> Comentários</div>
+                <div class="card"><i class="fas fa-envelope"></i> Mensagens</div>
+                <div class="card"><i class="fas fa-file-alt"></i> Artigos</div>
+                <div class="card"><i class="fas fa-flag"></i> Denúncias</div>
+                <div class="card"><i class="fas fa-id-card"></i> Solicitações de Validação de CRMV</div>
+                <div class="card"><i class="fas fa-chart-bar"></i> Gráfico</div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

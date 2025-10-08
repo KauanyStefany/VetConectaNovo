@@ -1,0 +1,47 @@
+/* Botão principal */
+.custom-btn {
+  background-color: #8c6bb1;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 25px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.custom-btn:hover {
+  background-color: #6f5495;
+}
+
+/* Área de upload customizada */
+.upload-area {
+  border: 2px dashed #b89dd6;
+  border-radius: 10px;
+  background-color: #f6f1fa;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.upload-area:hover {
+  background-color: #ede3f7;
+  border-color: #8c6bb1;
+}
+
+.upload-area p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.upload-icon {
+  font-size: 2rem;
+  color: #8c6bb1;
+  margin-bottom: 10px;
+}
+
+.form-spacing {
+  margin-bottom: 30px;
+}
+
+

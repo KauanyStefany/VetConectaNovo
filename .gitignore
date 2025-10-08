@@ -84,3 +84,5 @@ cython_debug/
 *.sw?
 CLAUDE.md
 .claude
+
+node_modules/
