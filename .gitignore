@@ -86,3 +86,4 @@ CLAUDE.md
 .claude
 
 node_modules/
+dados.db
