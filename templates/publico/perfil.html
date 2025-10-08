@@ -53,11 +53,11 @@
                             <label class="form-label fw-semibold">CRMV</label>
                             <input type="text" class="form-control" name="crmv" value="{{ usuario.crmv or '' }}" readonly>
                         </div>
-                        {% endif %}
+                        
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Bio</label>
                             <textarea class="form-control" name="bio" rows="2">{{ usuario.bio or '' }}</textarea>
-                        </div>
+                        </div>{% endif %}
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                         </div>

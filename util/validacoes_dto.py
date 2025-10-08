@@ -14,28 +14,15 @@ def validar_crmv(crmv: Optional[str]) -> Optional[str]:
 
     # Remover caracteres especiais
     crmv_limpo = re.sub(r'[^0-9]', '', crmv)
-
+    
     if len(crmv_limpo) != 6:
-        raise ValidacaoError('crmv deve ter 11 dígitos')
+        raise ValidacaoError('CRMV deve ter 6 dígitos')
 
     # Verificar se todos os dígitos são iguais
     if crmv_limpo == crmv_limpo[0] * 6:
         raise ValidacaoError('CRMV inválido')
 
-    # Validar dígito verificador
-    def calcular_digito(crmv_parcial):
-        soma = sum(int(crmv_parcial[i]) * (len(crmv_parcial) + 1 - i) for i in range(len(crmv_parcial)))
-        resto = soma % 11
-        return 0 if resto < 2 else 11 - resto
-
-    if int(crmv_limpo[9]) != calcular_digito(crmv_limpo[:9]):
-        raise ValidacaoError('crmv inválido')
-
-    if int(crmv_limpo[10]) != calcular_digito(crmv_limpo[:10]):
-        raise ValidacaoError('crmv inválido')
-
     return crmv_limpo
-
 
 def validar_telefone(telefone: str) -> str:
     if not telefone:
