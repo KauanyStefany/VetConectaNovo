@@ -2,6 +2,7 @@ from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import RedirectResponse
 from pydantic_core import ValidationError
 
+from dtos.cadastro_dto import CadastroTutorDTO, CadastroVeterinarioDTO
 from dtos.login_dto import LoginDTO
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
@@ -48,7 +49,7 @@ async def post_login(
                 "login.html",
                 {
                     "request": request,
-                    "erro": "Email ou senha inválidos",
+                    "erros": {"EMAIL": "Credenciais inválidas."},
                     "email": email,
                     "redirect": redirect
                 }
@@ -80,19 +81,18 @@ async def post_login(
     
     except ValidationError as e:
         # Extrair mensagens de erro do Pydantic
-        erros = []
+        erros = dict()
         for erro in e.errors():
             campo = erro['loc'][0] if erro['loc'] else 'campo'
             mensagem = erro['msg']
-            erros.append(f"{campo.capitalize()}: {mensagem}")
+            erros[campo.upper()] = mensagem.replace('Value error, ', '')
 
-        erro_msg = " | ".join(erros)
         # logger.warning(f"Erro de validação no cadastro: {erro_msg}")
 
         # Retornar template com dados preservados e erro
         return templates.TemplateResponse("login.html", {
             "request": request,
-            "erro": erro_msg,
+            "erros": erros,
             "dados": dados_formulario  # Preservar dados digitados
         })
 
@@ -101,7 +101,7 @@ async def post_login(
 
         return templates.TemplateResponse("login.html", {
             "request": request,
-            "erro": "Erro ao processar cadastro. Tente novamente.",
+            "erros": {"GERAL": "Erro ao processar o login. Tente novamente."},
             "dados": dados_formulario
         })
 
@@ -146,7 +146,7 @@ async def post_cadastro(
                 "cadastro.html",
                 {
                     "request": request,
-                    "erro": "As senhas não coincidem",
+                    "erros": {"GERAL": "Senhas não coincidem"},
                     "dados": dados_formulario
                 }
             )
@@ -157,7 +157,7 @@ async def post_cadastro(
                 "cadastro.html",
                 {
                     "request": request,
-                    "erro": msg_erro,
+                    "erros": {"SENHA": msg_erro},
                     "dados": dados_formulario
                 }
             )
@@ -167,13 +167,14 @@ async def post_cadastro(
                 "cadastro.html",
                 {
                     "request": request,
-                    "erro": "Email já cadastrado",
+                    "erros": {"EMAIL": "E-mail já cadastrado"},
                     "dados": dados_formulario
                 }
             )
 
         id_usuario = None
         if perfil == 'tutor':
+            cadastro_tutor_dto = CadastroTutorDTO(nome=nome, email=email, telefone=telefone, senha=senha)
         # Criar usuário com senha hash
             tutor = Tutor(
                 id_usuario=0,
@@ -190,8 +191,9 @@ async def post_cadastro(
                 descricao_pets=None
             )
             id_usuario = tutor_repo.inserir_tutor(tutor)
-            
         else:
+        # Criar DTO para validação
+            cadastro_veterinario_dto = CadastroVeterinarioDTO(nome=nome, email=email, telefone=telefone, senha=senha, crmv=crmv)
             veterinario = Veterinario(                                
                 id_usuario=0,
                 nome=nome,
@@ -215,23 +217,22 @@ async def post_cadastro(
         return RedirectResponse("/login", status.HTTP_303_SEE_OTHER)
 
     except ValidationError as e:
-        erros = []
+        erros = dict()
         for erro in e.errors():
             campo = erro['loc'][0] if erro['loc'] else 'campo'
             mensagem = erro['msg']
-            erros.append(f"{campo.capitalize()}: {mensagem}")
+            erros[campo.upper()] = mensagem.replace('Value error, ', '')
 
-        erro_msg = " | ".join(erros)
         return templates.TemplateResponse("cadastro.html", {
             "request": request,
-            "erro": erro_msg,
+            "erros": erros,
             "dados": dados_formulario
         })
 
     except Exception as e:
         return templates.TemplateResponse("cadastro.html", {
             "request": request,
-            "erro": f"Erro ao criar cadastro. Tente novamente. {e}",
+            "erros": {"GERAL": "Erro ao processar o cadastro. Tente novamente."},
             "dados": dados_formulario
         })
 

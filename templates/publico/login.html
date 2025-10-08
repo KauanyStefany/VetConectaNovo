@@ -18,33 +18,38 @@
                 {% if redirect: %}
                 <input type="hidden" name="next" value="{{ redirect }}">
                 {% endif %}
+                {% if erros and 'GERAL' in erros.keys() %}
+                <div class="alert alert-danger" role="alert">
+                    {{ erros['GERAL'] }}
+                </div>
+                {% endif %}
                 <div class="mb-3 text-start">
+                    <label for="email" class="form-label">Email</label>
                     <input
                         type="email"
-                        class="form-control {% if erro and 'nome' in erro.lower() %}is-invalid{% endif %}"
+                        class="form-control {% if erros and 'EMAIL' in erros.keys() %}is-invalid{% endif %}"
                         id="email"
                         value="{{dados.email if dados else '' }}"
-                        placeholder="Digite seu email"
+                        placeholder="Digite seu e-mail"
                         required
                         name="email"
                     >
-                    <label for="email" class="form-label">Email</label>
-                    {% if erro and 'email' in erro.lower() %}
-                    <div class="invalid-feedback">{{ erro }}</div>
+                    {% if erros and 'EMAIL' in erros.keys() %}
+                    <div class="invalid-feedback">{{ erros['EMAIL'] }}</div>
                     {% endif %}
                 </div>
                 <div class="mb-3 text-start">
+                    <label for="senha" class="form-label">Senha</label>
                     <input
                         type="password"
-                        class="form-control {% if erro and 'nome' in erro.lower() %}is-invalid{% endif %}"
+                        class="form-control {% if erros and 'SENHA' in erros.keys() %}is-invalid{% endif %}"
                         id="senha"
                         placeholder="Digite sua senha"
                         required
                         name="senha"
                     >
-                    <label for="senha" class="form-label">Senha</label>
-                    {% if erro and 'senha' in erro.lower() %}
-                    <div class="invalid-feedback">{{ erro }}</div>
+                    {% if erros and 'SENHA' in erros.keys() %}
+                    <div class="invalid-feedback">{{ erros['SENHA'] }}</div>
                     {% endif %}
                 </div>
                 <button type="submit" class="btn btn-login w-100">Entrar</button>
