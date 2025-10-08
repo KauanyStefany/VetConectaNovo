@@ -46,7 +46,7 @@ async def pagina_categoria_artigo(request: Request):
     return response
 
 
-@router.post("/cadastrar_categoria")
+@router.post("/cadastrar_categor||||||||||||||||||||||ia")
 async def post_categoria_artigor(request: Request, nome: str = Form(...), descricao: str = Form(...)):
     categoria = CategoriaArtigo(id=0, nome=nome, descricao=descricao)
     id_categoria = categoria_artigo_repo.inserir_categoria(categoria)
