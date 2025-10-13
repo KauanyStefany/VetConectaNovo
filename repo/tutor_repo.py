@@ -88,20 +88,25 @@ def obter_por_id(id_tutor: int) -> Optional[Tutor]:
             cursor = conn.cursor()
             cursor.execute(tutor_sql.OBTER_POR_ID, (id_tutor,))
             row = cursor.fetchone()
-            
             if row is None:
                 return None
-                
             tutor = Tutor(
                 id_usuario=row["id_tutor"],
                 nome=row["nome"],
                 email=row["email"],
                 senha="",  # Não expor senha
                 telefone=row["telefone"],
-                quantidade_pets=row["quantidade_pets"] if "quantidade_pets" in row.keys() else 0,
-                descricao_pets=row["descricao_pets"] if "descricao_pets" in row.keys() else None
+                perfil=row["perfil"],
+                foto=row["foto"],
+                data_cadastro=row["data_cadastro"],
+                data_token=row["data_token"],
+                token_redefinicao=row["token_redefinicao"],
+                quantidade_pets=row["quantidade_pets"],
+                descricao_pets=row["descricao_pets"]
             )
             return tutor
     except Exception as e:
         print(f"Erro ao obter tutor por ID: {e}")
         return None
+    
+    

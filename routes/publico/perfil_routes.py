@@ -17,12 +17,16 @@ templates = criar_templates("templates/publico")
 @router.get("/")
 @requer_autenticacao()
 async def perfil(request: Request, usuario_logado: dict = None):
-    veterinario = veterinario_repo.obter_por_id(usuario_logado['id'])
+    usuario = None
+    if usuario_logado['perfil'] == 'tutor':
+        usuario = tutor_repo.obter_por_id(usuario_logado['id'])
+    elif usuario_logado['perfil'] == 'veterinario':
+        usuario = veterinario_repo.obter_por_id(usuario_logado['id'])
     return templates.TemplateResponse(
         "perfil.html",
         {
             "request": request,
-            "usuario": veterinario
+            "usuario": usuario,
         }
     )
 
