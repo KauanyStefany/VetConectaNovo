@@ -17,13 +17,13 @@ def criar_tabela_categoria_artigo() -> bool:
 def inserir_categoria(categoria: CategoriaArtigo) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(INSERIR, (categoria.nome, categoria.descricao))
+        cursor.execute(INSERIR, (categoria.nome, categoria.cor, categoria.imagem))
         return cursor.lastrowid
 
 def atualizar_categoria(categoria: CategoriaArtigo) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(ATUALIZAR, (categoria.nome, categoria.descricao, categoria.id_categoria_artigo))
+        cursor.execute(ATUALIZAR, (categoria.nome, categoria.id_categoria_artigo, categoria.cor, categoria.imagem))
         return cursor.rowcount > 0
 
 def excluir_categoria(id_categoria: int) -> bool:

@@ -2,17 +2,19 @@ CRIAR_TABELA = """
 CREATE TABLE IF NOT EXISTS categoria_artigo (
     id_categoria_artigo INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
-    descricao TEXT
+    cor TEXT NOT NULL,
+    imagem TEXT NOT NULL
 );
 """
 
 INSERIR = """
-INSERT INTO categoria_artigo (nome, descricao)
-VALUES (?, ?);
+INSERT INTO categoria_artigo (nome, cor, imagem)
+VALUES (?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE categoria_artigo SET nome = ?, descricao = ?
+UPDATE categoria_artigo 
+SET nome = ?, cor = ?, imagem = ?
 WHERE id_categoria_artigo = ?;
 """
 
@@ -33,4 +35,5 @@ SELECT *
 FROM categoria_artigo 
 WHERE id_categoria_artigo = ?;
 """
+
 

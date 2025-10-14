@@ -32,8 +32,9 @@ async def post_categoria_alterar(
     request: Request,
     id_categoria: int = Form(...), 
     nome: str = Form(...),
-    descricao: str = Form(...)):
-    categoria = CategoriaArtigo(id_categoria= id_categoria, nome=nome, descricao=descricao)
+    cor: str = Form(...),
+    imagem: str = Form(...)):
+    categoria = CategoriaArtigo(id_categoria= id_categoria, nome=nome, cor=cor, imagem=imagem)
     if categoria_artigo_repo.atualizar_categoria(categoria):
         response = RedirectResponse("/administrador/categorias", status_code=303)
         return response
@@ -46,9 +47,9 @@ async def pagina_categoria_artigo(request: Request):
     return response
 
 
-@router.post("/cadastrar_categor||||||||||||||||||||||ia")
-async def post_categoria_artigor(request: Request, nome: str = Form(...), descricao: str = Form(...)):
-    categoria = CategoriaArtigo(id=0, nome=nome, descricao=descricao)
+@router.post("/cadastrar_categoria")
+async def post_categoria_artigor(request: Request, nome: str = Form(...), cor: str = Form(...), imagem: str = Form(...)):
+    categoria = CategoriaArtigo(id=0, nome=nome, cor=cor, imagem=imagem)
     id_categoria = categoria_artigo_repo.inserir_categoria(categoria)
     if id_categoria:
         response = RedirectResponse("/administrador/cadastrar_categoria.html", status_code=303)

@@ -5,4 +5,5 @@ from typing import Optional
 class CategoriaArtigo:
     id_categoria_artigo: int
     nome: str
-    descricao: Optional[str] = None
+    cor: str
+    imagem: str
