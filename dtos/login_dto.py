@@ -1,26 +1,49 @@
-from pydantic import BaseModel, field_validator
+"""
+DTO para autenticação de usuário.
+Valida credenciais de acesso (email e senha).
+"""
+
+from pydantic import EmailStr, Field, field_validator
+from .base_dto import BaseDTO
+from util.validacoes_dto import validar_senha
 
 
-class LoginDTO(BaseModel):
-    email: str
-    senha: str
+class LoginDTO(BaseDTO):
+    """
+    DTO para autenticação de usuário.
+    Valida credenciais de acesso.
+    """
 
-    @field_validator('email')
-    @classmethod
-    def validate_email(cls, email):
-        if not email:
-            raise ValueError('E-mail é obrigatório')
-        if '@' not in email or '.' not in email:
-            raise ValueError('E-mail inválido')
-        return email
+    email: EmailStr = Field(
+        ...,
+        description="E-mail do usuário",
+        examples=["usuario@example.com"]
+    )
+
+    senha: str = Field(
+        ...,
+        min_length=6,
+        max_length=128,
+        description="Senha do usuário"
+    )
 
     @field_validator('senha')
     @classmethod
-    def validate_senha(cls, senha):
-        if not senha:
-            raise ValueError('Senha é obrigatória')
-        if len(senha) < 6:
-            raise ValueError('Senha deve ter pelo menos 6 caracteres')
-        return senha
-    
-    
+    def validar_senha_campo(cls, v: str) -> str:
+        """Validação básica de senha para login"""
+        validador = cls.validar_campo_wrapper(
+            lambda valor, campo: validar_senha(
+                valor, min_chars=6, max_chars=128, obrigatorio=True
+            ),
+            "Senha"
+        )
+        return validador(v)
+
+    @classmethod
+    def criar_exemplo_json(cls, **overrides) -> dict:
+        """Cria exemplo JSON para documentação"""
+        return {
+            "email": "usuario@example.com",
+            "senha": "senha123",
+            **overrides
+        }

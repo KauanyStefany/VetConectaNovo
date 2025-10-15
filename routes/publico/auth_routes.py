@@ -2,6 +2,20 @@ from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import RedirectResponse
 from pydantic_core import ValidationError
 from typing import Optional
+import os
+import logging
+from enum import Enum
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+
+# Configurar logger
+logger = logging.getLogger(__name__)
+
+
+# Enum para perfis de usuário
+class PerfilUsuario(str, Enum):
+    TUTOR = "tutor"
+    VETERINARIO = "veterinario"
 
 from dtos.cadastro_dto import CadastroTutorDTO, CadastroVeterinarioDTO
 from dtos.login_dto import LoginDTO
@@ -14,6 +28,27 @@ from util.template_util import criar_templates
 
 router = APIRouter()
 templates = criar_templates("templates/publico")
+
+# Configurar rate limiter
+limiter = Limiter(key_func=get_remote_address)
+
+
+def processar_erros_validacao(e: ValidationError) -> dict:
+    """
+    Processa erros de validação do Pydantic.
+
+    Args:
+        e: Exceção de validação
+
+    Returns:
+        Dicionário de erros formatados
+    """
+    erros = {}
+    for erro in e.errors():
+        campo = erro['loc'][0] if erro['loc'] else 'campo'
+        mensagem = erro['msg'].replace('Value error, ', '')
+        erros[str(campo).upper()] = mensagem
+    return erros
 
 
 @router.get("/login")
@@ -29,6 +64,7 @@ async def get_login(request: Request, redirect: Optional[str] = None):
 
 
 @router.post("/login")
+@limiter.limit("5/minute")  # 5 tentativas por minuto
 async def post_login(
     request: Request,
     email: str = Form(),
@@ -81,24 +117,18 @@ async def post_login(
     
     
     except ValidationError as e:
-        # Extrair mensagens de erro do Pydantic
-        erros = dict()
-        for erro in e.errors():
-            campo = erro['loc'][0] if erro['loc'] else 'campo'
-            mensagem = erro['msg']
-            erros[str(campo).upper()] = mensagem.replace('Value error, ', '')
+        erros = processar_erros_validacao(e)
+        logger.warning(f"Erro de validação no login - Email: {email} - Erros: {e.errors()}")
 
-        # logger.warning(f"Erro de validação no cadastro: {erro_msg}")
-
-        # Retornar template com dados preservados e erro
         return templates.TemplateResponse("login.html", {
             "request": request,
             "erros": erros,
-            "dados": dados_formulario  # Preservar dados digitados
-        })
+            "dados": dados_formulario,
+            "redirect": redirect
+        }, status_code=status.HTTP_400_BAD_REQUEST)
 
     except Exception as e:
-        # logger.error(f"Erro ao processar cadastro: {e}")
+        logger.error(f"Erro crítico ao processar login - Email: {email} - Erro: {str(e)}", exc_info=True)
 
         return templates.TemplateResponse("login.html", {
             "request": request,
@@ -123,6 +153,7 @@ async def get_cadastro(request: Request):
 
 
 @router.post("/cadastro")
+@limiter.limit("3/hour")  # 3 cadastros por hora por IP
 async def post_cadastro(
     request: Request,
     nome: str = Form(),
@@ -130,28 +161,19 @@ async def post_cadastro(
     telefone: str = Form(),
     senha: str = Form(),
     confirmar_senha: str = Form(),
-    perfil: str = Form(), # TODO: adicionar restricao para aceitar apenas 'tutor' ou 'veterinario'
+    perfil: PerfilUsuario = Form(),
     crmv: str = Form(None)
 ):
     dados_formulario = {
         "nome": nome,
         "email": email,
         "telefone": telefone,
-        "perfil": perfil,
+        "perfil": perfil.value,
         "crmv": crmv
     }
 
     try:
-        if senha != confirmar_senha:
-            return templates.TemplateResponse(
-                "cadastro.html",
-                {
-                    "request": request,
-                    "erros": {"GERAL": "Senhas não coincidem"},
-                    "dados": dados_formulario
-                }
-            )
-
+        # Validar força da senha antes de criar DTO
         senha_valida, msg_erro = validar_forca_senha(senha)
         if not senha_valida:
             return templates.TemplateResponse(
@@ -160,30 +182,42 @@ async def post_cadastro(
                     "request": request,
                     "erros": {"SENHA": msg_erro},
                     "dados": dados_formulario
-                }
+                },
+                status_code=status.HTTP_400_BAD_REQUEST
             )
 
-        if usuario_repo.obter_por_email(email):
+        # Verificar se email já existe (mensagem genérica por segurança)
+        if usuario_repo.obter_por_email(email.strip().lower()):
+            logger.warning(f"Tentativa de cadastro com email existente: {email}")
             return templates.TemplateResponse(
                 "cadastro.html",
                 {
                     "request": request,
-                    "erros": {"EMAIL": "E-mail já cadastrado"},
+                    "erros": {"GERAL": "Não foi possível completar o cadastro. Verifique os dados."},
                     "dados": dados_formulario
-                }
+                },
+                status_code=status.HTTP_409_CONFLICT
             )
 
+        # Validar usando DTO apropriado e criar usuário
         id_usuario = None
-        if perfil == 'tutor':
-            cadastro_tutor_dto = CadastroTutorDTO(nome=nome, email=email, telefone=telefone, senha=senha)
-        # Criar usuário com senha hash
-            tutor = Tutor(
-                id_usuario=0,
+        if perfil == PerfilUsuario.TUTOR:
+            cadastro_dto = CadastroTutorDTO(
                 nome=nome,
                 email=email,
-                senha=criar_hash_senha(senha),
                 telefone=telefone,
-                perfil=perfil,
+                senha=senha,
+                confirmar_senha=confirmar_senha,
+                perfil=perfil.value
+            )
+
+            tutor = Tutor(
+                id_usuario=0,
+                nome=cadastro_dto.nome,
+                email=cadastro_dto.email,
+                senha=criar_hash_senha(cadastro_dto.senha),
+                telefone=cadastro_dto.telefone,
+                perfil=perfil.value,
                 foto=None,
                 token_redefinicao=None,
                 data_token=None,
@@ -192,21 +226,33 @@ async def post_cadastro(
                 descricao_pets=None
             )
             id_usuario = tutor_repo.inserir_tutor(tutor)
+
         else:
-        # Criar DTO para validação
-            cadastro_veterinario_dto = CadastroVeterinarioDTO(nome=nome, email=email, telefone=telefone, senha=senha, crmv=crmv)
-            veterinario = Veterinario(                                
-                id_usuario=0,
+            if not crmv:
+                raise ValueError("CRMV é obrigatório para veterinários")
+
+            cadastro_dto = CadastroVeterinarioDTO(
                 nome=nome,
                 email=email,
-                senha=criar_hash_senha(senha),
                 telefone=telefone,
-                perfil=perfil,
+                senha=senha,
+                confirmar_senha=confirmar_senha,
+                perfil=perfil.value,
+                crmv=crmv
+            )
+
+            veterinario = Veterinario(
+                id_usuario=0,
+                nome=cadastro_dto.nome,
+                email=cadastro_dto.email,
+                senha=criar_hash_senha(cadastro_dto.senha),
+                telefone=cadastro_dto.telefone,
+                perfil=perfil.value,
                 foto=None,
                 token_redefinicao=None,
                 data_token=None,
                 data_cadastro=None,
-                crmv=crmv,
+                crmv=cadastro_dto.crmv,
                 verificado=False,
                 bio=None
             )
@@ -215,27 +261,35 @@ async def post_cadastro(
         if not id_usuario:
             raise Exception("Erro ao inserir usuário no banco de dados.")
 
-        return RedirectResponse("/login", status.HTTP_303_SEE_OTHER)
+        logger.info(f"Novo usuário cadastrado com sucesso. ID: {id_usuario}")
+        return RedirectResponse("/login?cadastro=sucesso", status.HTTP_303_SEE_OTHER)
 
     except ValidationError as e:
-        erros = dict()
-        for erro in e.errors():
-            campo = erro['loc'][0] if erro['loc'] else 'campo'
-            mensagem = erro['msg']
-            erros[str(campo).upper()] = mensagem.replace('Value error, ', '')
+        erros = processar_erros_validacao(e)
+        logger.warning(f"Erro de validação no cadastro - Email: {email} - Erros: {e.errors()}")
 
         return templates.TemplateResponse("cadastro.html", {
             "request": request,
             "erros": erros,
             "dados": dados_formulario
-        })
+        }, status_code=status.HTTP_400_BAD_REQUEST)
+
+    except ValueError as e:
+        logger.warning(f"Erro de valor no cadastro: {str(e)}")
+        return templates.TemplateResponse("cadastro.html", {
+            "request": request,
+            "erros": {"GERAL": str(e)},
+            "dados": dados_formulario
+        }, status_code=status.HTTP_400_BAD_REQUEST)
 
     except Exception as e:
+        logger.error(f"Erro crítico ao processar cadastro - Email: {email} - Erro: {str(e)}", exc_info=True)
+
         return templates.TemplateResponse("cadastro.html", {
             "request": request,
             "erros": {"GERAL": "Erro ao processar o cadastro. Tente novamente."},
             "dados": dados_formulario
-        })
+        }, status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @router.get("/esqueci-senha")
@@ -244,6 +298,7 @@ async def get_esqueci_senha(request: Request):
 
 
 @router.post("/esqueci-senha")
+@limiter.limit("3/hour")  # 3 tentativas por hora
 async def post_esqueci_senha(
     request: Request,
     email: str = Form(...)
@@ -258,19 +313,19 @@ async def post_esqueci_senha(
         token = gerar_token_redefinicao()
         data_expiracao = obter_data_expiracao_token(24)  # 24 horas
         usuario_repo.atualizar_token(email, token, data_expiracao)
-        
+
         # TODO: Enviar email com o link de redefinição
-        # Por enquanto, vamos apenas mostrar o link (em produção, remover isso)
-        link_redefinicao = f"http://localhost:8000/redefinir-senha/{token}"
-        
-        return templates.TemplateResponse(
-            "esqueci_senha.html",
-            {
-                "request": request,
-                "sucesso": mensagem_sucesso,
-                "debug_link": link_redefinicao  # Remover em produção
-            }
-        )
+        response_data = {
+            "request": request,
+            "sucesso": mensagem_sucesso
+        }
+
+        # Apenas mostrar debug_link em ambiente de desenvolvimento
+        if os.getenv("ENVIRONMENT", "development") == "development":
+            link_redefinicao = f"http://localhost:8000/redefinir-senha/{token}"
+            response_data["debug_link"] = link_redefinicao
+
+        return templates.TemplateResponse("esqueci_senha.html", response_data)
     
     return templates.TemplateResponse(
         "esqueci_senha.html",
@@ -304,6 +359,7 @@ async def get_redefinir_senha(request: Request, token: str):
 
 
 @router.post("/redefinir-senha/{token}")
+@limiter.limit("5/hour")  # 5 tentativas por hora
 async def post_redefinir_senha(
     request: Request,
     token: str,

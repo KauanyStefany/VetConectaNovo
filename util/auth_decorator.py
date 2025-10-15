@@ -38,16 +38,24 @@ def esta_logado(request: Request) -> bool:
 def criar_sessao(request: Request, usuario: dict) -> None:
     """
     Cria uma sessão para o usuário após login
-    
+
     Args:
         request: Objeto Request do FastAPI
         usuario: Dicionário com dados do usuário
     """
     if hasattr(request, 'session'):
+        # Limpar sessão anterior para prevenir fixação de sessão
+        request.session.clear()
+
         # Remove senha da sessão por segurança
         usuario_sessao = usuario.copy()
         usuario_sessao.pop('senha', None)
+
+        # Criar nova sessão com dados do usuário
         request.session['usuario'] = usuario_sessao
+
+        # Forçar regeneração do cookie de sessão
+        request.session.modified = True
 
 
 def destruir_sessao(request: Request) -> None:

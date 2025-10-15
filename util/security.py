@@ -3,8 +3,12 @@ Módulo de segurança para gerenciar senhas e tokens
 """
 import secrets
 import string
+import logging
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
+
+# Configurar logger
+logger = logging.getLogger(__name__)
 
 # Contexto para hash de senhas usando bcrypt
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -26,17 +30,21 @@ def criar_hash_senha(senha: str) -> str:
 def verificar_senha(senha_plana: str, senha_hash: str) -> bool:
     """
     Verifica se a senha em texto plano corresponde ao hash
-    
+
     Args:
         senha_plana: Senha em texto plano
         senha_hash: Hash da senha armazenado no banco
-    
+
     Returns:
         True se a senha está correta, False caso contrário
     """
     try:
         return pwd_context.verify(senha_plana, senha_hash)
-    except:
+    except ValueError as e:
+        logger.warning(f"Erro ao verificar senha: hash inválido - {e}")
+        return False
+    except Exception as e:
+        logger.error(f"Erro inesperado ao verificar senha: {e}", exc_info=True)
         return False
 
 
@@ -71,24 +79,36 @@ def obter_data_expiracao_token(horas: int = 24) -> str:
 def validar_forca_senha(senha: str) -> tuple[bool, str]:
     """
     Valida se a senha atende aos requisitos mínimos de segurança
-    
+
     Args:
         senha: Senha a ser validada
-    
+
     Returns:
         Tupla (válida, mensagem de erro se inválida)
     """
-    if len(senha) < 6:
-        return False, "A senha deve ter pelo menos 6 caracteres"
-    
-    # Adicione mais validações conforme necessário
-    # if not any(c.isupper() for c in senha):
-    #     return False, "A senha deve conter pelo menos uma letra maiúscula"
-    # if not any(c.islower() for c in senha):
-    #     return False, "A senha deve conter pelo menos uma letra minúscula"
-    # if not any(c.isdigit() for c in senha):
-    #     return False, "A senha deve conter pelo menos um número"
-    
+    if len(senha) < 8:
+        return False, "A senha deve ter pelo menos 8 caracteres"
+
+    if not any(c.islower() for c in senha):
+        return False, "A senha deve conter pelo menos uma letra minúscula"
+
+    if not any(c.isupper() for c in senha):
+        return False, "A senha deve conter pelo menos uma letra maiúscula"
+
+    if not any(c.isdigit() for c in senha):
+        return False, "A senha deve conter pelo menos um número"
+
+    if not any(c in "!@#$%^&*(),.?\":{}|<>_-+=[]\\;'/" for c in senha):
+        return False, "A senha deve conter pelo menos um caractere especial (!@#$%^&*(),.?\":{}|<>_-+=[]\\;'/)"
+
+    # Lista de senhas comuns que devem ser rejeitadas
+    senhas_comuns = [
+        "123456", "password", "123456789", "12345678", "12345",
+        "1234567", "qwerty", "abc123", "password1", "123123"
+    ]
+    if senha.lower() in senhas_comuns:
+        return False, "Esta senha é muito comum. Escolha uma senha mais segura."
+
     return True, ""
 
 

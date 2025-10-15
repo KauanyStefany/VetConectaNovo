@@ -1,1 +1,0 @@
-Faça uma página HTML com base no template do arquivo em anexo. Use exclusivamente classes do Bootstrap 5.3.7. Para as cores que não estão presentes na paleta padrão do Bootstrap, crie classes CSS. De forma alguma, crie código CSS inline ou no elemento <style>. Se for necessário criar classes CSS para cores, crie em um arquivo separado. Use seu editor para me mostrar o resultado.

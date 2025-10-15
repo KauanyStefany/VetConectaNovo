@@ -4,6 +4,11 @@ env/
 venv/
 ENV/
 
+# Variáveis de ambiente (SEGURANÇA)
+.env
+.env.local
+.env.*.local
+
 # Bytecode compilado
 __pycache__/
 *.py[cod]
@@ -11,6 +16,7 @@ __pycache__/
 
 # Logs
 *.log
+logs/
 
 # Arquivos temporários do sistema
 *.swp
@@ -87,3 +93,11 @@ CLAUDE.md
 
 node_modules/
 dados.db
+
+# Uploads de usuários (não versionar - LGPD)
+static/uploads/usuarios/*
+!static/uploads/usuarios/.gitkeep
+
+# Uploads temporários
+static/uploads/temp/*
+!static/uploads/temp/.gitkeep

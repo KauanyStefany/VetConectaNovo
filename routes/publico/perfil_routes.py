@@ -1,4 +1,5 @@
 import os
+import logging
 from fastapi import APIRouter, Form, Request, status, UploadFile, File
 from fastapi.responses import RedirectResponse
 from typing import Optional
@@ -11,6 +12,11 @@ from util.security import criar_hash_senha, verificar_senha, validar_forca_senha
 from util.auth_decorator import requer_autenticacao, obter_usuario_logado
 from util.template_util import criar_templates
 from repo import veterinario_repo
+from util.file_validator import FileValidator, FileValidationError
+from util.file_manager import FileManager
+from config.upload_config import UploadConfig
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 templates = criar_templates("templates/publico")
@@ -216,43 +222,101 @@ async def alterar_foto(
     foto: UploadFile = File(...),
     usuario_logado: Optional[dict] = None
 ):
+    """
+    Endpoint para alteração de foto de perfil
+
+    Validações realizadas:
+    - Tipo de arquivo (magic bytes)
+    - Tamanho do arquivo
+    - Dimensões da imagem
+    - Nome do arquivo (path traversal)
+    - Permissões do sistema
+    """
     if not usuario_logado:
+        logger.warning("Tentativa de upload sem autenticação")
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
-    # Validar tipo de arquivo
-    tipos_permitidos = ["image/jpeg", "image/png", "image/jpg"]
-    if foto.content_type not in tipos_permitidos:
-        return RedirectResponse("/perfil?erro=tipo_invalido", status.HTTP_303_SEE_OTHER)
+    usuario_id = usuario_logado['id']
+    logger.info(f"Iniciando upload de foto para usuário {usuario_id}")
 
-    # Criar diretório de upload se não existir
-    upload_dir = "static/uploads/usuarios"
-    os.makedirs(upload_dir, exist_ok=True)
-
-    # Gerar nome único para o arquivo
-    import secrets
-    if not foto.filename:
-        return RedirectResponse("/perfil?erro=arquivo_invalido", status.HTTP_303_SEE_OTHER)
-
-    extensao = foto.filename.split(".")[-1]
-    nome_arquivo = f"{usuario_logado['id']}_{secrets.token_hex(8)}.{extensao}"
-    caminho_arquivo = os.path.join(upload_dir, nome_arquivo)
-
-    # Salvar arquivo
     try:
-        conteudo = await foto.read()
-        with open(caminho_arquivo, "wb") as f:
-            f.write(conteudo)
+        # 1. Validação completa do arquivo
+        try:
+            conteudo, extensao = await FileValidator.validar_imagem_completo(
+                foto,
+                max_size=UploadConfig.MAX_FILE_SIZE
+            )
+        except FileValidationError as e:
+            logger.warning(f"Validação falhou para usuário {usuario_id}: {e}")
+            return RedirectResponse(
+                f"/perfil?erro={str(e)}",
+                status.HTTP_303_SEE_OTHER
+            )
 
-        # Atualizar caminho no banco
-        caminho_relativo = f"/static/uploads/usuarios/{nome_arquivo}"
-        usuario_repo.atualizar_foto(usuario_logado['id'], caminho_relativo)
+        # 2. Verificar espaço em disco
+        if not FileManager.verificar_espaco_disco(len(conteudo)):
+            logger.error("Espaço em disco insuficiente")
+            return RedirectResponse(
+                "/perfil?erro=Espaço em disco insuficiente",
+                status.HTTP_303_SEE_OTHER
+            )
 
-        # Atualizar sessão
+        # 3. Obter foto atual do usuário
+        usuario = usuario_repo.obter_usuario_por_id(usuario_id)
+        if not usuario:
+            logger.error(f"Usuário {usuario_id} não encontrado")
+            return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
+        foto_antiga = usuario.foto
+
+        # 4. Gerar nome seguro para novo arquivo
+        nome_arquivo = FileValidator.gerar_nome_arquivo_seguro(extensao)
+
+        # 5. Salvar novo arquivo
+        try:
+            caminho_relativo = FileManager.salvar_arquivo(
+                conteudo,
+                nome_arquivo,
+                usuario_id
+            )
+        except (PermissionError, OSError) as e:
+            logger.error(f"Erro ao salvar arquivo: {e}", exc_info=True)
+            return RedirectResponse(
+                "/perfil?erro=Erro ao salvar arquivo. Contate o administrador.",
+                status.HTTP_303_SEE_OTHER
+            )
+
+        # 6. Atualizar banco de dados
+        try:
+            usuario_repo.atualizar_foto(usuario_id, caminho_relativo)
+        except Exception as e:
+            logger.error(f"Erro ao atualizar banco: {e}", exc_info=True)
+            # Rollback: deletar arquivo recém-criado
+            FileManager.deletar_foto_antiga(caminho_relativo)
+            return RedirectResponse(
+                "/perfil?erro=Erro ao atualizar perfil",
+                status.HTTP_303_SEE_OTHER
+            )
+
+        # 7. Deletar foto antiga (LGPD compliance)
+        if foto_antiga:
+            FileManager.deletar_foto_antiga(foto_antiga)
+
+        # 8. Atualizar sessão
         usuario_logado['foto'] = caminho_relativo
         from util.auth_decorator import criar_sessao
         criar_sessao(request, usuario_logado)
 
-    except Exception as e:
-        return RedirectResponse("/perfil?erro=upload_falhou", status.HTTP_303_SEE_OTHER)
+        logger.info(f"Upload concluído com sucesso para usuário {usuario_id}")
+        return RedirectResponse("/perfil?foto_sucesso=1", status.HTTP_303_SEE_OTHER)
 
-    return RedirectResponse("/perfil?foto_sucesso=1", status.HTTP_303_SEE_OTHER)
+    except Exception as e:
+        # Catch-all para erros inesperados
+        logger.error(
+            f"Erro inesperado no upload do usuário {usuario_id}: {e}",
+            exc_info=True
+        )
+        return RedirectResponse(
+            "/perfil?erro=Erro inesperado. Tente novamente.",
+            status.HTTP_303_SEE_OTHER
+        )

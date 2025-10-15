@@ -83,16 +83,12 @@ WHERE email=?
 
 ATUALIZAR_FOTO = """
 UPDATE usuario
-SET foto=?
-WHERE id_usuario=?
+SET foto = ?
+WHERE id_usuario = ?
 """
 
 ADICIONAR_COLUNA_FOTO = """
 ALTER TABLE usuario ADD COLUMN foto TEXT
-"""
-
-ATUALIZAR_FOTO = """
-UPDATE usuario SET foto = ? WHERE id_usuario = ?
 """
 
 OBTER_POR_TOKEN = """
