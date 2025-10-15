@@ -94,6 +94,20 @@ CLAUDE.md
 node_modules/
 dados.db
 
+# Storage - Banco de dados
+storage/database/*.db
+storage/database/*.sqlite
+storage/database/*.sqlite3
+!storage/database/.gitkeep
+
+# Storage - Logs
+storage/logs/*.log
+!storage/logs/.gitkeep
+
+# Storage - Uploads
+storage/uploads/*
+!storage/uploads/.gitkeep
+
 # Uploads de usuários (não versionar - LGPD)
 static/uploads/usuarios/*
 !static/uploads/usuarios/.gitkeep

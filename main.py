@@ -52,11 +52,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 from repo import administrador_repo, tutor_repo, usuario_repo, veterinario_repo
-from routes.admin import categoria_artigo_routes, chamado_routes, comentario_admin_routes, denuncia_admin_routes, verificação_crmv_routes
-from routes.publico import auth_routes, perfil_routes, public_routes
-from routes.tutor import postagem_feed_routes
-from routes.usuario import usuario_routes
-from routes.veterinario import estatisticas_routes, postagem_artigo_routes, solicitacao_crmv_routes
+from app.routes.admin import categorias, chamados, comentarios, denuncias, verificacoes_crmv
+from app.routes.publico import auth, perfil, public
+from app.routes.tutor import postagens_feed
+from app.routes.usuario import usuario
+from app.routes.veterinario import estatisticas, artigos, solicitacoes_crmv
 
 
 usuario_repo.criar_tabela_usuario()
@@ -165,24 +165,22 @@ async def log_requests_middleware(request: Request, call_next):
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-app.include_router(public_routes.router)
-app.include_router(auth_routes.router)
+app.include_router(public.router)
+app.include_router(auth.router)
 
-app.include_router(categoria_artigo_routes.router, prefix="/admin")
-app.include_router(chamado_routes.router, prefix="/admin")
-app.include_router(comentario_admin_routes.router, prefix="/admin")
-app.include_router(denuncia_admin_routes.router, prefix="/admin")
-app.include_router(verificação_crmv_routes.router, prefix="/admin")
+app.include_router(categorias.router, prefix="/admin")
+app.include_router(chamados.router, prefix="/admin")
+app.include_router(comentarios.router, prefix="/admin")
+app.include_router(denuncias.router, prefix="/admin")
+app.include_router(verificacoes_crmv.router, prefix="/admin")
 
-app.include_router(postagem_feed_routes.router, prefix="/tutor")
-# app.include_router(denuncia_veterinario_routes.router, prefix="/veterinario")
-app.include_router(postagem_artigo_routes.router, prefix="/veterinario")
-# app.include_router(seguida_veterinario_routes.router, prefix="/veterinario") 
-app.include_router(estatisticas_routes.router, prefix="/veterinario")
-app.include_router(solicitacao_crmv_routes.router, prefix="/veterinario")
+app.include_router(postagens_feed.router, prefix="/tutor")
+app.include_router(artigos.router, prefix="/veterinario")
+app.include_router(estatisticas.router, prefix="/veterinario")
+app.include_router(solicitacoes_crmv.router, prefix="/veterinario")
 
-app.include_router(usuario_routes.router, prefix="/usuario")
-app.include_router(perfil_routes.router, prefix="/perfil")
+app.include_router(usuario.router, prefix="/usuario")
+app.include_router(perfil.router, prefix="/perfil")
 
 if __name__ == "__main__":
     logger.info("Iniciando aplicação VetConecta")
