@@ -24,15 +24,23 @@ WHERE id_categoria_artigo = ?;
 """
 
 OBTER_TODOS_PAGINADO = """
-SELECT * 
-FROM categoria_artigo 
+SELECT
+    id_categoria_artigo,
+    nome,
+    cor,
+    imagem
+FROM categoria_artigo
 ORDER BY nome
 LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT * 
-FROM categoria_artigo 
+SELECT
+    id_categoria_artigo,
+    nome,
+    cor,
+    imagem
+FROM categoria_artigo
 WHERE id_categoria_artigo = ?;
 """
 

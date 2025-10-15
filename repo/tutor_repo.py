@@ -1,5 +1,4 @@
 from typing import Any, Optional
-from repo import usuario_repo
 from model.tutor_model import Tutor
 import sql.tutor_sql as tutor_sql
 from model.usuario_model import Usuario
@@ -18,24 +17,50 @@ def criar_tabela_tutor() -> bool:
         return False
 
 def inserir_tutor(tutor: Tutor) -> Optional[int]:
-    id_tutor = usuario_repo.inserir_usuario(tutor)
+    """Insere tutor e usuário em uma única transação atômica."""
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(
-            tutor_sql.INSERIR,
-            (id_tutor, tutor.quantidade_pets, tutor.descricao_pets)
-        )
+
+        # Inserir usuário
+        cursor.execute(usuario_sql.INSERIR, (
+            tutor.nome,
+            tutor.email,
+            tutor.senha,
+            tutor.telefone,
+            tutor.perfil
+        ))
+        id_tutor = cursor.lastrowid
+
+        # Inserir tutor
+        cursor.execute(tutor_sql.INSERIR, (
+            id_tutor,
+            tutor.quantidade_pets,
+            tutor.descricao_pets
+        ))
+
         return id_tutor
     
 def atualizar_tutor(tutor: Tutor) -> bool:
-    # Atualizar dados do usuario tutor
-    usuario_atualizado = usuario_repo.atualizar_usuario(tutor)
-    if usuario_atualizado:
-        with get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(tutor_sql.ATUALIZAR, (tutor.quantidade_pets, tutor.descricao_pets, tutor.id_usuario))
-            return cursor.rowcount > 0
-    return False
+    """Atualiza tutor e usuário em uma única transação atômica."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+
+        # Atualizar usuário
+        cursor.execute(usuario_sql.ATUALIZAR, (
+            tutor.nome,
+            tutor.email,
+            tutor.telefone,
+            tutor.id_usuario
+        ))
+
+        # Atualizar tutor
+        cursor.execute(tutor_sql.ATUALIZAR, (
+            tutor.quantidade_pets,
+            tutor.descricao_pets,
+            tutor.id_usuario
+        ))
+
+        return cursor.rowcount > 0
     
 def excluir_tutor(id_tutor: int) -> bool:
     try:

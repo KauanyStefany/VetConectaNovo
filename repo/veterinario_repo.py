@@ -1,6 +1,5 @@
 from typing import Optional, List
-from repo import usuario_repo
-from sql import veterinario_sql
+from sql import veterinario_sql, usuario_sql
 from model.usuario_model import Usuario
 from model.veterinario_model import Veterinario
 from sql.veterinario_sql import *
@@ -18,29 +17,52 @@ def criar_tabela_veterinario() -> bool:
         return False
 
 def inserir_veterinario(vet: Veterinario) -> Optional[int]:
-    # Inserir dados do usuário (herdados)
-    id_veterinario = usuario_repo.inserir_usuario(vet)
+    """Insere veterinário e usuário em uma única transação atômica."""
     with get_connection() as conn:
         cursor = conn.cursor()
-        # Inserir apenas os atributos exclusivos do veterinário
-        cursor.execute(
-            veterinario_sql.INSERIR,
-            (id_veterinario, vet.crmv, vet.bio)
-        )
+
+        # Inserir usuário
+        cursor.execute(usuario_sql.INSERIR, (
+            vet.nome,
+            vet.email,
+            vet.senha,
+            vet.telefone,
+            vet.perfil
+        ))
+        id_veterinario = cursor.lastrowid
+
+        # Inserir veterinário
+        cursor.execute(veterinario_sql.INSERIR, (
+            id_veterinario,
+            vet.crmv,
+            vet.bio
+        ))
+
         return id_veterinario
 
 
 def atualizar_veterinario(vet: Veterinario) -> bool:
-    usuario_repo.atualizar_usuario(vet)
+    """Atualiza veterinário e usuário em uma única transação atômica."""
     with get_connection() as conn:
         cursor = conn.cursor()
+
+        # Atualizar usuário
+        cursor.execute(usuario_sql.ATUALIZAR, (
+            vet.nome,
+            vet.email,
+            vet.telefone,
+            vet.id_usuario
+        ))
+
+        # Atualizar veterinário
         cursor.execute(ATUALIZAR, (
             vet.crmv,
             vet.verificado,
             vet.bio,
             vet.id_usuario
         ))
-        return (cursor.rowcount > 0)
+
+        return cursor.rowcount > 0
     
 def atualizar_verificacao(id_veterinario: int, verificado: bool) -> bool:
     with get_connection() as conn:
@@ -49,16 +71,19 @@ def atualizar_verificacao(id_veterinario: int, verificado: bool) -> bool:
         return (cursor.rowcount > 0)
 
 def excluir_veterinario(id: int) -> bool:
-    # Exclui o usuário com base no id herdado
-    excluiu_veterinario = False
-    excluiu_usuario = False
+    """Exclui veterinário e usuário em uma única transação atômica."""
     with get_connection() as conn:
         cursor = conn.cursor()
+
+        # Excluir veterinário (deve vir primeiro devido a foreign key)
         cursor.execute(EXCLUIR, (id,))
         excluiu_veterinario = cursor.rowcount > 0
-    if excluiu_veterinario:
-        excluiu_usuario = usuario_repo.excluir_usuario(id)
-    return excluiu_veterinario and excluiu_usuario
+
+        # Excluir usuário
+        cursor.execute(usuario_sql.EXCLUIR, (id,))
+        excluiu_usuario = cursor.rowcount > 0
+
+        return excluiu_veterinario and excluiu_usuario
 
 def obter_por_pagina(limit: int, offset: int) -> list[Veterinario]:
     with get_connection() as conn:
@@ -96,7 +121,7 @@ def obter_por_id(id_veterinario: int) -> Optional[Veterinario]:
             id_usuario=row["id_veterinario"],
             nome=row["nome"],
             email=row["email"],
-            senha=row["senha"],
+            senha="",  # Não expor senha
             telefone=row["telefone"],
             perfil=row["perfil"],
             foto=row["foto"],

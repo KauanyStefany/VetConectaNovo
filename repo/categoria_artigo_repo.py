@@ -23,7 +23,12 @@ def inserir_categoria(categoria: CategoriaArtigo) -> Optional[int]:
 def atualizar_categoria(categoria: CategoriaArtigo) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(ATUALIZAR, (categoria.nome, categoria.id_categoria_artigo, categoria.cor, categoria.imagem))
+        cursor.execute(ATUALIZAR, (
+            categoria.nome,
+            categoria.cor,
+            categoria.imagem,
+            categoria.id_categoria_artigo
+        ))
         return cursor.rowcount > 0
 
 def excluir_categoria(id_categoria: int) -> bool:

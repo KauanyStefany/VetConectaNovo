@@ -141,18 +141,18 @@ def obter_por_token(token: str) -> Optional[Usuario]:
 def limpar_token(id_usuario: int) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute("UPDATE usuario SET token_redefinicao=NULL, data_token=NULL WHERE id=?", (id_usuario,))
+        cursor.execute(LIMPAR_TOKEN, (id_usuario,))
         return (cursor.rowcount > 0)
 
 def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM usuario WHERE perfil=? ORDER BY nome", (perfil,))
+        cursor.execute(OBTER_POR_PERFIL, (perfil,))
         rows = cursor.fetchall()
         usuarios = []
         for row in rows:
             usuario = Usuario(
-                id_usuario=row["id_usuario"], 
+                id_usuario=row["id_usuario"],
                 nome=row["nome"],
                 email=row["email"],
                 senha=row["senha"],

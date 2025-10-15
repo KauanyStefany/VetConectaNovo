@@ -19,8 +19,8 @@ VALUES (?, ?, ?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE usuario 
-SET nome = ?, email = ?, telefone = ?, foto = ?
+UPDATE usuario
+SET nome = ?, email = ?, telefone = ?
 WHERE id_usuario = ?;
 """
 
@@ -92,8 +92,23 @@ ALTER TABLE usuario ADD COLUMN foto TEXT
 """
 
 OBTER_POR_TOKEN = """
-SELECT 
+SELECT
 id_usuario, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token
 FROM usuario
 WHERE token_redefinicao=? AND data_token > datetime('now')
+"""
+
+LIMPAR_TOKEN = """
+UPDATE usuario
+SET token_redefinicao = NULL, data_token = NULL
+WHERE id_usuario = ?;
+"""
+
+OBTER_POR_PERFIL = """
+SELECT
+    id_usuario, nome, email, senha, telefone, perfil,
+    foto, token_redefinicao, data_token, data_cadastro
+FROM usuario
+WHERE perfil = ?
+ORDER BY nome;
 """
