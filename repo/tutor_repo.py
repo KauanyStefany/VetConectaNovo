@@ -1,11 +1,10 @@
-from typing import Any, Optional
+from typing import Optional
 from model.tutor_model import Tutor
 import sql.tutor_sql as tutor_sql
-from model.usuario_model import Usuario
 import sql.usuario_sql as usuario_sql
 from util.db_util import get_connection
 
-  
+
 def criar_tabela_tutor() -> bool:
     try:
         with get_connection() as conn:
@@ -15,6 +14,7 @@ def criar_tabela_tutor() -> bool:
     except Exception as e:
         print(f"Erro ao criar tabela de tutor: {e}")
         return False
+
 
 def inserir_tutor(tutor: Tutor) -> Optional[int]:
     """Insere tutor e usuário em uma única transação atômica."""
@@ -39,7 +39,8 @@ def inserir_tutor(tutor: Tutor) -> Optional[int]:
         ))
 
         return id_tutor
-    
+
+
 def atualizar_tutor(tutor: Tutor) -> bool:
     """Atualiza tutor e usuário em uma única transação atômica."""
     with get_connection() as conn:
@@ -61,26 +62,28 @@ def atualizar_tutor(tutor: Tutor) -> bool:
         ))
 
         return cursor.rowcount > 0
-    
+
+
 def excluir_tutor(id_tutor: int) -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
-            
+
             # Primeiro excluir da tabela tutor
             cursor.execute(tutor_sql.EXCLUIR, (id_tutor,))
             tutor_excluido = cursor.rowcount > 0
-            
+
             # Depois excluir da tabela usuario
             if tutor_excluido:
                 cursor.execute(usuario_sql.EXCLUIR, (id_tutor,))
                 usuario_excluido = cursor.rowcount > 0
                 return usuario_excluido
-            
+
             return False
     except Exception as e:
         print(f"Erro ao excluir tutor: {e}")
         return False
+
 
 def obter_tutores_por_pagina(limite: int, offset: int) -> list[Tutor]:
     try:
@@ -105,13 +108,13 @@ def obter_tutores_por_pagina(limite: int, offset: int) -> list[Tutor]:
                     descricao_pets=row["descricao_pets"] if "descricao_pets" in row.keys() else None
                 )
                 tutores.append(tutor)
-            
+
             return tutores
     except Exception as e:
         print(f"Erro ao obter tutores paginado: {e}")
         return []
 
-    
+
 def obter_por_id(id_tutor: int) -> Optional[Tutor]:
     try:
         with get_connection() as conn:
@@ -138,5 +141,3 @@ def obter_por_id(id_tutor: int) -> Optional[Tutor]:
     except Exception as e:
         print(f"Erro ao obter tutor por ID: {e}")
         return None
-    
-    

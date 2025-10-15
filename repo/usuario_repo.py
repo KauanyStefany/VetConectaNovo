@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Optional
 from model.usuario_model import Usuario
 from sql.usuario_sql import *
 from util.db_util import get_connection
@@ -14,6 +14,7 @@ def criar_tabela_usuario() -> bool:
         print(f"Erro ao criar tabela de categorias: {e}")
         return False
 
+
 def inserir_usuario(usuario: Usuario) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
@@ -27,7 +28,7 @@ def inserir_usuario(usuario: Usuario) -> Optional[int]:
 
 
 def atualizar_usuario(usuario: Usuario) -> bool:
-     with get_connection() as conn:
+    with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(ATUALIZAR, (
             usuario.nome,
@@ -35,18 +36,21 @@ def atualizar_usuario(usuario: Usuario) -> bool:
             usuario.telefone,
             usuario.id_usuario))
         return cursor.rowcount > 0
-    
+
+
 def atualizar_senha_usuario(id_usuario: int, senha: str) -> bool:
-     with get_connection() as conn:
+    with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(ATUALIZAR_SENHA, (senha, id_usuario))
         return (cursor.rowcount > 0)
-    
+
+
 def excluir_usuario(id_usuario: int) -> bool:
-     with get_connection() as conn:
+    with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(EXCLUIR, (id_usuario,))
         return (cursor.rowcount > 0)
+
 
 def obter_todos_usuarios_paginado(limite: int, offset: int) -> list[Usuario]:
     with get_connection() as conn:
@@ -55,19 +59,20 @@ def obter_todos_usuarios_paginado(limite: int, offset: int) -> list[Usuario]:
         rows = cursor.fetchall()
         usuarios = [
             Usuario(
-                id_usuario=row["id_usuario"], 
-                nome=row["nome"], 
-                email=row["email"], 
-                senha=row["senha"], 
+                id_usuario=row["id_usuario"],
+                nome=row["nome"],
+                email=row["email"],
+                senha=row["senha"],
                 telefone=row["telefone"],
                 perfil=row["perfil"],
                 foto=row["foto"],
                 token_redefinicao=row["token_redefinicao"],
                 data_token=row["data_token"],
                 data_cadastro=row["data_cadastro"]
-            ) 
+            )
             for row in rows]
         return usuarios
+
 
 def obter_usuario_por_id(id_usuario: int) -> Optional[Usuario]:
     with get_connection() as conn:
@@ -88,7 +93,7 @@ def obter_usuario_por_id(id_usuario: int) -> Optional[Usuario]:
             data_token=row["data_token"],
             data_cadastro=row["data_cadastro"]
         )
-    
+
 
 def obter_por_email(email: str) -> Optional[Usuario]:
     with get_connection() as conn:
@@ -97,7 +102,7 @@ def obter_por_email(email: str) -> Optional[Usuario]:
         row = cursor.fetchone()
         if row:
             usuario = Usuario(
-                    id_usuario=row["id_usuario"], 
+                    id_usuario=row["id_usuario"],
                     nome=row["nome"],
                     email=row["email"],
                     senha=row["senha"],
@@ -111,11 +116,13 @@ def obter_por_email(email: str) -> Optional[Usuario]:
             return usuario
         return None
 
+
 def atualizar_token(email: str, token: str, data_expiracao: str) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(ATUALIZAR_TOKEN, (token, data_expiracao, email))
         return (cursor.rowcount > 0)
+
 
 def obter_por_token(token: str) -> Optional[Usuario]:
     with get_connection() as conn:
@@ -124,7 +131,7 @@ def obter_por_token(token: str) -> Optional[Usuario]:
         row = cursor.fetchone()
         if row:
             usuario = Usuario(
-                    id_usuario=row["id_usuario"], 
+                    id_usuario=row["id_usuario"],
                     nome=row["nome"],
                     email=row["email"],
                     senha=row["senha"],
@@ -138,11 +145,13 @@ def obter_por_token(token: str) -> Optional[Usuario]:
             return usuario
         return None
 
+
 def limpar_token(id_usuario: int) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(LIMPAR_TOKEN, (id_usuario,))
         return (cursor.rowcount > 0)
+
 
 def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
     with get_connection() as conn:
@@ -165,6 +174,7 @@ def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
             )
             usuarios.append(usuario)
         return usuarios
+
 
 def atualizar_foto(id: int, caminho_foto: str) -> bool:
     """Atualiza apenas a foto do usuário"""

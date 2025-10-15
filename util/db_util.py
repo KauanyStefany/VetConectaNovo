@@ -7,8 +7,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Configuração via variáveis de ambiente
-DB_PATH = os.getenv("TEST_DATABASE_PATH") or os.getenv("DATABASE_PATH", "dados.db")
-DB_TIMEOUT = float(os.getenv("DATABASE_TIMEOUT", "30.0"))
+DB_PATH: str = os.getenv("TEST_DATABASE_PATH") or os.getenv("DATABASE_PATH") or "dados.db"
+DB_TIMEOUT: float = float(os.getenv("DATABASE_TIMEOUT", "30.0"))
 
 
 def _criar_conexao() -> sqlite3.Connection:

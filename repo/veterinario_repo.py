@@ -1,6 +1,5 @@
-from typing import Optional, List
+from typing import Optional
 from sql import veterinario_sql, usuario_sql
-from model.usuario_model import Usuario
 from model.veterinario_model import Veterinario
 from sql.veterinario_sql import *
 from util.db_util import get_connection
@@ -15,6 +14,7 @@ def criar_tabela_veterinario() -> bool:
     except Exception as e:
         print(f"Erro ao criar tabela de categorias: {e}")
         return False
+
 
 def inserir_veterinario(vet: Veterinario) -> Optional[int]:
     """Insere veterinário e usuário em uma única transação atômica."""
@@ -63,12 +63,14 @@ def atualizar_veterinario(vet: Veterinario) -> bool:
         ))
 
         return cursor.rowcount > 0
-    
+
+
 def atualizar_verificacao(id_veterinario: int, verificado: bool) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(ATUALIZAR_VERIFICACAO, (verificado, id_veterinario))
         return (cursor.rowcount > 0)
+
 
 def excluir_veterinario(id: int) -> bool:
     """Exclui veterinário e usuário em uma única transação atômica."""
@@ -84,6 +86,7 @@ def excluir_veterinario(id: int) -> bool:
         excluiu_usuario = cursor.rowcount > 0
 
         return excluiu_veterinario and excluiu_usuario
+
 
 def obter_por_pagina(limit: int, offset: int) -> list[Veterinario]:
     with get_connection() as conn:
@@ -108,7 +111,7 @@ def obter_por_pagina(limit: int, offset: int) -> list[Veterinario]:
             ) for row in rows
         ]
         return veterinarios
-    
+
 
 def obter_por_id(id_veterinario: int) -> Optional[Veterinario]:
     with get_connection() as conn:

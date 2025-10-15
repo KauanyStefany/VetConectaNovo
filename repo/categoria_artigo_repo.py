@@ -14,11 +14,13 @@ def criar_tabela_categoria_artigo() -> bool:
         print(f"Erro ao criar tabela de categorias: {e}")
         return False
 
+
 def inserir_categoria(categoria: CategoriaArtigo) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(INSERIR, (categoria.nome, categoria.cor, categoria.imagem))
         return cursor.lastrowid
+
 
 def atualizar_categoria(categoria: CategoriaArtigo) -> bool:
     with get_connection() as conn:
@@ -31,11 +33,13 @@ def atualizar_categoria(categoria: CategoriaArtigo) -> bool:
         ))
         return cursor.rowcount > 0
 
+
 def excluir_categoria(id_categoria: int) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(EXCLUIR, (id_categoria,))
         return cursor.rowcount > 0
+
 
 def obter_categorias_paginado(offset: int, limite: int) -> List[CategoriaArtigo]:
     with get_connection() as conn:
@@ -43,7 +47,8 @@ def obter_categorias_paginado(offset: int, limite: int) -> List[CategoriaArtigo]
         cursor.execute(OBTER_TODOS_PAGINADO, (limite, offset))
         rows = cursor.fetchall()
         return [CategoriaArtigo(**row) for row in rows]
-    
+
+
 def obter_categoria_por_id(id_categoria: int) -> Optional[CategoriaArtigo]:
     with get_connection() as conn:
         cursor = conn.cursor()
