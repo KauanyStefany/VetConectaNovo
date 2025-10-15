@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import RedirectResponse
 from pydantic_core import ValidationError
+from typing import Optional
 
 from dtos.cadastro_dto import CadastroTutorDTO, CadastroVeterinarioDTO
 from dtos.login_dto import LoginDTO
@@ -16,7 +17,7 @@ templates = criar_templates("templates/publico")
 
 
 @router.get("/login")
-async def get_login(request: Request, redirect: str = None):
+async def get_login(request: Request, redirect: Optional[str] = None):
     # Se já está logado, redirecionar
     if esta_logado(request):
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
@@ -85,7 +86,7 @@ async def post_login(
         for erro in e.errors():
             campo = erro['loc'][0] if erro['loc'] else 'campo'
             mensagem = erro['msg']
-            erros[campo.upper()] = mensagem.replace('Value error, ', '')
+            erros[str(campo).upper()] = mensagem.replace('Value error, ', '')
 
         # logger.warning(f"Erro de validação no cadastro: {erro_msg}")
 
@@ -221,7 +222,7 @@ async def post_cadastro(
         for erro in e.errors():
             campo = erro['loc'][0] if erro['loc'] else 'campo'
             mensagem = erro['msg']
-            erros[campo.upper()] = mensagem.replace('Value error, ', '')
+            erros[str(campo).upper()] = mensagem.replace('Value error, ', '')
 
         return templates.TemplateResponse("cadastro.html", {
             "request": request,
@@ -346,7 +347,7 @@ async def post_redefinir_senha(
     # Atualizar senha e limpar token
     senha_hash = criar_hash_senha(senha)
     usuario_repo.atualizar_senha_usuario(usuario.id_usuario, senha_hash)
-    usuario_repo.limpar_token(usuario.id)
+    usuario_repo.limpar_token(usuario.id_usuario)
     
     return templates.TemplateResponse(
         "redefinir_senha.html",

@@ -18,9 +18,9 @@ async def get_root(request: Request):
     return response   
 
 @router.get("/listar_verificação_crmv")
-async def pagina_verificação_crmv(request: Request):
+async def get_listar_verificacao_crmv(request: Request):
     return templates.TemplateResponse("administrador/listar_verificação_crmv.html", {"request": request})
 
 @router.get("/responder_verificação_crmv/{id_verificacao_crmv}")
-async def pagina_verificação_crmv(request: Request, id_verificacao_crmv: int):
+async def get_responder_verificacao_crmv(request: Request, id_verificacao_crmv: int):
     return templates.TemplateResponse("administrador/responder_verificação_crmv.html", {"request": request})

@@ -11,15 +11,15 @@ async def get_root(request: Request):
     return response   
 
 @router.get("/listar_chamados")
-async def pagina_chamado(request: Request):
+async def get_listar_chamados(request: Request):
     return templates.TemplateResponse("administrador/listar_chamados.html", {"request": request})
 
 @router.get("/responder_chamado/{id_chamado}")
-async def pagina_chamado(request: Request, id_chamado: int):
+async def get_responder_chamado(request: Request, id_chamado: int):
     return templates.TemplateResponse("administrador/responder_chamado.html", {"request": request})
 
 @router.get("/excluir_chamado/{id_chamado}")
-async def pagina_chamado(request: Request, id_chamado: int):
+async def get_excluir_chamado(request: Request, id_chamado: int):
     return templates.TemplateResponse("administrador/excluir_chamado.html", {"request": request})
 
 

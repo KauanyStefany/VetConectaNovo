@@ -67,11 +67,16 @@ def obter_por_pagina(limit: int, offset: int) -> list[Veterinario]:
         rows = cursor.fetchall()
         veterinarios = [
             Veterinario(
-                id_usuario=row["id_veterinario"], 
+                id_usuario=row["id_veterinario"],
                 nome=row["nome"],
                 email=row["email"],
                 senha="",
                 telefone=row["telefone"],
+                perfil=row["perfil"],
+                foto=row.get("foto"),
+                token_redefinicao=row.get("token_redefinicao"),
+                data_token=row.get("data_token"),
+                data_cadastro=row.get("data_cadastro"),
                 crmv=row["crmv"],
                 verificado=row["verificado"],
                 bio=row["bio"]

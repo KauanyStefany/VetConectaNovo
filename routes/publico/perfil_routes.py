@@ -5,6 +5,7 @@ from typing import Optional
 
 from model.usuario_model import Usuario
 from model.tutor_model import Tutor
+from model.veterinario_model import Veterinario
 from repo import usuario_repo, tutor_repo
 from util.security import criar_hash_senha, verificar_senha, validar_forca_senha
 from util.auth_decorator import requer_autenticacao, obter_usuario_logado
@@ -16,11 +17,12 @@ templates = criar_templates("templates/publico")
 
 @router.get("/")
 @requer_autenticacao()
-async def perfil(request: Request, usuario_logado: dict = None):
-    usuario = None
-    if usuario_logado['perfil'] == 'tutor':
+async def perfil(request: Request, usuario_logado: Optional[dict] = None):
+    from typing import Union
+    usuario: Union[Tutor, Veterinario, None] = None
+    if usuario_logado and usuario_logado['perfil'] == 'tutor':
         usuario = tutor_repo.obter_por_id(usuario_logado['id'])
-    elif usuario_logado['perfil'] == 'veterinario':
+    elif usuario_logado and usuario_logado['perfil'] == 'veterinario':
         usuario = veterinario_repo.obter_por_id(usuario_logado['id'])
     return templates.TemplateResponse(
         "perfil.html",
@@ -32,15 +34,21 @@ async def perfil(request: Request, usuario_logado: dict = None):
 
 @router.get("/alterar")
 @requer_autenticacao()
-async def get_perfil(request: Request, usuario_logado: dict = None):
+async def get_perfil(request: Request, usuario_logado: Optional[dict] = None):
+    if not usuario_logado:
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
     usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
-    dados_perfil = None
+    if not usuario:
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
+    from typing import Union, Any
+    dados_perfil: Union[Tutor, Veterinario, Any, None] = None
     perfil = usuario.perfil.lower()
 
     if perfil == 'tutor':
         dados_perfil = tutor_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'veterinario':
-        
         dados_perfil = veterinario_repo.obter_por_id(usuario.id_usuario)
     elif perfil == 'administrador':
         from repo import administrador_repo
@@ -62,20 +70,25 @@ async def post_perfil(
     nome: str = Form(...),
     email: str = Form(...),
     telefone: str = Form(None),
-    usuario_logado: dict = None
+    usuario_logado: Optional[dict] = None
 ):
+    if not usuario_logado:
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
     usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
-    
+    if not usuario:
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
     # Verificar se o email já está em uso por outro usuário
     usuario_existente = usuario_repo.obter_por_email(email)
-    if usuario_existente and usuario_existente.id != usuario.id:
+    if usuario_existente and usuario_existente.id_usuario != usuario.id_usuario:
         tutor_dados = None
         if usuario.perfil == 'tutor':
             try:
                 from util.db_util import get_connection
                 with get_connection() as conn:
                     cursor = conn.cursor()
-                    cursor.execute("SELECT cpf, telefone FROM cliente WHERE id=?", (usuario.id,))
+                    cursor.execute("SELECT cpf, telefone FROM cliente WHERE id=?", (usuario.id_usuario,))
                     row = cursor.fetchone()
                     if row:
                         tutor_dados = {
@@ -107,16 +120,16 @@ async def post_perfil(
                 cursor = conn.cursor()
                 cursor.execute(
                     "UPDATE cliente SET telefone=? WHERE id=?",
-                    (telefone, usuario.id)
+                    (telefone, usuario.id_usuario)
                 )
                 conn.commit()
         except Exception as e:
             print(f"Erro ao atualizar telefone do tutor: {e}")
-    
+
     # Atualizar sessão
     from util.auth_decorator import criar_sessao
     usuario_dict = {
-        "id": usuario.id,
+        "id": usuario.id_usuario,
         "nome": nome,
         "email": email,
         "perfil": usuario.perfil,
@@ -129,7 +142,7 @@ async def post_perfil(
 
 @router.get("/alterar-senha")
 @requer_autenticacao()
-async def get_alterar_senha(request: Request, usuario_logado: dict = None):
+async def get_alterar_senha(request: Request, usuario_logado: Optional[dict] = None):
     return templates.TemplateResponse(
         "alterar_senha.html",
         {"request": request}
@@ -143,10 +156,15 @@ async def post_alterar_senha(
     senha_atual: str = Form(...),
     senha_nova: str = Form(...),
     confirmar_senha: str = Form(...),
-    usuario_logado: dict = None
+    usuario_logado: Optional[dict] = None
 ):
+    if not usuario_logado:
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
     usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
-    
+    if not usuario:
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
     # Verificar senha atual
     if not verificar_senha(senha_atual, usuario.senha):
         return templates.TemplateResponse(
@@ -180,7 +198,7 @@ async def post_alterar_senha(
     
     # Atualizar senha
     senha_hash = criar_hash_senha(senha_nova)
-    usuario_repo.atualizar_senha(usuario.id, senha_hash)
+    usuario_repo.atualizar_senha_usuario(usuario.id_usuario, senha_hash)
     
     return templates.TemplateResponse(
         "alterar_senha.html",
@@ -196,76 +214,40 @@ async def post_alterar_senha(
 async def alterar_foto(
     request: Request,
     foto: UploadFile = File(...),
-    usuario_logado: dict = None
+    usuario_logado: Optional[dict] = None
 ):
+    if not usuario_logado:
+        return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+
     # Validar tipo de arquivo
     tipos_permitidos = ["image/jpeg", "image/png", "image/jpg"]
     if foto.content_type not in tipos_permitidos:
         return RedirectResponse("/perfil?erro=tipo_invalido", status.HTTP_303_SEE_OTHER)
-    
+
     # Criar diretório de upload se não existir
     upload_dir = "static/uploads/usuarios"
     os.makedirs(upload_dir, exist_ok=True)
-    
+
     # Gerar nome único para o arquivo
     import secrets
+    if not foto.filename:
+        return RedirectResponse("/perfil?erro=arquivo_invalido", status.HTTP_303_SEE_OTHER)
+
     extensao = foto.filename.split(".")[-1]
     nome_arquivo = f"{usuario_logado['id']}_{secrets.token_hex(8)}.{extensao}"
     caminho_arquivo = os.path.join(upload_dir, nome_arquivo)
-    
+
     # Salvar arquivo
     try:
         conteudo = await foto.read()
         with open(caminho_arquivo, "wb") as f:
             f.write(conteudo)
-        
+
         # Atualizar caminho no banco
         caminho_relativo = f"/static/uploads/usuarios/{nome_arquivo}"
         usuario_repo.atualizar_foto(usuario_logado['id'], caminho_relativo)
-        
+
         # Atualizar sessão
-        usuario_logado['foto'] = caminho_relativo
-        from util.auth_decorator import criar_sessao
-        criar_sessao(request, usuario_logado)
-        
-    except Exception as e:
-        return RedirectResponse("/perfil?erro=upload_falhou", status.HTTP_303_SEE_OTHER)
-    
-    return RedirectResponse("/perfil?foto_sucesso=1", status.HTTP_303_SEE_OTHER)
-
-@router.post("/perfil/alterar-foto")
-@requer_autenticacao()
-async def alterar_foto(
-    request: Request,
-    foto: UploadFile = File(...),  # ← Recebe arquivo de foto
-    usuario_logado: dict = None
-):
-    # 1. Validar tipo de arquivo
-    tipos_permitidos = ["image/jpeg", "image/png", "image/jpg"]
-    if foto.content_type not in tipos_permitidos:
-        return RedirectResponse("/perfil?erro=tipo_invalido", status.HTTP_303_SEE_OTHER)
-
-    # 2. Criar diretório se não existir
-    upload_dir = "static/uploads/usuarios"
-    os.makedirs(upload_dir, exist_ok=True)
-
-    # 3. Gerar nome único para evitar conflitos
-    import secrets
-    extensao = foto.filename.split(".")[-1]
-    nome_arquivo = f"{usuario_logado['id']}_{secrets.token_hex(8)}.{extensao}"
-    caminho_arquivo = os.path.join(upload_dir, nome_arquivo)
-
-    # 4. Salvar arquivo no sistema
-    try:
-        conteudo = await foto.read()  # ← Lê conteúdo do arquivo
-        with open(caminho_arquivo, "wb") as f:
-            f.write(conteudo)
-
-        # 5. Salvar caminho no banco de dados
-        caminho_relativo = f"/static/uploads/usuarios/{nome_arquivo}"
-        usuario_repo.atualizar_foto(usuario_logado['id'], caminho_relativo)
-
-        # 6. Atualizar sessão do usuário
         usuario_logado['foto'] = caminho_relativo
         from util.auth_decorator import criar_sessao
         criar_sessao(request, usuario_logado)

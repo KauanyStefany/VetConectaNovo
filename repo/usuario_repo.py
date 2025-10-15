@@ -117,12 +117,6 @@ def atualizar_token(email: str, token: str, data_expiracao: str) -> bool:
         cursor.execute(ATUALIZAR_TOKEN, (token, data_expiracao, email))
         return (cursor.rowcount > 0)
 
-def atualizar_foto(id: int, caminho_foto: str) -> bool:
-    with get_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(ATUALIZAR_FOTO, (caminho_foto, id))
-        return (cursor.rowcount > 0)
-
 def obter_por_token(token: str) -> Optional[Usuario]:
     with get_connection() as conn:
         cursor = conn.cursor()

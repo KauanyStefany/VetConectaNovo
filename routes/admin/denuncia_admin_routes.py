@@ -15,9 +15,9 @@ async def get_root(request: Request):
     return response   
 
 @router.get("/listar_denuncias")
-async def pagina_denuncia(request: Request):
+async def get_listar_denuncias(request: Request):
     return templates.TemplateResponse("administrador/listar_denuncias.html", {"request": request})
 
 @router.get("/excluir_denuncia/{id_denuncia}")
-async def pagina_denuncia(request: Request, id_denuncia: int):
+async def get_excluir_denuncia(request: Request, id_denuncia: int):
     return templates.TemplateResponse("administrador/excluir_denuncia.html", {"request": request})

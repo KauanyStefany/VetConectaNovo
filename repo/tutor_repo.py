@@ -71,6 +71,11 @@ def obter_tutores_por_pagina(limite: int, offset: int) -> list[Tutor]:
                     email=row["email"],
                     senha="",  # Não expor senha
                     telefone=row["telefone"],
+                    perfil=row.get("perfil", "tutor"),
+                    foto=row.get("foto"),
+                    token_redefinicao=row.get("token_redefinicao"),
+                    data_token=row.get("data_token"),
+                    data_cadastro=row.get("data_cadastro"),
                     quantidade_pets=row["quantidade_pets"] if "quantidade_pets" in row.keys() else 0,
                     descricao_pets=row["descricao_pets"] if "descricao_pets" in row.keys() else None
                 )
