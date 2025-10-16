@@ -21,9 +21,9 @@ class TestDenunciaRepo:
         criar_tabela_denuncia()
         
         # Criar dados base para os testes
-        self.usuario = Usuario(0, "João Silva", "joao@email.com", "senha123", "11999998888")
+        self.usuario = Usuario(0, "João Silva", "joao@email.com", "senha123", "11999998888", "tutor", None, None, None, None)
         self.id_usuario = inserir_usuario(self.usuario)
-        
+
         self.admin = Administrador(0, "Admin Silva", "admin@email.com", "senha456")
         self.id_admin = inserir_administrador(self.admin)
         

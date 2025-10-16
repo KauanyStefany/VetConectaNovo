@@ -6,15 +6,20 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Configuração via variáveis de ambiente
-DB_PATH: str = os.getenv("TEST_DATABASE_PATH") or os.getenv("DATABASE_PATH") or "dados.db"
+# Timeout padrão
 DB_TIMEOUT: float = float(os.getenv("DATABASE_TIMEOUT", "30.0"))
+
+
+def _get_db_path() -> str:
+    """Retorna o caminho do banco, lendo variáveis de ambiente dinamicamente."""
+    return os.getenv("TEST_DATABASE_PATH") or os.getenv("DATABASE_PATH") or "dados.db"
 
 
 def _criar_conexao() -> sqlite3.Connection:
     """Cria uma conexão configurada com o banco de dados."""
     try:
-        conn = sqlite3.connect(DB_PATH, timeout=DB_TIMEOUT, check_same_thread=False)
+        db_path = _get_db_path()  # Lê dinamicamente a cada conexão
+        conn = sqlite3.connect(db_path, timeout=DB_TIMEOUT, check_same_thread=False)
         conn.row_factory = sqlite3.Row
         # CRITICAL: Habilitar foreign keys no SQLite
         conn.execute("PRAGMA foreign_keys = ON")

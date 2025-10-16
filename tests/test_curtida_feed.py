@@ -27,9 +27,10 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste@gmail.com", 
-            senha="senha123", telefone="12345678901", quantidade_pets=2, 
-            descricao_pets="Dois gatos"
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste@gmail.com",
+            senha="senha123", telefone="12345678901", perfil="tutor",
+            foto=None, token_redefinicao=None, data_token=None, data_cadastro=None,
+            quantidade_pets=2, descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)
         
@@ -69,9 +70,10 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste2@gmail.com", 
-            senha="senha123", telefone="12345678911", quantidade_pets=2, 
-            descricao_pets="Dois gatos"
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste2@gmail.com",
+            senha="senha123", telefone="12345678911", perfil="tutor",
+            foto=None, token_redefinicao=None, data_token=None, data_cadastro=None,
+            quantidade_pets=2, descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)
         
@@ -109,9 +111,10 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste3@gmail.com", 
-            senha="senha123", telefone="12345678921", quantidade_pets=2, 
-            descricao_pets="Dois gatos"
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste3@gmail.com",
+            senha="senha123", telefone="12345678921", perfil="tutor",
+            foto=None, token_redefinicao=None, data_token=None, data_cadastro=None,
+            quantidade_pets=2, descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)
         
@@ -151,9 +154,10 @@ class TestCurtidaFeedRepo:
         
         # Insere um tutor (que também cria o usuário)
         tutor = tutor_model.Tutor(
-            id_usuario=0, nome="Tutor Teste", email="tutor_teste4@gmail.com", 
-            senha="senha123", telefone="12345678931", quantidade_pets=2, 
-            descricao_pets="Dois gatos"
+            id_usuario=0, nome="Tutor Teste", email="tutor_teste4@gmail.com",
+            senha="senha123", telefone="12345678931", perfil="tutor",
+            foto=None, token_redefinicao=None, data_token=None, data_cadastro=None,
+            quantidade_pets=2, descricao_pets="Dois gatos"
         )
         tutor_id = tutor_repo.inserir_tutor(tutor)
         

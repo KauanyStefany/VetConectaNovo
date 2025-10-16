@@ -31,7 +31,7 @@ class TestRespostaChamadoRepo:
         criar_tabelas()  # cria tabela resposta_chamado
 
         # Insere usuário dummy e obtém ID
-        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999")
+        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario_teste)
 
         # Insere administrador dummy e obtém ID
@@ -79,7 +79,7 @@ class TestRespostaChamadoRepo:
         criar_tabelas()
 
         # Insere usuário e administrador de teste
-        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999")
+        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario_teste)
 
         admin_teste = Administrador(0, "Admin Teste", "admin@teste.com", "12345678")
@@ -134,7 +134,7 @@ class TestRespostaChamadoRepo:
         criar_tabelas()
 
         # Insere usuário e administrador de teste
-        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999")
+        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario_teste)
 
         admin_teste = Administrador(0, "Admin Teste", "admin@teste.com", "12345678")
@@ -178,7 +178,7 @@ class TestRespostaChamadoRepo:
         criar_tabelas()
 
         # Insere usuário e administrador de teste
-        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999")
+        usuario_teste = Usuario(0, "Usuário Teste", "teste@teste.com", "12345678", "11999999999", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario_teste)
 
         admin_teste = Administrador(0, "Admin Teste", "admin@teste.com", "12345678")
@@ -238,7 +238,12 @@ class TestRespostaChamadoRepo:
             nome="Usuario Teste",
             email="usuario@teste.com",
             senha="12345678",
-            telefone="11999999999"
+            telefone="11999999999",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None
         )
         id_usuario = inserir_usuario(usuario)
 

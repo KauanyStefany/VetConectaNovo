@@ -1,46 +1,129 @@
-# import pytest
-# import os
-# import sys
-# import tempfile
+"""
+Fixtures compartilhadas para os testes do VetConecta.
 
-
-# # Adiciona o diretório raiz do projeto ao PYTHONPATH
-# # Isso permite importar módulos do projeto nos testes
-# project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# sys.path.insert(0, project_root)
-
-# # Fixture para criar um banco de dados temporário para testes
-# @pytest.fixture
-# def test_db():
-#     # Cria um arquivo temporário para o banco de dados
-#     db_fd, db_path = tempfile.mkstemp(suffix='.db')
-#     # Configura a variável de ambiente para usar o banco de teste
-#     os.environ['TEST_DATABASE_PATH'] = db_path
-#     # Retorna o caminho do banco de dados temporário
-#     yield db_path    
-#     # Remove o arquivo temporário ao concluir o teste
-#     os.close(db_fd)
-#     if os.path.exists(db_path):
-#         os.unlink(db_path)
-
+Este arquivo contém fixtures que são automaticamente disponibilizadas
+para todos os testes do projeto.
+"""
 
 import os
 import tempfile
 import pytest
+from datetime import datetime
+
+from model.usuario_model import Usuario
+from model.administrador_model import Administrador
+
 
 @pytest.fixture
 def test_db():
+    """
+    Cria um banco de dados SQLite temporário para testes.
+
+    O banco é criado antes de cada teste e destruído após,
+    garantindo isolamento completo entre testes.
+
+    Yields:
+        str: Caminho para o arquivo de banco de dados temporário
+    """
     db_fd, db_path = tempfile.mkstemp(suffix='.db')
     os.environ['TEST_DATABASE_PATH'] = db_path
+
     try:
         yield db_path
     finally:
         try:
             os.close(db_fd)
-        except:
-            pass  # já pode estar fechado
+        except OSError:
+            pass  # Já foi fechado
 
         try:
             os.remove(db_path)
-        except PermissionError:
-            print(f"[WARN] Banco ainda em uso: {db_path}")
+        except (PermissionError, FileNotFoundError):
+            # Em Windows, o arquivo pode estar bloqueado
+            pass
+
+
+@pytest.fixture
+def usuario_padrao():
+    """
+    Cria uma instância padrão de Usuario para testes.
+
+    Returns:
+        Usuario: Objeto Usuario com dados de teste
+    """
+    return Usuario(
+        id_usuario=0,
+        nome="João Test",
+        email="joao.test@vetconecta.com",
+        senha="senha_segura_123",
+        telefone="11999999999",
+        perfil="tutor",
+        foto=None,
+        token_redefinicao=None,
+        data_token=None,
+        data_cadastro=None
+    )
+
+
+@pytest.fixture
+def veterinario_padrao():
+    """
+    Cria uma instância padrão de Veterinário para testes.
+
+    Returns:
+        Usuario: Objeto Usuario com perfil veterinário
+    """
+    return Usuario(
+        id_usuario=0,
+        nome="Dra. Maria Veterinária",
+        email="maria.vet@vetconecta.com",
+        senha="senha_segura_456",
+        telefone="11888888888",
+        perfil="veterinario",
+        foto=None,
+        token_redefinicao=None,
+        data_token=None,
+        data_cadastro=None
+    )
+
+
+@pytest.fixture
+def admin_padrao():
+    """
+    Cria uma instância padrão de Administrador para testes.
+
+    Returns:
+        Administrador: Objeto Administrador com dados de teste
+    """
+    return Administrador(
+        id_administrador=0,
+        nome="Admin Test",
+        email="admin@vetconecta.com",
+        senha="admin_senha_789"
+    )
+
+
+@pytest.fixture
+def data_atual():
+    """
+    Retorna a data/hora atual para testes.
+
+    Returns:
+        datetime: Data/hora atual
+    """
+    return datetime.now()
+
+
+@pytest.fixture
+def email_unico():
+    """
+    Gera um email único para testes usando timestamp.
+
+    Returns:
+        function: Função que gera emails únicos
+    """
+    import time
+    def _gerar_email(prefixo="test"):
+        timestamp = str(int(time.time() * 1000000))  # microsegundos
+        return f"{prefixo}_{timestamp}@test.com"
+    return _gerar_email

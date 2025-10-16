@@ -99,11 +99,11 @@ def obter_tutores_por_pagina(limite: int, offset: int) -> list[Tutor]:
                     email=row["email"],
                     senha="",  # Não expor senha
                     telefone=row["telefone"],
-                    perfil=row.get("perfil", "tutor"),
-                    foto=row.get("foto"),
-                    token_redefinicao=row.get("token_redefinicao"),
-                    data_token=row.get("data_token"),
-                    data_cadastro=row.get("data_cadastro"),
+                    perfil=row["perfil"] if "perfil" in row.keys() else "tutor",
+                    foto=row["foto"] if "foto" in row.keys() else None,
+                    token_redefinicao=row["token_redefinicao"] if "token_redefinicao" in row.keys() else None,
+                    data_token=row["data_token"] if "data_token" in row.keys() else None,
+                    data_cadastro=row["data_cadastro"] if "data_cadastro" in row.keys() else None,
                     quantidade_pets=row["quantidade_pets"] if "quantidade_pets" in row.keys() else 0,
                     descricao_pets=row["descricao_pets"] if "descricao_pets" in row.keys() else None
                 )

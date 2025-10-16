@@ -23,6 +23,11 @@ class TestVeterinarioRepo:
             email="vet@gmail.com",
             senha="senha123",
             telefone="11999999999",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="SP-123456",
             verificado=False,
             bio="Veterinário para teste"
@@ -37,7 +42,7 @@ class TestVeterinarioRepo:
         assert veterinario_db.id_usuario == id_novo_veterinario, "O ID do veterinário inserido não confere"
         assert veterinario_db.nome == "Veterinario Teste", "O nome do veterinário inserido não confere"
         assert veterinario_db.email == "vet@gmail.com", "O email do veterinário inserido não confere"
-        assert veterinario_db.senha == "senha123", "A senha do veterinário inserido não confere"
+        # Senha não é retornada por segurança
         assert veterinario_db.telefone == "11999999999", "O telefone do veterinário inserido não confere"
         assert veterinario_db.crmv == "SP-123456", "O CRMV do veterinário inserido não confere"
         assert veterinario_db.verificado == False, "O status de verificado do veterinário inserido não confere"
@@ -53,6 +58,11 @@ class TestVeterinarioRepo:
             email="vet@gmail.com",
             senha="senha123",
             telefone="11999999999",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="SP-123456",
             verificado=False,
             bio="Veterinário para teste"
@@ -63,7 +73,7 @@ class TestVeterinarioRepo:
         # Act
         # Atualizando atributos herdados do usuário
         veterinario_inserido.nome = "Dr. Atualizado"
-        veterinario_inserido.email = "atualizado@example.com"        
+        veterinario_inserido.email = "atualizado@example.com"
         veterinario_inserido.telefone = "11988888888"
         # Atualizando atributos exclusivos do veterinário
         veterinario_inserido.crmv = "SP-654321"
@@ -92,6 +102,11 @@ class TestVeterinarioRepo:
             email="vet@gmail",
             senha="senha123",
             telefone="11999999999",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="SP-123456",
             verificado=False,
             bio="Veterinário para teste"
@@ -114,6 +129,11 @@ class TestVeterinarioRepo:
             email="vet@gmail.com",
             senha="senha123",
             telefone="11999999999",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="SP-123456",
             verificado=False,
             bio="Veterinário para teste"
@@ -124,6 +144,11 @@ class TestVeterinarioRepo:
             email="b@example.com",
             senha="senhaB",
             telefone="22222222222",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="CRMV-B",
             verificado=True,
             bio="Veterinário B"
@@ -149,6 +174,11 @@ class TestVeterinarioRepo:
             email="vet@gmail.com",
             senha="senha123",
             telefone="11999999999",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="SP-123456",
             verificado=False,
             bio="Veterinário para teste"
@@ -162,4 +192,47 @@ class TestVeterinarioRepo:
         assert veterinario_db.nome == "Dr. Teste", "O nome do veterinário obtido não confere"
         assert veterinario_db.crmv == "SP-123456", "O CRMV do veterinário obtido não confere"
         assert veterinario_db.bio == "Veterinário para teste", "A bio do veterinário obtido não confere"
+
+    def test_atualizar_verificacao_sucesso(self, test_db):
+        """Testa atualização do status de verificação do veterinário"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        novo_veterinario = Veterinario(
+            id_usuario=0,
+            nome="Dr. Não Verificado",
+            email="nao.verificado@vet.com",
+            senha="senha123",
+            telefone="11999999999",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+            crmv="SP-999999",
+            verificado=False,
+            bio="Veterinário aguardando verificação"
+        )
+        id_veterinario = inserir_veterinario(novo_veterinario)
+
+        # Act
+        resultado = atualizar_verificacao(id_veterinario, True)
+
+        # Assert
+        assert resultado == True, "Atualização de verificação deveria retornar True"
+        veterinario_db = obter_por_id(id_veterinario)
+        assert veterinario_db.verificado == True, "Status de verificado deveria ser True"
+
+    def test_atualizar_verificacao_veterinario_inexistente(self, test_db):
+        """Testa atualização de verificação com veterinário inexistente"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        id_inexistente = 9999
+
+        # Act
+        resultado = atualizar_verificacao(id_inexistente, True)
+
+        # Assert
+        assert resultado == False, "Atualização de verificação de veterinário inexistente deveria retornar False"
         

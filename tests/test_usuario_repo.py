@@ -28,7 +28,12 @@ class TestUsuarioRepo:
             nome="João Silva",
             email="joao.silva@email.com",
             senha="senha123",
-            telefone="11999998888"
+            telefone="11999998888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None
         )
         
         # Act
@@ -49,8 +54,8 @@ class TestUsuarioRepo:
     def test_inserir_usuario_email_duplicado(self, test_db):
         """Testa inserção de usuário com email duplicado"""
         # Arrange
-        usuario1 = Usuario(0, "João", "email@test.com", "senha123", "11999998888")
-        usuario2 = Usuario(0, "Maria", "email@test.com", "senha456", "11888887777")
+        usuario1 = Usuario(0, "João", "email@test.com", "senha123", "11999998888", "tutor", None, None, None, None)
+        usuario2 = Usuario(0, "Maria", "email@test.com", "senha456", "11888887777", "tutor", None, None, None, None)
         
         # Act
         inserir_usuario(usuario1)
@@ -62,7 +67,7 @@ class TestUsuarioRepo:
     def test_atualizar_usuario_sucesso(self, test_db):
         """Testa atualização de usuário com sucesso"""
         # Arrange
-        usuario_original = Usuario(0, "Nome Original", "original@email.com", "senha123", "11999998888")
+        usuario_original = Usuario(0, "Nome Original", "original@email.com", "senha123", "11999998888", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario_original)
         
         # Act
@@ -71,7 +76,12 @@ class TestUsuarioRepo:
             nome="Nome Atualizado",
             email="atualizado@email.com",
             senha="senha123",  # senha não é atualizada por atualizar_usuario
-            telefone="11777776666"
+            telefone="11777776666",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None
         )
         resultado = atualizar_usuario(usuario_atualizado)
         
@@ -87,7 +97,7 @@ class TestUsuarioRepo:
     def test_atualizar_usuario_inexistente(self, test_db):
         """Testa atualização de usuário inexistente"""
         # Arrange
-        usuario_inexistente = Usuario(9999, "Não Existe", "nao@existe.com", "senha", "11999998888")
+        usuario_inexistente = Usuario(9999, "Não Existe", "nao@existe.com", "senha", "11999998888", "tutor", None, None, None, None)
         
         # Act
         resultado = atualizar_usuario(usuario_inexistente)
@@ -98,7 +108,7 @@ class TestUsuarioRepo:
     def test_atualizar_senha_usuario_sucesso(self, test_db):
         """Testa atualização de senha com sucesso"""
         # Arrange
-        usuario = Usuario(0, "João", "joao@email.com", "senha_antiga", "11999998888")
+        usuario = Usuario(0, "João", "joao@email.com", "senha_antiga", "11999998888", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario)
         nova_senha = "senha_nova_123"
         
@@ -126,7 +136,7 @@ class TestUsuarioRepo:
     def test_excluir_usuario_sucesso(self, test_db):
         """Testa exclusão de usuário com sucesso"""
         # Arrange
-        usuario = Usuario(0, "João", "joao@email.com", "senha123", "11999998888")
+        usuario = Usuario(0, "João", "joao@email.com", "senha123", "11999998888", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario)
         
         # Act
@@ -153,11 +163,11 @@ class TestUsuarioRepo:
         """Testa obtenção paginada de usuários"""
         # Arrange
         usuarios = [
-            Usuario(0, "Ana Silva", "ana@email.com", "senha1", "11111111111"),
-            Usuario(0, "Bruno Costa", "bruno@email.com", "senha2", "22222222222"),
-            Usuario(0, "Carlos Dias", "carlos@email.com", "senha3", "33333333333"),
-            Usuario(0, "Diana Souza", "diana@email.com", "senha4", "44444444444"),
-            Usuario(0, "Eduardo Lima", "eduardo@email.com", "senha5", "55555555555")
+            Usuario(0, "Ana Silva", "ana@email.com", "senha1", "11111111111", "tutor", None, None, None, None),
+            Usuario(0, "Bruno Costa", "bruno@email.com", "senha2", "22222222222", "tutor", None, None, None, None),
+            Usuario(0, "Carlos Dias", "carlos@email.com", "senha3", "33333333333", "tutor", None, None, None, None),
+            Usuario(0, "Diana Souza", "diana@email.com", "senha4", "44444444444", "tutor", None, None, None, None),
+            Usuario(0, "Eduardo Lima", "eduardo@email.com", "senha5", "55555555555", "tutor", None, None, None, None)
         ]
         
         for usuario in usuarios:
@@ -192,7 +202,7 @@ class TestUsuarioRepo:
     def test_obter_usuario_por_id_existente(self, test_db):
         """Testa obtenção de usuário por ID existente"""
         # Arrange
-        usuario = Usuario(0, "João Silva", "joao@email.com", "senha123", "11999998888")
+        usuario = Usuario(0, "João Silva", "joao@email.com", "senha123", "11999998888", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario)
         
         # Act
@@ -210,9 +220,158 @@ class TestUsuarioRepo:
         """Testa obtenção de usuário por ID inexistente"""
         # Arrange
         id_inexistente = 9999
-        
+
         # Act
         usuario = obter_usuario_por_id(id_inexistente)
-        
+
         # Assert
         assert usuario is None, "Usuário não deveria existir"
+
+    def test_obter_por_email_existente(self, test_db):
+        """Testa obtenção de usuário por email existente"""
+        # Arrange
+        usuario = Usuario(0, "João Silva", "joao.unico@email.com", "senha123", "11999998888", "tutor", None, None, None, None)
+        inserir_usuario(usuario)
+
+        # Act
+        usuario_db = obter_por_email("joao.unico@email.com")
+
+        # Assert
+        assert usuario_db is not None, "Usuário deveria existir"
+        assert usuario_db.email == "joao.unico@email.com"
+        assert usuario_db.nome == "João Silva"
+
+    def test_obter_por_email_inexistente(self, test_db):
+        """Testa obtenção de usuário por email inexistente"""
+        # Arrange & Act
+        usuario = obter_por_email("naoexiste@email.com")
+
+        # Assert
+        assert usuario is None, "Usuário não deveria existir"
+
+    def test_atualizar_token(self, test_db):
+        """Testa atualização de token de redefinição"""
+        # Arrange
+        usuario = Usuario(0, "João", "joao.token@email.com", "senha123", "11999998888", "tutor", None, None, None, None)
+        inserir_usuario(usuario)
+        token = "abc123xyz"
+        data_expiracao = "2025-12-31 23:59:59"
+
+        # Act
+        resultado = atualizar_token("joao.token@email.com", token, data_expiracao)
+
+        # Assert
+        assert resultado == True, "Atualização de token deveria retornar True"
+        usuario_db = obter_por_email("joao.token@email.com")
+        assert usuario_db.token_redefinicao == token
+        assert usuario_db.data_token == data_expiracao
+
+    def test_atualizar_token_email_inexistente(self, test_db):
+        """Testa atualização de token com email inexistente"""
+        # Arrange & Act
+        resultado = atualizar_token("naoexiste@email.com", "token123", "2025-12-31")
+
+        # Assert
+        assert resultado == False, "Atualização de token com email inexistente deveria retornar False"
+
+    def test_obter_por_token(self, test_db):
+        """Testa obtenção de usuário por token"""
+        # Arrange
+        usuario = Usuario(0, "Maria", "maria.token@email.com", "senha123", "11888887777", "tutor", None, None, None, None)
+        inserir_usuario(usuario)
+        token = "token_unico_123"
+        atualizar_token("maria.token@email.com", token, "2025-12-31")
+
+        # Act
+        usuario_db = obter_por_token(token)
+
+        # Assert
+        assert usuario_db is not None, "Usuário deveria ser encontrado pelo token"
+        assert usuario_db.email == "maria.token@email.com"
+        assert usuario_db.token_redefinicao == token
+
+    def test_obter_por_token_inexistente(self, test_db):
+        """Testa obtenção com token inexistente"""
+        # Arrange & Act
+        usuario = obter_por_token("token_que_nao_existe")
+
+        # Assert
+        assert usuario is None, "Não deveria encontrar usuário"
+
+    def test_limpar_token(self, test_db):
+        """Testa limpeza de token de redefinição"""
+        # Arrange
+        usuario = Usuario(0, "Carlos", "carlos.limpar@email.com", "senha123", "11777776666", "tutor", None, None, None, None)
+        id_usuario = inserir_usuario(usuario)
+        atualizar_token("carlos.limpar@email.com", "token123", "2025-12-31")
+
+        # Act
+        resultado = limpar_token(id_usuario)
+
+        # Assert
+        assert resultado == True, "Limpeza de token deveria retornar True"
+        usuario_db = obter_usuario_por_id(id_usuario)
+        assert usuario_db.token_redefinicao is None
+        assert usuario_db.data_token is None
+
+    def test_limpar_token_usuario_inexistente(self, test_db):
+        """Testa limpeza de token com usuário inexistente"""
+        # Arrange & Act
+        resultado = limpar_token(9999)
+
+        # Assert
+        assert resultado == False, "Limpeza de token com ID inexistente deveria retornar False"
+
+    def test_obter_todos_por_perfil(self, test_db):
+        """Testa obtenção de usuários por perfil"""
+        # Arrange
+        usuarios = [
+            Usuario(0, "Tutor 1", "tutor1@email.com", "senha1", "11111111111", "tutor", None, None, None, None),
+            Usuario(0, "Tutor 2", "tutor2@email.com", "senha2", "22222222222", "tutor", None, None, None, None),
+            Usuario(0, "Admin 1", "admin1@email.com", "senha3", "33333333333", "admin", None, None, None, None),
+            Usuario(0, "Vet 1", "vet1@email.com", "senha4", "44444444444", "veterinario", None, None, None, None),
+        ]
+
+        for usuario in usuarios:
+            inserir_usuario(usuario)
+
+        # Act
+        tutores = obter_todos_por_perfil("tutor")
+        admins = obter_todos_por_perfil("admin")
+
+        # Assert
+        assert len(tutores) == 2, "Deveria haver 2 tutores"
+        assert len(admins) == 1, "Deveria haver 1 admin"
+        assert all(u.perfil == "tutor" for u in tutores), "Todos deveriam ser tutores"
+        assert admins[0].perfil == "admin", "Deveria ser admin"
+
+    def test_obter_todos_por_perfil_vazio(self, test_db):
+        """Testa obtenção por perfil quando não há usuários"""
+        # Arrange & Act
+        usuarios = obter_todos_por_perfil("perfil_inexistente")
+
+        # Assert
+        assert len(usuarios) == 0, "Não deveria haver usuários"
+
+    def test_atualizar_foto(self, test_db):
+        """Testa atualização de foto do usuário"""
+        # Arrange
+        usuario = Usuario(0, "Pedro", "pedro.foto@email.com", "senha123", "11666665555", "tutor", None, None, None, None)
+        id_usuario = inserir_usuario(usuario)
+        caminho_foto = "/uploads/fotos/pedro.jpg"
+
+        # Act
+        resultado = atualizar_foto(id_usuario, caminho_foto)
+
+        # Assert
+        assert resultado == True, "Atualização de foto deveria retornar True"
+        usuario_db = obter_usuario_por_id(id_usuario)
+        assert usuario_db.foto == caminho_foto
+
+    def test_atualizar_foto_usuario_inexistente(self, test_db):
+        """Testa atualização de foto com usuário inexistente"""
+        # Arrange & Act
+        resultado = atualizar_foto(9999, "/uploads/foto.jpg")
+
+        # Assert
+        assert resultado == False, "Atualização de foto com ID inexistente deveria retornar False"

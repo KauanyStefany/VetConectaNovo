@@ -32,6 +32,11 @@ class TestTutorRepo:
             email="maria.silva@email.com",
             senha="senha123",
             telefone="11987654321",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=2,
             descricao_pets="Um cachorro e um gato"
         )
@@ -61,6 +66,11 @@ class TestTutorRepo:
             email="joao.santos@email.com",
             senha="senha456",
             telefone="11999998888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=0,
             descricao_pets=None
         )
@@ -84,6 +94,11 @@ class TestTutorRepo:
             email="original@email.com",
             senha="senha123",
             telefone="11999998888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=1,
             descricao_pets="Um gato"
         )
@@ -96,6 +111,11 @@ class TestTutorRepo:
             email="atualizado@email.com",
             senha="senha123",
             telefone="11777776666",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=3,
             descricao_pets="Um gato e dois cachorros"
         )
@@ -120,6 +140,11 @@ class TestTutorRepo:
             email="nao@existe.com",
             senha="senha",
             telefone="11999998888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=0,
             descricao_pets=None
         )
@@ -139,6 +164,11 @@ class TestTutorRepo:
             email="excluir@email.com",
             senha="senha123",
             telefone="11999998888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=1,
             descricao_pets="Um hamster"
         )
@@ -173,11 +203,11 @@ class TestTutorRepo:
         """Testa obtenção paginada de tutores"""
         # Arrange
         tutores = [
-            Tutor(0, "Ana Costa", "ana@email.com", "senha1", "11111111111", 1, "Um gato"),
-            Tutor(0, "Bruno Lima", "bruno@email.com", "senha2", "22222222222", 2, "Dois cães"),
-            Tutor(0, "Carlos Silva", "carlos@email.com", "senha3", "33333333333", 0, None),
-            Tutor(0, "Diana Santos", "diana@email.com", "senha4", "44444444444", 3, "Três pássaros"),
-            Tutor(0, "Eduardo Souza", "eduardo@email.com", "senha5", "55555555555", 1, "Um peixe")
+            Tutor(0, "Ana Costa", "ana@email.com", "senha1", "11111111111", "tutor", None, None, None, None, 1, "Um gato"),
+            Tutor(0, "Bruno Lima", "bruno@email.com", "senha2", "22222222222", "tutor", None, None, None, None, 2, "Dois cães"),
+            Tutor(0, "Carlos Silva", "carlos@email.com", "senha3", "33333333333", "tutor", None, None, None, None, 0, None),
+            Tutor(0, "Diana Santos", "diana@email.com", "senha4", "44444444444", "tutor", None, None, None, None, 3, "Três pássaros"),
+            Tutor(0, "Eduardo Souza", "eduardo@email.com", "senha5", "55555555555", "tutor", None, None, None, None, 1, "Um peixe")
         ]
         
         for tutor in tutores:
@@ -218,6 +248,11 @@ class TestTutorRepo:
             email="joao@email.com",
             senha="senha123",
             telefone="11999998888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=4,
             descricao_pets="Dois gatos e dois cachorros"
         )
@@ -255,6 +290,11 @@ class TestTutorRepo:
             email="heranca@email.com",
             senha="senha123",
             telefone="11999998888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             quantidade_pets=1,
             descricao_pets="Um coelho"
         )

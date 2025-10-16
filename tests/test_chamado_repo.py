@@ -21,9 +21,9 @@ class TestChamadoRepo:
         chamado_repo.criar_tabela_chamado()
         
         # Criar dados base para os testes
-        self.usuario = Usuario(0, "João Silva", "joao@email.com", "senha123", "11999998888")
+        self.usuario = Usuario(0, "João Silva", "joao@email.com", "senha123", "11999998888", "tutor", None, None, None, None)
         self.id_usuario = usuario_repo.inserir_usuario(self.usuario)
-        
+
         self.admin = Administrador(0, "Admin Silva", "admin@email.com", "senha456")
         self.id_admin = administrador_repo.inserir_administrador(self.admin)
         

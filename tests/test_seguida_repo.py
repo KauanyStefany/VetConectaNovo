@@ -33,6 +33,11 @@ class TestSeguidaRepo:
             email="vet@email.com", 
             senha="123", 
             telefone="999999999", 
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="CRMV123", 
             verificado=True, 
             bio="Especialista")
@@ -44,7 +49,14 @@ class TestSeguidaRepo:
             nome="Maria",
             email="maria@email.com",
             senha="321",
-            telefone="888888888"
+            telefone="888888888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+            quantidade_pets=0,
+            descricao_pets=None
         )
         id_tutor = inserir_tutor(tutor)
         
@@ -79,6 +91,11 @@ class TestSeguidaRepo:
             email="vet@email.com", 
             senha="123", 
             telefone="999999999", 
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="CRMV123", 
             verificado=True, 
             bio="Especialista")
@@ -90,7 +107,14 @@ class TestSeguidaRepo:
             nome="Maria",
             email="maria@email.com",
             senha="321",
-            telefone="888888888"
+            telefone="888888888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+            quantidade_pets=0,
+            descricao_pets=None
         )
         id_tutor = inserir_tutor(tutor)
         
@@ -128,6 +152,11 @@ class TestSeguidaRepo:
                 email=f"vet{i+1}@email.com", 
                 senha="123", 
                 telefone="999999999", 
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
                 crmv="CRMV123", 
                 verificado=True, 
                 bio="Especialista"
@@ -138,11 +167,18 @@ class TestSeguidaRepo:
         tutores = []
         for i in range(10):
             tutor = Tutor(
-                id_usuario=0, 
+                id_usuario=0,
                 nome=f"Tutor {i+1}",
                 email=f"tutor{i+1}@email.com",
                 senha="321",
-                telefone="888888888"
+                telefone="888888888",
+                perfil="tutor",
+                foto=None,
+                token_redefinicao=None,
+                data_token=None,
+                data_cadastro=None,
+                quantidade_pets=0,
+                descricao_pets=None
             )
             tutores.append(tutor)
 
@@ -184,6 +220,11 @@ class TestSeguidaRepo:
             email="vet@email.com", 
             senha="123", 
             telefone="999999999", 
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="CRMV123", 
             verificado=True, 
             bio="Especialista")
@@ -195,7 +236,14 @@ class TestSeguidaRepo:
             nome="Maria",
             email="maria@email.com",
             senha="321",
-            telefone="888888888"
+            telefone="888888888",
+            perfil="tutor",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+            quantidade_pets=0,
+            descricao_pets=None
         )
         id_tutor = inserir_tutor(tutor)
         
@@ -222,8 +270,62 @@ class TestSeguidaRepo:
 
     def test_obter_seguida_inexistente(self, test_db):
         # Arrange
+        criar_tabela_usuario()
+        criar_tabela_tutor()
+        criar_tabela_veterinario()
         criar_tabela_seguida()
         # Act
         seguida_db = obter_seguida_por_id(999, 888)
         # Assert
         assert seguida_db is None, "A seguida inexistente deveria retornar None"
+
+    def test_excluir_seguida_inexistente(self, test_db):
+        """Testa exclusão de seguida inexistente"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_tutor()
+        criar_tabela_veterinario()
+        criar_tabela_seguida()
+
+        # Act
+        resultado = excluir_seguida(9999, 9999)
+
+        # Assert
+        assert resultado == False, "Exclusão de seguida inexistente deveria retornar False"
+
+    def test_obter_seguidas_paginado_vazio(self, test_db):
+        """Testa obtenção paginada quando não há seguidas"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_tutor()
+        criar_tabela_veterinario()
+        criar_tabela_seguida()
+
+        # Act
+        seguidas = obter_seguidas_paginado(pagina=1, tamanho_pagina=10)
+
+        # Assert
+        assert len(seguidas) == 0, "Deveria retornar lista vazia"
+
+    def test_inserir_seguida_duplicada(self, test_db):
+        """Testa inserção de seguida duplicada (deveria falhar por constraint)"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_tutor()
+        criar_tabela_veterinario()
+        criar_tabela_seguida()
+
+        vet = Veterinario(0, "Dr. Silva", "silva@vet.com", "123", "999999999", "veterinario", None, None, None, None, "CRMV111", True, "Bio")
+        id_vet = inserir_veterinario(vet)
+
+        tutor = Tutor(0, "João", "joao@email.com", "321", "888888888", "tutor", None, None, None, None, 1, "Cachorro")
+        id_tutor = inserir_tutor(tutor)
+
+        seguida = Seguida(id_vet, id_tutor, date.today())
+        inserir_seguida(seguida)
+
+        # Act - tentar inserir novamente
+        resultado = inserir_seguida(seguida)
+
+        # Assert
+        assert resultado == False, "Inserção de seguida duplicada deveria retornar False"

@@ -33,6 +33,11 @@ class TestVerificacaoCRMVRepo:
             email="dr.joao@email.com",
             senha="senha123",
             telefone="11999998888",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="SP-12345",
             verificado=False,
             bio="Veterinário clínico geral"

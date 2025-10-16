@@ -33,7 +33,7 @@ class TestComentarioRepo:
         criar_tabela_postagem_artigo()  
         criar_tabela_comentario()
         
-        usuario_teste = Usuario(0, "Usuário Teste", "usuario@teste.com", "senha123", "11999999999")
+        usuario_teste = Usuario(0, "Usuário Teste", "usuario@teste.com", "senha123", "11999999999", "tutor", None, None, None, None)
         id_usuario = inserir_usuario(usuario_teste)
         usuario_teste.id_usuario = id_usuario  # Atualiza o ID do usuário após inserção
         
@@ -44,6 +44,11 @@ class TestComentarioRepo:
             email="veterinario_unico@teste.com",  # Email único
             senha="senha123",
             telefone="11888888888",
+            perfil="veterinario",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
             crmv="CRMV12345",
             verificado=True,
             bio="bioteste"
@@ -51,7 +56,7 @@ class TestComentarioRepo:
         id_usuario_vet = inserir_veterinario(veterinario_teste)
         veterinario_teste.id_usuario = id_usuario_vet
     
-        categoria_artigo_teste = CategoriaArtigo(0, "Categoria Teste", "Descrição da categoria teste")
+        categoria_artigo_teste = CategoriaArtigo(0, "Categoria Teste", "#FF5733", "categoria.png")
         id_categoria_artigo = inserir_categoria(categoria_artigo_teste)
         categoria_artigo_teste.id = id_categoria_artigo
         
@@ -85,3 +90,158 @@ class TestComentarioRepo:
         assert comentario_db.id_usuario == id_usuario, "O ID do usuário do comentário inserido não confere"
         assert comentario_db.id_postagem_artigo == id_postagem_artigo, "O ID do artigo do comentário inserido não confere"
         assert comentario_db.texto == "Este é um comentário de teste", "O texto do comentário inserido não confere"
+
+    def test_atualizar_comentario_sucesso(self, test_db):
+        """Testa atualização de comentário com sucesso"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        criar_tabela_categoria_artigo()
+        criar_tabela_postagem_artigo()
+        criar_tabela_comentario()
+
+        usuario = Usuario(0, "João", "joao@test.com", "senha123", "11999999999", "tutor", None, None, None, None)
+        id_usuario = inserir_usuario(usuario)
+
+        veterinario = Veterinario(0, "Dr. Silva", "silva@vet.com", "senha123", "11888888888", "veterinario", None, None, None, None, "CRMV111", True, "Bio")
+        id_vet = inserir_veterinario(veterinario)
+
+        categoria = CategoriaArtigo(0, "Saúde", "#FF5733", "saude.png")
+        id_categoria = inserir_categoria(categoria)
+
+        artigo = PostagemArtigo(0, id_vet, "Artigo Teste", "Conteúdo", id_categoria, "2023-10-01", 10)
+        id_artigo = inserir_artigo(artigo)
+
+        comentario = Comentario(0, id_usuario, id_artigo, "Comentário original", datetime.now(), None)
+        id_comentario = inserir(comentario)
+
+        # Act
+        comentario_atualizado = Comentario(id_comentario, id_usuario, id_artigo, "Comentário atualizado", datetime.now(), datetime.now())
+        resultado = atualizar(comentario_atualizado)
+
+        # Assert
+        assert resultado == True, "Atualização deveria retornar True"
+        comentario_db = obter_por_id(id_comentario)
+        assert comentario_db.texto == "Comentário atualizado", "Texto deveria estar atualizado"
+
+    def test_atualizar_comentario_inexistente(self, test_db):
+        """Testa atualização de comentário inexistente"""
+        # Arrange
+        criar_tabela_comentario()
+        comentario = Comentario(9999, 1, 1, "Texto", datetime.now(), None)
+
+        # Act
+        resultado = atualizar(comentario)
+
+        # Assert
+        assert resultado == False, "Atualização de comentário inexistente deveria retornar False"
+
+    def test_excluir_comentario_sucesso(self, test_db):
+        """Testa exclusão de comentário com sucesso"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        criar_tabela_categoria_artigo()
+        criar_tabela_postagem_artigo()
+        criar_tabela_comentario()
+
+        usuario = Usuario(0, "Maria", "maria@test.com", "senha123", "11999999999", "tutor", None, None, None, None)
+        id_usuario = inserir_usuario(usuario)
+
+        veterinario = Veterinario(0, "Dr. Costa", "costa@vet.com", "senha123", "11888888888", "veterinario", None, None, None, None, "CRMV222", True, "Bio")
+        id_vet = inserir_veterinario(veterinario)
+
+        categoria = CategoriaArtigo(0, "Nutrição", "#00FF00", "nutricao.png")
+        id_categoria = inserir_categoria(categoria)
+
+        artigo = PostagemArtigo(0, id_vet, "Nutrição Canina", "Conteúdo", id_categoria, "2023-10-01", 20)
+        id_artigo = inserir_artigo(artigo)
+
+        comentario = Comentario(0, id_usuario, id_artigo, "Ótimo artigo!", datetime.now(), None)
+        id_comentario = inserir(comentario)
+
+        # Act
+        resultado = excluir(id_comentario)
+
+        # Assert
+        assert resultado == True, "Exclusão deveria retornar True"
+        comentario_db = obter_por_id(id_comentario)
+        assert comentario_db is None, "Comentário não deveria mais existir"
+
+    def test_excluir_comentario_inexistente(self, test_db):
+        """Testa exclusão de comentário inexistente"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        criar_tabela_categoria_artigo()
+        criar_tabela_postagem_artigo()
+        criar_tabela_comentario()
+
+        # Act
+        resultado = excluir(9999)
+
+        # Assert
+        assert resultado == False, "Exclusão de comentário inexistente deveria retornar False"
+
+    def test_obter_todos_paginado(self, test_db):
+        """Testa obtenção paginada de comentários"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        criar_tabela_categoria_artigo()
+        criar_tabela_postagem_artigo()
+        criar_tabela_comentario()
+
+        usuario = Usuario(0, "Pedro", "pedro@test.com", "senha123", "11999999999", "tutor", None, None, None, None)
+        id_usuario = inserir_usuario(usuario)
+
+        veterinario = Veterinario(0, "Dr. Lima", "lima@vet.com", "senha123", "11888888888", "veterinario", None, None, None, None, "CRMV333", True, "Bio")
+        id_vet = inserir_veterinario(veterinario)
+
+        categoria = CategoriaArtigo(0, "Comportamento", "#0000FF", "comportamento.png")
+        id_categoria = inserir_categoria(categoria)
+
+        artigo = PostagemArtigo(0, id_vet, "Comportamento Felino", "Conteúdo", id_categoria, "2023-10-01", 30)
+        id_artigo = inserir_artigo(artigo)
+
+        # Criar 5 comentários
+        for i in range(5):
+            comentario = Comentario(0, id_usuario, id_artigo, f"Comentário {i}", datetime.now(), None)
+            inserir(comentario)
+
+        # Act
+        comentarios = obter_todos_paginado(limite=3, offset=0)
+
+        # Assert
+        assert len(comentarios) == 3, "Deveria retornar 3 comentários"
+        assert all(isinstance(c, Comentario) for c in comentarios), "Todos deveriam ser Comentario"
+
+    def test_obter_todos_paginado_vazio(self, test_db):
+        """Testa obtenção paginada quando não há comentários"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        criar_tabela_categoria_artigo()
+        criar_tabela_postagem_artigo()
+        criar_tabela_comentario()
+
+        # Act
+        comentarios = obter_todos_paginado(limite=10, offset=0)
+
+        # Assert
+        assert len(comentarios) == 0, "Deveria retornar lista vazia"
+
+    def test_obter_por_id_inexistente(self, test_db):
+        """Testa obtenção de comentário inexistente"""
+        # Arrange
+        criar_tabela_usuario()
+        criar_tabela_veterinario()
+        criar_tabela_categoria_artigo()
+        criar_tabela_postagem_artigo()
+        criar_tabela_comentario()
+
+        # Act
+        comentario = obter_por_id(9999)
+
+        # Assert
+        assert comentario is None, "Comentário inexistente deveria retornar None"

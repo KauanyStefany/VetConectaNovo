@@ -26,77 +26,82 @@ class TestCategoriaArtigoRepo:
         categoria = CategoriaArtigo(
             id_categoria_artigo=0,  # 0 para auto-increment
             nome="Nutrição Animal",
-            descricao="Artigos sobre alimentação e nutrição de pets"
+            cor="#FF5733",
+            imagem="nutricao.png"
         )
-        
+
         # Act
         id_inserido = inserir_categoria(categoria)
-        
+
         # Assert
         assert id_inserido is not None, "ID da categoria inserida não deveria ser None"
         assert id_inserido > 0, "ID deveria ser maior que zero"
-        
+
         # Verificar se foi salvo corretamente
         categoria_db = obter_categoria_por_id(id_inserido)
         assert categoria_db is not None, "Categoria deveria existir no banco"
         assert categoria_db.nome == categoria.nome
-        assert categoria_db.descricao == categoria.descricao
+        assert categoria_db.cor == categoria.cor
+        assert categoria_db.imagem == categoria.imagem
 
     def test_inserir_categoria_sem_descricao(self, test_db):
-        """Testa inserção de categoria sem descrição"""
+        """Testa inserção de categoria sem cor definida"""
         # Arrange
         categoria = CategoriaArtigo(
             id_categoria_artigo=0,
             nome="Comportamento",
-            descricao=None
+            cor="#FFFFFF",
+            imagem="comportamento.png"
         )
-        
+
         # Act
         id_inserido = inserir_categoria(categoria)
-        
+
         # Assert
-        assert id_inserido is not None, "Deveria permitir inserir categoria sem descrição"
-        
+        assert id_inserido is not None, "Deveria permitir inserir categoria"
+
         categoria_db = obter_categoria_por_id(id_inserido)
         assert categoria_db.nome == "Comportamento"
-        assert categoria_db.descricao is None
+        assert categoria_db.cor == "#FFFFFF"
 
     def test_atualizar_categoria_sucesso(self, test_db):
         """Testa atualização de categoria com sucesso"""
         # Arrange
-        categoria_original = CategoriaArtigo(0, "Nome Original", "Descrição Original")
+        categoria_original = CategoriaArtigo(0, "Nome Original", "#000000", "original.png")
         id_categoria = inserir_categoria(categoria_original)
-        
+
         # Act
         categoria_atualizada = CategoriaArtigo(
             id_categoria_artigo=id_categoria,
             nome="Nome Atualizado",
-            descricao="Descrição Atualizada"
+            cor="#111111",
+            imagem="atualizado.png"
         )
         resultado = atualizar_categoria(categoria_atualizada)
-        
+
         # Assert
         assert resultado == True, "Atualização deveria retornar True"
-        
+
         categoria_db = obter_categoria_por_id(id_categoria)
         assert categoria_db.nome == "Nome Atualizado"
-        assert categoria_db.descricao == "Descrição Atualizada"
+        assert categoria_db.cor == "#111111"
+        assert categoria_db.imagem == "atualizado.png"
 
     def test_atualizar_categoria_inexistente(self, test_db):
         """Testa atualização de categoria inexistente"""
         # Arrange
-        categoria_inexistente = CategoriaArtigo(9999, "Não Existe", "Descrição")
-        
+        categoria_inexistente = CategoriaArtigo(9999, "Não Existe", "#AAAAAA", "nao_existe.png")
+
         # Act
         resultado = atualizar_categoria(categoria_inexistente)
-        
+
         # Assert
         assert resultado == False, "Atualização de categoria inexistente deveria retornar False"
 
     def test_excluir_categoria_sucesso(self, test_db):
         """Testa exclusão de categoria com sucesso"""
         # Arrange
-        categoria = CategoriaArtigo(0, "Para Excluir", "Será excluída")
+        categoria = CategoriaArtigo(0, "Para Excluir", "#FF0000", "excluir.png")
         id_categoria = inserir_categoria(categoria)
         
         # Act
@@ -123,11 +128,11 @@ class TestCategoriaArtigoRepo:
         """Testa obtenção paginada de categorias"""
         # Arrange
         categorias = [
-            CategoriaArtigo(0, "Alimentação", "Tudo sobre nutrição animal"),
-            CategoriaArtigo(0, "Comportamento", "Psicologia e comportamento animal"),
-            CategoriaArtigo(0, "Doenças", "Patologias veterinárias"),
-            CategoriaArtigo(0, "Emergências", "Primeiros socorros e emergências"),
-            CategoriaArtigo(0, "Filhotes", "Cuidados com filhotes")
+            CategoriaArtigo(0, "Alimentação", "#FF5733", "alimentacao.png"),
+            CategoriaArtigo(0, "Comportamento", "#3498DB", "comportamento.png"),
+            CategoriaArtigo(0, "Doenças", "#E74C3C", "doencas.png"),
+            CategoriaArtigo(0, "Emergências", "#F39C12", "emergencias.png"),
+            CategoriaArtigo(0, "Filhotes", "#9B59B6", "filhotes.png")
         ]
         
         for categoria in categorias:
@@ -162,17 +167,18 @@ class TestCategoriaArtigoRepo:
     def test_obter_categoria_por_id_existente(self, test_db):
         """Testa obtenção de categoria por ID existente"""
         # Arrange
-        categoria = CategoriaArtigo(0, "Nutrição", "Artigos sobre nutrição")
+        categoria = CategoriaArtigo(0, "Nutrição", "#27AE60", "nutricao.png")
         id_categoria = inserir_categoria(categoria)
-        
+
         # Act
         categoria_db = obter_categoria_por_id(id_categoria)
-        
+
         # Assert
         assert categoria_db is not None, "Categoria deveria existir"
         assert categoria_db.id_categoria_artigo == id_categoria
         assert categoria_db.nome == categoria.nome
-        assert categoria_db.descricao == categoria.descricao
+        assert categoria_db.cor == categoria.cor
+        assert categoria_db.imagem == categoria.imagem
 
     def test_obter_categoria_por_id_inexistente(self, test_db):
         """Testa obtenção de categoria por ID inexistente"""
@@ -189,9 +195,9 @@ class TestCategoriaArtigoRepo:
         """Testa se a ordenação por nome está funcionando"""
         # Arrange
         categorias = [
-            CategoriaArtigo(0, "Zebra", None),
-            CategoriaArtigo(0, "Abelha", None),
-            CategoriaArtigo(0, "Macaco", None)
+            CategoriaArtigo(0, "Zebra", "#000000", "zebra.png"),
+            CategoriaArtigo(0, "Abelha", "#FFFF00", "abelha.png"),
+            CategoriaArtigo(0, "Macaco", "#8B4513", "macaco.png")
         ]
         
         for categoria in categorias:

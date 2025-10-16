@@ -137,10 +137,10 @@ def obter_por_token(token: str) -> Optional[Usuario]:
                     senha=row["senha"],
                     telefone=row["telefone"],
                     perfil=row["perfil"],
-                    foto=row["foto"],
+                    foto=row["foto"] if "foto" in row.keys() else None,
                     token_redefinicao=row["token_redefinicao"],
                     data_token=row["data_token"],
-                    data_cadastro=row["data_cadastro"]
+                    data_cadastro=row["data_cadastro"] if "data_cadastro" in row.keys() else None
             )
             return usuario
         return None
