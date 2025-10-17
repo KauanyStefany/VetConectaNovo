@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-from model.enums import ChamadoStatus
+from app.models.enums import ChamadoStatus
+
 
 @dataclass
 class Chamado:

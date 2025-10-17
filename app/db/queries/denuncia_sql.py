@@ -17,18 +17,18 @@ VALUES (?, ?, ?, ?, ?)
 """
 
 ATUALIZAR = """
-UPDATE denuncia 
+UPDATE denuncia
 SET id_usuario = ?, id_admin = ?, motivo = ?, data_denuncia = ?,  status = ?
 WHERE id_denuncia = ?;
 """
 
 EXCLUIR = """
-DELETE FROM denuncia 
+DELETE FROM denuncia
 WHERE id_denuncia = ?;
 """
 
 OBTER_TODAS_DENUNCIAS_PAGINADAS = """
-SELECT 
+SELECT
     d.id_denuncia,
     d.id_usuario,
     u.nome AS nome_usuario,

@@ -13,7 +13,7 @@ VALUES (?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE administrador 
+UPDATE administrador
 SET nome = ?, email = ?, senha = ?
 WHERE id_admin = ?;
 """
@@ -25,19 +25,19 @@ WHERE id_admin = ?;
 """
 
 EXCLUIR = """
-DELETE FROM administrador 
+DELETE FROM administrador
 WHERE id_admin = ?;
 """
 
 OBTER_ADMINISTRADORES_PAGINADO = """
-SELECT * 
-FROM administrador 
+SELECT *
+FROM administrador
 ORDER BY id_admin
 LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT * 
-FROM administrador 
+SELECT *
+FROM administrador
 WHERE id_admin = ?;
 """

@@ -13,12 +13,12 @@ CREATE TABLE IF NOT EXISTS chamado (
 """
 
 INSERIR = """
-INSERT INTO chamado (id_usuario, id_admin, titulo, descricao, status, data) 
+INSERT INTO chamado (id_usuario, id_admin, titulo, descricao, status, data)
 VALUES (?, ?, ?, ?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE chamado 
+UPDATE chamado
 SET id_usuario = ?, id_admin = ?, titulo = ?, descricao = ?, status = ?, data = ?
 WHERE id_chamado = ?
 """
@@ -34,7 +34,7 @@ DELETE FROM chamado
 WHERE id_chamado = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
+OBTER_PAGINA = """
 SELECT id_chamado, id_usuario, id_admin, titulo, descricao, status, data
 FROM chamado
 ORDER BY id_chamado
@@ -43,7 +43,7 @@ LIMIT ? OFFSET ?;
 
 
 OBTER_POR_ID = """
-SELECT * 
+SELECT *
 FROM chamado
 WHERE id_chamado = ?;
 

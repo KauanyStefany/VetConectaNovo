@@ -15,13 +15,13 @@ VALUES (?, ?);
 """
 
 EXCLUIR = """
-DELETE FROM curtida_feed 
+DELETE FROM curtida_feed
 WHERE id_usuario = ? AND id_postagem_feed = ?;
 """
 
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
+OBTER_PAGINA = """
+SELECT
     cf.id_usuario,
     u.nome AS nome_usuario,
     cf.id_postagem_feed,
@@ -36,7 +36,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     u.nome AS nome_usuario,
     pf.descricao AS descricao_postagem,
     pf.imagem,

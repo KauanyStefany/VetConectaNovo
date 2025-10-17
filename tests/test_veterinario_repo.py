@@ -1,9 +1,19 @@
 import os
 import sys
-from repo.veterinario_repo import *
+from repo.veterinario_repo import (
+    criar_tabela as criar_tabela_veterinario,
+    inserir as inserir_veterinario,
+    atualizar as atualizar_veterinario,
+    atualizar_verificacao,
+    excluir as excluir_veterinario,
+    obter_pagina as obter_por_pagina,
+    obter_por_id
+)
 from model.veterinario_model import Veterinario
 from model.usuario_model import Usuario
-from repo.usuario_repo import *
+from repo.usuario_repo import (
+    criar_tabela as criar_tabela_usuario
+)
 
 class TestVeterinarioRepo:
     def test_criar_tabela(self, test_db):

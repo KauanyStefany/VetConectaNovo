@@ -225,7 +225,7 @@ async def post_cadastro(
                 quantidade_pets=0,
                 descricao_pets=None
             )
-            id_usuario = tutor_repo.inserir_tutor(tutor)
+            id_usuario = tutor_repo.inserir(tutor)
 
         else:
             if not crmv:
@@ -256,7 +256,7 @@ async def post_cadastro(
                 verificado=False,
                 bio=None
             )
-            id_usuario = veterinario_repo.inserir_veterinario(veterinario)
+            id_usuario = veterinario_repo.inserir(veterinario)
 
         if not id_usuario:
             raise Exception("Erro ao inserir usuário no banco de dados.")
@@ -402,7 +402,7 @@ async def post_redefinir_senha(
     
     # Atualizar senha e limpar token
     senha_hash = criar_hash_senha(senha)
-    usuario_repo.atualizar_senha_usuario(usuario.id_usuario, senha_hash)
+    usuario_repo.atualizar_senha(usuario.id_usuario, senha_hash)
     usuario_repo.limpar_token(usuario.id_usuario)
     
     return templates.TemplateResponse(

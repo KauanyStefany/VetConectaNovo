@@ -26,10 +26,10 @@ DELETE FROM postagem_feed
 WHERE id_postagem_feed = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
+OBTER_PAGINA = """
+SELECT
     id_postagem_feed,
-    id_tutor,    
+    id_tutor,
     imagem,
     descricao,
     data_postagem
@@ -39,7 +39,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     id_postagem_feed,
     id_tutor,
     imagem,

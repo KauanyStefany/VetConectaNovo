@@ -21,22 +21,25 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 templates = criar_templates("templates/publico")
 
+
 @router.get("/")
 @requer_autenticacao()
 async def perfil(request: Request, usuario_logado: Optional[dict] = None):
     from typing import Union
+
     usuario: Union[Tutor, Veterinario, None] = None
-    if usuario_logado and usuario_logado['perfil'] == 'tutor':
-        usuario = tutor_repo.obter_por_id(usuario_logado['id'])
-    elif usuario_logado and usuario_logado['perfil'] == 'veterinario':
-        usuario = veterinario_repo.obter_por_id(usuario_logado['id'])
+    if usuario_logado and usuario_logado["perfil"] == "tutor":
+        usuario = tutor_repo.obter_por_id(usuario_logado["id"])
+    elif usuario_logado and usuario_logado["perfil"] == "veterinario":
+        usuario = veterinario_repo.obter_por_id(usuario_logado["id"])
     return templates.TemplateResponse(
         "perfil.html",
         {
             "request": request,
             "usuario": usuario,
-        }
+        },
     )
+
 
 @router.get("/alterar")
 @requer_autenticacao()
@@ -44,30 +47,29 @@ async def get_perfil(request: Request, usuario_logado: Optional[dict] = None):
     if not usuario_logado:
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
-    usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
+    usuario = usuario_repo.obter_por_id(usuario_logado["id"])
     if not usuario:
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
     from typing import Union, Any
+
     dados_perfil: Union[Tutor, Veterinario, Any, None] = None
     perfil = usuario.perfil.lower()
 
-    if perfil == 'tutor':
+    if perfil == "tutor":
         dados_perfil = tutor_repo.obter_por_id(usuario.id_usuario)
-    elif perfil == 'veterinario':
+    elif perfil == "veterinario":
         dados_perfil = veterinario_repo.obter_por_id(usuario.id_usuario)
-    elif perfil == 'administrador':
+    elif perfil == "administrador":
         from repo import administrador_repo
-        dados_perfil = administrador_repo.obter_administrador_por_id(usuario.id_usuario)
+
+        dados_perfil = administrador_repo.obter_por_id(usuario.id_usuario)
 
     return templates.TemplateResponse(
         "dados.html",
-        {
-            "request": request,
-            "usuario": usuario,
-            "dados_perfil": dados_perfil
-        }
+        {"request": request, "usuario": usuario, "dados_perfil": dados_perfil},
     )
+
 
 @router.post("/alterar")
 @requer_autenticacao()
@@ -76,12 +78,12 @@ async def post_perfil(
     nome: str = Form(...),
     email: str = Form(...),
     telefone: str = Form(None),
-    usuario_logado: Optional[dict] = None
+    usuario_logado: Optional[dict] = None,
 ):
     if not usuario_logado:
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
-    usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
+    usuario = usuario_repo.obter_por_id(usuario_logado["id"])
     if not usuario:
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
@@ -89,44 +91,47 @@ async def post_perfil(
     usuario_existente = usuario_repo.obter_por_email(email)
     if usuario_existente and usuario_existente.id_usuario != usuario.id_usuario:
         tutor_dados = None
-        if usuario.perfil == 'tutor':
+        if usuario.perfil == "tutor":
             try:
                 from util.db_util import get_connection
+
                 with get_connection() as conn:
                     cursor = conn.cursor()
-                    cursor.execute("SELECT cpf, telefone FROM cliente WHERE id=?", (usuario.id_usuario,))
+                    cursor.execute(
+                        "SELECT cpf, telefone FROM cliente WHERE id=?",
+                        (usuario.id_usuario,),
+                    )
                     row = cursor.fetchone()
                     if row:
-                        tutor_dados = {
-                            'telefone': row['telefone']
-                        }
+                        tutor_dados = {"telefone": row["telefone"]}
             except:
                 pass
-        
+
         return templates.TemplateResponse(
             "dados.html",
             {
                 "request": request,
                 "usuario": usuario,
-                "tutor_dados":tutor_dados,
-                "erro": "Este email já está em uso"
-            }
+                "tutor_dados": tutor_dados,
+                "erro": "Este email já está em uso",
+            },
         )
-    
+
     # Atualizar dados do usuário
     usuario.nome = nome
     usuario.email = email
-    usuario_repo.atualizar_usuario(usuario)
-    
+    usuario_repo.atualizar(usuario)
+
     # Se for cliente, atualizar dados adicionais
-    if usuario.perfil == 'tutor' and telefone:
+    if usuario.perfil == "tutor" and telefone:
         try:
             from util.db_util import get_connection
+
             with get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(
                     "UPDATE cliente SET telefone=? WHERE id=?",
-                    (telefone, usuario.id_usuario)
+                    (telefone, usuario.id_usuario),
                 )
                 conn.commit()
         except Exception as e:
@@ -134,25 +139,23 @@ async def post_perfil(
 
     # Atualizar sessão
     from util.auth_decorator import criar_sessao
+
     usuario_dict = {
         "id": usuario.id_usuario,
         "nome": nome,
         "email": email,
         "perfil": usuario.perfil,
-        "foto": usuario.foto
+        "foto": usuario.foto,
     }
     criar_sessao(request, usuario_dict)
-    
+
     return RedirectResponse("/perfil?sucesso=1", status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/alterar-senha")
 @requer_autenticacao()
 async def get_alterar_senha(request: Request, usuario_logado: Optional[dict] = None):
-    return templates.TemplateResponse(
-        "alterar_senha.html",
-        {"request": request}
-    )
+    return templates.TemplateResponse("alterar_senha.html", {"request": request})
 
 
 @router.post("/alterar-senha")
@@ -162,56 +165,42 @@ async def post_alterar_senha(
     senha_atual: str = Form(...),
     senha_nova: str = Form(...),
     confirmar_senha: str = Form(...),
-    usuario_logado: Optional[dict] = None
+    usuario_logado: Optional[dict] = None,
 ):
     if not usuario_logado:
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
-    usuario = usuario_repo.obter_usuario_por_id(usuario_logado['id'])
+    usuario = usuario_repo.obter_por_id(usuario_logado["id"])
     if not usuario:
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
     # Verificar senha atual
     if not verificar_senha(senha_atual, usuario.senha):
         return templates.TemplateResponse(
-            "alterar_senha.html",
-            {
-                "request": request,
-                "erro": "Senha atual incorreta"
-            }
+            "alterar_senha.html", {"request": request, "erro": "Senha atual incorreta"}
         )
-    
+
     # Verificar se as novas senhas coincidem
     if senha_nova != confirmar_senha:
         return templates.TemplateResponse(
             "alterar_senha.html",
-            {
-                "request": request,
-                "erro": "As novas senhas não coincidem"
-            }
+            {"request": request, "erro": "As novas senhas não coincidem"},
         )
-    
+
     # Validar força da nova senha
     senha_valida, msg_erro = validar_forca_senha(senha_nova)
     if not senha_valida:
         return templates.TemplateResponse(
-            "alterar_senha.html",
-            {
-                "request": request,
-                "erro": msg_erro
-            }
+            "alterar_senha.html", {"request": request, "erro": msg_erro}
         )
-    
+
     # Atualizar senha
     senha_hash = criar_hash_senha(senha_nova)
-    usuario_repo.atualizar_senha_usuario(usuario.id_usuario, senha_hash)
-    
+    usuario_repo.atualizar_senha(usuario.id_usuario, senha_hash)
+
     return templates.TemplateResponse(
         "alterar_senha.html",
-        {
-            "request": request,
-            "sucesso": "Senha alterada com sucesso!"
-        }
+        {"request": request, "sucesso": "Senha alterada com sucesso!"},
     )
 
 
@@ -220,7 +209,7 @@ async def post_alterar_senha(
 async def alterar_foto(
     request: Request,
     foto: UploadFile = File(...),
-    usuario_logado: Optional[dict] = None
+    usuario_logado: Optional[dict] = None,
 ):
     """
     Endpoint para alteração de foto de perfil
@@ -236,33 +225,28 @@ async def alterar_foto(
         logger.warning("Tentativa de upload sem autenticação")
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
-    usuario_id = usuario_logado['id']
+    usuario_id = usuario_logado["id"]
     logger.info(f"Iniciando upload de foto para usuário {usuario_id}")
 
     try:
         # 1. Validação completa do arquivo
         try:
             conteudo, extensao = await FileValidator.validar_imagem_completo(
-                foto,
-                max_size=UploadConfig.MAX_FILE_SIZE
+                foto, max_size=UploadConfig.MAX_FILE_SIZE
             )
         except FileValidationError as e:
             logger.warning(f"Validação falhou para usuário {usuario_id}: {e}")
-            return RedirectResponse(
-                f"/perfil?erro={str(e)}",
-                status.HTTP_303_SEE_OTHER
-            )
+            return RedirectResponse(f"/perfil?erro={str(e)}", status.HTTP_303_SEE_OTHER)
 
         # 2. Verificar espaço em disco
         if not FileManager.verificar_espaco_disco(len(conteudo)):
             logger.error("Espaço em disco insuficiente")
             return RedirectResponse(
-                "/perfil?erro=Espaço em disco insuficiente",
-                status.HTTP_303_SEE_OTHER
+                "/perfil?erro=Espaço em disco insuficiente", status.HTTP_303_SEE_OTHER
             )
 
         # 3. Obter foto atual do usuário
-        usuario = usuario_repo.obter_usuario_por_id(usuario_id)
+        usuario = usuario_repo.obter_por_id(usuario_id)
         if not usuario:
             logger.error(f"Usuário {usuario_id} não encontrado")
             return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
@@ -275,15 +259,13 @@ async def alterar_foto(
         # 5. Salvar novo arquivo
         try:
             caminho_relativo = FileManager.salvar_arquivo(
-                conteudo,
-                nome_arquivo,
-                usuario_id
+                conteudo, nome_arquivo, usuario_id
             )
         except (PermissionError, OSError) as e:
             logger.error(f"Erro ao salvar arquivo: {e}", exc_info=True)
             return RedirectResponse(
                 "/perfil?erro=Erro ao salvar arquivo. Contate o administrador.",
-                status.HTTP_303_SEE_OTHER
+                status.HTTP_303_SEE_OTHER,
             )
 
         # 6. Atualizar banco de dados
@@ -294,8 +276,7 @@ async def alterar_foto(
             # Rollback: deletar arquivo recém-criado
             FileManager.deletar_foto_antiga(caminho_relativo)
             return RedirectResponse(
-                "/perfil?erro=Erro ao atualizar perfil",
-                status.HTTP_303_SEE_OTHER
+                "/perfil?erro=Erro ao atualizar perfil", status.HTTP_303_SEE_OTHER
             )
 
         # 7. Deletar foto antiga (LGPD compliance)
@@ -303,8 +284,9 @@ async def alterar_foto(
             FileManager.deletar_foto_antiga(foto_antiga)
 
         # 8. Atualizar sessão
-        usuario_logado['foto'] = caminho_relativo
+        usuario_logado["foto"] = caminho_relativo
         from util.auth_decorator import criar_sessao
+
         criar_sessao(request, usuario_logado)
 
         logger.info(f"Upload concluído com sucesso para usuário {usuario_id}")
@@ -313,10 +295,8 @@ async def alterar_foto(
     except Exception as e:
         # Catch-all para erros inesperados
         logger.error(
-            f"Erro inesperado no upload do usuário {usuario_id}: {e}",
-            exc_info=True
+            f"Erro inesperado no upload do usuário {usuario_id}: {e}", exc_info=True
         )
         return RedirectResponse(
-            "/perfil?erro=Erro inesperado. Tente novamente.",
-            status.HTTP_303_SEE_OTHER
+            "/perfil?erro=Erro inesperado. Tente novamente.", status.HTTP_303_SEE_OTHER
         )

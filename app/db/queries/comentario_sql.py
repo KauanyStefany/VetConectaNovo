@@ -22,12 +22,12 @@ WHERE id_comentario = ?;
 """
 
 EXCLUIR = """
-DELETE FROM comentario 
+DELETE FROM comentario
 WHERE id_comentario = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
+OBTER_PAGINA = """
+SELECT
     c.id_comentario,
     c.texto,
     c.data_comentario,
@@ -44,7 +44,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     c.id_comentario,
     c.texto,
     c.data_comentario,

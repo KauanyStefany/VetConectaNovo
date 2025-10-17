@@ -34,7 +34,7 @@ Linhas não testadas identificadas:
 - 15-17: Tratamento de exceção em `criar_tabela()`
 - 30-36: Método `atualizar()`
 - 40-43: Método `excluir()`
-- 46-52: Método `obter_todos_paginado()` (parcialmente)
+- 46-52: Método `OBTER_PAGINA()` (parcialmente)
 - 76: Return None em `obter_por_id()`
 
 #### Testes Adicionados (7 novos testes)
@@ -43,8 +43,8 @@ Linhas não testadas identificadas:
 2. `test_atualizar_postagem_feed_inexistente` - Testa atualização de postagem inexistente
 3. `test_excluir_postagem_feed_sucesso` - Testa exclusão com sucesso
 4. `test_excluir_postagem_feed_inexistente` - Testa exclusão de postagem inexistente
-5. `test_obter_todos_paginado` - Testa paginação com múltiplas páginas
-6. `test_obter_todos_paginado_vazio` - Testa paginação sem dados
+5. `test_OBTER_PAGINA` - Testa paginação com múltiplas páginas
+6. `test_OBTER_PAGINA_vazio` - Testa paginação sem dados
 7. `test_obter_por_id_inexistente` - Testa busca de postagem inexistente
 
 #### Correções Realizadas
@@ -60,7 +60,7 @@ Linhas não testadas identificadas:
 - 15-17: Tratamento de exceção em `criar_tabela()`
 - 30-37: Método `atualizar()`
 - 40-43: Método `excluir()`
-- 46-50: Método `obter_todos_paginado()` (parcialmente)
+- 46-50: Método `OBTER_PAGINA()` (parcialmente)
 - 74: Return None em `obter_por_id()`
 
 #### Testes Adicionados (7 novos testes)
@@ -69,8 +69,8 @@ Linhas não testadas identificadas:
 2. `test_atualizar_comentario_inexistente` - Testa atualização de comentário inexistente
 3. `test_excluir_comentario_sucesso` - Testa exclusão com sucesso
 4. `test_excluir_comentario_inexistente` - Testa exclusão de comentário inexistente
-5. `test_obter_todos_paginado` - Testa paginação de comentários
-6. `test_obter_todos_paginado_vazio` - Testa paginação sem dados
+5. `test_OBTER_PAGINA` - Testa paginação de comentários
+6. `test_OBTER_PAGINA_vazio` - Testa paginação sem dados
 7. `test_obter_por_id_inexistente` - Testa busca de comentário inexistente
 
 #### Correções Realizadas

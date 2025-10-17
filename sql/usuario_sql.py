@@ -25,37 +25,37 @@ WHERE id_usuario = ?;
 """
 
 ATUALIZAR_SENHA = """
-UPDATE usuario 
+UPDATE usuario
 SET senha = ?
 WHERE id_usuario = ?;
 """
 
 EXCLUIR = """
-DELETE FROM usuario 
+DELETE FROM usuario
 WHERE id_usuario = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
-    id_usuario, 
-    nome, 
-    email, 
-    senha, 
-    telefone, 
-    perfil, 
-    foto, 
-    token_redefinicao, 
+OBTER_PAGINA = """
+SELECT
+    id_usuario,
+    nome,
+    email,
+    senha,
+    telefone,
+    perfil,
+    foto,
+    token_redefinicao,
     data_token,
     data_cadastro
-FROM usuario 
+FROM usuario
 ORDER BY nome
 LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
-id_usuario, 
-nome, 
+SELECT
+id_usuario,
+nome,
 email,
 senha,
 telefone,
@@ -64,12 +64,12 @@ foto,
 token_redefinicao,
 data_token,
 data_cadastro
-FROM usuario 
+FROM usuario
 WHERE id_usuario = ?;
 """
 
 OBTER_POR_EMAIL = """
-SELECT 
+SELECT
 id_usuario, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token, data_cadastro
 FROM usuario
 WHERE email=?
@@ -85,10 +85,6 @@ ATUALIZAR_FOTO = """
 UPDATE usuario
 SET foto = ?
 WHERE id_usuario = ?
-"""
-
-ADICIONAR_COLUNA_FOTO = """
-ALTER TABLE usuario ADD COLUMN foto TEXT
 """
 
 OBTER_POR_TOKEN = """

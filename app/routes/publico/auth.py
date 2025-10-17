@@ -19,9 +19,9 @@ class PerfilUsuario(str, Enum):
 
 from app.schemas.cadastro_dto import CadastroTutorDTO, CadastroVeterinarioDTO
 from app.schemas.login_dto import LoginDTO
-from app.models.tutor_model import Tutor
-from app.models.veterinario_model import Veterinario
-from app.repositories import usuario_repo, tutor_repo, veterinario_repo
+from model.tutor_model import Tutor
+from model.veterinario_model import Veterinario
+from repo import usuario_repo, tutor_repo, veterinario_repo
 from util.security import criar_hash_senha, verificar_senha, gerar_token_redefinicao, obter_data_expiracao_token, validar_forca_senha
 from util.auth_decorator import criar_sessao, destruir_sessao, esta_logado
 from util.template_util import criar_templates
@@ -202,7 +202,7 @@ async def post_cadastro(
         # Validar usando DTO apropriado e criar usuário
         id_usuario = None
         if perfil == PerfilUsuario.TUTOR:
-            cadastro_dto = CadastroTutorDTO(
+            cadastro_tutor_dto = CadastroTutorDTO(
                 nome=nome,
                 email=email,
                 telefone=telefone,
@@ -213,10 +213,10 @@ async def post_cadastro(
 
             tutor = Tutor(
                 id_usuario=0,
-                nome=cadastro_dto.nome,
-                email=cadastro_dto.email,
-                senha=criar_hash_senha(cadastro_dto.senha),
-                telefone=cadastro_dto.telefone,
+                nome=cadastro_tutor_dto.nome,
+                email=cadastro_tutor_dto.email,
+                senha=criar_hash_senha(cadastro_tutor_dto.senha),
+                telefone=cadastro_tutor_dto.telefone,
                 perfil=perfil.value,
                 foto=None,
                 token_redefinicao=None,
@@ -225,13 +225,13 @@ async def post_cadastro(
                 quantidade_pets=0,
                 descricao_pets=None
             )
-            id_usuario = tutor_repo.inserir_tutor(tutor)
+            id_usuario = tutor_repo.inserir(tutor)
 
         else:
             if not crmv:
                 raise ValueError("CRMV é obrigatório para veterinários")
 
-            cadastro_dto = CadastroVeterinarioDTO(
+            cadastro_vet_dto = CadastroVeterinarioDTO(
                 nome=nome,
                 email=email,
                 telefone=telefone,
@@ -243,20 +243,20 @@ async def post_cadastro(
 
             veterinario = Veterinario(
                 id_usuario=0,
-                nome=cadastro_dto.nome,
-                email=cadastro_dto.email,
-                senha=criar_hash_senha(cadastro_dto.senha),
-                telefone=cadastro_dto.telefone,
+                nome=cadastro_vet_dto.nome,
+                email=cadastro_vet_dto.email,
+                senha=criar_hash_senha(cadastro_vet_dto.senha),
+                telefone=cadastro_vet_dto.telefone,
                 perfil=perfil.value,
                 foto=None,
                 token_redefinicao=None,
                 data_token=None,
                 data_cadastro=None,
-                crmv=cadastro_dto.crmv,
+                crmv=cadastro_vet_dto.crmv,
                 verificado=False,
                 bio=None
             )
-            id_usuario = veterinario_repo.inserir_veterinario(veterinario)
+            id_usuario = veterinario_repo.inserir(veterinario)
 
         if not id_usuario:
             raise Exception("Erro ao inserir usuário no banco de dados.")
@@ -402,7 +402,7 @@ async def post_redefinir_senha(
     
     # Atualizar senha e limpar token
     senha_hash = criar_hash_senha(senha)
-    usuario_repo.atualizar_senha_usuario(usuario.id_usuario, senha_hash)
+    usuario_repo.atualizar_senha(usuario.id_usuario, senha_hash)
     usuario_repo.limpar_token(usuario.id_usuario)
     
     return templates.TemplateResponse(

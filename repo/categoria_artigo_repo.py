@@ -4,7 +4,7 @@ from sql.categoria_artigo_sql import *
 from util.db_util import get_connection
 
 
-def criar_tabela_categoria_artigo() -> bool:
+def criar_tabela() -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
@@ -15,41 +15,44 @@ def criar_tabela_categoria_artigo() -> bool:
         return False
 
 
-def inserir_categoria(categoria: CategoriaArtigo) -> Optional[int]:
+def inserir(categoria: CategoriaArtigo) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(INSERIR, (categoria.nome, categoria.cor, categoria.imagem))
         return cursor.lastrowid
 
 
-def atualizar_categoria(categoria: CategoriaArtigo) -> bool:
+def atualizar(categoria: CategoriaArtigo) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(ATUALIZAR, (
-            categoria.nome,
-            categoria.cor,
-            categoria.imagem,
-            categoria.id_categoria_artigo
-        ))
+        cursor.execute(
+            ATUALIZAR,
+            (
+                categoria.nome,
+                categoria.cor,
+                categoria.imagem,
+                categoria.id_categoria_artigo,
+            ),
+        )
         return cursor.rowcount > 0
 
 
-def excluir_categoria(id_categoria: int) -> bool:
+def excluir(id_categoria: int) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(EXCLUIR, (id_categoria,))
         return cursor.rowcount > 0
 
 
-def obter_categorias_paginado(offset: int, limite: int) -> List[CategoriaArtigo]:
+def obter_pagina(offset: int, limite: int) -> List[CategoriaArtigo]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(OBTER_TODOS_PAGINADO, (limite, offset))
+        cursor.execute(OBTER_PAGINA, (limite, offset))
         rows = cursor.fetchall()
         return [CategoriaArtigo(**row) for row in rows]
 
 
-def obter_categoria_por_id(id_categoria: int) -> Optional[CategoriaArtigo]:
+def obter_por_id(id_categoria: int) -> Optional[CategoriaArtigo]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(OBTER_POR_ID, (id_categoria,))

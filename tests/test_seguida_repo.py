@@ -1,15 +1,30 @@
 from dataclasses import dataclass
 import os
 import sys
-from repo.seguida_repo import *
+from datetime import date
 from model.seguida_model import Seguida
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
 from model.usuario_model import Usuario
-from repo.tutor_repo import criar_tabela_tutor, inserir_tutor
-from repo.veterinario_repo import criar_tabela_veterinario, inserir_veterinario
-from repo.usuario_repo import criar_tabela_usuario
-from datetime import date
+from repo.tutor_repo import (
+    criar_tabela as criar_tabela_tutor,
+    inserir as inserir_tutor
+)
+from repo.veterinario_repo import (
+    criar_tabela as criar_tabela_veterinario,
+    inserir as inserir_veterinario
+)
+from repo.usuario_repo import (
+    criar_tabela as criar_tabela_usuario
+)
+from repo.seguida_repo import (
+    criar_tabela as criar_tabela_seguida,
+    inserir as inserir_seguida,
+    excluir as excluir_seguida,
+    obter_pagina as obter_seguidas_paginado,
+    obter_por_id as obter_seguida_por_id
+)
+from repo import veterinario_repo, tutor_repo
 
 class TestSeguidaRepo:
     def test_criar_tabela(self, test_db):
@@ -186,8 +201,8 @@ class TestSeguidaRepo:
             inserir_veterinario(veterinarios[i])
             inserir_tutor(tutores[i])
 
-        veterinarios_bd = veterinario_repo.obter_por_pagina(10, 0)
-        tutores_bd = tutor_repo.obter_tutores_por_pagina(10, 0)
+        veterinarios_bd = veterinario_repo.obter_pagina(10, 0)
+        tutores_bd = tutor_repo.obter_pagina(10, 0)
         seguidas = []
         for i in range(10):
             seguida_teste = Seguida(

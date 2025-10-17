@@ -15,12 +15,12 @@ VALUES (?, ?);
 """
 
 EXCLUIR = """
-DELETE FROM seguida 
+DELETE FROM seguida
 WHERE id_veterinario = ? AND id_tutor = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
+OBTER_PAGINA = """
+SELECT
   id_veterinario,
   id_tutor,
   data_inicio
@@ -31,7 +31,7 @@ LIMIT ? OFFSET ?;
 
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
   id_veterinario,
   id_tutor,
   data_inicio

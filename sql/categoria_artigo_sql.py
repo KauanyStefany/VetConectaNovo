@@ -13,17 +13,17 @@ VALUES (?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE categoria_artigo 
+UPDATE categoria_artigo
 SET nome = ?, cor = ?, imagem = ?
 WHERE id_categoria_artigo = ?;
 """
 
 EXCLUIR = """
-DELETE FROM categoria_artigo 
+DELETE FROM categoria_artigo
 WHERE id_categoria_artigo = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
+OBTER_PAGINA = """
 SELECT
     id_categoria_artigo,
     nome,
@@ -43,5 +43,3 @@ SELECT
 FROM categoria_artigo
 WHERE id_categoria_artigo = ?;
 """
-
-

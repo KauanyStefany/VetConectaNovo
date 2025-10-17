@@ -13,21 +13,21 @@ VALUES (?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE tutor 
+UPDATE tutor
 SET quantidade_pets = ?, descricao_pets = ?
 WHERE id_tutor = ?;
 """
 
 EXCLUIR = """
-DELETE FROM tutor 
+DELETE FROM tutor
 WHERE id_tutor = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
+OBTER_PAGINA = """
+SELECT
     t.id_tutor,
-    u.nome, 
-    u.email, 
+    u.nome,
+    u.email,
     u.telefone,
     t.quantidade_pets,
     t.descricao_pets
@@ -38,7 +38,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     t.id_tutor,
     u.nome,
     u.email,

@@ -252,7 +252,7 @@ SELECT * FROM categoria_artigo WHERE id_categoria_artigo = ?;
 
 **Solução:**
 ```sql
-OBTER_TODOS_PAGINADO = """
+OBTER_PAGINA = """
 SELECT
     id_categoria_artigo,
     nome,
@@ -814,7 +814,7 @@ def obter_categorias_paginado(offset: int, limite: int) -> Tuple[List[CategoriaA
         total = cursor.fetchone()["total"]
 
         # Registros paginados
-        cursor.execute(OBTER_TODOS_PAGINADO, (limite, offset))
+        cursor.execute(OBTER_PAGINA, (limite, offset))
         rows = cursor.fetchall()
         categorias = [CategoriaArtigo(**row) for row in rows]
 

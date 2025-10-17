@@ -14,18 +14,18 @@ VALUES (?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE verificacao_crmv 
+UPDATE verificacao_crmv
 SET status_verificacao = ?, id_administrador = ?
 WHERE id_veterinario = ?;
 """
 
 EXCLUIR = """
-DELETE FROM verificacao_crmv 
+DELETE FROM verificacao_crmv
 WHERE id_veterinario = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
+OBTER_PAGINA = """
+SELECT
     v.id_verificacao_crmv,
     v.data_verificacao,
     v.status_verificacao,
@@ -48,7 +48,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     v.id_verificacao_crmv,
     v.data_verificacao,
     v.status_verificacao,
@@ -63,7 +63,7 @@ SELECT
     a.nome AS nome_admin,
     a.email AS email_admin,
     a.senha AS senha_admin
-    
+
 FROM verificacao_crmv v
 JOIN usuario u ON v.id_veterinario = u.id_usuario
 JOIN veterinario vet ON v.id_veterinario = vet.id_veterinario

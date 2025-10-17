@@ -152,8 +152,8 @@ data_cadastro=row["data_cadastro"] if "data_cadastro" in row.keys() else None
 **Testes Adicionados:**
 - test_excluir_curtida_sucesso
 - test_excluir_curtida_inexistente
-- test_obter_todos_paginado
-- test_obter_todos_paginado_vazio
+- test_OBTER_PAGINA
+- test_OBTER_PAGINA_vazio
 - test_obter_por_id_inexistente
 
 ---

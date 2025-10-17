@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
-from model.enums import VerificacaoStatus
+from app.models.enums import VerificacaoStatus
+
 
 @dataclass
 class VerificacaoCRMV:

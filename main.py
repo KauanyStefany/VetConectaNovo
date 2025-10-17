@@ -24,9 +24,7 @@ log_dir.mkdir(exist_ok=True)
 
 # Handler para arquivo
 file_handler = RotatingFileHandler(
-    'logs/app.log',
-    maxBytes=10 * 1024 * 1024,  # 10MB
-    backupCount=5
+    "logs/app.log", maxBytes=10 * 1024 * 1024, backupCount=5  # 10MB
 )
 file_handler.setLevel(logging.INFO)
 
@@ -36,33 +34,35 @@ console_handler.setLevel(logging.WARNING)
 
 # Formato
 formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
 )
 file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
 
 # Configurar logger raiz
-logging.basicConfig(
-    level=logging.INFO,
-    handlers=[file_handler, console_handler]
-)
+logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
 
 # Logger específico para aplicação
 logger = logging.getLogger(__name__)
 
 from repo import administrador_repo, tutor_repo, usuario_repo, veterinario_repo
-from app.routes.admin import categorias, chamados, comentarios, denuncias, verificacoes_crmv
+from app.routes.admin import (
+    categorias,
+    chamados,
+    comentarios,
+    denuncias,
+    verificacoes_crmv,
+)
 from app.routes.publico import auth, perfil, public
 from app.routes.tutor import postagens_feed
 from app.routes.usuario import usuario
 from app.routes.veterinario import estatisticas, artigos, solicitacoes_crmv
 
 
-usuario_repo.criar_tabela_usuario()
-tutor_repo.criar_tabela_tutor()
-veterinario_repo.criar_tabela_veterinario()
-administrador_repo.criar_tabela_administrador()
+usuario_repo.criar_tabela()
+tutor_repo.criar_tabela()
+veterinario_repo.criar_tabela()
+administrador_repo.criar_tabela()
 
 # Inicializar FastAPI
 app = FastAPI(
@@ -70,7 +70,7 @@ app = FastAPI(
     description="Plataforma de conexão veterinária",
     version="1.0.0",
     docs_url="/api/docs" if os.getenv("ENVIRONMENT") == "development" else None,
-    redoc_url="/api/redoc" if os.getenv("ENVIRONMENT") == "development" else None
+    redoc_url="/api/redoc" if os.getenv("ENVIRONMENT") == "development" else None,
 )
 
 # Obter chave secreta da variável de ambiente
@@ -88,7 +88,7 @@ ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["200/hour"],  # Limite padrão global
-    storage_uri="memory://"  # Usar Redis em produção
+    storage_uri="memory://",  # Usar Redis em produção
 )
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
@@ -117,7 +117,7 @@ app.add_middleware(
     secret_key=SECRET_KEY,
     max_age=3600,  # Sessão expira em 1 hora
     same_site="strict" if ENVIRONMENT == "production" else "lax",
-    https_only=(ENVIRONMENT == "production")  # HTTPS obrigatório em produção
+    https_only=(ENVIRONMENT == "production"),  # HTTPS obrigatório em produção
 )
 
 
@@ -133,7 +133,9 @@ async def security_headers_middleware(request: Request, call_next):
     response.headers["X-XSS-Protection"] = "1; mode=block"
 
     if ENVIRONMENT == "production":
-        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+        response.headers["Strict-Transport-Security"] = (
+            "max-age=31536000; includeSubDomains"
+        )
 
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
@@ -158,10 +160,13 @@ async def log_requests_middleware(request: Request, call_next):
     # Não logar senhas ou tokens
     safe_path = request.url.path
     if "senha" not in safe_path.lower() and "password" not in safe_path.lower():
-        req_logger.info(f"{request.method} {safe_path} - {request.client.host if request.client else 'unknown'}")
+        req_logger.info(
+            f"{request.method} {safe_path} - {request.client.host if request.client else 'unknown'}"
+        )
 
     response = await call_next(request)
     return response
+
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 

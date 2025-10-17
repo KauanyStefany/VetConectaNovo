@@ -55,7 +55,7 @@ def criar_sessao(request: Request, usuario: dict) -> None:
         request.session['usuario'] = usuario_sessao
 
         # Forçar regeneração do cookie de sessão
-        request.session.modified = True
+        request.session.modified = True  # type: ignore[attr-defined]
 
 
 def destruir_sessao(request: Request) -> None:

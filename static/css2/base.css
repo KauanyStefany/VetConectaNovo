@@ -1,0 +1,91 @@
+/* =========================================
+   VetConecta - Estilos Base
+   Arquivo: base.css
+   Descrição: Estilos para o template base_publica.html
+   ========================================= */
+
+/* Variáveis de Cores do Design */
+:root {
+    --cor-primaria-roxo: #44345a;
+    --cor-secundaria-laranja: #fa811d;
+    --cor-secundaria-verde: #295a5d;
+    --cor-fundo-pagina: #fff9ef;
+    --cor-footer: #c8a2d0;
+}
+
+/* Estilos Globais do Body */
+body {
+    background-color: var(--cor-fundo-pagina);
+}
+
+main {
+    flex: 1;
+}
+
+/* Navbar Customizada */
+.navbar-custom {
+    background-color: var(--cor-primaria-roxo);
+}
+
+/* Cores de Texto Customizadas */
+.text-laranja {
+    color: var(--cor-secundaria-laranja);
+}
+
+.text-verde {
+    color: var(--cor-secundaria-verde);
+}
+
+/* Footer Customizado */
+.footer-custom {
+    background-color: var(--cor-footer);
+}
+
+/* Barra de Pesquisa */
+.search-input {
+    border-radius: 25px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.search-btn {
+    border-radius: 0 25px 25px 0;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Tipografia - Logo */
+.logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
+/* Tipografia - Footer */
+.footer-text {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Links de Navegação */
+.nav-link-custom {
+    color: white !important;
+    font-size: 1.125rem;
+}
+
+.nav-link-custom:hover {
+    opacity: 0.8;
+}
+
+/* Avatar do Usuário */
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+/* Ícone da Pata */
+.pata-icon {
+    max-height: 70px;
+}

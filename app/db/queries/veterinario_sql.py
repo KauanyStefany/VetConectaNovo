@@ -24,7 +24,7 @@ WHERE id_veterinario = ?;
 """
 
 EXCLUIR = """
-DELETE FROM veterinario 
+DELETE FROM veterinario
 WHERE id_veterinario = ?;
 """
 
@@ -44,7 +44,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     v.id_veterinario,
     u.nome,
     u.email,
@@ -62,4 +62,3 @@ FROM veterinario v
 JOIN usuario u ON v.id_veterinario = u.id_usuario
 WHERE v.id_veterinario = ?;
 """
-

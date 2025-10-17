@@ -1328,7 +1328,7 @@ DELETE FROM usuario
 WHERE id_usuario = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
+OBTER_PAGINA = """
 SELECT
     id_usuario,
     nome,

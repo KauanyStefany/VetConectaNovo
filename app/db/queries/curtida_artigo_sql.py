@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS curtida_artigo (
     PRIMARY KEY (id_usuario, id_postagem_artigo),
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
     FOREIGN KEY (id_postagem_artigo) REFERENCES postagem_artigo(id_postagem_artigo) ON DELETE CASCADE
-);  
+);
 """
 
 INSERIR = """
@@ -25,7 +25,7 @@ DELETE FROM curtida_artigo
 WHERE id_usuario = ? AND id_postagem_artigo = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
+OBTER_PAGINA = """
 SELECT
     ca.id_usuario,
     u.nome AS nome_usuario,

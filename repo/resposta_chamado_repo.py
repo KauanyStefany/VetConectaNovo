@@ -3,7 +3,8 @@ from model.resposta_chamado_model import RespostaChamado
 from sql.resposta_chamado_sql import *
 from util.db_util import get_connection
 
-def criar_tabelas() -> bool:
+
+def criar_tabela() -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
@@ -12,35 +13,39 @@ def criar_tabelas() -> bool:
     except Exception as e:
         print(f"Erro ao criar tabela de categorias: {e}")
         return False
-    
-def inserir_resposta(resposta: RespostaChamado) -> Optional[int]:
+
+
+def inserir(resposta: RespostaChamado) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(INSERIR, (
-            resposta.id_chamado,
-            resposta.titulo,
-            resposta.descricao,
-            resposta.data
-        ))
+        cursor.execute(
+            INSERIR,
+            (resposta.id_chamado, resposta.titulo, resposta.descricao, resposta.data),
+        )
         return cursor.lastrowid
-    
-def atualizar_resposta(resposta: RespostaChamado) -> bool:
+
+
+def atualizar(resposta: RespostaChamado) -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(ATUALIZAR, (
-                resposta.id_chamado,
-                resposta.titulo,
-                resposta.descricao,
-                resposta.data,
-                resposta.id_resposta_chamado
-            ))
+            cursor.execute(
+                ATUALIZAR,
+                (
+                    resposta.id_chamado,
+                    resposta.titulo,
+                    resposta.descricao,
+                    resposta.data,
+                    resposta.id_resposta_chamado,
+                ),
+            )
             return cursor.rowcount > 0
     except Exception as e:
         print(f"Erro ao atualizar resposta: {e}")
         return False
 
-def excluir_resposta(id_resposta: int) -> bool:
+
+def excluir(id_resposta: int) -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
@@ -49,11 +54,12 @@ def excluir_resposta(id_resposta: int) -> bool:
     except Exception as e:
         print(f"Erro ao excluir resposta: {e}")
         return False
-    
-def obter_todas_respostas_paginado(limite: int, offset: int) -> List[RespostaChamado]:
+
+
+def obter_pagina(limite: int, offset: int) -> List[RespostaChamado]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(OBTER_TODOS_PAGINADO, (limite, offset))
+        cursor.execute(OBTER_PAGINA, (limite, offset))
         rows = cursor.fetchall()
         return [
             RespostaChamado(
@@ -61,13 +67,13 @@ def obter_todas_respostas_paginado(limite: int, offset: int) -> List[RespostaCha
                 id_chamado=row["id_chamado"],
                 titulo=row["titulo"],
                 descricao=row["descricao"],
-                data=row["data"]
+                data=row["data"],
             )
             for row in rows
         ]
 
 
-def obter_resposta_por_id(id_resposta: int) -> Optional[RespostaChamado]:
+def obter_por_id(id_resposta: int) -> Optional[RespostaChamado]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(OBTER_POR_ID, (id_resposta,))
@@ -78,6 +84,6 @@ def obter_resposta_por_id(id_resposta: int) -> Optional[RespostaChamado]:
                 id_chamado=row["id_chamado"],
                 titulo=row["titulo"],
                 descricao=row["descricao"],
-                data=row["data"]
+                data=row["data"],
             )
         return None

@@ -1,6 +1,16 @@
 import pytest
-from repo.tutor_repo import *
-from repo.usuario_repo import *
+from repo.tutor_repo import (
+    criar_tabela as criar_tabela_tutor,
+    inserir as inserir_tutor,
+    atualizar as atualizar_tutor,
+    excluir as excluir_tutor,
+    obter_pagina as obter_tutores_por_pagina,
+    obter_por_id
+)
+from repo.usuario_repo import (
+    criar_tabela as criar_tabela_usuario,
+    obter_por_id as obter_usuario_por_id
+)
 from model.tutor_model import Tutor
 from model.usuario_model import Usuario
 

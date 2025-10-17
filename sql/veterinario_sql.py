@@ -18,17 +18,17 @@ UPDATE veterinario SET crmv = ?, verificado = ?, bio = ?
 WHERE id_veterinario = ?;
 """
 
-ATUALIZAR_VERIFICACAO = """
+ATUALIZAR_VERIFICADO = """
 UPDATE veterinario SET verificado = ?
 WHERE id_veterinario = ?;
 """
 
 EXCLUIR = """
-DELETE FROM veterinario 
+DELETE FROM veterinario
 WHERE id_veterinario = ?;
 """
 
-OBTER_VETERINARIO_PAGINADO = """
+OBTER_PAGINA = """
 SELECT
     v.id_veterinario,
     u.nome,
@@ -44,7 +44,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     v.id_veterinario,
     u.nome,
     u.email,
@@ -62,4 +62,3 @@ FROM veterinario v
 JOIN usuario u ON v.id_veterinario = u.id_usuario
 WHERE v.id_veterinario = ?;
 """
-

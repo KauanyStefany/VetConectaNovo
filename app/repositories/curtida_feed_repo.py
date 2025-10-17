@@ -18,10 +18,7 @@ def criar_tabela() -> bool:
 def inserir(curtida: CurtidaFeed) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(curtida_feed_sql.INSERIR, (
-            curtida.id_usuario,
-            curtida.id_postagem_feed
-        ))
+        cursor.execute(curtida_feed_sql.INSERIR, (curtida.id_usuario, curtida.id_postagem_feed))
         return cursor.rowcount > 0
 
 
@@ -32,18 +29,19 @@ def excluir(id_usuario: int, id_postagem_feed: int) -> bool:
         return cursor.rowcount > 0
 
 
-def obter_todos_paginado(limite: int, offset: int) -> List[CurtidaFeed]:
+def OBTER_PAGINA(limite: int, offset: int) -> List[CurtidaFeed]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(curtida_feed_sql.OBTER_TODOS_PAGINADO, (limite, offset))
+        cursor.execute(curtida_feed_sql.OBTER_PAGINA, (limite, offset))
         rows = cursor.fetchall()
         return [
             CurtidaFeed(
                 id_usuario=row["id_usuario"],
                 id_postagem_feed=row["id_postagem_feed"],
-                data_curtida=row["data_curtida"]
+                data_curtida=row["data_curtida"],
             )
-            for row in rows]
+            for row in rows
+        ]
 
 
 def obter_por_id(id_usuario: int, id_postagem_feed: int) -> Optional[CurtidaFeed]:
@@ -55,6 +53,6 @@ def obter_por_id(id_usuario: int, id_postagem_feed: int) -> Optional[CurtidaFeed
             return CurtidaFeed(
                 id_usuario=id_usuario,
                 id_postagem_feed=id_postagem_feed,
-                data_curtida=row["data_curtida"]
+                data_curtida=row["data_curtida"],
             )
         return None

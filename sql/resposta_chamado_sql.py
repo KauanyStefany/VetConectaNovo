@@ -10,12 +10,12 @@ CREATE TABLE IF NOT EXISTS resposta_chamado (
 """
 
 INSERIR = """
-INSERT INTO resposta_chamado (id_chamado, titulo, descricao, data) 
+INSERT INTO resposta_chamado (id_chamado, titulo, descricao, data)
 VALUES (?, ?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE resposta_chamado 
+UPDATE resposta_chamado
 SET id_chamado = ?, titulo = ?, descricao = ?, data = ?
 WHERE id_resposta_chamado = ?;
 """
@@ -26,16 +26,16 @@ DELETE FROM resposta_chamado
 WHERE id_resposta_chamado = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT * 
-FROM resposta_chamado 
+OBTER_PAGINA = """
+SELECT *
+FROM resposta_chamado
 ORDER BY data DESC
 LIMIT ? OFFSET ?;
 """
 
 
 OBTER_POR_ID = """
-SELECT * 
+SELECT *
 FROM resposta_chamado
 WHERE id_resposta_chamado = ?;
 

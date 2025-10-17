@@ -1,5 +1,12 @@
 import pytest
-from repo.categoria_artigo_repo import *
+from repo.categoria_artigo_repo import (
+    criar_tabela as criar_tabela_categoria_artigo,
+    inserir as inserir_categoria,
+    atualizar as atualizar_categoria,
+    excluir as excluir_categoria,
+    obter_pagina as obter_categorias_paginado,
+    obter_por_id as obter_categoria_por_id
+)
 from model.categoria_artigo_model import CategoriaArtigo
 
 

@@ -18,7 +18,7 @@ VALUES (?, ?, ?, ?);
 """
 
 ATUALIZAR = """
-UPDATE postagem_artigo 
+UPDATE postagem_artigo
 SET titulo = ?, conteudo = ?, id_categoria_artigo = ?
 WHERE id_postagem_artigo = ?;
 """
@@ -30,12 +30,12 @@ WHERE id_postagem_artigo = ?;
 """
 
 EXCLUIR = """
-DELETE FROM postagem_artigo 
+DELETE FROM postagem_artigo
 WHERE id_postagem_artigo = ?;
 """
 
-OBTER_TODOS_PAGINADO = """
-SELECT 
+OBTER_PAGINA = """
+SELECT
     id_postagem_artigo,
     id_veterinario,
     titulo,
@@ -49,7 +49,7 @@ LIMIT ? OFFSET ?;
 """
 
 OBTER_POR_ID = """
-SELECT 
+SELECT
     id_postagem_artigo,
     id_veterinario,
     titulo,

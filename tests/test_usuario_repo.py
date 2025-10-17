@@ -1,5 +1,19 @@
 import pytest
-from repo.usuario_repo import *
+from repo.usuario_repo import (
+    criar_tabela as criar_tabela_usuario,
+    inserir as inserir_usuario,
+    atualizar as atualizar_usuario,
+    atualizar_senha as atualizar_senha_usuario,
+    excluir as excluir_usuario,
+    obter_pagina as obter_todos_usuarios_paginado,
+    obter_por_id as obter_usuario_por_id,
+    obter_por_email,
+    atualizar_token,
+    obter_por_token,
+    limpar_token,
+    obter_todos_por_perfil,
+    atualizar_foto
+)
 from model.usuario_model import Usuario
 
 

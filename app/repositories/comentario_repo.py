@@ -1,8 +1,6 @@
 from typing import Optional, List
 from app.models.comentario_model import Comentario
 from app.db.queries import comentario_sql
-from app.models.postagem_artigo_model import PostagemArtigo
-from app.models.usuario_model import Usuario
 from app.db.connection import get_connection
 
 
@@ -16,25 +14,26 @@ def criar_tabela() -> bool:
         print(f"Erro ao criar tabela de categorias: {e}")
         return False
 
+
 def inserir(comentario: Comentario) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(comentario_sql.INSERIR, (
-            comentario.id_usuario,
-            comentario.id_postagem_artigo,
-            comentario.texto
-        ))
+        cursor.execute(
+            comentario_sql.INSERIR,
+            (comentario.id_usuario, comentario.id_postagem_artigo, comentario.texto),
+        )
         return cursor.lastrowid
+
 
 def atualizar(comentario: Comentario) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(comentario_sql.ATUALIZAR, (
-            comentario.texto,
-            comentario.data_moderacao,
-            comentario.id_comentario
-        ))
+        cursor.execute(
+            comentario_sql.ATUALIZAR,
+            (comentario.texto, comentario.data_moderacao, comentario.id_comentario),
+        )
         return cursor.rowcount > 0
+
 
 def excluir(id_comentario: int) -> bool:
     with get_connection() as conn:
@@ -42,10 +41,11 @@ def excluir(id_comentario: int) -> bool:
         cursor.execute(comentario_sql.EXCLUIR, (id_comentario,))
         return cursor.rowcount > 0
 
-def obter_todos_paginado(limite: int, offset: int) -> List[Comentario]:
+
+def OBTER_PAGINA(limite: int, offset: int) -> List[Comentario]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(comentario_sql.OBTER_TODOS_PAGINADO, (limite, offset))
+        cursor.execute(comentario_sql.OBTER_PAGINA, (limite, offset))
         rows = cursor.fetchall()
         return [
             Comentario(
@@ -54,9 +54,11 @@ def obter_todos_paginado(limite: int, offset: int) -> List[Comentario]:
                 id_postagem_artigo=row["id_postagem_artigo"],
                 texto=row["texto"],
                 data_comentario=row["data_comentario"],
-                data_moderacao=row["data_moderacao"]
+                data_moderacao=row["data_moderacao"],
             )
-            for row in rows]
+            for row in rows
+        ]
+
 
 def obter_por_id(id_comentario: int) -> Optional[Comentario]:
     with get_connection() as conn:
@@ -70,5 +72,6 @@ def obter_por_id(id_comentario: int) -> Optional[Comentario]:
                 id_postagem_artigo=row["id_postagem_artigo"],
                 texto=row["texto"],
                 data_comentario=row["data_comentario"],
-                data_moderacao=row["data_moderacao"])
+                data_moderacao=row["data_moderacao"],
+            )
         return None
