@@ -10,8 +10,11 @@ class UploadConfig:
 
     # Diretórios
     BASE_DIR = Path("static/uploads")
-    USUARIOS_DIR = BASE_DIR / "usuarios"
+    USUARIOS_DIR = Path("static/img/usuarios")  # Nova localização para fotos de usuários
     TEMP_DIR = BASE_DIR / "temp"
+
+    # Formato de nome de arquivo para fotos de usuários
+    FOTO_USUARIO_PATTERN = "{:06d}"  # Formato: 000123 (6 dígitos)
 
     # Limites de tamanho
     MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB

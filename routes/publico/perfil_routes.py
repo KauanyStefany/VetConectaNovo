@@ -269,8 +269,8 @@ async def alterar_foto(
 
         foto_antiga = usuario.foto
 
-        # 4. Gerar nome seguro para novo arquivo
-        nome_arquivo = FileValidator.gerar_nome_arquivo_seguro(extensao)
+        # 4. Gerar nome de arquivo baseado no ID do usuário
+        nome_arquivo = FileManager.gerar_nome_foto_usuario(usuario_id, extensao)
 
         # 5. Salvar novo arquivo
         try:
@@ -292,15 +292,14 @@ async def alterar_foto(
         except Exception as e:
             logger.error(f"Erro ao atualizar banco: {e}", exc_info=True)
             # Rollback: deletar arquivo recém-criado
-            FileManager.deletar_foto_antiga(caminho_relativo)
+            FileManager.deletar_todas_fotos_usuario(usuario_id)
             return RedirectResponse(
                 "/perfil?erro=Erro ao atualizar perfil",
                 status.HTTP_303_SEE_OTHER
             )
 
-        # 7. Deletar foto antiga (LGPD compliance)
-        if foto_antiga:
-            FileManager.deletar_foto_antiga(foto_antiga)
+        # 7. Deletar todas as fotos antigas do usuário (LGPD compliance)
+        FileManager.deletar_todas_fotos_usuario(usuario_id)
 
         # 8. Atualizar sessão
         usuario_logado['foto'] = caminho_relativo

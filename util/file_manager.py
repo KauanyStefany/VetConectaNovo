@@ -45,7 +45,7 @@ class FileManager:
             os.chmod(caminho_completo, UploadConfig.FILE_PERMISSIONS)
 
             # Caminho relativo para URL
-            caminho_relativo = f"/static/uploads/usuarios/{nome_arquivo}"
+            caminho_relativo = f"/static/img/usuarios/{nome_arquivo}"
 
             logger.info(
                 f"Arquivo salvo com sucesso: {nome_arquivo} "
@@ -105,3 +105,78 @@ class FileManager:
         except Exception as e:
             logger.error(f"Erro ao verificar espaço em disco: {e}")
             return False
+
+    @staticmethod
+    def gerar_nome_foto_usuario(id_usuario: int, extensao: str) -> str:
+        """
+        Gera nome de arquivo para foto de usuário no formato 000123.jpg
+
+        Args:
+            id_usuario: ID do usuário
+            extensao: Extensão do arquivo (sem ponto, ex: 'jpg', 'png')
+
+        Returns:
+            str: Nome do arquivo (ex: '000123.jpg')
+        """
+        # Remove ponto da extensão se presente
+        extensao_limpa = extensao.lstrip('.')
+
+        # Gera nome usando o pattern configurado
+        nome_base = UploadConfig.FOTO_USUARIO_PATTERN.format(id_usuario)
+        return f"{nome_base}.{extensao_limpa}"
+
+    @staticmethod
+    def obter_foto_usuario_existente(id_usuario: int) -> Optional[Path]:
+        """
+        Busca foto existente do usuário em qualquer extensão permitida
+
+        Args:
+            id_usuario: ID do usuário
+
+        Returns:
+            Path do arquivo encontrado ou None
+        """
+        nome_base = UploadConfig.FOTO_USUARIO_PATTERN.format(id_usuario)
+
+        for extensao in UploadConfig.ALLOWED_EXTENSIONS:
+            # Remove ponto da extensão
+            ext_limpa = extensao.lstrip('.')
+            nome_arquivo = f"{nome_base}.{ext_limpa}"
+            caminho_completo = UploadConfig.USUARIOS_DIR / nome_arquivo
+
+            if caminho_completo.exists():
+                return caminho_completo
+
+        return None
+
+    @staticmethod
+    def deletar_todas_fotos_usuario(id_usuario: int):
+        """
+        Deleta todas as extensões possíveis de foto de um usuário
+
+        Args:
+            id_usuario: ID do usuário
+        """
+        nome_base = UploadConfig.FOTO_USUARIO_PATTERN.format(id_usuario)
+
+        for extensao in UploadConfig.ALLOWED_EXTENSIONS:
+            try:
+                # Remove ponto da extensão
+                ext_limpa = extensao.lstrip('.')
+                nome_arquivo = f"{nome_base}.{ext_limpa}"
+                caminho_completo = UploadConfig.USUARIOS_DIR / nome_arquivo
+
+                if caminho_completo.exists():
+                    caminho_completo.unlink()
+                    logger.info(
+                        f"Foto deletada: {nome_arquivo} (usuário: {id_usuario})"
+                    )
+            except PermissionError as e:
+                logger.error(
+                    f"Sem permissão para deletar {nome_arquivo}: {e}"
+                )
+            except Exception as e:
+                logger.error(
+                    f"Erro ao deletar {nome_arquivo}: {e}",
+                    exc_info=True
+                )
