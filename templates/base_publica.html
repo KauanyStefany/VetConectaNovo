@@ -20,22 +20,22 @@
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Cabeçalho -->
-    <header class="p-0">
+    <header>
         <!-- Navbar Principal -->
-        <nav class="navbar navbar-expand-lg navbar-custom">
-            <div class="container-fluid d-flex flex-column">
-                <div class="row w-100 align-items-center justify-content-center bg-bege">
+        <nav class="navbar navbar-expand-lg p-0">
+            <div class="container-fluid d-flex flex-column px-0">
+                <div class="row w-100 align-items-center justify-content-center bg-bege-claro p-4">
                     <!-- Logo -->
                     <div class="d-flex justify-content-center align-items-center">
                         <img src="/static/img/logos/logo-vetconecta-color.svg" alt="Logo VetConecta" height="70">
-                        <img src="/static/img/logos/nome-vetconecta-color.svg" alt="Nome VetConecta" height="40"
+                        <img src="/static/img/logos/nome-vetconecta-color.svg" alt="Nome VetConecta" height="35"
                             class="ms-2">
                     </div>
                 </div>
-                <div class="row w-100 align-items-center g-0">
+                <div class="row w-100 align-items-center bg-roxo p-4">
                     <!-- Coluna Esquerda: Link "Quem Somos?" -->
                     <div class="col-md-3 col-12 text-center text-md-start">
-                        <a href="/quemsomos" class="nav-link-custom text-decoration-none">Quem Somos?</a>
+                        <a href="/quemsomos" class="text-decoration-none text-white">Quem Somos?</a>
                     </div>
 
                     <!-- Coluna Central: Logo e Barra de Pesquisa -->
@@ -43,9 +43,9 @@
                         <!-- Barra de Pesquisa -->
                         <form class="d-flex justify-content-center" role="search">
                             <div class="input-group" style="max-width: 600px;">
-                                <input class="form-control search-input" type="search"
+                                <input class="form-control rounded-0" type="search"
                                     placeholder="O que seu pet necessita?" aria-label="Pesquisar">
-                                <button class="btn search-btn" type="submit">
+                                <button class="btn btn-light rounded-0" type="submit">
                                     <i class="bi bi-search"></i>
                                 </button>
                             </div>
@@ -76,9 +76,9 @@
                         {% else %}
                         <!-- Links para Usuário não Logado -->
                         <div class="d-flex justify-content-center justify-content-md-end gap-3">
-                            <a href="/login" class="nav-link-custom text-decoration-none">Login</a>
+                            <a href="/login" class="text-decoration-none text-white">Login</a>
                             <span class="text-white">|</span>
-                            <a href="/cadastro" class="nav-link-custom text-decoration-none">Cadastre-se</a>
+                            <a href="/cadastro" class="text-decoration-none text-white">Cadastre-se</a>
                         </div>
                         {% endif %}
                     </div>
@@ -94,7 +94,7 @@
     </main>
 
     <!-- Rodapé -->
-    <footer class="footer-custom text-center py-3 mt-auto">
+    <footer class="bg-bege-claro text-center py-5 mt-auto">
         <div class="container">
             <!-- Título do Rodapé -->
             <h5 class="footer-text fw-semibold mb-4">
@@ -104,9 +104,7 @@
             <!-- Logo no Rodapé -->
             <div class="d-flex justify-content-center align-items-center mb-4">
                 <img src="/static/img/logos/logo-vetconecta-color.svg" alt="Logo VetConecta" height="60" class="me-2">
-                <div class="fs-2">
-                    <span class="text-laranja">Vet</span><span class="text-verde">Conecta</span>
-                </div>
+                <img src="/static/img/logos/nome-vetconecta-color.svg" alt="Nome VetConecta" height="30" class="me-3">
             </div>
 
             <!-- Informações Legais -->

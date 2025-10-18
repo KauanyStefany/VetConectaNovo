@@ -3,10 +3,11 @@
 
 /* Variáveis de Cores do Design */
 :root {
-    --cor-roxo: #522B58;
+    --cor-roxo: #44345A;
     --cor-laranja: #FA811D;
     --cor-verde: #2D5D5C;
     --cor-bege: #ffe6ba;
+    --cor-bege-claro: #fff9ef;
     --cor-rosa: #CA567C;
 }
 
@@ -28,6 +29,10 @@ body {
 
 .bg-bege {
     background-color: var(--cor-bege) !important;
+}
+
+.bg-bege-claro {
+    background-color: var(--cor-bege-claro) !important;
 }
 
 .bg-rosa {
