@@ -1,9 +1,10 @@
 # import os  # noqa: F401
 # import sys  # noqa: F401
-from datetime import date
+from datetime import date, datetime
 
 from model.administrador_model import Administrador
 from model.chamado_model import Chamado
+from model.enums import ChamadoStatus
 from model.usuario_model import Usuario
 from model.resposta_chamado_model import RespostaChamado
 from repo.administrador_repo import criar_tabela, inserir
@@ -56,12 +57,14 @@ class TestRespostaChamadoRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario_teste)
+        assert id_usuario is not None
 
         # Insere administrador dummy e obtém ID
         admin_teste = Administrador(
             0, "Admin Teste", "admin@teste.com", "12345678"
         )
         id_admin = inserir(admin_teste)
+        assert id_admin is not None
 
         # Cria chamado usando IDs válidos
         chamado_teste = Chamado(
@@ -70,10 +73,11 @@ class TestRespostaChamadoRepo:
             id_admin=id_admin,
             titulo="Título Chamado",
             descricao="Descrição",
-            status="aberto",
-            data="2025-06-30",
+            status=ChamadoStatus.ABERTO,
+            data=datetime(2025, 6, 30),
         )
         id_chamado_inserido = inserir_chamado(chamado_teste)
+        assert id_chamado_inserido is not None
 
         # Cria resposta usando ID do chamado válido
         resposta_teste = RespostaChamado(
@@ -88,7 +92,8 @@ class TestRespostaChamadoRepo:
         id_resposta_inserida = inserir_resposta(resposta_teste)
 
         # Assert
-        resposta_db = obter_resposta_por_id(id_resposta_inserida)  # type: ignore[arg-type]  # noqa: E501
+        assert id_resposta_inserida is not None
+        resposta_db = obter_resposta_por_id(id_resposta_inserida)
         assert (
             resposta_db is not None
         ), "A resposta inserida não deveria ser None"
@@ -127,11 +132,13 @@ class TestRespostaChamadoRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario_teste)
+        assert id_usuario is not None
 
         admin_teste = Administrador(
             0, "Admin Teste", "admin@teste.com", "12345678"
         )
         id_admin = inserir(admin_teste)
+        assert id_admin is not None
 
         # Cria chamado
         chamado_teste = Chamado(
@@ -140,10 +147,11 @@ class TestRespostaChamadoRepo:
             id_admin=id_admin,
             titulo="Título Chamado",
             descricao="Descrição",
-            status="aberto",
-            data="2025-06-30",
+            status=ChamadoStatus.ABERTO,
+            data=datetime(2025, 6, 30),
         )
         id_chamado_inserido = inserir_chamado(chamado_teste)
+        assert id_chamado_inserido is not None
 
         # Cria resposta inicial
         resposta_teste = RespostaChamado(
@@ -154,6 +162,7 @@ class TestRespostaChamadoRepo:
             data=date(2025, 6, 30),
         )
         id_resposta_inserida = inserir_resposta(resposta_teste)
+        assert id_resposta_inserida is not None
 
         # Atualiza resposta
         resposta_atualizada = RespostaChamado(
@@ -171,7 +180,8 @@ class TestRespostaChamadoRepo:
         assert (
             resultado is True
         ), "A atualização da resposta deveria retornar True"
-        resposta_db = obter_resposta_por_id(id_resposta_inserida)  # type: ignore[arg-type]  # noqa: E501
+        resposta_db = obter_resposta_por_id(id_resposta_inserida)
+        assert resposta_db is not None
         assert (
             resposta_db.titulo == "Resposta Atualizada"
         ), "O título da resposta atualizada não confere"
@@ -203,11 +213,13 @@ class TestRespostaChamadoRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario_teste)
+        assert id_usuario is not None
 
         admin_teste = Administrador(
             0, "Admin Teste", "admin@teste.com", "12345678"
         )
         id_admin = inserir(admin_teste)
+        assert id_admin is not None
 
         # Cria chamado
         chamado_teste = Chamado(
@@ -216,10 +228,11 @@ class TestRespostaChamadoRepo:
             id_admin=id_admin,
             titulo="Título Chamado",
             descricao="Descrição",
-            status="aberto",
-            data="2025-06-30",
+            status=ChamadoStatus.ABERTO,
+            data=datetime(2025, 6, 30),
         )
         id_chamado_inserido = inserir_chamado(chamado_teste)
+        assert id_chamado_inserido is not None
 
         # Insere resposta
         resposta_teste = RespostaChamado(
@@ -230,15 +243,16 @@ class TestRespostaChamadoRepo:
             data=date(2025, 6, 30),
         )
         id_resposta = inserir_resposta(resposta_teste)
+        assert id_resposta is not None
 
         # Act
-        resultado = excluir_resposta(id_resposta)  # type: ignore[arg-type]
+        resultado = excluir_resposta(id_resposta)
 
         # Assert
         assert (
             resultado is True
         ), "A exclusão da resposta deveria retornar True"
-        resposta_db = obter_resposta_por_id(id_resposta)  # type: ignore[arg-type]  # noqa: E501
+        resposta_db = obter_resposta_por_id(id_resposta)
         assert resposta_db is None, "A resposta deveria ter sido excluída"
 
     def test_obter_todas_respostas_paginado(self, test_db):
@@ -262,11 +276,13 @@ class TestRespostaChamadoRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario_teste)
+        assert id_usuario is not None
 
         admin_teste = Administrador(
             0, "Admin Teste", "admin@teste.com", "12345678"
         )
         id_admin = inserir(admin_teste)
+        assert id_admin is not None
 
         # Cria chamado
         chamado_teste = Chamado(
@@ -275,10 +291,11 @@ class TestRespostaChamadoRepo:
             id_admin=id_admin,
             titulo="Título Chamado",
             descricao="Descrição",
-            status="aberto",
-            data="2025-06-30",
+            status=ChamadoStatus.ABERTO,
+            data=datetime(2025, 6, 30),
         )
         id_chamado_inserido = inserir_chamado(chamado_teste)
+        assert id_chamado_inserido is not None
 
         # Cria duas respostas válidas
         resposta1 = RespostaChamado(
@@ -334,6 +351,7 @@ class TestRespostaChamadoRepo:
             data_cadastro=None,
         )
         id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
 
         # Inserir o administrador
         admin = Administrador(
@@ -343,6 +361,7 @@ class TestRespostaChamadoRepo:
             senha="12345678",
         )
         id_admin = inserir(admin)
+        assert id_admin is not None
 
         # Criar o chamado referenciando os IDs válidos
         chamado_teste = Chamado(
@@ -351,10 +370,11 @@ class TestRespostaChamadoRepo:
             id_admin=id_admin,
             titulo="Chamado Teste",
             descricao="Descrição Teste",
-            status="aberto",
-            data="2025-06-30",
+            status=ChamadoStatus.ABERTO,
+            data=datetime(2025, 6, 30),
         )
         id_chamado_inserido = inserir_chamado(chamado_teste)
+        assert id_chamado_inserido is not None
 
         # Criar a resposta referenciando o ID do chamado válido
         resposta_teste = RespostaChamado(
@@ -365,9 +385,10 @@ class TestRespostaChamadoRepo:
             data=date(2025, 6, 30),
         )
         id_resposta_inserida = inserir_resposta(resposta_teste)
+        assert id_resposta_inserida is not None
 
         # Act
-        resposta_db = obter_resposta_por_id(id_resposta_inserida)  # type: ignore[arg-type]  # noqa: E501
+        resposta_db = obter_resposta_por_id(id_resposta_inserida)
 
         # Assert
         assert resposta_db is not None

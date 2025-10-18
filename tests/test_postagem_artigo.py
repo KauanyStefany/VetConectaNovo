@@ -44,6 +44,7 @@ class TestPostagemArtigoRepo:
             bio="Especialista em felinos",
         )
         id_vet = veterinario_repo.inserir(vet)
+        assert id_vet is not None
 
         categoria = CategoriaArtigo(
             id_categoria_artigo=0,
@@ -52,6 +53,7 @@ class TestPostagemArtigoRepo:
             imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
+        assert id_cat is not None
 
         postagem = PostagemArtigo(
             id_postagem_artigo=0,
@@ -109,6 +111,7 @@ class TestPostagemArtigoRepo:
             bio="Especialista em felinos",
         )
         id_vet = veterinario_repo.inserir(vet)
+        assert id_vet is not None
 
         categoria = CategoriaArtigo(
             id_categoria_artigo=0,
@@ -117,6 +120,7 @@ class TestPostagemArtigoRepo:
             imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
+        assert id_cat is not None
 
         postagem = PostagemArtigo(
             id_postagem_artigo=0,
@@ -172,6 +176,7 @@ class TestPostagemArtigoRepo:
             bio="Especialista em felinos",
         )
         id_vet = veterinario_repo.inserir(vet)
+        assert id_vet is not None
         categoria = CategoriaArtigo(
             id_categoria_artigo=0,
             nome="Saúde Felina",
@@ -179,6 +184,7 @@ class TestPostagemArtigoRepo:
             imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
+        assert id_cat is not None
         postagem = PostagemArtigo(
             id_postagem_artigo=0,
             id_veterinario=id_vet,
@@ -190,6 +196,7 @@ class TestPostagemArtigoRepo:
         )
         id_post = postagem_artigo_repo.inserir(postagem)
         postagem_db = postagem_artigo_repo.obter_por_id(id_post)  # type: ignore[arg-type]  # noqa: E501
+        assert postagem_db is not None
         # Act
         postagem_db.titulo = "Vacinação de Gatos Atualizado"
         postagem_db.conteudo = "Texto do artigo atualizado"
@@ -237,6 +244,7 @@ class TestPostagemArtigoRepo:
             bio="Especialista em felinos",
         )
         id_vet = veterinario_repo.inserir(vet)
+        assert id_vet is not None
         categoria = CategoriaArtigo(
             id_categoria_artigo=0,
             nome="Saúde Felina",
@@ -244,6 +252,7 @@ class TestPostagemArtigoRepo:
             imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
+        assert id_cat is not None
         postagem = PostagemArtigo(
             id_postagem_artigo=0,
             id_veterinario=id_vet,
@@ -292,6 +301,8 @@ class TestPostagemArtigoRepo:
             imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
+        assert id_vet is not None
+        assert id_cat is not None
         ids_posts = []
         for i in range(10):
             postagem = PostagemArtigo(

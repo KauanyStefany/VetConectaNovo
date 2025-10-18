@@ -12,11 +12,16 @@ def criar_admin_padrao():
         # Criar admin padrão
         senha_hash = criar_hash_senha("admin123")
         admin = Usuario(
-            id=0,
+            id_usuario=0,
             nome="Administrador",
             email="admin@admin.com",
             senha=senha_hash,
-            perfil="admin"
+            telefone="",
+            perfil="admin",
+            foto=None,
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None
         )
         
         usuario_repo.inserir(admin)

@@ -36,6 +36,7 @@ class TestPostagemFeedRepo:
             descricao_pets=None,
         )
         id_tutor = tutor_repo.inserir(tutor)
+        assert id_tutor is not None
 
         postagem = PostagemFeed(
             id_postagem_feed=0,
@@ -87,6 +88,7 @@ class TestPostagemFeedRepo:
             "Cachorro",
         )
         id_tutor = tutor_repo.inserir(tutor)
+        assert id_tutor is not None
 
         postagem = PostagemFeed(
             0,
@@ -96,6 +98,7 @@ class TestPostagemFeedRepo:
             datetime.today().date(),
         )
         id_postagem = postagem_feed_repo.inserir(postagem)
+        assert id_postagem is not None
 
         # Act
         postagem.id_postagem_feed = id_postagem
@@ -105,6 +108,7 @@ class TestPostagemFeedRepo:
         # Assert
         assert resultado is True, "Atualização deveria retornar True"
         postagem_db = postagem_feed_repo.obter_por_id(id_postagem)  # type: ignore[arg-type]  # noqa: E501
+        assert postagem_db is not None
         assert (
             postagem_db.descricao == "Descrição atualizada"
         ), "Descrição deveria estar atualizada"
@@ -147,6 +151,7 @@ class TestPostagemFeedRepo:
             "Gatos",
         )
         id_tutor = tutor_repo.inserir(tutor)
+        assert id_tutor is not None
 
         postagem = PostagemFeed(
             0, id_tutor, "gato.jpg", "Meus gatos", datetime.today().date()
@@ -198,6 +203,7 @@ class TestPostagemFeedRepo:
             "Pets",
         )
         id_tutor = tutor_repo.inserir(tutor)
+        assert id_tutor is not None
 
         # Criar 5 postagens
         for i in range(5):

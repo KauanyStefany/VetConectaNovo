@@ -34,11 +34,13 @@ class TestChamadoRepo:
             None,
         )
         self.id_usuario = usuario_repo.inserir(self.usuario)
+        assert self.id_usuario is not None
 
         self.admin = Administrador(
             0, "Admin Silva", "admin@email.com", "senha456"
         )
         self.id_admin = administrador_repo.inserir(self.admin)
+        assert self.id_admin is not None
 
     def test_criar_tabela(self, test_db):
         """Testa a criação da tabela de chamados"""
@@ -52,6 +54,8 @@ class TestChamadoRepo:
     def test_inserir_chamado_sucesso(self, test_db):
         """Testa inserção de chamado com sucesso"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         chamado = Chamado(
             id_chamado=0,
             id_usuario=self.id_usuario,
@@ -83,6 +87,7 @@ class TestChamadoRepo:
     def test_inserir_chamado_sem_admin(self, test_db):
         """Testa inserção de chamado sem admin atribuído"""
         # Arrange
+        assert self.id_usuario is not None
         chamado = Chamado(
             id_chamado=0,
             id_usuario=self.id_usuario,
@@ -102,11 +107,14 @@ class TestChamadoRepo:
         ), "Deveria permitir inserir chamado sem admin"
 
         chamado_db = chamado_repo.obter_por_id(id_inserido)  # type: ignore[arg-type]  # noqa: E501
+        assert chamado_db is not None
         assert chamado_db.id_admin is None
 
     def test_atualizar_status_chamado_sucesso(self, test_db):
         """Testa atualização de status do chamado com sucesso"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         chamado = Chamado(
             id_chamado=0,
             id_usuario=self.id_usuario,
@@ -117,6 +125,7 @@ class TestChamadoRepo:
             data=datetime.now(),
         )
         id_chamado = chamado_repo.inserir(chamado)
+        assert id_chamado is not None
 
         # Act - mudar para em andamento
         resultado = chamado_repo.atualizar_status(
@@ -127,6 +136,7 @@ class TestChamadoRepo:
         assert resultado is True, "Atualização deveria retornar True"
 
         chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
+        assert chamado_db is not None
         assert chamado_db.status == ChamadoStatus.EM_ANDAMENTO
 
         # Act - mudar para resolvido
@@ -137,6 +147,7 @@ class TestChamadoRepo:
         # Assert
         assert resultado is True
         chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
+        assert chamado_db is not None
         assert chamado_db.status == ChamadoStatus.RESOLVIDO
 
     def test_atualizar_status_chamado_inexistente(self, test_db):
@@ -157,6 +168,8 @@ class TestChamadoRepo:
     def test_excluir_chamado_sucesso(self, test_db):
         """Testa exclusão de chamado com sucesso"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         chamado = Chamado(
             id_chamado=0,
             id_usuario=self.id_usuario,
@@ -193,6 +206,8 @@ class TestChamadoRepo:
     def test_obter_todos_chamados_paginado(self, test_db):
         """Testa obtenção paginada de chamados"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         chamados = [
             Chamado(
                 0,
@@ -268,6 +283,8 @@ class TestChamadoRepo:
     def test_obter_chamado_por_id_existente(self, test_db):
         """Testa obtenção de chamado por ID existente"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         chamado = Chamado(
             id_chamado=0,
             id_usuario=self.id_usuario,
@@ -303,6 +320,7 @@ class TestChamadoRepo:
     def test_fluxo_completo_chamado(self, test_db):
         """Testa fluxo completo: criar, atualizar status e resolver chamado"""
         # Arrange
+        assert self.id_usuario is not None
         chamado = Chamado(
             id_chamado=0,
             id_usuario=self.id_usuario,
@@ -325,6 +343,7 @@ class TestChamadoRepo:
 
         # Verificar status
         chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
+        assert chamado_db is not None
         assert chamado_db.status == ChamadoStatus.EM_ANDAMENTO
 
         # Act 3 - Resolver chamado
@@ -335,4 +354,5 @@ class TestChamadoRepo:
 
         # Verificar resolução
         chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
+        assert chamado_db is not None
         assert chamado_db.status == ChamadoStatus.RESOLVIDO

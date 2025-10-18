@@ -26,6 +26,7 @@ class TestAdministradorRepo:
         )
         # Act
         id_admin_inserido = inserir(admin_teste)
+        assert id_admin_inserido is not None
         # Assert
         admin_db = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]
         assert (
@@ -51,7 +52,9 @@ class TestAdministradorRepo:
             0, "Admin Teste", "admin@gmail.com", "12345678"
         )
         id_admin_inserido = inserir(admin_teste)
+        assert id_admin_inserido is not None
         admin_inserido = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]  # noqa: E501
+        assert admin_inserido is not None
         # Act
         admin_inserido.nome = "Admin Atualizado"
         admin_inserido.email = "emailAtualizado@gmail.com"
@@ -62,6 +65,7 @@ class TestAdministradorRepo:
             resultado is True
         ), "A atualização do administrador deveria retornar True"
         admin_db = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]
+        assert admin_db is not None
         assert (
             admin_db.nome == "Admin Atualizado"
         ), "O nome do administrador atualizado não confere"
@@ -79,6 +83,7 @@ class TestAdministradorRepo:
             0, "Admin Teste", "admin@gmail.com", "12345678"
         )
         id_admin_inserido = inserir(admin_teste)
+        assert id_admin_inserido is not None
         # Act
         nova_senha = "87654321"
         resultado = atualizar_senha(id_admin_inserido, nova_senha)  # type: ignore[arg-type]  # noqa: E501
@@ -87,6 +92,7 @@ class TestAdministradorRepo:
             resultado is True
         ), "A atualização da senha deveria retornar True"
         admin_db = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]
+        assert admin_db is not None
         assert (
             admin_db.senha == nova_senha
         ), "A senha do administrador atualizado não confere"

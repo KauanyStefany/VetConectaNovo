@@ -57,6 +57,7 @@ class TestSeguidaRepo:
             bio="Especialista",
         )
         id_vet = inserir_veterinario(vet)
+        assert id_vet is not None
 
         # Inserir tutor
         tutor = Tutor(
@@ -74,6 +75,7 @@ class TestSeguidaRepo:
             descricao_pets=None,
         )
         id_tutor = inserir_tutor(tutor)
+        assert id_tutor is not None
 
         # Criar seguida
         seguida_teste = Seguida(
@@ -85,7 +87,7 @@ class TestSeguidaRepo:
 
         # Assert
         assert resultado is True, "A inserção da seguida deveria retornar True"
-        seguida_db = obter_seguida_por_id(id_vet, id_tutor)  # type: ignore[arg-type]  # noqa: E501
+        seguida_db = obter_seguida_por_id(id_vet, id_tutor)
         assert (
             seguida_db is not None
         ), "A seguida inserida não deveria ser None"
@@ -120,6 +122,7 @@ class TestSeguidaRepo:
             bio="Especialista",
         )
         id_vet = inserir_veterinario(vet)
+        assert id_vet is not None
 
         # Inserir tutor
         tutor = Tutor(
@@ -137,6 +140,7 @@ class TestSeguidaRepo:
             descricao_pets=None,
         )
         id_tutor = inserir_tutor(tutor)
+        assert id_tutor is not None
 
         # Criar seguida
         seguida_teste = Seguida(
@@ -146,7 +150,7 @@ class TestSeguidaRepo:
         resultado1 = inserir_seguida(seguida_teste)
 
         # Act
-        resultado2 = excluir_seguida(id_vet, id_tutor)  # type: ignore[arg-type]  # noqa: E501
+        resultado2 = excluir_seguida(id_vet, id_tutor)
 
         # Assert
         assert (
@@ -252,6 +256,7 @@ class TestSeguidaRepo:
             bio="Especialista",
         )
         id_vet = inserir_veterinario(vet)
+        assert id_vet is not None
 
         # Inserir tutor
         tutor = Tutor(
@@ -269,6 +274,7 @@ class TestSeguidaRepo:
             descricao_pets=None,
         )
         id_tutor = inserir_tutor(tutor)
+        assert id_tutor is not None
 
         # Criar seguida (usando apenas os IDs, não os objetos completos)
         seguida_teste = Seguida(
@@ -279,7 +285,7 @@ class TestSeguidaRepo:
         inserir_seguida(seguida_teste)
 
         # Act
-        seguida_db = obter_seguida_por_id(id_vet, id_tutor)  # type: ignore[arg-type]  # noqa: E501
+        seguida_db = obter_seguida_por_id(id_vet, id_tutor)
 
         # Assert
         assert seguida_db is not None, "A seguida obtida não deveria ser None"
@@ -366,6 +372,7 @@ class TestSeguidaRepo:
             "Bio",
         )
         id_vet = inserir_veterinario(vet)
+        assert id_vet is not None
 
         tutor = Tutor(
             0,
@@ -382,8 +389,9 @@ class TestSeguidaRepo:
             "Cachorro",
         )
         id_tutor = inserir_tutor(tutor)
+        assert id_tutor is not None
 
-        seguida = Seguida(id_vet, id_tutor, date.today())  # type: ignore[arg-type]  # noqa: E501
+        seguida = Seguida(id_vet, id_tutor, date.today())
         inserir_seguida(seguida)
 
         # Act - tentar inserir novamente

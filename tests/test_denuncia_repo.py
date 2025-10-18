@@ -44,11 +44,13 @@ class TestDenunciaRepo:
             None,
         )
         self.id_usuario = inserir_usuario(self.usuario)
+        assert self.id_usuario is not None
 
         self.admin = Administrador(
             0, "Admin Silva", "admin@email.com", "senha456"
         )
         self.id_admin = inserir(self.admin)
+        assert self.id_admin is not None
 
     def test_criar_tabela(self, test_db):
         """Testa a criação da tabela de denúncias"""
@@ -62,6 +64,8 @@ class TestDenunciaRepo:
     def test_inserir_denuncia_sucesso(self, test_db):
         """Testa inserção de denúncia com sucesso"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia = Denuncia(
             id_denuncia=0,
             id_usuario=self.id_usuario,
@@ -91,6 +95,7 @@ class TestDenunciaRepo:
     def test_inserir_denuncia_sem_admin(self, test_db):
         """Testa inserção de denúncia sem admin atribuído"""
         # Arrange
+        assert self.id_usuario is not None
         denuncia = Denuncia(
             id_denuncia=0,
             id_usuario=self.id_usuario,
@@ -115,6 +120,8 @@ class TestDenunciaRepo:
     def test_atualizar_denuncia_sucesso(self, test_db):
         """Testa atualização de denúncia com sucesso"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia_original = Denuncia(
             id_denuncia=0,
             id_usuario=self.id_usuario,
@@ -124,8 +131,11 @@ class TestDenunciaRepo:
             status=DenunciaStatus.PENDENTE,
         )
         id_denuncia = inserir_denuncia(denuncia_original)
+        assert id_denuncia is not None
 
         # Act
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia_atualizada = Denuncia(
             id_denuncia=id_denuncia,
             id_usuario=self.id_usuario,
@@ -140,12 +150,15 @@ class TestDenunciaRepo:
         assert resultado is True, "Atualização deveria retornar True"
 
         denuncia_db = obter_denuncia_por_id(id_denuncia)  # type: ignore[arg-type]  # noqa: E501
+        assert denuncia_db is not None
         assert denuncia_db.motivo == "Motivo atualizado"
         assert denuncia_db.status == DenunciaStatus.RESOLVIDA
 
     def test_atualizar_denuncia_inexistente(self, test_db):
         """Testa atualização de denúncia inexistente"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia_inexistente = Denuncia(
             id_denuncia=9999,
             id_usuario=self.id_usuario,
@@ -166,6 +179,8 @@ class TestDenunciaRepo:
     def test_excluir_denuncia_sucesso(self, test_db):
         """Testa exclusão de denúncia com sucesso"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia = Denuncia(
             id_denuncia=0,
             id_usuario=self.id_usuario,
@@ -175,6 +190,7 @@ class TestDenunciaRepo:
             status=DenunciaStatus.PENDENTE,
         )
         id_denuncia = inserir_denuncia(denuncia)
+        assert id_denuncia is not None
 
         # Act
         resultado = excluir_denuncia(id_denuncia)  # type: ignore[arg-type]
@@ -201,6 +217,8 @@ class TestDenunciaRepo:
     def test_obter_todas_denuncias_paginadas(self, test_db):
         """Testa obtenção paginada de denúncias"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncias = [
             Denuncia(
                 0,
@@ -272,6 +290,8 @@ class TestDenunciaRepo:
     def test_obter_denuncia_por_id_existente(self, test_db):
         """Testa obtenção de denúncia por ID existente"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia = Denuncia(
             id_denuncia=0,
             id_usuario=self.id_usuario,
@@ -281,6 +301,7 @@ class TestDenunciaRepo:
             status=DenunciaStatus.PENDENTE,
         )
         id_denuncia = inserir_denuncia(denuncia)
+        assert id_denuncia is not None
 
         # Act
         denuncia_db = obter_denuncia_por_id(id_denuncia)  # type: ignore[arg-type]  # noqa: E501
@@ -305,6 +326,8 @@ class TestDenunciaRepo:
     def test_fluxo_completo_denuncia(self, test_db):
         """Testa fluxo completo: criar, atualizar e resolver denúncia"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia = Denuncia(
             id_denuncia=0,
             id_usuario=self.id_usuario,
@@ -319,6 +342,8 @@ class TestDenunciaRepo:
         assert id_denuncia is not None
 
         # Act 2 - Admin analisa a denúncia
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncia_atualizada = Denuncia(
             id_denuncia=id_denuncia,
             id_usuario=self.id_usuario,
@@ -332,12 +357,15 @@ class TestDenunciaRepo:
 
         # Verificar aprovação
         denuncia_db = obter_denuncia_por_id(id_denuncia)  # type: ignore[arg-type]  # noqa: E501
+        assert denuncia_db is not None
         assert denuncia_db.status == DenunciaStatus.RESOLVIDA
         assert denuncia_db.id_admin == self.id_admin
 
     def test_enum_status_valores(self, test_db):
         """Testa se os valores dos enums estão corretos"""
         # Arrange
+        assert self.id_usuario is not None
+        assert self.id_admin is not None
         denuncias = [
             Denuncia(
                 0,
@@ -370,11 +398,17 @@ class TestDenunciaRepo:
             ids.append(inserir_denuncia(denuncia))
 
         # Act & Assert
+        assert ids[0] is not None
         denuncia1 = obter_denuncia_por_id(ids[0])
+        assert denuncia1 is not None
         assert denuncia1.status == DenunciaStatus.PENDENTE
 
+        assert ids[1] is not None
         denuncia2 = obter_denuncia_por_id(ids[1])
+        assert denuncia2 is not None
         assert denuncia2.status == DenunciaStatus.RESOLVIDA
 
+        assert ids[2] is not None
         denuncia3 = obter_denuncia_por_id(ids[2])
+        assert denuncia3 is not None
         assert denuncia3.status == DenunciaStatus.REJEITADA

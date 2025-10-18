@@ -94,6 +94,7 @@ class TestTutorRepo:
         assert id_inserido is not None
 
         tutor_db = obter_por_id(id_inserido)  # type: ignore[arg-type]
+        assert tutor_db is not None
         assert tutor_db.quantidade_pets == 0
         assert tutor_db.descricao_pets is None
 
@@ -115,6 +116,7 @@ class TestTutorRepo:
             descricao_pets="Um gato",
         )
         id_tutor = inserir_tutor(tutor_original)
+        assert id_tutor is not None
 
         # Act
         tutor_atualizado = Tutor(
@@ -137,6 +139,7 @@ class TestTutorRepo:
         assert resultado is True, "Atualização deveria retornar True"
 
         tutor_db = obter_por_id(id_tutor)  # type: ignore[arg-type]
+        assert tutor_db is not None
         assert tutor_db.nome == "Nome Atualizado"
         assert tutor_db.email == "atualizado@email.com"
         assert tutor_db.telefone == "11777776666"
@@ -187,6 +190,7 @@ class TestTutorRepo:
             descricao_pets="Um hamster",
         )
         id_tutor = inserir_tutor(tutor)
+        assert id_tutor is not None
 
         # Act
         resultado = excluir_tutor(id_tutor)  # type: ignore[arg-type]
@@ -338,6 +342,7 @@ class TestTutorRepo:
             descricao_pets="Dois gatos e dois cachorros",
         )
         id_tutor = inserir_tutor(tutor)
+        assert id_tutor is not None
 
         # Act
         tutor_db = obter_por_id(id_tutor)  # type: ignore[arg-type]
@@ -382,6 +387,7 @@ class TestTutorRepo:
 
         # Act
         id_tutor = inserir_tutor(tutor)
+        assert id_tutor is not None
 
         # Assert - verificar se foi criado também como usuário
         usuario_db = obter_usuario_por_id(id_tutor)  # type: ignore[arg-type]

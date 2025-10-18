@@ -70,6 +70,7 @@ class TestCategoriaArtigoRepo:
         assert id_inserido is not None, "Deveria permitir inserir categoria"
 
         categoria_db = obter_categoria_por_id(id_inserido)  # type: ignore[arg-type]  # noqa: E501
+        assert categoria_db is not None
         assert categoria_db.nome == "Comportamento"
         assert categoria_db.cor == "#FFFFFF"
 
@@ -80,6 +81,7 @@ class TestCategoriaArtigoRepo:
             0, "Nome Original", "#000000", "original.png"
         )
         id_categoria = inserir_categoria(categoria_original)
+        assert id_categoria is not None
 
         # Act
         categoria_atualizada = CategoriaArtigo(
@@ -94,6 +96,7 @@ class TestCategoriaArtigoRepo:
         assert resultado is True, "Atualização deveria retornar True"
 
         categoria_db = obter_categoria_por_id(id_categoria)  # type: ignore[arg-type]  # noqa: E501
+        assert categoria_db is not None
         assert categoria_db.nome == "Nome Atualizado"
         assert categoria_db.cor == "#111111"
         assert categoria_db.imagem == "atualizado.png"

@@ -44,6 +44,7 @@ class TestCurtidaFeedRepo:
             descricao_pets="Dois gatos",
         )
         tutor_id = tutor_repo.inserir(tutor)
+        assert tutor_id is not None
 
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
@@ -54,6 +55,7 @@ class TestCurtidaFeedRepo:
             data_postagem=date.today(),
         )
         postagem_id = postagem_feed_repo.inserir(postagem)
+        assert postagem_id is not None
 
         # Cria uma curtida
         curtida = curtida_feed_model.CurtidaFeed(
@@ -66,6 +68,7 @@ class TestCurtidaFeedRepo:
         # Assert
         assert resultado is True, "A inserção da curtida deveria retornar True"
         curtida_db = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
+        assert curtida_db is not None
         assert (
             curtida_db is not None
         ), "A curtida inserida não deveria ser None"
@@ -102,6 +105,7 @@ class TestCurtidaFeedRepo:
             descricao_pets="Dois gatos",
         )
         tutor_id = tutor_repo.inserir(tutor)
+        assert tutor_id is not None
 
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
@@ -114,16 +118,22 @@ class TestCurtidaFeedRepo:
         postagem_id = postagem_feed_repo.inserir(postagem)
 
         # Insere uma curtida
+        assert tutor_id is not None
+        assert postagem_id is not None
         curtida = curtida_feed_model.CurtidaFeed(
             id_usuario=tutor_id, id_postagem_feed=postagem_id
         )
         curtida_feed_repo.inserir(curtida)
 
         # Act
+        assert tutor_id is not None
+        assert postagem_id is not None
         resultado = curtida_feed_repo.excluir(tutor_id, postagem_id)
 
         # Assert
         assert resultado is True, "A exclusão da curtida deveria retornar True"
+        assert tutor_id is not None
+        assert postagem_id is not None
         curtida_db = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
         assert (
             curtida_db is None
@@ -152,6 +162,7 @@ class TestCurtidaFeedRepo:
             descricao_pets="Dois gatos",
         )
         tutor_id = tutor_repo.inserir(tutor)
+        assert tutor_id is not None
 
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
@@ -164,6 +175,8 @@ class TestCurtidaFeedRepo:
         postagem_id = postagem_feed_repo.inserir(postagem)
 
         # Insere uma curtida
+        assert tutor_id is not None
+        assert postagem_id is not None
         curtida = curtida_feed_model.CurtidaFeed(
             id_usuario=tutor_id, id_postagem_feed=postagem_id
         )
@@ -176,6 +189,7 @@ class TestCurtidaFeedRepo:
         assert (
             resultado is not None
         ), "A consulta de curtidas deveria retornar resultados"
+        assert len(resultado) > 0
         assert (
             len(resultado) > 0
         ), "A consulta de curtidas deveria retornar mais de 0 resultados"
@@ -212,6 +226,7 @@ class TestCurtidaFeedRepo:
             descricao_pets="Dois gatos",
         )
         tutor_id = tutor_repo.inserir(tutor)
+        assert tutor_id is not None
 
         # Insere uma postagem do feed
         postagem = postagem_feed_model.PostagemFeed(
@@ -224,12 +239,16 @@ class TestCurtidaFeedRepo:
         postagem_id = postagem_feed_repo.inserir(postagem)
 
         # Insere uma curtida
+        assert tutor_id is not None
+        assert postagem_id is not None
         curtida = curtida_feed_model.CurtidaFeed(
             id_usuario=tutor_id, id_postagem_feed=postagem_id
         )
         curtida_feed_repo.inserir(curtida)
 
         # Act
+        assert tutor_id is not None
+        assert postagem_id is not None
         resultado = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
 
         # Assert

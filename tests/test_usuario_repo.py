@@ -120,6 +120,7 @@ class TestUsuarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario_original)
+        assert id_usuario is not None
 
         # Act
         usuario_atualizado = Usuario(
@@ -140,6 +141,7 @@ class TestUsuarioRepo:
         assert resultado is True, "Atualização deveria retornar True"
 
         usuario_db = obter_usuario_por_id(id_usuario)  # type: ignore[arg-type]
+        assert usuario_db is not None
         assert usuario_db.nome == "Nome Atualizado"
         assert usuario_db.email == "atualizado@email.com"
         assert usuario_db.telefone == "11777776666"
@@ -185,6 +187,7 @@ class TestUsuarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
         nova_senha = "senha_nova_123"
 
         # Act
@@ -194,6 +197,7 @@ class TestUsuarioRepo:
         assert resultado is True, "Atualização de senha deveria retornar True"
 
         usuario_db = obter_usuario_por_id(id_usuario)  # type: ignore[arg-type]
+        assert usuario_db is not None
         assert (
             usuario_db.senha == nova_senha
         ), "Senha deveria ter sido atualizada"
@@ -228,6 +232,7 @@ class TestUsuarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
 
         # Act
         resultado = excluir_usuario(id_usuario)  # type: ignore[arg-type]
@@ -362,6 +367,7 @@ class TestUsuarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
 
         # Act
         usuario_db = obter_usuario_por_id(id_usuario)  # type: ignore[arg-type]
@@ -400,7 +406,8 @@ class TestUsuarioRepo:
             None,
             None,
         )
-        inserir_usuario(usuario)
+        id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
 
         # Act
         usuario_db = obter_por_email("joao.unico@email.com")
@@ -433,7 +440,8 @@ class TestUsuarioRepo:
             None,
             None,
         )
-        inserir_usuario(usuario)
+        id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
         token = "abc123xyz"
         data_expiracao = "2025-12-31 23:59:59"
 
@@ -445,6 +453,7 @@ class TestUsuarioRepo:
         # Assert
         assert resultado is True, "Atualização de token deveria retornar True"
         usuario_db = obter_por_email("joao.token@email.com")
+        assert usuario_db is not None
         assert usuario_db.token_redefinicao == token
         assert usuario_db.data_token == data_expiracao
 
@@ -475,7 +484,8 @@ class TestUsuarioRepo:
             None,
             None,
         )
-        inserir_usuario(usuario)
+        id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
         token = "token_unico_123"
         atualizar_token("maria.token@email.com", token, "2025-12-31")
 
@@ -521,6 +531,7 @@ class TestUsuarioRepo:
         # Assert
         assert resultado is True, "Limpeza de token deveria retornar True"
         usuario_db = obter_usuario_por_id(id_usuario)  # type: ignore[arg-type]
+        assert usuario_db is not None
         assert usuario_db.token_redefinicao is None
         assert usuario_db.data_token is None
 
@@ -635,6 +646,7 @@ class TestUsuarioRepo:
         # Assert
         assert resultado is True, "Atualização de foto deveria retornar True"
         usuario_db = obter_usuario_por_id(id_usuario)  # type: ignore[arg-type]
+        assert usuario_db is not None
         assert usuario_db.foto == caminho_foto
 
     def test_atualizar_foto_usuario_inexistente(self, test_db):

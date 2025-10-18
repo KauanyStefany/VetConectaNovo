@@ -53,11 +53,13 @@ class TestVerificacaoCRMVRepo:
             bio="Veterinário clínico geral",
         )
         self.id_veterinario = inserir_veterinario(self.veterinario)
+        assert self.id_veterinario is not None
 
         self.admin = Administrador(
             0, "Admin Silva", "admin@email.com", "senha456"
         )
         self.id_admin = inserir_admin(self.admin)
+        assert self.id_admin is not None
 
     def test_criar_tabela(self, test_db):
         """Testa a criação da tabela de verificação CRMV"""
@@ -71,6 +73,8 @@ class TestVerificacaoCRMVRepo:
     def test_inserir_verificacao_sucesso(self, test_db):
         """Testa inserção de verificação CRMV com sucesso"""
         # Arrange
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         verificacao = VerificacaoCRMV(
             id_verificacao_crmv=0,
             id_veterinario=self.id_veterinario,
@@ -100,6 +104,7 @@ class TestVerificacaoCRMVRepo:
     def test_inserir_verificacao_sem_admin(self, test_db):
         """Testa inserção de verificação CRMV sem admin atribuído"""
         # Arrange - Agora id_administrador pode ser NULL
+        assert self.id_veterinario is not None
         verificacao = VerificacaoCRMV(
             id_verificacao_crmv=0,
             id_veterinario=self.id_veterinario,
@@ -117,11 +122,14 @@ class TestVerificacaoCRMVRepo:
         ), "Deveria permitir inserir verificação sem admin"
 
         verificacao_db = obter_por_id(id_inserido)  # type: ignore[arg-type]
+        assert verificacao_db is not None
         assert verificacao_db.id_administrador is None
 
     def test_atualizar_status_verificacao_sucesso(self, test_db):
         """Testa atualização de status da verificação CRMV com sucesso"""
         # Arrange
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         verificacao_original = VerificacaoCRMV(
             id_verificacao_crmv=0,
             id_veterinario=self.id_veterinario,
@@ -132,6 +140,8 @@ class TestVerificacaoCRMVRepo:
         id_verificacao = inserir(verificacao_original)
 
         # Act - aprovar verificação
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         resultado = atualizar(
             self.id_veterinario, VerificacaoStatus.APROVADO, self.id_admin
         )
@@ -140,9 +150,12 @@ class TestVerificacaoCRMVRepo:
         assert resultado is True, "Atualização deveria retornar True"
 
         verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
+        assert verificacao_db is not None
         assert verificacao_db.status_verificacao == VerificacaoStatus.APROVADO
 
         # Act - rejeitar verificação
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         resultado = atualizar(
             self.id_veterinario, VerificacaoStatus.REJEITADO, self.id_admin
         )
@@ -150,6 +163,7 @@ class TestVerificacaoCRMVRepo:
         # Assert
         assert resultado is True
         verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
+        assert verificacao_db is not None
         assert verificacao_db.status_verificacao == VerificacaoStatus.REJEITADO
 
     def test_atualizar_verificacao_inexistente(self, test_db):
@@ -158,6 +172,7 @@ class TestVerificacaoCRMVRepo:
         id_inexistente = 9999
 
         # Act
+        assert self.id_admin is not None
         resultado = atualizar(
             id_inexistente, VerificacaoStatus.APROVADO, self.id_admin
         )
@@ -170,6 +185,8 @@ class TestVerificacaoCRMVRepo:
     def test_excluir_verificacao_sucesso(self, test_db):
         """Testa exclusão de verificação CRMV com sucesso"""
         # Arrange
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         verificacao = VerificacaoCRMV(
             id_verificacao_crmv=0,
             id_veterinario=self.id_veterinario,
@@ -204,6 +221,8 @@ class TestVerificacaoCRMVRepo:
     def test_OBTER_PAGINA(self, test_db):
         """Testa obtenção paginada de verificações CRMV"""
         # Arrange - criar verificações simples usando o mesmo veterinário
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         verificacoes_ids = []
         for i in range(5):
             verificacao = VerificacaoCRMV(
@@ -240,6 +259,8 @@ class TestVerificacaoCRMVRepo:
     def test_obter_por_id_existente(self, test_db):
         """Testa obtenção de verificação por ID existente"""
         # Arrange
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         verificacao = VerificacaoCRMV(
             id_verificacao_crmv=0,
             id_veterinario=self.id_veterinario,
@@ -272,6 +293,8 @@ class TestVerificacaoCRMVRepo:
     def test_fluxo_completo_verificacao(self, test_db):
         """Testa fluxo completo: criar, aprovar verificação CRMV"""
         # Arrange
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         verificacao = VerificacaoCRMV(
             id_verificacao_crmv=0,
             id_veterinario=self.id_veterinario,
@@ -285,6 +308,8 @@ class TestVerificacaoCRMVRepo:
         assert id_verificacao is not None
 
         # Act 2 - Admin analisa e aprova
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         resultado = atualizar(
             self.id_veterinario, VerificacaoStatus.APROVADO, self.id_admin
         )
@@ -292,11 +317,14 @@ class TestVerificacaoCRMVRepo:
 
         # Verificar aprovação
         verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
+        assert verificacao_db is not None
         assert verificacao_db.status_verificacao == VerificacaoStatus.APROVADO
 
     def test_enum_status_valores(self, test_db):
         """Testa se os valores dos enums estão corretos"""
         # Arrange - usar apenas o veterinário existente
+        assert self.id_veterinario is not None
+        assert self.id_admin is not None
         statuses = [
             VerificacaoStatus.PENDENTE,
             VerificacaoStatus.APROVADO,
@@ -311,11 +339,17 @@ class TestVerificacaoCRMVRepo:
             ids_verificacao.append(inserir(verificacao))
 
         # Act & Assert
+        assert ids_verificacao[0] is not None
         verificacao1 = obter_por_id(ids_verificacao[0])
+        assert verificacao1 is not None
         assert verificacao1.status_verificacao == VerificacaoStatus.PENDENTE
 
+        assert ids_verificacao[1] is not None
         verificacao2 = obter_por_id(ids_verificacao[1])
+        assert verificacao2 is not None
         assert verificacao2.status_verificacao == VerificacaoStatus.APROVADO
 
+        assert ids_verificacao[2] is not None
         verificacao3 = obter_por_id(ids_verificacao[2])
+        assert verificacao3 is not None
         assert verificacao3.status_verificacao == VerificacaoStatus.REJEITADO

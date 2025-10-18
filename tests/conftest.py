@@ -96,7 +96,7 @@ def admin_padrao():
         Administrador: Objeto Administrador com dados de teste
     """
     return Administrador(
-        id_administrador=0,
+        id_admin=0,
         nome="Admin Test",
         email="admin@vetconecta.com",
         senha="admin_senha_789",

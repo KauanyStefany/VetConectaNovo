@@ -5,9 +5,9 @@ from model.enums import DenunciaStatus
 
 @dataclass
 class Denuncia:
-    id_denuncia: Optional[int] 
+    id_denuncia: Optional[int]
     id_usuario: int
-    id_admin: int
+    id_admin: Optional[int]
     motivo: str
     data_denuncia: datetime
     status: DenunciaStatus

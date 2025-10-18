@@ -200,7 +200,8 @@ async def post_cadastro(
             )
 
         # Validar usando DTO apropriado e criar usuário
-        id_usuario = None
+        id_usuario: int | None = None
+        cadastro_dto: CadastroTutorDTO | CadastroVeterinarioDTO
         if perfil == PerfilUsuario.TUTOR:
             cadastro_dto = CadastroTutorDTO(
                 nome=nome,
@@ -226,6 +227,7 @@ async def post_cadastro(
                 descricao_pets=None
             )
             id_usuario = tutor_repo.inserir(tutor)
+            assert id_usuario is not None
 
         else:
             if not crmv:
@@ -257,6 +259,7 @@ async def post_cadastro(
                 bio=None
             )
             id_usuario = veterinario_repo.inserir(veterinario)
+            assert id_usuario is not None
 
         if not id_usuario:
             raise Exception("Erro ao inserir usuário no banco de dados.")

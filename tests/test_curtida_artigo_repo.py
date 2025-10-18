@@ -46,6 +46,7 @@ class TestCurtidaArtigoRepo:
             data_cadastro=None,
         )
         id_usuario = usuario_repo.inserir(usuario)
+        assert id_usuario is not None
 
         # Criar veterinário para postar
         veterinario = Veterinario(
@@ -64,6 +65,7 @@ class TestCurtidaArtigoRepo:
             bio="Veterinário especialista",
         )
         id_veterinario = veterinario_repo.inserir(veterinario)
+        assert id_veterinario is not None
 
         # Criar categoria
         categoria = CategoriaArtigo(
@@ -73,6 +75,7 @@ class TestCurtidaArtigoRepo:
             imagem="cuidados.png",
         )
         id_categoria = categoria_artigo_repo.inserir(categoria)
+        assert id_categoria is not None
 
         # Criar postagem
         postagem = PostagemArtigo(
@@ -85,9 +88,12 @@ class TestCurtidaArtigoRepo:
             visualizacoes=0,
         )
         id_postagem = postagem_artigo_repo.inserir(postagem)
+        assert id_postagem is not None
 
         # Criar curtida
         data_hoje = datetime.now()
+        assert id_usuario is not None
+        assert id_postagem is not None
         curtida = CurtidaArtigo(
             id_usuario=id_usuario,
             id_postagem_artigo=id_postagem,
@@ -103,12 +109,15 @@ class TestCurtidaArtigoRepo:
             resultado_inserir is True
         ), "A inserção da curtida deveria retornar True"
         assert curtida_db is not None, "A curtida deveria ser encontrada"
+        assert id_usuario is not None
+        assert id_postagem is not None
         assert (
             curtida_db.id_usuario == id_usuario
         ), "O usuário da curtida não corresponde"
         assert (
             curtida_db.id_postagem_artigo == id_postagem
         ), "O artigo da curtida não corresponde"
+        assert curtida_db.data_curtida is not None
         assert (
             curtida_db.data_curtida.date() == data_hoje.date()
         ), "A data da curtida não corresponde"
@@ -154,12 +163,15 @@ class TestCurtidaArtigoRepo:
             "Veterinário",
         )
         id_veterinario = veterinario_repo.inserir(veterinario)
+        assert id_veterinario is not None
 
         # Criar categoria
         categoria = CategoriaArtigo(0, "Saúde", "#2ECC71", "saude.png")
         id_categoria = categoria_artigo_repo.inserir(categoria)
+        assert id_categoria is not None
 
         # Criar postagem
+        assert id_veterinario is not None
         postagem = PostagemArtigo(
             0,
             id_veterinario,
@@ -170,6 +182,7 @@ class TestCurtidaArtigoRepo:
             0,
         )
         id_postagem = postagem_artigo_repo.inserir(postagem)
+        assert id_postagem is not None
 
         # Criar curtida
         curtida = CurtidaArtigo(id_usuario, id_postagem, datetime.now())  # type: ignore[arg-type]  # noqa: E501
@@ -222,12 +235,15 @@ class TestCurtidaArtigoRepo:
             "Veterinário",
         )
         id_veterinario = veterinario_repo.inserir(veterinario)
+        assert id_veterinario is not None
 
         # Criar categoria
         categoria = CategoriaArtigo(0, "Nutrição", "#E74C3C", "nutricao.png")
         id_categoria = categoria_artigo_repo.inserir(categoria)
+        assert id_categoria is not None
 
         # Criar postagem
+        assert id_veterinario is not None
         postagem = PostagemArtigo(
             0,
             id_veterinario,

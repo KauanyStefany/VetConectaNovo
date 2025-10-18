@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Optional
 
 from model.enums import ChamadoStatus
 
@@ -7,7 +8,7 @@ from model.enums import ChamadoStatus
 class Chamado:
     id_chamado: int
     id_usuario: int
-    id_admin: int
+    id_admin: Optional[int]
     titulo: str
     descricao: str
     status: ChamadoStatus

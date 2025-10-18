@@ -98,6 +98,7 @@ class TestVeterinarioRepo:
         )
         id_novo_veterinario = inserir_veterinario(novo_veterinario)
         veterinario_inserido = obter_por_id(id_novo_veterinario)  # type: ignore[arg-type]  # noqa: E501
+        assert veterinario_inserido is not None
 
         # Act
         # Atualizando atributos herdados do usuário
@@ -116,6 +117,7 @@ class TestVeterinarioRepo:
             resultado is True
         ), "A atualização do veterinário deveria retornar True"
         veterinario_db = obter_por_id(id_novo_veterinario)  # type: ignore[arg-type]  # noqa: E501
+        assert veterinario_db is not None
         assert (
             veterinario_db.nome == "Dr. Atualizado"
         ), "O nome do veterinário não foi atualizado corretamente"
@@ -283,6 +285,7 @@ class TestVeterinarioRepo:
             resultado is True
         ), "Atualização de verificação deveria retornar True"
         veterinario_db = obter_por_id(id_veterinario)  # type: ignore[arg-type]
+        assert veterinario_db is not None
         assert (
             veterinario_db.verificado == True  # noqa: E712
         ), "Status de verificado deveria ser True"

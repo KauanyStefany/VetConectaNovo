@@ -1,5 +1,6 @@
 # import os  # noqa: F401
 # import sys  # noqa: F401
+from datetime import date
 from model.categoria_artigo_model import CategoriaArtigo
 from model.comentario_model import Comentario
 from model.usuario_model import Usuario
@@ -62,6 +63,7 @@ class TestComentarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario_teste)
+        assert id_usuario is not None
         usuario_teste.id_usuario = (
             id_usuario  # Atualiza o ID do usuário após inserção
         )
@@ -83,13 +85,14 @@ class TestComentarioRepo:
             bio="bioteste",
         )
         id_usuario_vet = inserir_veterinario(veterinario_teste)
+        assert id_usuario_vet is not None
         veterinario_teste.id_usuario = id_usuario_vet
 
         categoria_artigo_teste = CategoriaArtigo(
             0, "Categoria Teste", "#FF5733", "categoria.png"
         )
         id_categoria_artigo = inserir_categoria(categoria_artigo_teste)
-        categoria_artigo_teste.id = id_categoria_artigo
+        assert id_categoria_artigo is not None
 
         postagem_artigo_teste = PostagemArtigo(
             id_postagem_artigo=0,
@@ -97,10 +100,11 @@ class TestComentarioRepo:
             titulo="Título do Artigo Teste",
             conteudo="Conteúdo do artigo teste",
             id_categoria_artigo=id_categoria_artigo,  # ID da categoria
-            data_publicacao="2023-10-01",
+            data_publicacao=date(2023, 10, 1),
             visualizacoes=100,  # inteiro, não string
         )
         id_postagem_artigo = inserir_artigo(postagem_artigo_teste)
+        assert id_postagem_artigo is not None
         postagem_artigo_teste.id_postagem_artigo = id_postagem_artigo
 
         comentario_teste = Comentario(
@@ -113,8 +117,10 @@ class TestComentarioRepo:
         )
 
         id_comentario_inserido = inserir(comentario_teste)
+        assert id_comentario_inserido is not None
 
         comentario_db = obter_por_id(id_comentario_inserido)  # type: ignore[arg-type]  # noqa: E501
+        assert comentario_db is not None
 
         # ASSERTS
         assert (
@@ -152,6 +158,7 @@ class TestComentarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
 
         veterinario = Veterinario(
             0,
@@ -169,9 +176,11 @@ class TestComentarioRepo:
             "Bio",
         )
         id_vet = inserir_veterinario(veterinario)
+        assert id_vet is not None
 
         categoria = CategoriaArtigo(0, "Saúde", "#FF5733", "saude.png")
         id_categoria = inserir_categoria(categoria)
+        assert id_categoria is not None
 
         artigo = PostagemArtigo(
             0,
@@ -179,10 +188,11 @@ class TestComentarioRepo:
             "Artigo Teste",
             "Conteúdo",
             id_categoria,
-            "2023-10-01",
+            date(2023, 10, 1),
             10,
         )
         id_artigo = inserir_artigo(artigo)
+        assert id_artigo is not None
 
         comentario = Comentario(
             0,
@@ -193,6 +203,7 @@ class TestComentarioRepo:
             None,
         )
         id_comentario = inserir(comentario)
+        assert id_comentario is not None
 
         # Act
         comentario_atualizado = Comentario(
@@ -208,6 +219,7 @@ class TestComentarioRepo:
         # Assert
         assert resultado is True, "Atualização deveria retornar True"
         comentario_db = obter_por_id(id_comentario)  # type: ignore[arg-type]
+        assert comentario_db is not None
         assert (
             comentario_db.texto == "Comentário atualizado"
         ), "Texto deveria estar atualizado"
@@ -248,6 +260,7 @@ class TestComentarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
 
         veterinario = Veterinario(
             0,
@@ -268,17 +281,20 @@ class TestComentarioRepo:
 
         categoria = CategoriaArtigo(0, "Nutrição", "#00FF00", "nutricao.png")
         id_categoria = inserir_categoria(categoria)
+        assert id_categoria is not None
 
+        assert id_vet is not None
         artigo = PostagemArtigo(
             0,
             id_vet,
             "Nutrição Canina",
             "Conteúdo",
             id_categoria,
-            "2023-10-01",
+            date(2023, 10, 1),
             20,
         )
         id_artigo = inserir_artigo(artigo)
+        assert id_artigo is not None
 
         comentario = Comentario(
             0, id_usuario, id_artigo, "Ótimo artigo!", datetime.now(), None
@@ -332,6 +348,7 @@ class TestComentarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario)
+        assert id_usuario is not None
 
         veterinario = Veterinario(
             0,
@@ -354,17 +371,20 @@ class TestComentarioRepo:
             0, "Comportamento", "#0000FF", "comportamento.png"
         )
         id_categoria = inserir_categoria(categoria)
+        assert id_categoria is not None
 
+        assert id_vet is not None
         artigo = PostagemArtigo(
             0,
             id_vet,
             "Comportamento Felino",
             "Conteúdo",
             id_categoria,
-            "2023-10-01",
+            date(2023, 10, 1),
             30,
         )
         id_artigo = inserir_artigo(artigo)
+        assert id_artigo is not None
 
         # Criar 5 comentários
         for i in range(5):
