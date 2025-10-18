@@ -1,8 +1,8 @@
-import os
-import sys
+# import os  # noqa: F401
+# import sys  # noqa: F401
 from datetime import date
 from repo import usuario_repo
-from model import usuario_model
+# from model import usuario_model  # noqa: F401
 from repo import tutor_repo
 from model import tutor_model
 from repo import postagem_feed_repo
@@ -18,7 +18,7 @@ class TestCurtidaFeedRepo:
         resultado = curtida_feed_repo.criar_tabela()
         # Assert
         assert (
-            resultado == True
+            resultado is True
         ), "A criação da tabela de curtidas do feed deveria retornar True"
 
     def test_inserir_curtida(self, test_db):
@@ -64,9 +64,11 @@ class TestCurtidaFeedRepo:
         resultado = curtida_feed_repo.inserir(curtida)
 
         # Assert
-        assert resultado == True, "A inserção da curtida deveria retornar True"
+        assert resultado is True, "A inserção da curtida deveria retornar True"
         curtida_db = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
-        assert curtida_db is not None, "A curtida inserida não deveria ser None"
+        assert (
+            curtida_db is not None
+        ), "A curtida inserida não deveria ser None"
         assert (
             curtida_db.id_usuario == tutor_id
         ), "O ID do usuário da curtida inserida não confere"
@@ -121,9 +123,11 @@ class TestCurtidaFeedRepo:
         resultado = curtida_feed_repo.excluir(tutor_id, postagem_id)
 
         # Assert
-        assert resultado == True, "A exclusão da curtida deveria retornar True"
+        assert resultado is True, "A exclusão da curtida deveria retornar True"
         curtida_db = curtida_feed_repo.obter_por_id(tutor_id, postagem_id)
-        assert curtida_db is None, "A curtida excluída deveria ser None após exclusão"
+        assert (
+            curtida_db is None
+        ), "A curtida excluída deveria ser None após exclusão"
 
     def test_obter_todas_paginado(self, test_db):
         # Arrange

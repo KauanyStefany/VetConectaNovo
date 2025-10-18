@@ -1,20 +1,29 @@
-import os
-import sys
+# import os  # noqa: F401
+# import sys  # noqa: F401
 from model.categoria_artigo_model import CategoriaArtigo
 from model.comentario_model import Comentario
-from repo.comentario_repo import *
 from model.usuario_model import Usuario
 from model.veterinario_model import Veterinario
 from model.postagem_artigo_model import PostagemArtigo
 
 from repo.comentario_repo import (
+    atualizar,
+    criar_tabela,
+    excluir,
     inserir,
+    obter_pagina,
     obter_por_id,
     criar_tabela as criar_tabela_comentario,
 )
-from repo.usuario_repo import inserir as inserir_usuario, criar_tabela as criar_tabela_usuario
+from repo.usuario_repo import (
+    inserir as inserir_usuario,
+    criar_tabela as criar_tabela_usuario,
+)
 from repo.veterinario_repo import criar_tabela as criar_tabela_veterinario
-from repo.categoria_artigo_repo import inserir as inserir_categoria, criar_tabela as criar_tabela_categoria_artigo
+from repo.categoria_artigo_repo import (
+    inserir as inserir_categoria,
+    criar_tabela as criar_tabela_categoria_artigo,
+)
 from repo.postagem_artigo_repo import (
     inserir as inserir_artigo,
     criar_tabela as criar_tabela_postagem_artigo,
@@ -30,7 +39,7 @@ class TestComentarioRepo:
         resultado = criar_tabela()
         # Assert
         assert (
-            resultado == True
+            resultado is True
         ), "A criação da tabela de comentários deveria retornar True"
 
     def test_inserir(self, test_db):
@@ -53,7 +62,9 @@ class TestComentarioRepo:
             None,
         )
         id_usuario = inserir_usuario(usuario_teste)
-        usuario_teste.id_usuario = id_usuario  # Atualiza o ID do usuário após inserção
+        usuario_teste.id_usuario = (
+            id_usuario  # Atualiza o ID do usuário após inserção
+        )
 
         # Criar veterinário diretamente (inserir_veterinario já cria o usuário)
         veterinario_teste = Veterinario(
@@ -103,10 +114,12 @@ class TestComentarioRepo:
 
         id_comentario_inserido = inserir(comentario_teste)
 
-        comentario_db = obter_por_id(id_comentario_inserido)
+        comentario_db = obter_por_id(id_comentario_inserido)  # type: ignore[arg-type]  # noqa: E501
 
         # ASSERTS
-        assert comentario_db is not None, "O comentário inserido não deveria ser None"
+        assert (
+            comentario_db is not None
+        ), "O comentário inserido não deveria ser None"
         assert (
             comentario_db.id_usuario == id_usuario
         ), "O ID do usuário do comentário inserido não confere"
@@ -161,12 +174,23 @@ class TestComentarioRepo:
         id_categoria = inserir_categoria(categoria)
 
         artigo = PostagemArtigo(
-            0, id_vet, "Artigo Teste", "Conteúdo", id_categoria, "2023-10-01", 10
+            0,
+            id_vet,
+            "Artigo Teste",
+            "Conteúdo",
+            id_categoria,
+            "2023-10-01",
+            10,
         )
         id_artigo = inserir_artigo(artigo)
 
         comentario = Comentario(
-            0, id_usuario, id_artigo, "Comentário original", datetime.now(), None
+            0,
+            id_usuario,
+            id_artigo,
+            "Comentário original",
+            datetime.now(),
+            None,
         )
         id_comentario = inserir(comentario)
 
@@ -182,8 +206,8 @@ class TestComentarioRepo:
         resultado = atualizar(comentario_atualizado)
 
         # Assert
-        assert resultado == True, "Atualização deveria retornar True"
-        comentario_db = obter_por_id(id_comentario)
+        assert resultado is True, "Atualização deveria retornar True"
+        comentario_db = obter_por_id(id_comentario)  # type: ignore[arg-type]
         assert (
             comentario_db.texto == "Comentário atualizado"
         ), "Texto deveria estar atualizado"
@@ -199,7 +223,7 @@ class TestComentarioRepo:
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Atualização de comentário inexistente deveria retornar False"
 
     def test_excluir_comentario_sucesso(self, test_db):
@@ -246,7 +270,13 @@ class TestComentarioRepo:
         id_categoria = inserir_categoria(categoria)
 
         artigo = PostagemArtigo(
-            0, id_vet, "Nutrição Canina", "Conteúdo", id_categoria, "2023-10-01", 20
+            0,
+            id_vet,
+            "Nutrição Canina",
+            "Conteúdo",
+            id_categoria,
+            "2023-10-01",
+            20,
         )
         id_artigo = inserir_artigo(artigo)
 
@@ -256,11 +286,11 @@ class TestComentarioRepo:
         id_comentario = inserir(comentario)
 
         # Act
-        resultado = excluir(id_comentario)
+        resultado = excluir(id_comentario)  # type: ignore[arg-type]
 
         # Assert
-        assert resultado == True, "Exclusão deveria retornar True"
-        comentario_db = obter_por_id(id_comentario)
+        assert resultado is True, "Exclusão deveria retornar True"
+        comentario_db = obter_por_id(id_comentario)  # type: ignore[arg-type]
         assert comentario_db is None, "Comentário não deveria mais existir"
 
     def test_excluir_comentario_inexistente(self, test_db):
@@ -277,7 +307,7 @@ class TestComentarioRepo:
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Exclusão de comentário inexistente deveria retornar False"
 
     def test_OBTER_PAGINA(self, test_db):
@@ -320,7 +350,9 @@ class TestComentarioRepo:
         )
         id_vet = inserir_veterinario(veterinario)
 
-        categoria = CategoriaArtigo(0, "Comportamento", "#0000FF", "comportamento.png")
+        categoria = CategoriaArtigo(
+            0, "Comportamento", "#0000FF", "comportamento.png"
+        )
         id_categoria = inserir_categoria(categoria)
 
         artigo = PostagemArtigo(
@@ -337,7 +369,12 @@ class TestComentarioRepo:
         # Criar 5 comentários
         for i in range(5):
             comentario = Comentario(
-                0, id_usuario, id_artigo, f"Comentário {i}", datetime.now(), None
+                0,
+                id_usuario,
+                id_artigo,
+                f"Comentário {i}",
+                datetime.now(),
+                None,
             )
             inserir(comentario)
 
@@ -378,4 +415,6 @@ class TestComentarioRepo:
         comentario = obter_por_id(9999)
 
         # Assert
-        assert comentario is None, "Comentário inexistente deveria retornar None"
+        assert (
+            comentario is None
+        ), "Comentário inexistente deveria retornar None"

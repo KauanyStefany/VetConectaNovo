@@ -25,8 +25,8 @@ def test_db():
     Yields:
         str: Caminho para o arquivo de banco de dados temporário
     """
-    db_fd, db_path = tempfile.mkstemp(suffix='.db')
-    os.environ['TEST_DATABASE_PATH'] = db_path
+    db_fd, db_path = tempfile.mkstemp(suffix=".db")
+    os.environ["TEST_DATABASE_PATH"] = db_path
 
     try:
         yield db_path
@@ -61,7 +61,7 @@ def usuario_padrao():
         foto=None,
         token_redefinicao=None,
         data_token=None,
-        data_cadastro=None
+        data_cadastro=None,
     )
 
 
@@ -83,7 +83,7 @@ def veterinario_padrao():
         foto=None,
         token_redefinicao=None,
         data_token=None,
-        data_cadastro=None
+        data_cadastro=None,
     )
 
 
@@ -99,7 +99,7 @@ def admin_padrao():
         id_administrador=0,
         nome="Admin Test",
         email="admin@vetconecta.com",
-        senha="admin_senha_789"
+        senha="admin_senha_789",
     )
 
 
@@ -123,7 +123,9 @@ def email_unico():
         function: Função que gera emails únicos
     """
     import time
+
     def _gerar_email(prefixo="test"):
         timestamp = str(int(time.time() * 1000000))  # microsegundos
         return f"{prefixo}_{timestamp}@test.com"
+
     return _gerar_email

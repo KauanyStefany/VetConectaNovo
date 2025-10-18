@@ -1,9 +1,9 @@
 from datetime import datetime
-import os
-import sys
+# import os  # noqa: F401
+# import sys  # noqa: F401
 from repo import usuario_repo, tutor_repo, postagem_feed_repo
 from model.postagem_feed_model import PostagemFeed
-from model.usuario_model import Usuario
+# from model.usuario_model import Usuario  # noqa: F401
 from model.tutor_model import Tutor
 
 
@@ -13,7 +13,7 @@ class TestPostagemFeedRepo:
         # Act
         resultado = postagem_feed_repo.criar_tabela()
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_postagem_feed(self, test_db):
         # Arrange
@@ -48,8 +48,10 @@ class TestPostagemFeedRepo:
         id_post = postagem_feed_repo.inserir(postagem)
         # Assert
         assert id_post is not None, "A inserção deveria retornar um ID válido"
-        postagem_db = postagem_feed_repo.obter_por_id(id_post)
-        assert postagem_db is not None, "A postagem deveria ser inserida e recuperada"
+        postagem_db = postagem_feed_repo.obter_por_id(id_post)  # type: ignore[arg-type]  # noqa: E501
+        assert (
+            postagem_db is not None
+        ), "A postagem deveria ser inserida e recuperada"
         assert (
             postagem_db.id_tutor == postagem.id_tutor
         ), "O tutor da postagem recuperada está incorreto"
@@ -87,7 +89,11 @@ class TestPostagemFeedRepo:
         id_tutor = tutor_repo.inserir(tutor)
 
         postagem = PostagemFeed(
-            0, id_tutor, "foto.jpg", "Descrição original", datetime.today().date()
+            0,
+            id_tutor,
+            "foto.jpg",
+            "Descrição original",
+            datetime.today().date(),
         )
         id_postagem = postagem_feed_repo.inserir(postagem)
 
@@ -97,8 +103,8 @@ class TestPostagemFeedRepo:
         resultado = postagem_feed_repo.atualizar(postagem)
 
         # Assert
-        assert resultado == True, "Atualização deveria retornar True"
-        postagem_db = postagem_feed_repo.obter_por_id(id_postagem)
+        assert resultado is True, "Atualização deveria retornar True"
+        postagem_db = postagem_feed_repo.obter_por_id(id_postagem)  # type: ignore[arg-type]  # noqa: E501
         assert (
             postagem_db.descricao == "Descrição atualizada"
         ), "Descrição deveria estar atualizada"
@@ -116,7 +122,7 @@ class TestPostagemFeedRepo:
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Atualização de postagem inexistente deveria retornar False"
 
     def test_excluir_postagem_feed_sucesso(self, test_db):
@@ -148,11 +154,11 @@ class TestPostagemFeedRepo:
         id_postagem = postagem_feed_repo.inserir(postagem)
 
         # Act
-        resultado = postagem_feed_repo.excluir(id_postagem)
+        resultado = postagem_feed_repo.excluir(id_postagem)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
-        assert resultado == True, "Exclusão deveria retornar True"
-        postagem_db = postagem_feed_repo.obter_por_id(id_postagem)
+        assert resultado is True, "Exclusão deveria retornar True"
+        postagem_db = postagem_feed_repo.obter_por_id(id_postagem)  # type: ignore[arg-type]  # noqa: E501
         assert postagem_db is None, "Postagem não deveria mais existir"
 
     def test_excluir_postagem_feed_inexistente(self, test_db):
@@ -167,7 +173,7 @@ class TestPostagemFeedRepo:
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Exclusão de postagem inexistente deveria retornar False"
 
     def test_OBTER_PAGINA(self, test_db):
@@ -196,7 +202,11 @@ class TestPostagemFeedRepo:
         # Criar 5 postagens
         for i in range(5):
             postagem = PostagemFeed(
-                0, id_tutor, f"foto{i}.jpg", f"Postagem {i}", datetime.today().date()
+                0,
+                id_tutor,
+                f"foto{i}.jpg",
+                f"Postagem {i}",
+                datetime.today().date(),
             )
             postagem_feed_repo.inserir(postagem)
 
@@ -221,7 +231,9 @@ class TestPostagemFeedRepo:
         postagem_feed_repo.criar_tabela()
 
         # Act
-        postagens = postagem_feed_repo.obter_pagina(pagina=1, tamanho_pagina=10)
+        postagens = postagem_feed_repo.obter_pagina(
+            pagina=1, tamanho_pagina=10
+        )
 
         # Assert
         assert len(postagens) == 0, "Deveria retornar lista vazia"

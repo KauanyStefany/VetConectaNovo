@@ -1,6 +1,12 @@
-import os
-import sys
-from repo.administrador_repo import *
+from repo.administrador_repo import (
+    atualizar,
+    atualizar_senha,
+    criar_tabela,
+    excluir,
+    inserir,
+    obter_pagina,
+    obter_por_id,
+)
 from model.administrador_model import Administrador
 
 
@@ -10,17 +16,21 @@ class TestAdministradorRepo:
         # Act
         resultado = criar_tabela()
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_administrador(self, test_db):
         # Arrange
         criar_tabela()
-        admin_teste = Administrador(0, "Admin Teste", "admin@gmail.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@gmail.com", "12345678"
+        )
         # Act
         id_admin_inserido = inserir(admin_teste)
         # Assert
-        admin_db = obter_por_id(id_admin_inserido)
-        assert admin_db is not None, "O administrador inserido não deveria ser None"
+        admin_db = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]
+        assert (
+            admin_db is not None
+        ), "O administrador inserido não deveria ser None"
         assert (
             admin_db.id_admin == 1
         ), "O administrador inserido deveria ter um ID igual a 1"
@@ -37,17 +47,21 @@ class TestAdministradorRepo:
     def test_atualizar_administrador(self, test_db):
         # Arrange
         criar_tabela()
-        admin_teste = Administrador(0, "Admin Teste", "admin@gmail.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@gmail.com", "12345678"
+        )
         id_admin_inserido = inserir(admin_teste)
-        admin_inserido = obter_por_id(id_admin_inserido)
+        admin_inserido = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]  # noqa: E501
         # Act
         admin_inserido.nome = "Admin Atualizado"
         admin_inserido.email = "emailAtualizado@gmail.com"
         admin_inserido.senha = "12345678"
         resultado = atualizar(admin_inserido)
         # Assert
-        assert resultado == True, "A atualização do administrador deveria retornar True"
-        admin_db = obter_por_id(id_admin_inserido)
+        assert (
+            resultado is True
+        ), "A atualização do administrador deveria retornar True"
+        admin_db = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]
         assert (
             admin_db.nome == "Admin Atualizado"
         ), "O nome do administrador atualizado não confere"
@@ -61,14 +75,18 @@ class TestAdministradorRepo:
     def test_atualizar_senha(self, test_db):
         # Arrange
         criar_tabela()
-        admin_teste = Administrador(0, "Admin Teste", "admin@gmail.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@gmail.com", "12345678"
+        )
         id_admin_inserido = inserir(admin_teste)
         # Act
         nova_senha = "87654321"
-        resultado = atualizar_senha(id_admin_inserido, nova_senha)
+        resultado = atualizar_senha(id_admin_inserido, nova_senha)  # type: ignore[arg-type]  # noqa: E501
         # Assert
-        assert resultado == True, "A atualização da senha deveria retornar True"
-        admin_db = obter_por_id(id_admin_inserido)
+        assert (
+            resultado is True
+        ), "A atualização da senha deveria retornar True"
+        admin_db = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]
         assert (
             admin_db.senha == nova_senha
         ), "A senha do administrador atualizado não confere"
@@ -76,14 +94,20 @@ class TestAdministradorRepo:
     def test_excluir_administrador(self, test_db):
         # Arrange
         criar_tabela()
-        admin_teste = Administrador(0, "Admin Teste", "admin@gmail.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@gmail.com", "12345678"
+        )
         id_admin_inserido = inserir(admin_teste)
         # Act
-        resultado = excluir(id_admin_inserido)
+        resultado = excluir(id_admin_inserido)  # type: ignore[arg-type]
         # Assert
-        assert resultado == True, "A exclusão do administrador deveria retornar True"
-        admin_excluido = obter_por_id(id_admin_inserido)
-        assert admin_excluido == None, "O administrador excluído deveria ser None"
+        assert (
+            resultado is True
+        ), "A exclusão do administrador deveria retornar True"
+        admin_excluido = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]  # noqa: E501
+        assert (
+            admin_excluido is None
+        ), "O administrador excluído deveria ser None"
 
     def test_obter_todos_administradores(self, test_db):
         # Arrange
@@ -107,12 +131,16 @@ class TestAdministradorRepo:
     def test_obter_administrador_por_id(self, test_db):
         # Arrange
         criar_tabela()
-        admin_teste = Administrador(0, "Admin Teste", "admin@gmail.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@gmail.com", "12345678"
+        )
         id_admin_inserido = inserir(admin_teste)
         # Act
-        admin_obtido = obter_por_id(id_admin_inserido)
+        admin_obtido = obter_por_id(id_admin_inserido)  # type: ignore[arg-type]  # noqa: E501
         # Assert
-        assert admin_obtido is not None, "O administrador obtido não deveria ser None"
+        assert (
+            admin_obtido is not None
+        ), "O administrador obtido não deveria ser None"
         assert (
             admin_obtido.id_admin == id_admin_inserido
         ), "O ID do administrador obtido não confere"

@@ -35,7 +35,9 @@ class TestChamadoRepo:
         )
         self.id_usuario = usuario_repo.inserir(self.usuario)
 
-        self.admin = Administrador(0, "Admin Silva", "admin@email.com", "senha456")
+        self.admin = Administrador(
+            0, "Admin Silva", "admin@email.com", "senha456"
+        )
         self.id_admin = administrador_repo.inserir(self.admin)
 
     def test_criar_tabela(self, test_db):
@@ -45,7 +47,7 @@ class TestChamadoRepo:
         resultado = chamado_repo.criar_tabela()
 
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_chamado_sucesso(self, test_db):
         """Testa inserção de chamado com sucesso"""
@@ -64,11 +66,13 @@ class TestChamadoRepo:
         id_inserido = chamado_repo.inserir(chamado)
 
         # Assert
-        assert id_inserido is not None, "ID do chamado inserido não deveria ser None"
+        assert (
+            id_inserido is not None
+        ), "ID do chamado inserido não deveria ser None"
         assert id_inserido > 0, "ID deveria ser maior que zero"
 
         # Verificar se foi salvo corretamente
-        chamado_db = chamado_repo.obter_por_id(id_inserido)
+        chamado_db = chamado_repo.obter_por_id(id_inserido)  # type: ignore[arg-type]  # noqa: E501
         assert chamado_db is not None, "Chamado deveria existir no banco"
         assert chamado_db.titulo == chamado.titulo
         assert chamado_db.descricao == chamado.descricao
@@ -93,9 +97,11 @@ class TestChamadoRepo:
         id_inserido = chamado_repo.inserir(chamado)
 
         # Assert
-        assert id_inserido is not None, "Deveria permitir inserir chamado sem admin"
+        assert (
+            id_inserido is not None
+        ), "Deveria permitir inserir chamado sem admin"
 
-        chamado_db = chamado_repo.obter_por_id(id_inserido)
+        chamado_db = chamado_repo.obter_por_id(id_inserido)  # type: ignore[arg-type]  # noqa: E501
         assert chamado_db.id_admin is None
 
     def test_atualizar_status_chamado_sucesso(self, test_db):
@@ -118,17 +124,19 @@ class TestChamadoRepo:
         )
 
         # Assert
-        assert resultado == True, "Atualização deveria retornar True"
+        assert resultado is True, "Atualização deveria retornar True"
 
-        chamado_db = chamado_repo.obter_por_id(id_chamado)
+        chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
         assert chamado_db.status == ChamadoStatus.EM_ANDAMENTO
 
         # Act - mudar para resolvido
-        resultado = chamado_repo.atualizar_status(id_chamado, ChamadoStatus.RESOLVIDO)
+        resultado = chamado_repo.atualizar_status(
+            id_chamado, ChamadoStatus.RESOLVIDO
+        )
 
         # Assert
-        assert resultado == True
-        chamado_db = chamado_repo.obter_por_id(id_chamado)
+        assert resultado is True
+        chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
         assert chamado_db.status == ChamadoStatus.RESOLVIDO
 
     def test_atualizar_status_chamado_inexistente(self, test_db):
@@ -143,7 +151,7 @@ class TestChamadoRepo:
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Atualização de chamado inexistente deveria retornar False"
 
     def test_excluir_chamado_sucesso(self, test_db):
@@ -161,12 +169,12 @@ class TestChamadoRepo:
         id_chamado = chamado_repo.inserir(chamado)
 
         # Act
-        resultado = chamado_repo.excluir(id_chamado)
+        resultado = chamado_repo.excluir(id_chamado)  # type: ignore[arg-type]
 
         # Assert
-        assert resultado == True, "Exclusão deveria retornar True"
+        assert resultado is True, "Exclusão deveria retornar True"
 
-        chamado_db = chamado_repo.obter_por_id(id_chamado)
+        chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
         assert chamado_db is None, "Chamado não deveria mais existir"
 
     def test_excluir_chamado_inexistente(self, test_db):
@@ -175,11 +183,11 @@ class TestChamadoRepo:
         id_inexistente = 9999
 
         # Act
-        resultado = chamado_repo.excluir(id_inexistente)
+        resultado = chamado_repo.excluir(id_inexistente)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Exclusão de chamado inexistente deveria retornar False"
 
     def test_obter_todos_chamados_paginado(self, test_db):
@@ -272,7 +280,7 @@ class TestChamadoRepo:
         id_chamado = chamado_repo.inserir(chamado)
 
         # Act
-        chamado_db = chamado_repo.obter_por_id(id_chamado)
+        chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
         assert chamado_db is not None, "Chamado deveria existir"
@@ -287,7 +295,7 @@ class TestChamadoRepo:
         id_inexistente = 9999
 
         # Act
-        chamado = chamado_repo.obter_por_id(id_inexistente)
+        chamado = chamado_repo.obter_por_id(id_inexistente)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
         assert chamado is None, "Chamado não deveria existir"
@@ -313,16 +321,18 @@ class TestChamadoRepo:
         resultado = chamado_repo.atualizar_status(
             id_chamado, ChamadoStatus.EM_ANDAMENTO
         )
-        assert resultado == True
+        assert resultado is True
 
         # Verificar status
-        chamado_db = chamado_repo.obter_por_id(id_chamado)
+        chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
         assert chamado_db.status == ChamadoStatus.EM_ANDAMENTO
 
         # Act 3 - Resolver chamado
-        resultado = chamado_repo.atualizar_status(id_chamado, ChamadoStatus.RESOLVIDO)
-        assert resultado == True
+        resultado = chamado_repo.atualizar_status(
+            id_chamado, ChamadoStatus.RESOLVIDO
+        )
+        assert resultado is True
 
         # Verificar resolução
-        chamado_db = chamado_repo.obter_por_id(id_chamado)
+        chamado_db = chamado_repo.obter_por_id(id_chamado)  # type: ignore[arg-type]  # noqa: E501
         assert chamado_db.status == ChamadoStatus.RESOLVIDO

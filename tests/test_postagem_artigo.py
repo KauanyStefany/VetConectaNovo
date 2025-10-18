@@ -1,6 +1,6 @@
 from datetime import datetime
-import os
-import sys
+# import os  # noqa: F401
+# import sys  # noqa: F401
 from repo import (
     usuario_repo,
     veterinario_repo,
@@ -10,7 +10,7 @@ from repo import (
 from model.categoria_artigo_model import CategoriaArtigo
 from model.postagem_artigo_model import PostagemArtigo
 from model.veterinario_model import Veterinario
-from util.db_util import get_connection
+# from util.db_util import get_connection  # noqa: F401
 
 
 class TestPostagemArtigoRepo:
@@ -19,7 +19,7 @@ class TestPostagemArtigoRepo:
         # Act
         resultado = postagem_artigo_repo.criar_tabela()
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_postagem_artigo(self, test_db):
         # Arrange
@@ -66,8 +66,10 @@ class TestPostagemArtigoRepo:
         id_post = postagem_artigo_repo.inserir(postagem)
         # Assert
         assert id_post is not None, "A inserção deveria retornar um ID válido"
-        postagem_db = postagem_artigo_repo.obter_por_id(id_post)
-        assert postagem_db is not None, "A postagem deveria ser inserida e recuperada"
+        postagem_db = postagem_artigo_repo.obter_por_id(id_post)  # type: ignore[arg-type]  # noqa: E501
+        assert (
+            postagem_db is not None
+        ), "A postagem deveria ser inserida e recuperada"
         assert (
             postagem_db.titulo == postagem.titulo
         ), "O título da postagem recuperada está incorreto"
@@ -127,9 +129,11 @@ class TestPostagemArtigoRepo:
         )
         id_post = postagem_artigo_repo.inserir(postagem)
         # Act
-        postagem_db = postagem_artigo_repo.obter_por_id(id_post)
+        postagem_db = postagem_artigo_repo.obter_por_id(id_post)  # type: ignore[arg-type]  # noqa: E501
         # Assert
-        assert postagem_db is not None, "A postagem deveria ser inserida e recuperada"
+        assert (
+            postagem_db is not None
+        ), "A postagem deveria ser inserida e recuperada"
         assert (
             postagem_db.titulo == postagem.titulo
         ), "O título da postagem recuperada está incorreto"
@@ -185,13 +189,13 @@ class TestPostagemArtigoRepo:
             visualizacoes=0,
         )
         id_post = postagem_artigo_repo.inserir(postagem)
-        postagem_db = postagem_artigo_repo.obter_por_id(id_post)
+        postagem_db = postagem_artigo_repo.obter_por_id(id_post)  # type: ignore[arg-type]  # noqa: E501
         # Act
         postagem_db.titulo = "Vacinação de Gatos Atualizado"
         postagem_db.conteudo = "Texto do artigo atualizado"
         postagem_artigo_repo.atualizar(postagem_db)
         # Assert
-        postagem_atualizada = postagem_artigo_repo.obter_por_id(id_post)
+        postagem_atualizada = postagem_artigo_repo.obter_por_id(id_post)  # type: ignore[arg-type]  # noqa: E501
         assert (
             postagem_atualizada is not None
         ), "A postagem deveria ser inserida e recuperada"
@@ -250,12 +254,11 @@ class TestPostagemArtigoRepo:
             visualizacoes=0,
         )
         id_post = postagem_artigo_repo.inserir(postagem)
-        postagem_db = postagem_artigo_repo.obter_por_id(id_post)
         # Act
-        excluiu = postagem_artigo_repo.excluir(id_post)
+        excluiu = postagem_artigo_repo.excluir(id_post)  # type: ignore[arg-type]  # noqa: E501
         # Assert
         assert excluiu is True, "A exclusão deveria retornar True"
-        postagem_excluida = postagem_artigo_repo.obter_por_id(id_post)
+        postagem_excluida = postagem_artigo_repo.obter_por_id(id_post)  # type: ignore[arg-type]  # noqa: E501
         assert (
             postagem_excluida is None
         ), "A postagem deveria ser excluída e não recuperada"
@@ -301,12 +304,14 @@ class TestPostagemArtigoRepo:
                 visualizacoes=i * 10,
             )
             id_post = postagem_artigo_repo.inserir(postagem)
-            ids_posts.append(id_post)
+            ids_posts.append(id_post)  # type: ignore[arg-type]
         # Act
         pagina1 = postagem_artigo_repo.obter_pagina(1, 6)
         pagina2 = postagem_artigo_repo.obter_pagina(2, 6)
         # Assert
-        assert len(pagina1) == 6, "A primeira página deveria conter 6 postagens"
+        assert (
+            len(pagina1) == 6
+        ), "A primeira página deveria conter 6 postagens"
         assert len(pagina2) == 4, "A segunda página deveria conter 4 postagens"
         assert (
             pagina1[0].id_postagem_artigo == ids_posts[0]

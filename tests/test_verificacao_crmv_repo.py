@@ -8,13 +8,19 @@ from repo.verificacao_crmv_repo import (
     obter_pagina,
     obter_por_id,
 )
-from repo.usuario_repo import criar_tabela as criar_tabela_usuario, inserir as inserir_usuario
-from repo.veterinario_repo import criar_tabela as criar_tabela_veterinario, inserir as inserir_veterinario
-from repo.administrador_repo import criar_tabela as criar_tabela_admin, inserir as inserir_admin
+from repo.usuario_repo import criar_tabela as criar_tabela_usuario
+from repo.veterinario_repo import (
+    criar_tabela as criar_tabela_veterinario,
+    inserir as inserir_veterinario,
+)
+from repo.administrador_repo import (
+    criar_tabela as criar_tabela_admin,
+    inserir as inserir_admin,
+)
 from model.verificacao_crmv_model import VerificacaoCRMV
 from model.veterinario_model import Veterinario
 from model.administrador_model import Administrador
-from model.usuario_model import Usuario
+# from model.usuario_model import Usuario  # noqa: F401
 from model.enums import VerificacaoStatus
 
 
@@ -48,7 +54,9 @@ class TestVerificacaoCRMVRepo:
         )
         self.id_veterinario = inserir_veterinario(self.veterinario)
 
-        self.admin = Administrador(0, "Admin Silva", "admin@email.com", "senha456")
+        self.admin = Administrador(
+            0, "Admin Silva", "admin@email.com", "senha456"
+        )
         self.id_admin = inserir_admin(self.admin)
 
     def test_criar_tabela(self, test_db):
@@ -58,7 +66,7 @@ class TestVerificacaoCRMVRepo:
         resultado = criar_tabela_verificacao()
 
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_verificacao_sucesso(self, test_db):
         """Testa inserção de verificação CRMV com sucesso"""
@@ -81,8 +89,10 @@ class TestVerificacaoCRMVRepo:
         assert id_inserido > 0, "ID deveria ser maior que zero"
 
         # Verificar se foi salvo corretamente
-        verificacao_db = obter_por_id(id_inserido)
-        assert verificacao_db is not None, "Verificação deveria existir no banco"
+        verificacao_db = obter_por_id(id_inserido)  # type: ignore[arg-type]
+        assert (
+            verificacao_db is not None
+        ), "Verificação deveria existir no banco"
         assert verificacao_db.id_veterinario == self.id_veterinario
         assert verificacao_db.id_administrador == self.id_admin
         assert verificacao_db.status_verificacao == VerificacaoStatus.PENDENTE
@@ -102,9 +112,11 @@ class TestVerificacaoCRMVRepo:
         id_inserido = inserir(verificacao)
 
         # Assert
-        assert id_inserido is not None, "Deveria permitir inserir verificação sem admin"
+        assert (
+            id_inserido is not None
+        ), "Deveria permitir inserir verificação sem admin"
 
-        verificacao_db = obter_por_id(id_inserido)
+        verificacao_db = obter_por_id(id_inserido)  # type: ignore[arg-type]
         assert verificacao_db.id_administrador is None
 
     def test_atualizar_status_verificacao_sucesso(self, test_db):
@@ -125,9 +137,9 @@ class TestVerificacaoCRMVRepo:
         )
 
         # Assert
-        assert resultado == True, "Atualização deveria retornar True"
+        assert resultado is True, "Atualização deveria retornar True"
 
-        verificacao_db = obter_por_id(id_verificacao)
+        verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
         assert verificacao_db.status_verificacao == VerificacaoStatus.APROVADO
 
         # Act - rejeitar verificação
@@ -136,8 +148,8 @@ class TestVerificacaoCRMVRepo:
         )
 
         # Assert
-        assert resultado == True
-        verificacao_db = obter_por_id(id_verificacao)
+        assert resultado is True
+        verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
         assert verificacao_db.status_verificacao == VerificacaoStatus.REJEITADO
 
     def test_atualizar_verificacao_inexistente(self, test_db):
@@ -146,11 +158,13 @@ class TestVerificacaoCRMVRepo:
         id_inexistente = 9999
 
         # Act
-        resultado = atualizar(id_inexistente, VerificacaoStatus.APROVADO, self.id_admin)
+        resultado = atualizar(
+            id_inexistente, VerificacaoStatus.APROVADO, self.id_admin
+        )
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Atualização de verificação inexistente deveria retornar False"
 
     def test_excluir_verificacao_sucesso(self, test_db):
@@ -166,12 +180,12 @@ class TestVerificacaoCRMVRepo:
         id_verificacao = inserir(verificacao)
 
         # Act
-        resultado = excluir(self.id_veterinario)
+        resultado = excluir(self.id_veterinario)  # type: ignore[arg-type]
 
         # Assert
-        assert resultado == True, "Exclusão deveria retornar True"
+        assert resultado is True, "Exclusão deveria retornar True"
 
-        verificacao_db = obter_por_id(id_verificacao)
+        verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
         assert verificacao_db is None, "Verificação não deveria mais existir"
 
     def test_excluir_verificacao_inexistente(self, test_db):
@@ -180,11 +194,11 @@ class TestVerificacaoCRMVRepo:
         id_inexistente = 9999
 
         # Act
-        resultado = excluir(id_inexistente)
+        resultado = excluir(id_inexistente)  # type: ignore[arg-type]
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Exclusão de verificação inexistente deveria retornar False"
 
     def test_OBTER_PAGINA(self, test_db):
@@ -236,7 +250,7 @@ class TestVerificacaoCRMVRepo:
         id_verificacao = inserir(verificacao)
 
         # Act
-        verificacao_db = obter_por_id(id_verificacao)
+        verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
 
         # Assert
         assert verificacao_db is not None, "Verificação deveria existir"
@@ -250,7 +264,7 @@ class TestVerificacaoCRMVRepo:
         id_inexistente = 9999
 
         # Act
-        verificacao = obter_por_id(id_inexistente)
+        verificacao = obter_por_id(id_inexistente)  # type: ignore[arg-type]
 
         # Assert
         assert verificacao is None, "Verificação não deveria existir"
@@ -274,10 +288,10 @@ class TestVerificacaoCRMVRepo:
         resultado = atualizar(
             self.id_veterinario, VerificacaoStatus.APROVADO, self.id_admin
         )
-        assert resultado == True
+        assert resultado is True
 
         # Verificar aprovação
-        verificacao_db = obter_por_id(id_verificacao)
+        verificacao_db = obter_por_id(id_verificacao)  # type: ignore[arg-type]
         assert verificacao_db.status_verificacao == VerificacaoStatus.APROVADO
 
     def test_enum_status_valores(self, test_db):

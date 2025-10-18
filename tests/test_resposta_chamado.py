@@ -1,22 +1,19 @@
-import os
-import sys
+# import os  # noqa: F401
+# import sys  # noqa: F401
 from datetime import date
 
 from model.administrador_model import Administrador
 from model.chamado_model import Chamado
 from model.usuario_model import Usuario
 from model.resposta_chamado_model import RespostaChamado
-from repo.administrador_repo import (
-    criar_tabela,
-    inserir
-)
+from repo.administrador_repo import criar_tabela, inserir
 from repo.chamado_repo import (
     criar_tabela as criar_tabela_chamado,
-    inserir as inserir_chamado
+    inserir as inserir_chamado,
 )
 from repo.usuario_repo import (
     criar_tabela as criar_tabela_usuario,
-    inserir as inserir_usuario
+    inserir as inserir_usuario,
 )
 from repo.resposta_chamado_repo import (
     criar_tabela as criar_tabelas,
@@ -24,7 +21,7 @@ from repo.resposta_chamado_repo import (
     atualizar as atualizar_resposta,
     excluir as excluir_resposta,
     obter_pagina as obter_todas_respostas_paginado,
-    obter_por_id as obter_resposta_por_id
+    obter_por_id as obter_resposta_por_id,
 )
 
 
@@ -35,7 +32,7 @@ class TestRespostaChamadoRepo:
         # Act
         resultado = criar_tabelas()
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_resposta(self, test_db):
         # Arrange
@@ -61,7 +58,9 @@ class TestRespostaChamadoRepo:
         id_usuario = inserir_usuario(usuario_teste)
 
         # Insere administrador dummy e obtém ID
-        admin_teste = Administrador(0, "Admin Teste", "admin@teste.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@teste.com", "12345678"
+        )
         id_admin = inserir(admin_teste)
 
         # Cria chamado usando IDs válidos
@@ -89,8 +88,10 @@ class TestRespostaChamadoRepo:
         id_resposta_inserida = inserir_resposta(resposta_teste)
 
         # Assert
-        resposta_db = obter_resposta_por_id(id_resposta_inserida)
-        assert resposta_db is not None, "A resposta inserida não deveria ser None"
+        resposta_db = obter_resposta_por_id(id_resposta_inserida)  # type: ignore[arg-type]  # noqa: E501
+        assert (
+            resposta_db is not None
+        ), "A resposta inserida não deveria ser None"
         assert (
             resposta_db.id_chamado == id_chamado_inserido
         ), "O id do chamado não confere"
@@ -100,7 +101,9 @@ class TestRespostaChamadoRepo:
         assert (
             resposta_db.descricao == "Esta é uma resposta ao chamado"
         ), "A descrição da resposta não confere"
-        assert str(resposta_db.data) == "2025-06-30", "A data da resposta não confere"
+        assert (
+            str(resposta_db.data) == "2025-06-30"
+        ), "A data da resposta não confere"
 
     def test_atualizar_resposta(self, test_db):
         # Arrange
@@ -125,7 +128,9 @@ class TestRespostaChamadoRepo:
         )
         id_usuario = inserir_usuario(usuario_teste)
 
-        admin_teste = Administrador(0, "Admin Teste", "admin@teste.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@teste.com", "12345678"
+        )
         id_admin = inserir(admin_teste)
 
         # Cria chamado
@@ -163,8 +168,10 @@ class TestRespostaChamadoRepo:
         resultado = atualizar_resposta(resposta_atualizada)
 
         # Assert
-        assert resultado == True, "A atualização da resposta deveria retornar True"
-        resposta_db = obter_resposta_por_id(id_resposta_inserida)
+        assert (
+            resultado is True
+        ), "A atualização da resposta deveria retornar True"
+        resposta_db = obter_resposta_por_id(id_resposta_inserida)  # type: ignore[arg-type]  # noqa: E501
         assert (
             resposta_db.titulo == "Resposta Atualizada"
         ), "O título da resposta atualizada não confere"
@@ -197,7 +204,9 @@ class TestRespostaChamadoRepo:
         )
         id_usuario = inserir_usuario(usuario_teste)
 
-        admin_teste = Administrador(0, "Admin Teste", "admin@teste.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@teste.com", "12345678"
+        )
         id_admin = inserir(admin_teste)
 
         # Cria chamado
@@ -223,11 +232,13 @@ class TestRespostaChamadoRepo:
         id_resposta = inserir_resposta(resposta_teste)
 
         # Act
-        resultado = excluir_resposta(id_resposta)
+        resultado = excluir_resposta(id_resposta)  # type: ignore[arg-type]
 
         # Assert
-        assert resultado == True, "A exclusão da resposta deveria retornar True"
-        resposta_db = obter_resposta_por_id(id_resposta)
+        assert (
+            resultado is True
+        ), "A exclusão da resposta deveria retornar True"
+        resposta_db = obter_resposta_por_id(id_resposta)  # type: ignore[arg-type]  # noqa: E501
         assert resposta_db is None, "A resposta deveria ter sido excluída"
 
     def test_obter_todas_respostas_paginado(self, test_db):
@@ -252,7 +263,9 @@ class TestRespostaChamadoRepo:
         )
         id_usuario = inserir_usuario(usuario_teste)
 
-        admin_teste = Administrador(0, "Admin Teste", "admin@teste.com", "12345678")
+        admin_teste = Administrador(
+            0, "Admin Teste", "admin@teste.com", "12345678"
+        )
         id_admin = inserir(admin_teste)
 
         # Cria chamado
@@ -324,7 +337,10 @@ class TestRespostaChamadoRepo:
 
         # Inserir o administrador
         admin = Administrador(
-            id_admin=0, nome="Admin Teste", email="admin@teste.com", senha="12345678"
+            id_admin=0,
+            nome="Admin Teste",
+            email="admin@teste.com",
+            senha="12345678",
         )
         id_admin = inserir(admin)
 
@@ -351,7 +367,7 @@ class TestRespostaChamadoRepo:
         id_resposta_inserida = inserir_resposta(resposta_teste)
 
         # Act
-        resposta_db = obter_resposta_por_id(id_resposta_inserida)
+        resposta_db = obter_resposta_por_id(id_resposta_inserida)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
         assert resposta_db is not None

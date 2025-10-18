@@ -1,5 +1,5 @@
-import os
-import sys
+# import os  # noqa: F401
+# import sys  # noqa: F401
 from model.categoria_artigo_model import CategoriaArtigo
 from model.curtida_artigo_model import CurtidaArtigo
 from model.usuario_model import Usuario
@@ -11,7 +11,7 @@ from repo import (
     curtida_artigo_repo,
     veterinario_repo,
 )
-from datetime import date, datetime
+from datetime import datetime
 
 from model.veterinario_model import Veterinario
 
@@ -22,7 +22,7 @@ class TestCurtidaArtigoRepo:
         # Act
         resultado = curtida_artigo_repo.criar_tabela()
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_curtida(self, test_db):
         # Arrange
@@ -67,7 +67,10 @@ class TestCurtidaArtigoRepo:
 
         # Criar categoria
         categoria = CategoriaArtigo(
-            id_categoria_artigo=0, nome="Cuidados", cor="#3498DB", imagem="cuidados.png"
+            id_categoria_artigo=0,
+            nome="Cuidados",
+            cor="#3498DB",
+            imagem="cuidados.png",
         )
         id_categoria = categoria_artigo_repo.inserir(categoria)
 
@@ -93,10 +96,12 @@ class TestCurtidaArtigoRepo:
         resultado_inserir = curtida_artigo_repo.inserir(curtida)
 
         # Act
-        curtida_db = curtida_artigo_repo.obter_por_id(id_usuario, id_postagem)
+        curtida_db = curtida_artigo_repo.obter_por_id(id_usuario, id_postagem)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
-        assert resultado_inserir == True, "A inserção da curtida deveria retornar True"
+        assert (
+            resultado_inserir is True
+        ), "A inserção da curtida deveria retornar True"
         assert curtida_db is not None, "A curtida deveria ser encontrada"
         assert (
             curtida_db.id_usuario == id_usuario
@@ -167,15 +172,15 @@ class TestCurtidaArtigoRepo:
         id_postagem = postagem_artigo_repo.inserir(postagem)
 
         # Criar curtida
-        curtida = CurtidaArtigo(id_usuario, id_postagem, datetime.now())
+        curtida = CurtidaArtigo(id_usuario, id_postagem, datetime.now())  # type: ignore[arg-type]  # noqa: E501
         curtida_artigo_repo.inserir(curtida)
 
         # Act
-        resultado = curtida_artigo_repo.excluir(id_usuario, id_postagem)
+        resultado = curtida_artigo_repo.excluir(id_usuario, id_postagem)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
-        assert resultado == True, "Exclusão deveria retornar True"
-        curtida_db = curtida_artigo_repo.obter_por_id(id_usuario, id_postagem)
+        assert resultado is True, "Exclusão deveria retornar True"
+        curtida_db = curtida_artigo_repo.obter_por_id(id_usuario, id_postagem)  # type: ignore[arg-type]  # noqa: E501
         assert curtida_db is None, "Curtida não deveria mais existir"
 
     def test_excluir_curtida_inexistente(self, test_db):
@@ -188,7 +193,7 @@ class TestCurtidaArtigoRepo:
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Exclusão de curtida inexistente deveria retornar False"
 
     def test_OBTER_PAGINA(self, test_db):
@@ -250,15 +255,17 @@ class TestCurtidaArtigoRepo:
                 None,
             )
             id_usuario = usuario_repo.inserir(usuario)
-            usuarios_ids.append(id_usuario)
-            curtida = CurtidaArtigo(id_usuario, id_postagem, datetime.now())
+            usuarios_ids.append(id_usuario)  # type: ignore[arg-type]
+            curtida = CurtidaArtigo(id_usuario, id_postagem, datetime.now())  # type: ignore[arg-type]  # noqa: E501
             curtida_artigo_repo.inserir(curtida)
 
         # Act
         curtidas = curtida_artigo_repo.obter_pagina(limite=2, offset=0)
 
         # Assert
-        assert len(curtidas) == 2, "Deveria retornar 2 curtidas (limite da paginação)"
+        assert (
+            len(curtidas) == 2
+        ), "Deveria retornar 2 curtidas (limite da paginação)"
         assert all(
             isinstance(c, CurtidaArtigo) for c in curtidas
         ), "Todos os itens deveriam ser CurtidaArtigo"

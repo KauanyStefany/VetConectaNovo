@@ -6,16 +6,13 @@ from repo.denuncia_repo import (
     atualizar as atualizar_denuncia,
     excluir as excluir_denuncia,
     obter_pagina as obter_todas_denuncias_paginadas,
-    obter_por_id as obter_denuncia_por_id
+    obter_por_id as obter_denuncia_por_id,
 )
 from repo.usuario_repo import (
     criar_tabela as criar_tabela_usuario,
-    inserir as inserir_usuario
+    inserir as inserir_usuario,
 )
-from repo.administrador_repo import (
-    criar_tabela,
-    inserir
-)
+from repo.administrador_repo import criar_tabela, inserir
 from model.denuncia_model import Denuncia
 from model.usuario_model import Usuario
 from model.administrador_model import Administrador
@@ -48,7 +45,9 @@ class TestDenunciaRepo:
         )
         self.id_usuario = inserir_usuario(self.usuario)
 
-        self.admin = Administrador(0, "Admin Silva", "admin@email.com", "senha456")
+        self.admin = Administrador(
+            0, "Admin Silva", "admin@email.com", "senha456"
+        )
         self.id_admin = inserir(self.admin)
 
     def test_criar_tabela(self, test_db):
@@ -58,7 +57,7 @@ class TestDenunciaRepo:
         resultado = criar_tabela_denuncia()
 
         # Assert
-        assert resultado == True, "A criação da tabela deveria retornar True"
+        assert resultado is True, "A criação da tabela deveria retornar True"
 
     def test_inserir_denuncia_sucesso(self, test_db):
         """Testa inserção de denúncia com sucesso"""
@@ -76,11 +75,13 @@ class TestDenunciaRepo:
         id_inserido = inserir_denuncia(denuncia)
 
         # Assert
-        assert id_inserido is not None, "ID da denúncia inserida não deveria ser None"
+        assert (
+            id_inserido is not None
+        ), "ID da denúncia inserida não deveria ser None"
         assert id_inserido > 0, "ID deveria ser maior que zero"
 
         # Verificar se foi salvo corretamente
-        denuncia_db = obter_denuncia_por_id(id_inserido)
+        denuncia_db = obter_denuncia_por_id(id_inserido)  # type: ignore[arg-type]  # noqa: E501
         assert denuncia_db is not None, "Denúncia deveria existir no banco"
         assert denuncia_db.motivo == denuncia.motivo
         assert denuncia_db.status == DenunciaStatus.PENDENTE
@@ -103,9 +104,11 @@ class TestDenunciaRepo:
         id_inserido = inserir_denuncia(denuncia)
 
         # Assert
-        assert id_inserido is not None, "Deveria permitir inserir denúncia sem admin"
+        assert (
+            id_inserido is not None
+        ), "Deveria permitir inserir denúncia sem admin"
 
-        denuncia_db = obter_denuncia_por_id(id_inserido)
+        denuncia_db = obter_denuncia_por_id(id_inserido)  # type: ignore[arg-type]  # noqa: E501
         assert denuncia_db is not None, "Denúncia deveria ter sido inserida"
         assert denuncia_db.id_admin is None
 
@@ -134,9 +137,9 @@ class TestDenunciaRepo:
         resultado = atualizar_denuncia(denuncia_atualizada)
 
         # Assert
-        assert resultado == True, "Atualização deveria retornar True"
+        assert resultado is True, "Atualização deveria retornar True"
 
-        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        denuncia_db = obter_denuncia_por_id(id_denuncia)  # type: ignore[arg-type]  # noqa: E501
         assert denuncia_db.motivo == "Motivo atualizado"
         assert denuncia_db.status == DenunciaStatus.RESOLVIDA
 
@@ -157,7 +160,7 @@ class TestDenunciaRepo:
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Atualização de denúncia inexistente deveria retornar False"
 
     def test_excluir_denuncia_sucesso(self, test_db):
@@ -174,12 +177,12 @@ class TestDenunciaRepo:
         id_denuncia = inserir_denuncia(denuncia)
 
         # Act
-        resultado = excluir_denuncia(id_denuncia)
+        resultado = excluir_denuncia(id_denuncia)  # type: ignore[arg-type]
 
         # Assert
-        assert resultado == True, "Exclusão deveria retornar True"
+        assert resultado is True, "Exclusão deveria retornar True"
 
-        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        denuncia_db = obter_denuncia_por_id(id_denuncia)  # type: ignore[arg-type]  # noqa: E501
         assert denuncia_db is None, "Denúncia não deveria mais existir"
 
     def test_excluir_denuncia_inexistente(self, test_db):
@@ -188,11 +191,11 @@ class TestDenunciaRepo:
         id_inexistente = 9999
 
         # Act
-        resultado = excluir_denuncia(id_inexistente)
+        resultado = excluir_denuncia(id_inexistente)  # type: ignore[arg-type]
 
         # Assert
         assert (
-            resultado == False
+            resultado is False
         ), "Exclusão de denúncia inexistente deveria retornar False"
 
     def test_obter_todas_denuncias_paginadas(self, test_db):
@@ -280,7 +283,7 @@ class TestDenunciaRepo:
         id_denuncia = inserir_denuncia(denuncia)
 
         # Act
-        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        denuncia_db = obter_denuncia_por_id(id_denuncia)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
         assert denuncia_db is not None, "Denúncia deveria existir"
@@ -294,7 +297,7 @@ class TestDenunciaRepo:
         id_inexistente = 9999
 
         # Act
-        denuncia = obter_denuncia_por_id(id_inexistente)
+        denuncia = obter_denuncia_por_id(id_inexistente)  # type: ignore[arg-type]  # noqa: E501
 
         # Assert
         assert denuncia is None, "Denúncia não deveria existir"
@@ -325,10 +328,10 @@ class TestDenunciaRepo:
             status=DenunciaStatus.RESOLVIDA,
         )
         resultado = atualizar_denuncia(denuncia_atualizada)
-        assert resultado == True
+        assert resultado is True
 
         # Verificar aprovação
-        denuncia_db = obter_denuncia_por_id(id_denuncia)
+        denuncia_db = obter_denuncia_por_id(id_denuncia)  # type: ignore[arg-type]  # noqa: E501
         assert denuncia_db.status == DenunciaStatus.RESOLVIDA
         assert denuncia_db.id_admin == self.id_admin
 
