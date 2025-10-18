@@ -19,8 +19,8 @@ class PerfilUsuario(str, Enum):
 
 from app.schemas.cadastro_dto import CadastroTutorDTO, CadastroVeterinarioDTO
 from app.schemas.login_dto import LoginDTO
-from app.models.tutor_model import Tutor
-from app.models.veterinario_model import Veterinario
+from model.tutor_model import Tutor
+from model.veterinario_model import Veterinario
 from app.repositories import usuario_repo, tutor_repo, veterinario_repo
 from util.security import criar_hash_senha, verificar_senha, gerar_token_redefinicao, obter_data_expiracao_token, validar_forca_senha
 from util.auth_decorator import criar_sessao, destruir_sessao, esta_logado

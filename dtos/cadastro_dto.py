@@ -108,7 +108,7 @@ class CadastroBaseDTO(BaseDTO):
 class CadastroTutorDTO(CadastroBaseDTO):
     """DTO para cadastro de tutor"""
 
-    perfil: Literal["tutor"] = Field(
+    perfil: Literal["tutor", "veterinario"] = Field(
         default="tutor",
         description="Perfil fixo como tutor"
     )
@@ -130,7 +130,7 @@ class CadastroTutorDTO(CadastroBaseDTO):
 class CadastroVeterinarioDTO(CadastroBaseDTO):
     """DTO para cadastro de veterinário"""
 
-    perfil: Literal["veterinario"] = Field(
+    perfil: Literal["tutor", "veterinario"] = Field(
         default="veterinario",
         description="Perfil fixo como veterinário"
     )

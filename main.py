@@ -91,7 +91,7 @@ limiter = Limiter(
     storage_uri="memory://",  # Usar Redis em produção
 )
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)  # type: ignore[arg-type]
 
 # Middleware de segurança - Trusted Host
 allowed_hosts = ["localhost", "127.0.0.1", "*.vetconecta.com"]

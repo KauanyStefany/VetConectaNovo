@@ -16,3 +16,8 @@ class VerificacaoStatus(Enum):
     APROVADO = "aprovado"
     REJEITADO = "rejeitado"
     EM_ANALISE = "em_analise"
+
+class PerfilUsuario(str, Enum):
+    ADMIN = "admin"
+    TUTOR = "tutor"
+    VETERINARIO = "veterinario"

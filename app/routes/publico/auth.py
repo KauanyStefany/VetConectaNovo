@@ -4,18 +4,14 @@ from pydantic_core import ValidationError
 from typing import Optional
 import os
 import logging
-from enum import Enum
 from slowapi import Limiter
 from slowapi.util import get_remote_address
+
+from model.enums import PerfilUsuario
 
 # Configurar logger
 logger = logging.getLogger(__name__)
 
-
-# Enum para perfis de usuário
-class PerfilUsuario(str, Enum):
-    TUTOR = "tutor"
-    VETERINARIO = "veterinario"
 
 from app.schemas.cadastro_dto import CadastroTutorDTO, CadastroVeterinarioDTO
 from app.schemas.login_dto import LoginDTO
@@ -173,6 +169,19 @@ async def post_cadastro(
     }
 
     try:
+        # Validar que o perfil é válido para cadastro público (não permite admin)
+        if perfil == PerfilUsuario.ADMIN:
+            logger.warning(f"Tentativa de cadastro com perfil admin: {email}")
+            return templates.TemplateResponse(
+                "cadastro.html",
+                {
+                    "request": request,
+                    "erros": {"GERAL": "Perfil inválido para cadastro."},
+                    "dados": dados_formulario
+                },
+                status_code=status.HTTP_400_BAD_REQUEST
+            )
+
         # Validar força da senha antes de criar DTO
         senha_valida, msg_erro = validar_forca_senha(senha)
         if not senha_valida:

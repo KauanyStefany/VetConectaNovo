@@ -160,6 +160,7 @@ class FileManager:
         nome_base = UploadConfig.FOTO_USUARIO_PATTERN.format(id_usuario)
 
         for extensao in UploadConfig.ALLOWED_EXTENSIONS:
+            nome_arquivo = ""  # Inicializar para evitar UnboundLocalError
             try:
                 # Remove ponto da extensão
                 ext_limpa = extensao.lstrip('.')
@@ -173,10 +174,10 @@ class FileManager:
                     )
             except PermissionError as e:
                 logger.error(
-                    f"Sem permissão para deletar {nome_arquivo}: {e}"
+                    f"Sem permissão para deletar {nome_arquivo or extensao}: {e}"
                 )
             except Exception as e:
                 logger.error(
-                    f"Erro ao deletar {nome_arquivo}: {e}",
+                    f"Erro ao deletar {nome_arquivo or extensao}: {e}",
                     exc_info=True
                 )
