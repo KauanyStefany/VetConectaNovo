@@ -1,0 +1,55 @@
+/* Importa fonte Montserrat do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Variáveis de Cores do Design */
+:root {
+    --cor-roxo: #522B58;
+    --cor-laranja: #FA811D;
+    --cor-verde: #2D5D5C;
+    --cor-bege: #ffe6ba;
+    --cor-rosa: #CA567C;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.bg-roxo {
+    background-color: var(--cor-roxo) !important;
+}
+
+.bg-laranja {
+    background-color: var(--cor-laranja) !important;
+}
+
+.bg-verde {
+    background-color: var(--cor-verde) !important;
+}
+
+.bg-bege {
+    background-color: var(--cor-bege) !important;
+}
+
+.bg-rosa {
+    background-color: var(--cor-rosa) !important;
+}
+
+.text-roxo {
+    color: var(--cor-roxo) !important;
+}
+
+.text-laranja {
+    color: var(--cor-laranja) !important;
+}
+
+.text-verde {
+    color: var(--cor-verde) !important;
+}
+
+.text-bege {
+    color: var(--cor-bege) !important;
+}
+
+.text-rosa {
+    color: var(--cor-rosa) !important;
+}
