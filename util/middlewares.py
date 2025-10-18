@@ -73,7 +73,7 @@ async def security_headers_middleware(request: Request, call_next):
         "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; "
         "img-src 'self' data: https:; "
         "font-src 'self' data: https://cdn.jsdelivr.net https://fonts.gstatic.com; "
-        "connect-src 'self'"
+        "connect-src 'self' https://cdn.jsdelivr.net"
     )
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"

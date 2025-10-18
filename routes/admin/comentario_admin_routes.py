@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 
-from repo import comentario_repo
+from repo import comentario_artigo_repo
 from util.auth_decorator import requer_autenticacao, obter_usuario_logado
 
 router = APIRouter()

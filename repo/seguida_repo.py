@@ -20,7 +20,7 @@ def inserir(seguida: Seguida) -> bool:
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(INSERIR, (seguida.id_veterinario, seguida.id_tutor))
+            cursor.execute(INSERIR, (seguida.id_seguidor, seguida.id_seguido))
             return cursor.rowcount > 0
     except Exception as e:
         print(f"Erro ao inserir seguida: {e}")
@@ -48,9 +48,11 @@ def obter_pagina(pagina: int, tamanho_pagina: int) -> List[Seguida]:
             rows = cursor.fetchall()
             return [
                 Seguida(
-                    id_veterinario=row["id_veterinario"],
-                    id_tutor=row["id_tutor"],
-                    data_inicio=datetime.strptime(row["data_inicio"][:10], "%Y-%m-%d").date(),
+                    id_seguidor=row["id_veterinario"],
+                    id_seguido=row["id_tutor"],
+                    data_inicio=datetime.strptime(
+                        row["data_inicio"][:10], "%Y-%m-%d"
+                    ).date(),
                 )
                 for row in rows
             ]
@@ -67,9 +69,11 @@ def obter_por_id(id_veterinario: int, id_tutor: int) -> Optional[Seguida]:
             row = cursor.fetchone()
             if row:
                 return Seguida(
-                    id_veterinario=row["id_veterinario"],
-                    id_tutor=row["id_tutor"],
-                    data_inicio=datetime.strptime(row["data_inicio"][:10], "%Y-%m-%d").date(),
+                    id_seguidor=row["id_veterinario"],
+                    id_seguido=row["id_tutor"],
+                    data_inicio=datetime.strptime(
+                        row["data_inicio"][:10], "%Y-%m-%d"
+                    ).date(),
                 )
             return None
     except Exception as e:

@@ -2,9 +2,10 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
+
 @dataclass
-class Comentario:
-    id_comentario: int
+class ComentarioArtigo:
+    id_comentario_artigo: int
     id_usuario: int
     id_postagem_artigo: int
     texto: str

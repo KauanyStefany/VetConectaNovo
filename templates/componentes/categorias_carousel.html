@@ -1,0 +1,172 @@
+<!-- Carousel de Ícones de Animais -->
+<div class="categorias-carousel mb-5 mx-5 position-relative">
+    <div class="carousel-container overflow-hidden">
+        <div class="carousel-track d-flex" id="categoriasTrack">
+            <!-- Card 1: Cães -->
+            <div class="carousel-card">
+                <a href="/animais/caes" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/static/img/icons/cao_icon.jpg" class="card-img-top" alt="Cães">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-dark">Cães</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 2: Gatos -->
+            <div class="carousel-card">
+                <a href="/animais/gatos" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/static/img/icons/gato_icon.jpg" class="card-img-top" alt="Gatos">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-dark">Gatos</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 3: Pássaros -->
+            <div class="carousel-card">
+                <a href="/animais/passaros" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/static/img/icons/passaro.jpg" class="card-img-top" alt="Pássaros">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-dark">Pássaros</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 4: Roedores -->
+            <div class="carousel-card">
+                <a href="/animais/roedores" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/static/img/icons/roedor_icon.jpg" class="card-img-top" alt="Roedores">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-dark">Roedores</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 5: Tartarugas -->
+            <div class="carousel-card">
+                <a href="/animais/tartarugas" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/static/img/icons/tartaruga_icon.jpg" class="card-img-top" alt="Tartarugas">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-dark">Tartarugas</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles de Navegação -->
+    <button class="carousel-control-prev justify-content-start" type="button" id="categoriasCarouselPrev">
+        <span class="carousel-control-prev-icon bg-img-none rounded-circle fs-3 p-3 bg-dark text-white d-flex align-items-center justify-content-center ms-3" aria-hidden="true">
+            <i class="bi bi-chevron-left"></i>
+        </span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next justify-content-end" type="button" id="categoriasCarouselNext">
+        <span class="carousel-control-next-icon bg-img-none rounded-circle fs-3 p-3 bg-dark text-white d-flex align-items-center justify-content-center me-3" aria-hidden="true">
+            <i class="bi bi-chevron-right"></i>
+        </span>
+        <span class="visually-hidden">Próximo</span>
+    </button>
+</div>
+
+<script>
+(function() {
+    const track = document.getElementById('categoriasTrack');
+    const prevBtn = document.getElementById('categoriasCarouselPrev');
+    const nextBtn = document.getElementById('categoriasCarouselNext');
+    const totalCards = 5;
+    let currentIndex = 0;
+
+    // Obter quantidade de cards visíveis baseado no breakpoint
+    function getVisibleCards() {
+        const width = window.innerWidth;
+        if (width < 576) return 2; // Mobile
+        if (width < 768) return 3; // Tablet
+        return 5; // Desktop
+    }
+
+    // Obter largura de um card incluindo gap
+    function getCardWidth() {
+        const cards = track.querySelectorAll('.carousel-card');
+        if (cards.length === 0) return 0;
+        const cardStyle = window.getComputedStyle(cards[0]);
+        const cardWidth = cards[0].offsetWidth;
+        const marginRight = parseFloat(cardStyle.marginRight) || 0;
+        return cardWidth + marginRight;
+    }
+
+    // Atualizar posição do carousel
+    function updateCarousel(withTransition = true) {
+        if (!withTransition) {
+            track.style.transition = 'none';
+        } else {
+            track.style.transition = 'transform 0.5s ease-in-out';
+        }
+
+        const cardWidth = getCardWidth();
+        const offset = currentIndex * cardWidth;
+        track.style.transform = `translateX(-${offset}px)`;
+
+        // Restaurar transição após um frame
+        if (!withTransition) {
+            setTimeout(() => {
+                track.style.transition = 'transform 0.5s ease-in-out';
+            }, 50);
+        }
+    }
+
+    // Mover carousel
+    function moveCarousel(direction) {
+        const visibleCards = getVisibleCards();
+        const maxIndex = totalCards - visibleCards;
+
+        if (direction === 'next') {
+            currentIndex++;
+            // Loop: se passou do último, volta pro primeiro
+            if (currentIndex > maxIndex) {
+                currentIndex = 0;
+            }
+        } else if (direction === 'prev') {
+            currentIndex--;
+            // Loop: se passou do primeiro, vai pro último
+            if (currentIndex < 0) {
+                currentIndex = maxIndex;
+            }
+        }
+
+        updateCarousel(true);
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => moveCarousel('prev'));
+    nextBtn.addEventListener('click', () => moveCarousel('next'));
+
+    // Recalcular ao redimensionar janela
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Ajustar índice se necessário após resize
+            const visibleCards = getVisibleCards();
+            const maxIndex = totalCards - visibleCards;
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+            }
+            updateCarousel(false);
+        }, 200);
+    });
+
+    // Inicialização
+    updateCarousel(false);
+})();
+</script>

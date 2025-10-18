@@ -38,17 +38,8 @@ logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler]
 logger = logging.getLogger(__name__)
 
 from repo import administrador_repo, tutor_repo, usuario_repo, veterinario_repo
-from app.routes.admin import (
-    categorias,
-    chamados,
-    comentarios,
-    denuncias,
-    verificacoes_crmv,
-)
-from app.routes.publico import auth, perfil, public
-from app.routes.tutor import postagens_feed
-from app.routes.usuario import usuario
-from app.routes.veterinario import estatisticas, artigos, solicitacoes_crmv
+from routes.publico import public_routes
+
 from util.middlewares import configurar_middlewares
 
 
@@ -70,7 +61,7 @@ configurar_middlewares(app)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-app.include_router(public.router)
+app.include_router(public_routes.router)
 # app.include_router(auth.router)
 
 # app.include_router(categorias.router, prefix="/admin")

@@ -5,6 +5,7 @@ from datetime import date
 from model.seguida_model import Seguida
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
+
 # from model.usuario_model import Usuario  # noqa: F401
 from repo.tutor_repo import (
     criar_tabela as criar_tabela_tutor,
@@ -79,7 +80,7 @@ class TestSeguidaRepo:
 
         # Criar seguida
         seguida_teste = Seguida(
-            id_veterinario=id_vet, id_tutor=id_tutor, data_inicio=date.today()
+            id_seguidor=id_vet, id_seguido=id_tutor, data_inicio=date.today()
         )
 
         # Act
@@ -88,15 +89,11 @@ class TestSeguidaRepo:
         # Assert
         assert resultado is True, "A inserção da seguida deveria retornar True"
         seguida_db = obter_seguida_por_id(id_vet, id_tutor)
+        assert seguida_db is not None, "A seguida inserida não deveria ser None"
         assert (
-            seguida_db is not None
-        ), "A seguida inserida não deveria ser None"
-        assert (
-            seguida_db.id_veterinario == id_vet
+            seguida_db.id_seguidor == id_vet
         ), "O ID do veterinário inserido não confere"
-        assert (
-            seguida_db.id_tutor == id_tutor
-        ), "O ID do tutor inserido não confere"
+        assert seguida_db.id_seguido == id_tutor, "O ID do tutor inserido não confere"
 
     def test_excluir_seguida(self, test_db):
         # Arrange
@@ -144,7 +141,7 @@ class TestSeguidaRepo:
 
         # Criar seguida
         seguida_teste = Seguida(
-            id_veterinario=id_vet, id_tutor=id_tutor, data_inicio=date.today()
+            id_seguidor=id_vet, id_seguido=id_tutor, data_inicio=date.today()
         )
 
         resultado1 = inserir_seguida(seguida_teste)
@@ -153,12 +150,8 @@ class TestSeguidaRepo:
         resultado2 = excluir_seguida(id_vet, id_tutor)
 
         # Assert
-        assert (
-            resultado1 is True
-        ), "A exclusão da seguida deveria retornar True"
-        assert (
-            resultado2 is True
-        ), "A exclusão da seguida deveria retornar True"
+        assert resultado1 is True, "A exclusão da seguida deveria retornar True"
+        assert resultado2 is True, "A exclusão da seguida deveria retornar True"
         seguida_excluida = obter_seguida_por_id(id_vet, id_tutor)  # type: ignore[arg-type]  # noqa: E501
         assert seguida_excluida is None, "A seguida excluída deveria ser None"
 
@@ -217,8 +210,8 @@ class TestSeguidaRepo:
         seguidas = []
         for i in range(10):
             seguida_teste = Seguida(
-                id_veterinario=veterinarios_bd[i].id_usuario,
-                id_tutor=tutores_bd[i].id_usuario,
+                id_seguidor=veterinarios_bd[i].id_usuario,
+                id_seguido=tutores_bd[i].id_usuario,
                 data_inicio=date.today(),
             )
             seguidas.append(seguida_teste)
@@ -278,7 +271,7 @@ class TestSeguidaRepo:
 
         # Criar seguida (usando apenas os IDs, não os objetos completos)
         seguida_teste = Seguida(
-            id_veterinario=id_vet, id_tutor=id_tutor, data_inicio=date.today()
+            id_seguidor=id_vet, id_seguido=id_tutor, data_inicio=date.today()
         )
 
         # Inserir seguida
@@ -290,11 +283,9 @@ class TestSeguidaRepo:
         # Assert
         assert seguida_db is not None, "A seguida obtida não deveria ser None"
         assert (
-            seguida_db.id_veterinario == id_vet
+            seguida_db.id_seguidor == id_vet
         ), "O ID do veterinário obtido não confere"
-        assert (
-            seguida_db.id_tutor == id_tutor
-        ), "O ID do tutor obtido não confere"
+        assert seguida_db.id_seguido == id_tutor, "O ID do tutor obtido não confere"
         assert (
             seguida_db.data_inicio is not None
         ), "A data de início não deveria ser None"
@@ -312,9 +303,7 @@ class TestSeguidaRepo:
         # Act
         seguida_db = obter_seguida_por_id(999, 888)
         # Assert
-        assert (
-            seguida_db is None
-        ), "A seguida inexistente deveria retornar None"
+        assert seguida_db is None, "A seguida inexistente deveria retornar None"
 
     def test_excluir_seguida_inexistente(self, test_db):
         """Testa exclusão de seguida inexistente"""

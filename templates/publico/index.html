@@ -3,11 +3,9 @@
 {% block title %}Página Inicial{% endblock %}
 
 {% block conteudo %}
-<div class="container my-5">
-    <div class="text-center">
-        <h1 class="mb-4">Bem-vindo ao VetConecta!</h1>
-        <p class="lead">Seu portal de informações e cuidados veterinários.</p>
-        <a href="/cadastro" class="btn btn-primary btn-lg mt-3">Cadastre-se Agora</a>
-    </div>
-</div>
+
+{% include "componentes/banner_carousel.html" %}
+
+{% include "componentes/categorias_carousel.html" %}
+
 {% endblock %}

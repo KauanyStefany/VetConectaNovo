@@ -2,12 +2,12 @@
 # import sys  # noqa: F401
 from datetime import date
 from model.categoria_artigo_model import CategoriaArtigo
-from model.comentario_model import Comentario
+from model.comentario_model import ComentarioArtigo
 from model.usuario_model import Usuario
 from model.veterinario_model import Veterinario
 from model.postagem_artigo_model import PostagemArtigo
 
-from repo.comentario_repo import (
+from repo.comentario_artigo_repo import (
     atualizar,
     criar_tabela,
     excluir,
@@ -64,9 +64,7 @@ class TestComentarioRepo:
         )
         id_usuario = inserir_usuario(usuario_teste)
         assert id_usuario is not None
-        usuario_teste.id_usuario = (
-            id_usuario  # Atualiza o ID do usuário após inserção
-        )
+        usuario_teste.id_usuario = id_usuario  # Atualiza o ID do usuário após inserção
 
         # Criar veterinário diretamente (inserir_veterinario já cria o usuário)
         veterinario_teste = Veterinario(
@@ -107,8 +105,8 @@ class TestComentarioRepo:
         assert id_postagem_artigo is not None
         postagem_artigo_teste.id_postagem_artigo = id_postagem_artigo
 
-        comentario_teste = Comentario(
-            id_comentario=0,
+        comentario_teste = ComentarioArtigo(
+            id_comentario_artigo=0,
             id_usuario=id_usuario,  # ID do usuário
             id_postagem_artigo=id_postagem_artigo,  # ID da postagem
             texto="Este é um comentário de teste",
@@ -123,9 +121,7 @@ class TestComentarioRepo:
         assert comentario_db is not None
 
         # ASSERTS
-        assert (
-            comentario_db is not None
-        ), "O comentário inserido não deveria ser None"
+        assert comentario_db is not None, "O comentário inserido não deveria ser None"
         assert (
             comentario_db.id_usuario == id_usuario
         ), "O ID do usuário do comentário inserido não confere"
@@ -194,7 +190,7 @@ class TestComentarioRepo:
         id_artigo = inserir_artigo(artigo)
         assert id_artigo is not None
 
-        comentario = Comentario(
+        comentario = ComentarioArtigo(
             0,
             id_usuario,
             id_artigo,
@@ -206,7 +202,7 @@ class TestComentarioRepo:
         assert id_comentario is not None
 
         # Act
-        comentario_atualizado = Comentario(
+        comentario_atualizado = ComentarioArtigo(
             id_comentario,
             id_usuario,
             id_artigo,
@@ -228,7 +224,7 @@ class TestComentarioRepo:
         """Testa atualização de comentário inexistente"""
         # Arrange
         criar_tabela_comentario()
-        comentario = Comentario(9999, 1, 1, "Texto", datetime.now(), None)
+        comentario = ComentarioArtigo(9999, 1, 1, "Texto", datetime.now(), None)
 
         # Act
         resultado = atualizar(comentario)
@@ -296,7 +292,7 @@ class TestComentarioRepo:
         id_artigo = inserir_artigo(artigo)
         assert id_artigo is not None
 
-        comentario = Comentario(
+        comentario = ComentarioArtigo(
             0, id_usuario, id_artigo, "Ótimo artigo!", datetime.now(), None
         )
         id_comentario = inserir(comentario)
@@ -367,9 +363,7 @@ class TestComentarioRepo:
         )
         id_vet = inserir_veterinario(veterinario)
 
-        categoria = CategoriaArtigo(
-            0, "Comportamento", "#0000FF", "comportamento.png"
-        )
+        categoria = CategoriaArtigo(0, "Comportamento", "#0000FF", "comportamento.png")
         id_categoria = inserir_categoria(categoria)
         assert id_categoria is not None
 
@@ -388,7 +382,7 @@ class TestComentarioRepo:
 
         # Criar 5 comentários
         for i in range(5):
-            comentario = Comentario(
+            comentario = ComentarioArtigo(
                 0,
                 id_usuario,
                 id_artigo,
@@ -404,7 +398,7 @@ class TestComentarioRepo:
         # Assert
         assert len(comentarios) == 3, "Deveria retornar 3 comentários"
         assert all(
-            isinstance(c, Comentario) for c in comentarios
+            isinstance(c, ComentarioArtigo) for c in comentarios
         ), "Todos deveriam ser Comentario"
 
     def test_OBTER_PAGINA_vazio(self, test_db):
@@ -435,6 +429,4 @@ class TestComentarioRepo:
         comentario = obter_por_id(9999)
 
         # Assert
-        assert (
-            comentario is None
-        ), "Comentário inexistente deveria retornar None"
+        assert comentario is None, "Comentário inexistente deveria retornar None"

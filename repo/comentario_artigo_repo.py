@@ -1,5 +1,7 @@
 from typing import Optional, List
-from model.comentario_model import Comentario
+
+from fastapi.logger import logger
+from model.comentario_model import ComentarioArtigo
 from sql.comentario_sql import *
 from util.db_util import get_connection
 
@@ -11,11 +13,11 @@ def criar_tabela() -> bool:
             cursor.execute(CRIAR_TABELA)
             return True
     except Exception as e:
-        print(f"Erro ao criar tabela de categorias: {e}")
+        logger.error(f"Erro ao criar tabela de comentario_artigo: {e}")
         return False
 
 
-def inserir(comentario: Comentario) -> Optional[int]:
+def inserir(comentario: ComentarioArtigo) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -25,12 +27,16 @@ def inserir(comentario: Comentario) -> Optional[int]:
         return cursor.lastrowid
 
 
-def atualizar(comentario: Comentario) -> bool:
+def atualizar(comentario: ComentarioArtigo) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(
             ATUALIZAR,
-            (comentario.texto, comentario.data_moderacao, comentario.id_comentario),
+            (
+                comentario.texto,
+                comentario.data_moderacao,
+                comentario.id_comentario_artigo,
+            ),
         )
         return cursor.rowcount > 0
 
@@ -42,14 +48,14 @@ def excluir(id_comentario: int) -> bool:
         return cursor.rowcount > 0
 
 
-def obter_pagina(limite: int, offset: int) -> List[Comentario]:
+def obter_pagina(limite: int, offset: int) -> List[ComentarioArtigo]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(OBTER_PAGINA, (limite, offset))
         rows = cursor.fetchall()
         return [
-            Comentario(
-                id_comentario=row["id_comentario"],
+            ComentarioArtigo(
+                id_comentario_artigo=row["id_comentario"],
                 id_usuario=row["id_usuario"],
                 id_postagem_artigo=row["id_postagem_artigo"],
                 texto=row["texto"],
@@ -60,14 +66,14 @@ def obter_pagina(limite: int, offset: int) -> List[Comentario]:
         ]
 
 
-def obter_por_id(id_comentario: int) -> Optional[Comentario]:
+def obter_por_id(id_comentario: int) -> Optional[ComentarioArtigo]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(OBTER_POR_ID, (id_comentario,))
         row = cursor.fetchone()
         if row:
-            return Comentario(
-                id_comentario=row["id_comentario"],
+            return ComentarioArtigo(
+                id_comentario_artigo=row["id_comentario"],
                 id_usuario=row["id_usuario"],
                 id_postagem_artigo=row["id_postagem_artigo"],
                 texto=row["texto"],

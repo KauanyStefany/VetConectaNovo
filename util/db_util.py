@@ -4,6 +4,8 @@ from contextlib import contextmanager
 from typing import Generator
 import logging
 
+from repo import comentario_artigo_repo
+
 logger = logging.getLogger(__name__)
 
 # Timeout padrão
@@ -50,3 +52,26 @@ def get_connection() -> Generator[sqlite3.Connection, None, None]:
 def get_connection_sem_commit() -> sqlite3.Connection:
     """Retorna conexão sem commit automático para operações de leitura."""
     return _criar_conexao()
+
+def inicializar_banco():
+    # Chama o método criar_tabela de cada repositório para garantir que as tabelas existam
+    from repo import (
+        administrador_repo,
+        tutor_repo,
+        usuario_repo,
+        veterinario_repo,
+        categoria_artigo_repo,
+        postagem_artigo_repo,
+        curtida_artigo_repo,
+        postagem_feed_repo,
+        curtida_feed_repo,
+        denuncia_repo,
+        verificacao_crmv_repo,
+        seguida_repo
+    )
+    usuario_repo.criar_tabela()
+    tutor_repo.criar_tabela()
+    veterinario_repo.criar_tabela()
+    administrador_repo.criar_tabela()
+    
+    
