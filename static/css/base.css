@@ -58,6 +58,10 @@ body {
     background-size: contain !important;
 }
 
+.text-branco {
+    color: #fff !important;
+}
+
 .text-roxo {
     color: var(--cor-roxo) !important;
 }
@@ -76,6 +80,20 @@ body {
 
 .text-rosa {
     color: var(--cor-rosa) !important;
+}
+
+.border-laranja {
+    border-color: var(--cor-laranja) !important;
+}
+
+.btn-outline-laranja {
+    border-color: var(--cor-laranja) !important;
+    color: var(--cor-laranja) !important;
+}
+
+.btn-outline-laranja:hover {
+    background-color: var(--cor-laranja) !important;
+    color: #fff !important;
 }
 
 /* Carousel de Categorias Customizado */

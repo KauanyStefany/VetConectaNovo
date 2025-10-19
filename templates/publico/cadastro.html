@@ -25,19 +25,15 @@
                             <!-- Seleção de perfil -->
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Se cadastrar como:</label>
-                                <div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="perfil" id="tutor"
-                                            value="tutor" required {% if dados and dados.perfil=='tutor' %}checked{%
-                                            endif %}>
-                                        <label class="form-check-label" for="tutor">Tutor</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="perfil" id="veterinario"
-                                            value="veterinario" required {% if dados and dados.perfil=='veterinario'
-                                            %}checked{% endif %}>
-                                        <label class="form-check-label" for="veterinario">Veterinário</label>
-                                    </div>
+                                <div class="btn-group w-100" role="group" aria-label="Seleção de perfil">
+                                    <input type="radio" class="btn-check" name="perfil" id="tutor" value="tutor"
+                                        required {% if dados and dados.perfil=='tutor' %}checked{% endif %}>
+                                    <label class="btn btn-outline-laranja w-50" for="tutor">Tutor</label>
+
+                                    <input type="radio" class="btn-check" name="perfil" id="veterinario"
+                                        value="veterinario" required {% if dados and dados.perfil=='veterinario'
+                                        %}checked{% endif %}>
+                                    <label class="btn btn-outline-laranja w-50" for="veterinario">Veterinário</label>
                                 </div>
                                 {% if erros and erros.perfil %}
                                 <div class="invalid-feedback d-block">{{ erros.perfil }}</div>
@@ -130,13 +126,13 @@
 
                             <!-- Botão de Envio do Formulário -->
                             <button type="submit"
-                                class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-3 rounded-3">
+                                class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-4 rounded-3">
                                 Cadastrar
                             </button>
                         </form>
 
                         <!-- Link para Login -->
-                        <div class="text-center border-top pt-3">
+                        <div class="text-center border-top border-laranja pt-3">
                             <span class="text-muted">Já tem uma conta cadastrada?</span>
                             <a href="/login" class="text-primary fw-semibold text-decoration-none ms-1">Faça login!</a>
                         </div>
@@ -152,7 +148,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const tutorRadio = document.getElementById('tutor');
+        const tutorLabel = document.querySelector('label[for="tutor"]');
         const veterinarioRadio = document.getElementById('veterinario');
+        const veterinarioLabel = document.querySelector('label[for="veterinario"]');
         const crmvField = document.getElementById('crmv-field');
         const crmvInput = document.getElementById('crmv');
 
@@ -160,9 +158,17 @@
             if (veterinarioRadio.checked) {
                 crmvField.style.display = 'block';
                 crmvInput.setAttribute('required', 'required');
+                veterinarioLabel.classList.remove('btn-outline-laranja');
+                veterinarioLabel.classList.add('border-laranja', 'bg-laranja', 'text-branco');
+                tutorLabel.classList.remove('border-laranja', 'bg-laranja', 'text-branco');
+                tutorLabel.classList.add('btn-outline-laranja');
             } else {
                 crmvField.style.display = 'none';
                 crmvInput.removeAttribute('required');
+                tutorLabel.classList.remove('btn-outline-laranja');
+                tutorLabel.classList.add('border-laranja', 'bg-laranja', 'text-branco');
+                veterinarioLabel.classList.remove('border-laranja', 'bg-laranja', 'text-branco');
+                veterinarioLabel.classList.add('btn-outline-laranja');
             }
         }
 

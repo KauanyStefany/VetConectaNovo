@@ -1,6 +1,6 @@
 {% extends "base_publica.html" %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Esqueci minha senha{% endblock %}
 
 {% block conteudo %}
 <div class="bg-img-animais">
@@ -10,14 +10,21 @@
                 <div class="card shadow-lg rounded-4 border-0 bg-white bg-opacity-75">
                     <div class="card-body p-4 p-md-5 text-center">
                         <!-- Título -->
-                        <h5 class="mb-4 fw-semibold fs-2">Login</h5>
+                        <h5 class="mb-4 fw-semibold fs-2">Recuperar Senha</h5>
+
+                        <!-- Descrição -->
+                        <p class="text-muted mb-4">
+                            Digite seu e-mail cadastrado e enviaremos instruções para redefinir sua senha.
+                        </p>
 
                         <!-- Formulário -->
-                        <form action="/login" method="post" class="text-start">
+                        <form action="/esqueci-senha" method="post" class="text-start">
 
-                            <!-- Campo oculto para redirecionamento -->
-                            {% if redirect %}
-                            <input type="hidden" name="next" value="{{ redirect }}">
+                            <!-- Alerta de sucesso -->
+                            {% if sucesso %}
+                            <div class="alert alert-success" role="alert">
+                                {{ sucesso }}
+                            </div>
                             {% endif %}
 
                             <!-- Alerta de erro geral -->
@@ -33,32 +40,21 @@
                                 <input type="email"
                                     class="form-control {% if erros and erros.email %}is-invalid{% endif %}" id="email"
                                     name="email" value="{{ dados.email if dados else '' }}"
-                                    placeholder="Digite seu e-mail" required>
+                                    placeholder="Digite seu e-mail cadastrado" required>
                                 {% if erros and erros.email %}
                                 <div class="invalid-feedback">{{ erros.email }}</div>
-                                {% endif %}
-                            </div>
-
-                            <!-- Campo de senha -->
-                            <div class="mb-3">
-                                <label for="senha" class="form-label fw-bold">Senha</label>
-                                <input type="password"
-                                    class="form-control {% if erros and erros.senha %}is-invalid{% endif %}" id="senha"
-                                    name="senha" placeholder="Digite sua senha" required>
-                                {% if erros and erros.senha %}
-                                <div class="invalid-feedback">{{ erros.senha }}</div>
                                 {% endif %}
                             </div>
 
                             <!-- Botão de envio -->
                             <button type="submit"
                                 class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-3 rounded-3">
-                                Entrar
+                                Enviar instruções
                             </button>
 
-                            <!-- Link para recuperação de senha -->
+                            <!-- Link para voltar ao login -->
                             <div class="text-center mb-3">
-                                <a href="/esqueci-senha" class="text-decoration-none">Esqueci minha senha</a>
+                                <a href="/login" class="text-decoration-none">Voltar para o login</a>
                             </div>
                         </form>
 

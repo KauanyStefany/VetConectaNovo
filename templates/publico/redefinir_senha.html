@@ -1,0 +1,76 @@
+{% extends "base_publica.html" %}
+
+{% block title %}Redefinir Senha{% endblock %}
+
+{% block conteudo %}
+<div class="bg-img-animais">
+    <div class="container">
+        <div class="row justify-content-center align-items-center flex-grow-1">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
+                <div class="card shadow-lg rounded-4 border-0 bg-white bg-opacity-75">
+                    <div class="card-body p-4 p-md-5 text-center">
+                        <!-- Título -->
+                        <h5 class="mb-4 fw-semibold fs-2">Redefinir Senha</h5>
+
+                        <!-- Formulário -->
+                        <form action="/redefinir-senha" method="post" class="text-start">
+
+                            <!-- Campo oculto para token --">
+                            {% if token %}
+                            <input type="hidden" name="token" value="{{ token }}">
+                            {% endif %}
+
+                            <!-- Alerta de erro geral -->
+                            {% if erros and erros.geral %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ erros.geral }}
+                            </div>
+                            {% endif %}
+
+                            <!-- Alerta de sucesso -->
+                            {% if mensagem_sucesso %}
+                            <div class="alert alert-success" role="alert">
+                                {{ mensagem_sucesso }}
+                            </div>
+                            {% endif %}
+
+                            <!-- Campo de nova senha -->
+                            <div class="mb-3">
+                                <label for="senha" class="form-label fw-bold">Nova Senha</label>
+                                <input type="password"
+                                    class="form-control {% if erros and erros.senha %}is-invalid{% endif %}" id="senha"
+                                    name="senha" placeholder="Digite sua nova senha" required>
+                                {% if erros and erros.senha %}
+                                <div class="invalid-feedback">{{ erros.senha }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Campo de confirmação de senha -->
+                            <div class="mb-3">
+                                <label for="confirmar_senha" class="form-label fw-bold">Confirmar Senha</label>
+                                <input type="password"
+                                    class="form-control {% if erros and erros.confirmar_senha %}is-invalid{% endif %}" id="confirmar_senha"
+                                    name="confirmar_senha" placeholder="Confirme sua nova senha" required>
+                                {% if erros and erros.confirmar_senha %}
+                                <div class="invalid-feedback">{{ erros.confirmar_senha }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Botão de envio -->
+                            <button type="submit"
+                                class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-3 rounded-3">
+                                Redefinir Senha
+                            </button>
+
+                            <!-- Link para voltar ao login -->
+                            <div class="text-center mb-3">
+                                <a href="/login" class="text-decoration-none">Voltar ao login</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
