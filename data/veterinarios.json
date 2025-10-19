@@ -1,0 +1,12 @@
+[
+  {
+    "id_usuario": 1,
+    "nome": "Veterinário Padrão",
+    "email": "veterinario@email.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0001",
+    "verificado": true,
+    "crmv": "12345-ES",
+    "bio": "Sou um veterinário experiente especializado em cuidados com cães e gatos."
+  }
+]

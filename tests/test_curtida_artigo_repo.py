@@ -40,7 +40,6 @@ class TestCurtidaArtigoRepo:
             senha="senha123",
             telefone="123456789",
             perfil="tutor",
-            foto=None,
             token_redefinicao=None,
             data_token=None,
             data_cadastro=None,
@@ -56,7 +55,6 @@ class TestCurtidaArtigoRepo:
             senha="vet123",
             telefone="987654321",
             perfil="veterinario",
-            foto=None,
             token_redefinicao=None,
             data_token=None,
             data_cadastro=None,
@@ -142,8 +140,7 @@ class TestCurtidaArtigoRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = usuario_repo.inserir(usuario)
 
         # Criar veterinário
@@ -154,7 +151,6 @@ class TestCurtidaArtigoRepo:
             "vet123",
             "987654321",
             "veterinario",
-            None,
             None,
             None,
             None,
@@ -229,7 +225,6 @@ class TestCurtidaArtigoRepo:
             None,
             None,
             None,
-            None,
             "11111-SP",
             True,
             "Veterinário",
@@ -268,8 +263,7 @@ class TestCurtidaArtigoRepo:
                 None,
                 None,
                 None,
-                None,
-            )
+                )
             id_usuario = usuario_repo.inserir(usuario)
             usuarios_ids.append(id_usuario)  # type: ignore[arg-type]
             curtida = CurtidaArtigo(id_usuario, id_postagem, datetime.now())  # type: ignore[arg-type]  # noqa: E501

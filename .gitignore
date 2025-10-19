@@ -25,6 +25,9 @@ logs/
 *.tmp
 *.DS_Store
 Thumbs.db
+*.db-shm
+*.db-wal
+
 
 # Arquivos de packaging e distribuição
 .Python

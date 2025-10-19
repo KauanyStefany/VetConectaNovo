@@ -44,7 +44,6 @@ SELECT
     u.email,
     u.telefone,
     u.perfil,
-    u.foto,
     u.token_redefinicao,
     u.data_token,
     u.data_cadastro,

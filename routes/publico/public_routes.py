@@ -15,6 +15,11 @@ async def get_root(request: Request):
     return response
 
 
+@router.get("/quemsomos")
+async def get_sobre(request: Request):
+    return templates.TemplateResponse("publico/quem_somos.html", {"request": request})
+
+
 # @router.get("/veterinario/detalhes/{id_veterinario}")
 # async def get_veterinario(request: Request, id_veterinario: int):
 #     return templates.TemplateResponse("publico/veterinario.html", {"request": request})
@@ -23,11 +28,6 @@ async def get_root(request: Request):
 # @router.get("/tutor/detalhes/{id_tutor}")
 # async def get_tutor(request: Request, id_tutor: int):
 #     return templates.TemplateResponse("publico/tutor.html", {"request": request})
-
-
-# @router.get("/quemsomos")
-# async def get_sobre(request: Request):
-#     return templates.TemplateResponse("publico/quemsomos.html", {"request": request})
 
 
 # @router.get("/posts")

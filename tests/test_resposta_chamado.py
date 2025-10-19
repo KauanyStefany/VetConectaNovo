@@ -54,8 +54,7 @@ class TestRespostaChamadoRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario_teste)
         assert id_usuario is not None
 
@@ -129,8 +128,7 @@ class TestRespostaChamadoRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario_teste)
         assert id_usuario is not None
 
@@ -210,8 +208,7 @@ class TestRespostaChamadoRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario_teste)
         assert id_usuario is not None
 
@@ -273,8 +270,7 @@ class TestRespostaChamadoRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario_teste)
         assert id_usuario is not None
 
@@ -345,7 +341,6 @@ class TestRespostaChamadoRepo:
             senha="12345678",
             telefone="11999999999",
             perfil="tutor",
-            foto=None,
             token_redefinicao=None,
             data_token=None,
             data_cadastro=None,

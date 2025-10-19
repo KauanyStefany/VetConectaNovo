@@ -28,7 +28,6 @@ class TestPostagemFeedRepo:
             senha="123",
             telefone="999999999",
             perfil="tutor",
-            foto=None,
             token_redefinicao=None,
             data_token=None,
             data_cadastro=None,
@@ -83,7 +82,7 @@ class TestPostagemFeedRepo:
             None,
             None,
             None,
-            None,
+            
             1,
             "Cachorro",
         )
@@ -146,7 +145,7 @@ class TestPostagemFeedRepo:
             None,
             None,
             None,
-            None,
+            
             2,
             "Gatos",
         )
@@ -198,7 +197,7 @@ class TestPostagemFeedRepo:
             None,
             None,
             None,
-            None,
+            
             3,
             "Pets",
         )

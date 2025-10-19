@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS usuario (
     senha TEXT NOT NULL,
     telefone TEXT NOT NULL,
     perfil TEXT NOT NULL DEFAULT 'tutor',
-    foto TEXT,
     token_redefinicao TEXT,
     data_token TIMESTAMP,
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -43,7 +42,6 @@ SELECT
     senha,
     telefone,
     perfil,
-    foto,
     token_redefinicao,
     data_token,
     data_cadastro
@@ -54,23 +52,30 @@ LIMIT ? OFFSET ?;
 
 OBTER_POR_ID = """
 SELECT
-id_usuario,
-nome,
-email,
-senha,
-telefone,
-perfil,
-foto,
-token_redefinicao,
-data_token,
-data_cadastro
+    id_usuario,
+    nome,
+    email,
+    senha,
+    telefone,
+    perfil,
+    token_redefinicao,
+    data_token,
+    data_cadastro
 FROM usuario
 WHERE id_usuario = ?;
 """
 
 OBTER_POR_EMAIL = """
 SELECT
-id_usuario, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token, data_cadastro
+    id_usuario, 
+    nome, 
+    email, 
+    senha, 
+    telefone, 
+    perfil, 
+    token_redefinicao, 
+    data_token, 
+    data_cadastro
 FROM usuario
 WHERE email=?
 """
@@ -81,15 +86,16 @@ SET token_redefinicao=?, data_token=?
 WHERE email=?
 """
 
-ATUALIZAR_FOTO = """
-UPDATE usuario
-SET foto = ?
-WHERE id_usuario = ?
-"""
-
 OBTER_POR_TOKEN = """
 SELECT
-id_usuario, nome, email, senha, telefone, perfil, foto, token_redefinicao, data_token
+    id_usuario, 
+    nome, 
+    email, 
+    senha, 
+    telefone, 
+    perfil, 
+    token_redefinicao, 
+    data_token
 FROM usuario
 WHERE token_redefinicao=? AND data_token > datetime('now')
 """
@@ -102,9 +108,15 @@ WHERE id_usuario = ?;
 
 OBTER_POR_PERFIL = """
 SELECT
-    id_usuario, nome, email, senha, telefone, perfil,
-    foto, token_redefinicao, data_token, data_cadastro
+    id_usuario, 
+    nome, email, senha, telefone, perfil,
+    token_redefinicao, data_token, data_cadastro
 FROM usuario
 WHERE perfil = ?
 ORDER BY nome;
+"""
+
+IMPORTAR = """
+INSERT INTO usuario (id_usuario, nome, email, senha, telefone, perfil)
+VALUES (?, ?, ?, ?, ?, ?);
 """

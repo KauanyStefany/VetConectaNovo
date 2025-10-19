@@ -1,0 +1,11 @@
+[
+  {
+    "id_usuario": 2,
+    "nome": "Tutor Padrão",
+    "email": "tutor@email.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0002",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um cachorro chamado Totó, da raça Labrador."
+  }
+]

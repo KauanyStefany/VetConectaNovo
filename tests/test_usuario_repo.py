@@ -12,7 +12,7 @@ from repo.usuario_repo import (
     obter_por_token,
     limpar_token,
     obter_todos_por_perfil,
-    atualizar_foto,
+    importar as importar_usuario,
 )
 from model.usuario_model import Usuario
 
@@ -46,7 +46,6 @@ class TestUsuarioRepo:
             senha="senha123",
             telefone="11999998888",
             perfil="tutor",
-            foto=None,
             token_redefinicao=None,
             data_token=None,
             data_cadastro=None,
@@ -82,8 +81,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         usuario2 = Usuario(
             0,
             "Maria",
@@ -94,8 +92,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
 
         # Act
         inserir_usuario(usuario1)
@@ -117,8 +114,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario_original)
         assert id_usuario is not None
 
@@ -130,7 +126,6 @@ class TestUsuarioRepo:
             senha="senha123",  # senha não é atualizada por atualizar_usuario
             telefone="11777776666",
             perfil="tutor",
-            foto=None,
             token_redefinicao=None,
             data_token=None,
             data_cadastro=None,
@@ -160,8 +155,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
 
         # Act
         resultado = atualizar_usuario(usuario_inexistente)
@@ -184,8 +178,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
         nova_senha = "senha_nova_123"
@@ -229,8 +222,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
 
@@ -270,8 +262,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
             Usuario(
                 0,
                 "Bruno Costa",
@@ -282,8 +273,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
             Usuario(
                 0,
                 "Carlos Dias",
@@ -294,8 +284,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
             Usuario(
                 0,
                 "Diana Souza",
@@ -306,8 +295,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
             Usuario(
                 0,
                 "Eduardo Lima",
@@ -318,8 +306,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
         ]
 
         for usuario in usuarios:
@@ -364,8 +351,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
 
@@ -404,8 +390,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
 
@@ -438,8 +423,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
         token = "abc123xyz"
@@ -482,8 +466,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
         token = "token_unico_123"
@@ -520,8 +503,7 @@ class TestUsuarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         atualizar_token("carlos.limpar@email.com", "token123", "2025-12-31")
 
@@ -559,8 +541,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
             Usuario(
                 0,
                 "Tutor 2",
@@ -571,8 +552,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
             Usuario(
                 0,
                 "Admin 1",
@@ -583,8 +563,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
             Usuario(
                 0,
                 "Vet 1",
@@ -595,8 +574,7 @@ class TestUsuarioRepo:
                 None,
                 None,
                 None,
-                None,
-            ),
+                ),
         ]
 
         for usuario in usuarios:
@@ -622,39 +600,162 @@ class TestUsuarioRepo:
         # Assert
         assert len(usuarios) == 0, "Não deveria haver usuários"
 
-    def test_atualizar_foto(self, test_db):
-        """Testa atualização de foto do usuário"""
+    def test_importar_usuario_sucesso(self, test_db):
+        """Testa importação de usuário com ID específico"""
         # Arrange
-        usuario = Usuario(
-            0,
-            "Pedro",
-            "pedro.foto@email.com",
-            "senha123",
-            "11666665555",
-            "tutor",
-            None,
-            None,
-            None,
-            None,
+        usuario_importado = Usuario(
+            id_usuario=100,  # ID específico para importação
+            nome="João Importado",
+            email="joao.importado@email.com",
+            senha="senha123",
+            telefone="11999998888",
+            perfil="tutor",
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
         )
-        id_usuario = inserir_usuario(usuario)
-        caminho_foto = "/uploads/fotos/pedro.jpg"
 
         # Act
-        resultado = atualizar_foto(id_usuario, caminho_foto)  # type: ignore[arg-type]  # noqa: E501
+        resultado = importar_usuario(usuario_importado)
 
         # Assert
-        assert resultado is True, "Atualização de foto deveria retornar True"
-        usuario_db = obter_usuario_por_id(id_usuario)  # type: ignore[arg-type]
-        assert usuario_db is not None
-        assert usuario_db.foto == caminho_foto
+        assert resultado is True, "Importação deveria retornar True"
 
-    def test_atualizar_foto_usuario_inexistente(self, test_db):
-        """Testa atualização de foto com usuário inexistente"""
-        # Arrange & Act
-        resultado = atualizar_foto(9999, "/uploads/foto.jpg")
+        # Verificar se foi salvo com o ID correto
+        usuario_db = obter_usuario_por_id(100)
+        assert usuario_db is not None, "Usuário importado deveria existir"
+        assert usuario_db.id_usuario == 100, "ID deveria ser 100"
+        assert usuario_db.nome == "João Importado"
+        assert usuario_db.email == "joao.importado@email.com"
+        assert usuario_db.senha == "senha123"
+        assert usuario_db.telefone == "11999998888"
+        assert usuario_db.perfil == "tutor"
+
+    def test_importar_usuario_id_duplicado(self, test_db):
+        """Testa importação de usuário com ID duplicado"""
+        # Arrange
+        usuario1 = Usuario(
+            id_usuario=200,
+            nome="Primeiro",
+            email="primeiro@email.com",
+            senha="senha1",
+            telefone="11111111111",
+            perfil="tutor",
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+        )
+        usuario2 = Usuario(
+            id_usuario=200,  # Mesmo ID
+            nome="Segundo",
+            email="segundo@email.com",
+            senha="senha2",
+            telefone="22222222222",
+            perfil="tutor",
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+        )
+
+        # Act
+        resultado1 = importar_usuario(usuario1)
+        assert resultado1 is True
+
+        # Assert - deve falhar por ID duplicado
+        with pytest.raises(Exception):
+            importar_usuario(usuario2)
+
+    def test_importar_multiplos_usuarios(self, test_db):
+        """Testa importação de múltiplos usuários com IDs específicos"""
+        # Arrange
+        usuarios = [
+            Usuario(
+                id_usuario=301,
+                nome="Usuario 1",
+                email="user1@email.com",
+                senha="senha1",
+                telefone="11111111111",
+                perfil="tutor",
+                    token_redefinicao=None,
+                data_token=None,
+                data_cadastro=None,
+            ),
+            Usuario(
+                id_usuario=302,
+                nome="Usuario 2",
+                email="user2@email.com",
+                senha="senha2",
+                telefone="22222222222",
+                perfil="veterinario",
+                    token_redefinicao=None,
+                data_token=None,
+                data_cadastro=None,
+            ),
+            Usuario(
+                id_usuario=303,
+                nome="Usuario 3",
+                email="user3@email.com",
+                senha="senha3",
+                telefone="33333333333",
+                perfil="admin",
+                    token_redefinicao=None,
+                data_token=None,
+                data_cadastro=None,
+            ),
+        ]
+
+        # Act
+        for usuario in usuarios:
+            resultado = importar_usuario(usuario)
+            assert resultado is True, f"Importação de {usuario.nome} deveria retornar True"
 
         # Assert
-        assert (
-            resultado is False
-        ), "Atualização de foto com ID inexistente deveria retornar False"
+        usuario1_db = obter_usuario_por_id(301)
+        usuario2_db = obter_usuario_por_id(302)
+        usuario3_db = obter_usuario_por_id(303)
+
+        assert usuario1_db is not None and usuario1_db.id_usuario == 301
+        assert usuario2_db is not None and usuario2_db.id_usuario == 302
+        assert usuario3_db is not None and usuario3_db.id_usuario == 303
+
+        assert usuario1_db.nome == "Usuario 1"
+        assert usuario2_db.nome == "Usuario 2"
+        assert usuario3_db.nome == "Usuario 3"
+
+        assert usuario1_db.perfil == "tutor"
+        assert usuario2_db.perfil == "veterinario"
+        assert usuario3_db.perfil == "admin"
+
+    def test_importar_usuario_email_duplicado(self, test_db):
+        """Testa importação de usuário com email duplicado"""
+        # Arrange
+        usuario1 = Usuario(
+            id_usuario=401,
+            nome="Usuario 1",
+            email="duplicado@email.com",
+            senha="senha1",
+            telefone="11111111111",
+            perfil="tutor",
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+        )
+        usuario2 = Usuario(
+            id_usuario=402,  # ID diferente
+            nome="Usuario 2",
+            email="duplicado@email.com",  # Email duplicado
+            senha="senha2",
+            telefone="22222222222",
+            perfil="tutor",
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+        )
+
+        # Act
+        resultado1 = importar_usuario(usuario1)
+        assert resultado1 is True
+
+        # Assert - deve falhar por email único
+        with pytest.raises(Exception):
+            importar_usuario(usuario2)

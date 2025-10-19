@@ -31,7 +31,6 @@ class TestChamadoRepo:
             None,
             None,
             None,
-            None,
         )
         self.id_usuario = usuario_repo.inserir(self.usuario)
         assert self.id_usuario is not None

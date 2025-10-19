@@ -60,8 +60,7 @@ class TestComentarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario_teste)
         assert id_usuario is not None
         usuario_teste.id_usuario = id_usuario  # Atualiza o ID do usuário após inserção
@@ -74,7 +73,6 @@ class TestComentarioRepo:
             senha="senha123",
             telefone="11888888888",
             perfil="veterinario",
-            foto=None,
             token_redefinicao=None,
             data_token=None,
             data_cadastro=None,
@@ -151,8 +149,7 @@ class TestComentarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
 
@@ -166,7 +163,7 @@ class TestComentarioRepo:
             None,
             None,
             None,
-            None,
+            
             "CRMV111",
             True,
             "Bio",
@@ -253,8 +250,7 @@ class TestComentarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
 
@@ -268,7 +264,7 @@ class TestComentarioRepo:
             None,
             None,
             None,
-            None,
+            
             "CRMV222",
             True,
             "Bio",
@@ -341,8 +337,7 @@ class TestComentarioRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         id_usuario = inserir_usuario(usuario)
         assert id_usuario is not None
 
@@ -356,7 +351,7 @@ class TestComentarioRepo:
             None,
             None,
             None,
-            None,
+            
             "CRMV333",
             True,
             "Bio",

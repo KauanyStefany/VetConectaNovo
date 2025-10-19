@@ -90,7 +90,6 @@ def obter_pagina(limite: int, offset: int) -> list[Tutor]:
                     senha="",  # Não expor senha
                     telefone=row["telefone"],
                     perfil=row["perfil"] if "perfil" in row.keys() else "tutor",
-                    foto=row["foto"] if "foto" in row.keys() else None,
                     token_redefinicao=(row["token_redefinicao"] if "token_redefinicao" in row.keys() else None),
                     data_token=(row["data_token"] if "data_token" in row.keys() else None),
                     data_cadastro=(row["data_cadastro"] if "data_cadastro" in row.keys() else None),
@@ -119,8 +118,7 @@ def obter_por_id(id_tutor: int) -> Optional[Tutor]:
                 email=row["email"],
                 senha="",  # Não expor senha
                 telefone=row["telefone"],
-                perfil=row["perfil"],
-                foto=row["foto"],
+                perfil=row["perfil"],                
                 data_cadastro=row["data_cadastro"],
                 data_token=row["data_token"],
                 token_redefinicao=row["token_redefinicao"],
@@ -131,3 +129,19 @@ def obter_por_id(id_tutor: int) -> Optional[Tutor]:
     except Exception as e:
         print(f"Erro ao obter tutor por ID: {e}")
         return None
+
+
+def importar(tutor: Tutor) -> Optional[int]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+
+        # Inserir usuário
+        cursor.execute(
+            usuario_sql.IMPORTAR,
+            (tutor.id_usuario, tutor.nome, tutor.email, tutor.senha, tutor.telefone, tutor.perfil),
+        )        
+
+        # Inserir tutor
+        cursor.execute(tutor_sql.INSERIR, (tutor.id_usuario, tutor.quantidade_pets, tutor.descricao_pets))
+
+        return tutor.id_usuario

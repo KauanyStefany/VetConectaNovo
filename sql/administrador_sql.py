@@ -41,3 +41,8 @@ SELECT *
 FROM administrador
 WHERE id_admin = ?;
 """
+
+IMPORTAR = """
+INSERT INTO administrador (id_admin, nome, email, senha)
+VALUES (?, ?, ?, ?);
+"""

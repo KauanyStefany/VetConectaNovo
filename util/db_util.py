@@ -1,7 +1,9 @@
 import sqlite3
 import os
+import json
 from contextlib import contextmanager
 from typing import Generator
+from pathlib import Path
 import logging
 
 logger = logging.getLogger(__name__)
@@ -9,7 +11,8 @@ logger = logging.getLogger(__name__)
 # Timeout padrão
 DB_TIMEOUT: float = float(os.getenv("DATABASE_TIMEOUT", "30.0"))
 
-# Função para obter o caminho do banco de dados, considerando variáveis 
+
+# Função para obter o caminho do banco de dados, considerando variáveis
 # de ambiente que indicam caminhos diferentes para testes e produção.
 def _get_db_path() -> str:
     """Retorna o caminho do banco, lendo variáveis de ambiente dinamicamente."""
@@ -52,6 +55,7 @@ def get_connection_sem_commit() -> sqlite3.Connection:
     """Retorna conexão sem commit automático para operações de leitura."""
     return _criar_conexao()
 
+
 def inicializar_banco():
     # Chama o método criar_tabela de cada repositório para garantir que as tabelas existam
     from repo import (
@@ -66,8 +70,9 @@ def inicializar_banco():
         curtida_feed_repo,
         denuncia_repo,
         verificacao_crmv_repo,
-        seguida_repo
+        seguida_repo,
     )
+
     usuario_repo.criar_tabela()
     tutor_repo.criar_tabela()
     veterinario_repo.criar_tabela()
@@ -80,3 +85,122 @@ def inicializar_banco():
     denuncia_repo.criar_tabela()
     verificacao_crmv_repo.criar_tabela()
     seguida_repo.criar_tabela()
+
+    # Importar dados iniciais se necessário
+    importar_admins()
+    importar_veterinarios()
+    importar_tutores()
+
+
+def importar_admins():
+    """Importa administradores do arquivo JSON se a tabela estiver vazia."""
+    from repo import administrador_repo
+    from model.administrador_model import Administrador
+    from util.security import criar_hash_senha
+
+    # Verifica se a tabela está vazia
+    admins_existentes = administrador_repo.obter_pagina(offset=0, limite=1)
+    if admins_existentes:
+        logger.info("Tabela de administradores já contém dados. Importação ignorada.")
+        return
+
+    # Lê o arquivo JSON
+    json_path = Path(__file__).parent.parent / "data" / "admins.json"
+    if not json_path.exists():
+        logger.warning(f"Arquivo {json_path} não encontrado.")
+        return
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    # Importa cada administrador
+    for item in dados:
+        admin = Administrador(
+            id_admin=item["id_admin"],
+            nome=item["nome"],
+            email=item["email"],
+            senha=criar_hash_senha(item["senha"]),
+        )
+        administrador_repo.importar(admin)
+        logger.info(f"Administrador '{admin.nome}' importado com sucesso.")
+
+
+def importar_tutores():
+    """Importa tutores do arquivo JSON se a tabela estiver vazia."""
+    from repo import tutor_repo
+    from model.tutor_model import Tutor
+    from util.security import criar_hash_senha
+
+    # Verifica se a tabela está vazia
+    tutores_existentes = tutor_repo.obter_pagina(limite=1, offset=0)
+    if tutores_existentes:
+        logger.info("Tabela de tutores já contém dados. Importação ignorada.")
+        return
+
+    # Lê o arquivo JSON
+    json_path = Path(__file__).parent.parent / "data" / "tutores.json"
+    if not json_path.exists():
+        logger.warning(f"Arquivo {json_path} não encontrado.")
+        return
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    # Importa cada tutor
+    for item in dados:
+        tutor = Tutor(
+            id_usuario=item["id_usuario"],
+            nome=item["nome"],
+            email=item["email"],
+            senha=criar_hash_senha(item["senha"]),
+            telefone=item["telefone"],
+            perfil="tutor",
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+            quantidade_pets=item["quantidade_pets"],
+            descricao_pets=item["descricao_pets"],
+        )
+        tutor_repo.importar(tutor)
+        logger.info(f"Tutor '{tutor.nome}' importado com sucesso.")
+
+
+def importar_veterinarios():
+    """Importa veterinários do arquivo JSON se a tabela estiver vazia."""
+    from repo import veterinario_repo
+    from model.veterinario_model import Veterinario
+    from util.security import criar_hash_senha
+
+    # Verifica se a tabela está vazia
+    vets_existentes = veterinario_repo.obter_pagina(limite=1, offset=0)
+    if vets_existentes:
+        logger.info("Tabela de veterinários já contém dados. Importação ignorada.")
+        return
+
+    # Lê o arquivo JSON
+    json_path = Path(__file__).parent.parent / "data" / "veterinarios.json"
+    if not json_path.exists():
+        logger.warning(f"Arquivo {json_path} não encontrado.")
+        return
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    # Importa cada veterinário
+    for item in dados:
+        vet = Veterinario(
+            id_usuario=item["id_usuario"],
+            nome=item["nome"],
+            email=item["email"],
+            senha=criar_hash_senha(item["senha"]),
+            telefone=item["telefone"],
+            perfil="veterinario",
+            token_redefinicao=None,
+            data_token=None,
+            data_cadastro=None,
+            crmv=item["crmv"],
+            verificado=item["verificado"],
+            bio=item["bio"],
+        )
+        veterinario_repo.importar(vet)
+        logger.info(f"Veterinário '{vet.nome}' importado com sucesso.")

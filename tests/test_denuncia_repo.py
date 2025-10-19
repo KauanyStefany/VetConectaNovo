@@ -41,8 +41,7 @@ class TestDenunciaRepo:
             None,
             None,
             None,
-            None,
-        )
+            )
         self.id_usuario = inserir_usuario(self.usuario)
         assert self.id_usuario is not None
 

@@ -71,10 +71,10 @@ def excluir(id: int) -> bool:
         return excluiu_veterinario and excluiu_usuario
 
 
-def obter_pagina(limit: int, offset: int) -> list[Veterinario]:
+def obter_pagina(limite: int, offset: int) -> list[Veterinario]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(OBTER_PAGINA, (limit, offset))
+        cursor.execute(OBTER_PAGINA, (limite, offset))
         rows = cursor.fetchall()
         veterinarios = [
             Veterinario(
@@ -84,7 +84,6 @@ def obter_pagina(limit: int, offset: int) -> list[Veterinario]:
                 senha="",
                 telefone=row["telefone"],
                 perfil=row["perfil"] if "perfil" in row.keys() else "veterinario",
-                foto=row["foto"] if "foto" in row.keys() else None,
                 token_redefinicao=(row["token_redefinicao"] if "token_redefinicao" in row.keys() else None),
                 data_token=row["data_token"] if "data_token" in row.keys() else None,
                 data_cadastro=(row["data_cadastro"] if "data_cadastro" in row.keys() else None),
@@ -111,7 +110,6 @@ def obter_por_id(id_veterinario: int) -> Optional[Veterinario]:
             senha="",  # Não expor senha
             telefone=row["telefone"],
             perfil=row["perfil"],
-            foto=row["foto"],
             data_cadastro=row["data_cadastro"],
             data_token=row["data_token"],
             token_redefinicao=row["token_redefinicao"],
@@ -120,3 +118,20 @@ def obter_por_id(id_veterinario: int) -> Optional[Veterinario]:
             bio=row["bio"],
         )
         return veterinario
+
+
+def importar(vet: Veterinario) -> Optional[int]:
+    """Insere veterinário e usuário em uma única transação atômica."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+
+        # Inserir usuário
+        cursor.execute(
+            usuario_sql.IMPORTAR,
+            (vet.id_usuario, vet.nome, vet.email, vet.senha, vet.telefone, vet.perfil),
+        )        
+
+        # Inserir veterinário
+        cursor.execute(veterinario_sql.IMPORTAR, (vet.id_usuario, vet.crmv, vet.verificado, vet.bio))
+
+        return vet.id_usuario

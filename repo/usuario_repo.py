@@ -68,7 +68,6 @@ def obter_pagina(limite: int, offset: int) -> list[Usuario]:
                 senha=row["senha"],
                 telefone=row["telefone"],
                 perfil=row["perfil"],
-                foto=row["foto"],
                 token_redefinicao=row["token_redefinicao"],
                 data_token=row["data_token"],
                 data_cadastro=row["data_cadastro"],
@@ -92,7 +91,6 @@ def obter_por_id(id_usuario: int) -> Optional[Usuario]:
             senha=row["senha"],
             telefone=row["telefone"],
             perfil=row["perfil"],
-            foto=row["foto"],
             token_redefinicao=row["token_redefinicao"],
             data_token=row["data_token"],
             data_cadastro=row["data_cadastro"],
@@ -112,7 +110,6 @@ def obter_por_email(email: str) -> Optional[Usuario]:
                 senha=row["senha"],
                 telefone=row["telefone"],
                 perfil=row["perfil"],
-                foto=row["foto"],
                 token_redefinicao=row["token_redefinicao"],
                 data_token=row["data_token"],
                 data_cadastro=row["data_cadastro"],
@@ -141,7 +138,6 @@ def obter_por_token(token: str) -> Optional[Usuario]:
                 senha=row["senha"],
                 telefone=row["telefone"],
                 perfil=row["perfil"],
-                foto=row["foto"] if "foto" in row.keys() else None,
                 token_redefinicao=row["token_redefinicao"],
                 data_token=row["data_token"],
                 data_cadastro=(row["data_cadastro"] if "data_cadastro" in row.keys() else None),
@@ -171,7 +167,6 @@ def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
                 senha=row["senha"],
                 telefone=row["telefone"],
                 perfil=row["perfil"],
-                foto=row["foto"],
                 token_redefinicao=row["token_redefinicao"],
                 data_token=row["data_token"],
                 data_cadastro=row["data_cadastro"],
@@ -180,9 +175,18 @@ def obter_todos_por_perfil(perfil: str) -> list[Usuario]:
         return usuarios
 
 
-def atualizar_foto(id: int, caminho_foto: str) -> bool:
-    """Atualiza apenas a foto do usuário"""
+def importar(usuario: Usuario) -> bool:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(ATUALIZAR_FOTO, (caminho_foto, id))
+        cursor.execute(
+            IMPORTAR,
+            (
+                usuario.id_usuario,
+                usuario.nome,
+                usuario.email,
+                usuario.senha,
+                usuario.telefone,
+                usuario.perfil,
+            ),
+        )
         return cursor.rowcount > 0

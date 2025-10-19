@@ -51,7 +51,6 @@ SELECT
     u.senha,
     u.telefone,
     u.perfil,
-    u.foto,
     u.token_redefinicao,
     u.data_token,
     u.data_cadastro,
@@ -61,4 +60,9 @@ SELECT
 FROM veterinario v
 JOIN usuario u ON v.id_veterinario = u.id_usuario
 WHERE v.id_veterinario = ?;
+"""
+
+IMPORTAR = """
+INSERT INTO veterinario (id_veterinario, crmv, verificado, bio)
+VALUES (?, ?, ?, ?);
 """
