@@ -1,0 +1,208 @@
+{% extends "base_publica.html" %}
+
+{% block title %}Demonstração do Sistema de Toasts{% endblock %}
+
+{% block conteudo %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 col-lg-8 mx-auto">
+            <!-- Cabeçalho -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 text-roxo fw-bold">Sistema de Toasts</h1>
+                <p class="lead text-muted">Demonstração do sistema de mensagens do VetConecta</p>
+            </div>
+
+            <!-- Card de Demonstração -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-roxo text-white">
+                    <h5 class="mb-0"><i class="bi bi-bell-fill me-2"></i>Mensagens Flash (Backend)</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-4">
+                        Mensagens flash persistem através de redirects usando sessões.
+                        Clique nos botões abaixo para ver diferentes tipos de mensagens:
+                    </p>
+
+                    <div class="row g-3">
+                        <!-- Botão Sucesso -->
+                        <div class="col-6 col-md-3">
+                            <form method="POST" action="/demo-toasts/sucesso">
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <br>Sucesso
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Botão Erro -->
+                        <div class="col-6 col-md-3">
+                            <form method="POST" action="/demo-toasts/erro">
+                                <button type="submit" class="btn btn-danger w-100">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    <br>Erro
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Botão Aviso -->
+                        <div class="col-6 col-md-3">
+                            <form method="POST" action="/demo-toasts/aviso">
+                                <button type="submit" class="btn btn-warning w-100">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                    <br>Aviso
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Botão Info -->
+                        <div class="col-6 col-md-3">
+                            <form method="POST" action="/demo-toasts/info">
+                                <button type="submit" class="btn btn-info w-100">
+                                    <i class="bi bi-info-circle-fill"></i>
+                                    <br>Info
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Botão Múltiplas -->
+                        <div class="col-12">
+                            <form method="POST" action="/demo-toasts/multiplas">
+                                <button type="submit" class="btn btn-outline-secondary w-100">
+                                    <i class="bi bi-stack"></i> Múltiplas Mensagens
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card JavaScript -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-laranja text-white">
+                    <h5 class="mb-0"><i class="bi bi-code-slash me-2"></i>Mensagens JavaScript (Frontend)</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-4">
+                        Mensagens JavaScript são exibidas diretamente sem recarregar a página.
+                        Ideal para feedback imediato de ações AJAX:
+                    </p>
+
+                    <div class="row g-3">
+                        <!-- Botão Sucesso JS -->
+                        <div class="col-6 col-md-3">
+                            <button onclick="showSuccess('Tudo certo!')" class="btn btn-success w-100">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <br>Sucesso JS
+                            </button>
+                        </div>
+
+                        <!-- Botão Erro JS -->
+                        <div class="col-6 col-md-3">
+                            <button onclick="showError('Algo deu errado!')" class="btn btn-danger w-100">
+                                <i class="bi bi-x-circle-fill"></i>
+                                <br>Erro JS
+                            </button>
+                        </div>
+
+                        <!-- Botão Aviso JS -->
+                        <div class="col-6 col-md-3">
+                            <button onclick="showWarning('Cuidado!')" class="btn btn-warning w-100">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                <br>Aviso JS
+                            </button>
+                        </div>
+
+                        <!-- Botão Info JS -->
+                        <div class="col-6 col-md-3">
+                            <button onclick="showInfo('Sabia que...')" class="btn btn-info w-100">
+                                <i class="bi bi-info-circle-fill"></i>
+                                <br>Info JS
+                            </button>
+                        </div>
+
+                        <!-- Botão Toast Longo -->
+                        <div class="col-12 col-md-6">
+                            <button onclick="showToast('Esta mensagem dura 10 segundos', 'info', 10000)"
+                                    class="btn btn-outline-primary w-100">
+                                <i class="bi bi-clock"></i> Toast de 10 segundos
+                            </button>
+                        </div>
+
+                        <!-- Botão Toast Permanente -->
+                        <div class="col-12 col-md-6">
+                            <button onclick="showToast('Clique no X para fechar', 'warning', 0)"
+                                    class="btn btn-outline-warning w-100">
+                                <i class="bi bi-pin-fill"></i> Toast Permanente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Exemplos de Código -->
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-verde text-white">
+                    <h5 class="mb-0"><i class="bi bi-file-code me-2"></i>Exemplos de Código</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Exemplo Python -->
+                    <h6 class="fw-bold text-roxo mb-3">Python (Backend)</h6>
+                    <pre class="bg-light p-3 rounded"><code>from util.mensagens import adicionar_mensagem_sucesso
+
+@router.post("/salvar")
+async def salvar(request: Request):
+    # ... lógica de salvamento ...
+    adicionar_mensagem_sucesso(request, "Dados salvos!")
+    return RedirectResponse(url="/", status_code=302)</code></pre>
+
+                    <!-- Exemplo JavaScript -->
+                    <h6 class="fw-bold text-laranja mb-3 mt-4">JavaScript (Frontend)</h6>
+                    <pre class="bg-light p-3 rounded"><code>async function salvar() {
+    const response = await fetch('/api/salvar', {
+        method: 'POST'
+    });
+
+    if (response.ok) {
+        showSuccess('Dados salvos!');
+    } else {
+        showError('Erro ao salvar');
+    }
+}</code></pre>
+
+                    <!-- Link para Documentação -->
+                    <div class="alert alert-info mt-4 mb-0">
+                        <i class="bi bi-book-fill me-2"></i>
+                        <strong>Documentação Completa:</strong>
+                        Consulte <code>docs/SISTEMA_TOASTS.md</code> para mais detalhes e opções avançadas.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão Voltar -->
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar para Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Simulação de operação assíncrona
+async function simularOperacaoAsync() {
+    showInfo('Processando...');
+
+    // Simula delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    showSuccess('Operação concluída!');
+}
+
+// Log para debug
+console.log('Sistema de Toasts carregado e pronto!');
+console.log('Funções disponíveis: showSuccess(), showError(), showWarning(), showInfo(), showToast()');
+</script>
+{% endblock %}

@@ -95,3 +95,30 @@ body {
     background-color: var(--cor-laranja) !important;
     color: #fff !important;
 }
+
+/* Toast Customization */
+.toast-container {
+    z-index: 9999;
+}
+
+.toast {
+    min-width: 250px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.toast-offset {
+    margin-bottom: 60px;
+}
+
+/* Cores personalizadas para toasts */
+.toast.text-bg-success {
+    background-color: var(--cor-verde) !important;
+}
+
+.toast.text-bg-warning {
+    background-color: var(--cor-laranja) !important;
+}
+
+.toast.text-bg-danger {
+    background-color: var(--cor-rosa) !important;
+}

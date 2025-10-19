@@ -1,6 +1,7 @@
 from typing import List, Optional, Union
 from jinja2 import FileSystemLoader
 from fastapi.templating import Jinja2Templates
+from fastapi import Request
 
 
 def criar_templates(diretorio_especifico: Optional[Union[str, List[str]]] = None) -> Jinja2Templates:
@@ -48,5 +49,18 @@ def criar_templates(diretorio_especifico: Optional[Union[str, List[str]]] = None
     # Configurar o loader com múltiplos diretórios
     # O FileSystemLoader tentará encontrar templates em ordem nos diretórios listados
     templates.env.loader = FileSystemLoader(diretorios)
-    
+
+    # Adicionar funções globais ao ambiente Jinja2
+    _adicionar_funcoes_globais(templates)
+
     return templates
+
+
+def _adicionar_funcoes_globais(templates: Jinja2Templates) -> None:
+    """
+    Adiciona funções globais ao ambiente Jinja2
+    """
+    from util.mensagens import obter_mensagens
+
+    # Adicionar obter_mensagens como função global
+    templates.env.globals['obter_mensagens'] = obter_mensagens
