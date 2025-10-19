@@ -26,8 +26,8 @@
 
             <!-- Centro: Barra de pesquisa -->
             <form class="d-flex w-50 justify-content-center">
-                <div class="input-group w-100 search-group">
-                    <input class="form-control" type="search" placeholder="O que seu pet necessita?">
+                <div class="input-group w-100 search-group border-0">
+                    <input class="form-control border-white" type="search" placeholder="O que seu pet necessita?">
                     <span class="input-group-text bg-white">
                         <i class="bi bi-search"></i>
                     </span>
@@ -54,8 +54,7 @@
                     <button class="btn dropdown-toggle p-0 text-white" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         {% if request.session.get('usuario').foto %}
-                        <img src="{{request.session.get('usuario').foto}}" alt="" class="rounded-circle" width="40"
-                            height="40" style="object-fit: cover;">
+                        <img src="{{request.session.get('usuario').foto}}" alt="" class="rounded-circle" width="40">
                         {% else %}
                         <i class="bi bi-person-circle fs-2 text-white mr-5"></i>
                         {% endif %}

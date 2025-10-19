@@ -43,9 +43,9 @@
                         <!-- Barra de Pesquisa -->
                         <form class="d-flex justify-content-center" role="search">
                             <div class="input-group" style="max-width: 600px;">
-                                <input class="form-control rounded-0" type="search"
+                                <input class="form-control rounded-0 border-0" type="search"
                                     placeholder="O que seu pet necessita?" aria-label="Pesquisar">
-                                <button class="btn btn-light rounded-0" type="submit">
+                                <button class="btn btn-light rounded-0 border-0" type="submit">
                                     <i class="bi bi-search"></i>
                                 </button>
                             </div>
@@ -60,7 +60,7 @@
                             <button class="btn btn-link p-0" type="button" id="dropdownUsuario"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {% if request.session.get('usuario').foto %}
-                                <img src="{{ request.session.get('usuario').foto }}" alt="Avatar" class="user-avatar">
+                                <img src="{{ request.session.get('usuario').foto }}" alt="Avatar" class="rounded-circle" height="40">
                                 {% else %}
                                 <i class="bi bi-person-circle text-white" style="font-size: 50px;"></i>
                                 {% endif %}
