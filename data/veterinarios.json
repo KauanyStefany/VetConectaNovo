@@ -2,11 +2,201 @@
   {
     "id_usuario": 1,
     "nome": "Veterinário Padrão",
-    "email": "veterinario@email.com",
+    "email": "padrao@veterinario.com",
     "senha": "1234aA@#",
     "telefone": "(28) 99999-0001",
     "verificado": true,
-    "crmv": "12345-ES",
+    "crmv": "999901-ES",
     "bio": "Sou um veterinário experiente especializado em cuidados com cães e gatos."
+  },
+  {
+    "id_usuario": 2,
+    "nome": "Marina Santos",
+    "email": "marina@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0002",
+    "verificado": true,
+    "crmv": "999902-ES",
+    "bio": "Especialista em cirurgia de animais de pequeno porte com 12 anos de experiência. Apaixonada por ortopedia veterinária."
+  },
+  {
+    "id_usuario": 3,
+    "nome": "Carlos Mendes",
+    "email": "carlos@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0003",
+    "verificado": true,
+    "crmv": "999903-ES",
+    "bio": "Veterinário especializado em grandes animais, com foco em bovinos e equinos. Atendimento em propriedades rurais."
+  },
+  {
+    "id_usuario": 4,
+    "nome": "Juliana Oliveira",
+    "email": "juliana@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0004",
+    "verificado": false,
+    "crmv": "999904-ES",
+    "bio": "Dermatologista veterinária formada pela UFES. Especialista em alergias e doenças de pele em cães e gatos."
+  },
+  {
+    "id_usuario": 5,
+    "nome": "Roberto Almeida",
+    "email": "roberto@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0005",
+    "verificado": true,
+    "crmv": "999905-ES",
+    "bio": "Especialista em animais exóticos e silvestres. Trabalho com aves, répteis e pequenos mamíferos há mais de 8 anos."
+  },
+  {
+    "id_usuario": 6,
+    "nome": "Fernanda Costa",
+    "email": "fernanda@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0006",
+    "verificado": true,
+    "crmv": "999906-ES",
+    "bio": "Cardiologista veterinária com pós-graduação em medicina intensiva. Atendimento de emergências 24h."
+  },
+  {
+    "id_usuario": 7,
+    "nome": "Paulo Ribeiro",
+    "email": "paulo@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0007",
+    "verificado": false,
+    "crmv": "999907-ES",
+    "bio": "Veterinário generalista com experiência em clínica médica e preventiva. Foco em bem-estar animal e nutrição."
+  },
+  {
+    "id_usuario": 8,
+    "nome": "Beatriz Ferreira",
+    "email": "beatriz@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0008",
+    "verificado": true,
+    "crmv": "999908-ES",
+    "bio": "Oncologista veterinária especializada em tratamentos de câncer em animais de companhia. Atendimento humanizado."
+  },
+  {
+    "id_usuario": 9,
+    "nome": "André Silva",
+    "email": "andre@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0009",
+    "verificado": true,
+    "crmv": "999909-ES",
+    "bio": "Especialista em odontologia veterinária. Procedimentos de limpeza, extrações e tratamento de doenças periodontais."
+  },
+  {
+    "id_usuario": 10,
+    "nome": "Camila Rodrigues",
+    "email": "camila@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0010",
+    "verificado": true,
+    "crmv": "999910-ES",
+    "bio": "Veterinária com especialização em comportamento animal. Ajudo a resolver problemas de ansiedade e agressividade."
+  },
+  {
+    "id_usuario": 11,
+    "nome": "Ricardo Pereira",
+    "email": "ricardo@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0011",
+    "verificado": false,
+    "crmv": "999911-ES",
+    "bio": "Veterinário com mestrado em reprodução animal. Trabalho com inseminação artificial e obstetrícia."
+  },
+  {
+    "id_usuario": 12,
+    "nome": "Larissa Martins",
+    "email": "larissa@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0012",
+    "verificado": true,
+    "crmv": "999912-ES",
+    "bio": "Especialista em neurologia veterinária. Diagnóstico e tratamento de doenças neurológicas em cães e gatos."
+  },
+  {
+    "id_usuario": 13,
+    "nome": "Gabriel Souza",
+    "email": "gabriel@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0013",
+    "verificado": true,
+    "crmv": "999913-ES",
+    "bio": "Veterinário com experiência em diagnóstico por imagem. Ultrassonografia, radiologia e ecocardiografia."
+  },
+  {
+    "id_usuario": 14,
+    "nome": "Patricia Lima",
+    "email": "patricia@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0014",
+    "verificado": true,
+    "crmv": "999914-ES",
+    "bio": "Nefrologista veterinária especializada em doenças renais. Tratamento de insuficiência renal crônica."
+  },
+  {
+    "id_usuario": 15,
+    "nome": "Lucas Barbosa",
+    "email": "lucas@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0015",
+    "verificado": false,
+    "crmv": "999915-ES",
+    "bio": "Veterinário especializado em animais de produção. Consultoria em manejo de suínos e aves."
+  },
+  {
+    "id_usuario": 16,
+    "nome": "Amanda Carvalho",
+    "email": "amanda@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0016",
+    "verificado": true,
+    "crmv": "999916-ES",
+    "bio": "Endocrinologista veterinária. Tratamento de diabetes, hipotireoidismo e outras doenças endócrinas."
+  },
+  {
+    "id_usuario": 17,
+    "nome": "Thiago Gomes",
+    "email": "thiago@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0017",
+    "verificado": true,
+    "crmv": "999917-ES",
+    "bio": "Anestesista veterinário com certificação internacional. Segurança em procedimentos cirúrgicos complexos."
+  },
+  {
+    "id_usuario": 18,
+    "nome": "Renata Araújo",
+    "email": "renata@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0018",
+    "verificado": true,
+    "crmv": "999918-ES",
+    "bio": "Oftalmologista veterinária. Cirurgias de catarata, glaucoma e tratamento de úlceras de córnea."
+  },
+  {
+    "id_usuario": 19,
+    "nome": "Bruno Teixeira",
+    "email": "bruno@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0019",
+    "verificado": false,
+    "crmv": "999919-ES",
+    "bio": "Veterinário homeopata e acupunturista. Tratamentos naturais e terapias integrativas para animais."
+  },
+  {
+    "id_usuario": 20,
+    "nome": "Isabela Dias",
+    "email": "isabela@veterinario.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0020",
+    "verificado": true,
+    "crmv": "999920-ES",
+    "bio": "Veterinária especializada em medicina felina. Clínica exclusiva para gatos com ambiente anti-estresse."
   }
 ]

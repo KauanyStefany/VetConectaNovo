@@ -1,11 +1,902 @@
 [
   {
-    "id_usuario": 2,
+    "id_usuario": 21,
     "nome": "Tutor Padrão",
-    "email": "tutor@email.com",
+    "email": "padrao@tutor.com",
     "senha": "1234aA@#",
-    "telefone": "(28) 99999-0002",
+    "telefone": "(28) 99999-0021",
     "quantidade_pets": 1,
     "descricao_pets": "Tenho um cachorro chamado Totó, da raça Labrador."
+  },
+  {
+    "id_usuario": 22,
+    "nome": "Maria Silva",
+    "email": "maria@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0022",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois gatos persas, Luna e Thor, ambos com 3 anos."
+  },
+  {
+    "id_usuario": 23,
+    "nome": "João Santos",
+    "email": "joao@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0023",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Golden Retriever chamado Max, muito carinhoso e brincalhão."
+  },
+  {
+    "id_usuario": 24,
+    "nome": "Ana Costa",
+    "email": "ana@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0024",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três hamsters: Bola, Neve e Pipoca. São muito ativos!"
+  },
+  {
+    "id_usuario": 25,
+    "nome": "Pedro Oliveira",
+    "email": "pedro@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0025",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho uma cadela vira-lata chamada Mel, resgatada há 2 anos."
+  },
+  {
+    "id_usuario": 26,
+    "nome": "Julia Rodrigues",
+    "email": "julia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0026",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois coelhos anões, Fofinho e Branquinho, adoram cenoura."
+  },
+  {
+    "id_usuario": 27,
+    "nome": "Carlos Ferreira",
+    "email": "carlos@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0027",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um papagaio chamado Zeca, muito falante e engraçado."
+  },
+  {
+    "id_usuario": 28,
+    "nome": "Beatriz Lima",
+    "email": "beatriz@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0028",
+    "quantidade_pets": 4,
+    "descricao_pets": "Tenho quatro gatos resgatados: Mimi, Gigi, Nina e Kiko."
+  },
+  {
+    "id_usuario": 29,
+    "nome": "Lucas Almeida",
+    "email": "lucas@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0029",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Bulldog Francês chamado Bob, muito teimoso mas carinhoso."
+  },
+  {
+    "id_usuario": 30,
+    "nome": "Camila Souza",
+    "email": "camila@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0030",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois cachorros da raça Shih Tzu, Lola e Buddy."
+  },
+  {
+    "id_usuario": 31,
+    "nome": "Rafael Martins",
+    "email": "rafael@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0031",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho uma tartaruga chamada Dona Lenta, tem mais de 15 anos."
+  },
+  {
+    "id_usuario": 32,
+    "nome": "Fernanda Pereira",
+    "email": "fernanda@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0032",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três porquinhos-da-índia: Amendoim, Castanha e Noz."
+  },
+  {
+    "id_usuario": 33,
+    "nome": "Gustavo Ribeiro",
+    "email": "gustavo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0033",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Pastor Alemão chamado Rex, excelente cão de guarda."
+  },
+  {
+    "id_usuario": 34,
+    "nome": "Mariana Castro",
+    "email": "mariana@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0034",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois peixe Betta, Rei e Rainha, em aquários separados."
+  },
+  {
+    "id_usuario": 35,
+    "nome": "Felipe Gomes",
+    "email": "felipe@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0035",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho uma Beagle chamada Nina, super ativa e amigável."
+  },
+  {
+    "id_usuario": 36,
+    "nome": "Patricia Dias",
+    "email": "patricia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0036",
+    "quantidade_pets": 5,
+    "descricao_pets": "Tenho cinco calopsitas que vivem em um viveiro no quintal."
+  },
+  {
+    "id_usuario": 37,
+    "nome": "Ricardo Mendes",
+    "email": "ricardo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0037",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Rottweiler chamado Thor, muito protetor da família."
+  },
+  {
+    "id_usuario": 38,
+    "nome": "Amanda Cardoso",
+    "email": "amanda@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0038",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho duas gatas siamesas, Clarinha e Escurinha, irmãs gêmeas."
+  },
+  {
+    "id_usuario": 39,
+    "nome": "Diego Barbosa",
+    "email": "diego@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0039",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Pug chamado Pudim, dorminhoco e ronca muito."
+  },
+  {
+    "id_usuario": 40,
+    "nome": "Leticia Ramos",
+    "email": "leticia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0040",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três passarinhos canários que cantam lindamente."
+  },
+  {
+    "id_usuario": 41,
+    "nome": "Thiago Nunes",
+    "email": "thiago@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0041",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Yorkshire chamado Pipo, pequeno mas corajoso."
+  },
+  {
+    "id_usuario": 42,
+    "nome": "Gabriela Cunha",
+    "email": "gabriela@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0042",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois furões, Fred e George, muito travessos."
+  },
+  {
+    "id_usuario": 43,
+    "nome": "Marcos Freitas",
+    "email": "marcos@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0043",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Husky Siberiano chamado Stark, adora o frio."
+  },
+  {
+    "id_usuario": 44,
+    "nome": "Renata Moraes",
+    "email": "renata@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0044",
+    "quantidade_pets": 4,
+    "descricao_pets": "Tenho quatro gatos vira-latas resgatados da rua."
+  },
+  {
+    "id_usuario": 45,
+    "nome": "Bruno Teixeira",
+    "email": "bruno@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0045",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Poodle chamado Billy, muito inteligente e obediente."
+  },
+  {
+    "id_usuario": 46,
+    "nome": "Vanessa Araujo",
+    "email": "vanessa@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0046",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois chinchilas, Cinza e Prata, noturnos e fofinhos."
+  },
+  {
+    "id_usuario": 47,
+    "nome": "Roberto Lopes",
+    "email": "roberto@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0047",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Border Collie chamado Flash, extremamente inteligente."
+  },
+  {
+    "id_usuario": 48,
+    "nome": "Claudia Monteiro",
+    "email": "claudia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0048",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três coelhos de raças diferentes no jardim."
+  },
+  {
+    "id_usuario": 49,
+    "nome": "Eduardo Pinto",
+    "email": "eduardo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0049",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Boxer chamado Mike, cheio de energia."
+  },
+  {
+    "id_usuario": 50,
+    "nome": "Larissa Vieira",
+    "email": "larissa@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0050",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho duas gatas Maine Coon, Luna e Stella, gigantes e peludinhas."
+  },
+  {
+    "id_usuario": 51,
+    "nome": "Andre Rocha",
+    "email": "andre@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0051",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Chihuahua chamado Teco, pequeno mas valentão."
+  },
+  {
+    "id_usuario": 52,
+    "nome": "Tatiana Campos",
+    "email": "tatiana@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0052",
+    "quantidade_pets": 6,
+    "descricao_pets": "Tenho seis periquitos australianos de cores variadas."
+  },
+  {
+    "id_usuario": 53,
+    "nome": "Rodrigo Azevedo",
+    "email": "rodrigo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0053",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Doberman chamado Duke, ótimo guardião."
+  },
+  {
+    "id_usuario": 54,
+    "nome": "Priscila Borges",
+    "email": "priscila@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0054",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois hamsters sírios, Caramelo e Chocolate."
+  },
+  {
+    "id_usuario": 55,
+    "nome": "Fabio Cavalcanti",
+    "email": "fabio@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0055",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Cocker Spaniel chamado Charlie, muito dócil."
+  },
+  {
+    "id_usuario": 56,
+    "nome": "Simone Macedo",
+    "email": "simone@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0056",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três gatos de rua que adotei, Felix, Mingau e Garfield."
+  },
+  {
+    "id_usuario": 57,
+    "nome": "Vinicius Batista",
+    "email": "vinicius@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0057",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Dálmata chamado Pongo, cheio de pintinhas."
+  },
+  {
+    "id_usuario": 58,
+    "nome": "Daniela Fonseca",
+    "email": "daniela@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0058",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho duas iguanas, Verde e Iggy, tomam sol no terraço."
+  },
+  {
+    "id_usuario": 59,
+    "nome": "Leandro Correia",
+    "email": "leandro@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0059",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Basset Hound chamado Duque, adora dormir."
+  },
+  {
+    "id_usuario": 60,
+    "nome": "Isabela Moura",
+    "email": "isabela@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0060",
+    "quantidade_pets": 4,
+    "descricao_pets": "Tenho quatro tartarugas aquáticas no lago do jardim."
+  },
+  {
+    "id_usuario": 61,
+    "nome": "Alexandre Melo",
+    "email": "alexandre@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0061",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Akita chamado Hachi, muito leal e calmo."
+  },
+  {
+    "id_usuario": 62,
+    "nome": "Monica Farias",
+    "email": "monica@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0062",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois gatos Ragdoll, Floquinho e Algodão."
+  },
+  {
+    "id_usuario": 63,
+    "nome": "Sergio Duarte",
+    "email": "sergio@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0063",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Schnauzer chamado Otto, barbudo e charmoso."
+  },
+  {
+    "id_usuario": 64,
+    "nome": "Aline Tavares",
+    "email": "aline@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0064",
+    "quantidade_pets": 5,
+    "descricao_pets": "Tenho cinco pássaros trinca-ferro que participam de competições."
+  },
+  {
+    "id_usuario": 65,
+    "nome": "Henrique Xavier",
+    "email": "henrique@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0065",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Weimaraner chamado Silver, adora caçar."
+  },
+  {
+    "id_usuario": 66,
+    "nome": "Cristina Pacheco",
+    "email": "cristina@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0066",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois porquinhos mini pig, Rosa e Rosinha."
+  },
+  {
+    "id_usuario": 67,
+    "nome": "Mauricio Esteves",
+    "email": "mauricio@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0067",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Pit Bull chamado Tyson, muito carinhoso com crianças."
+  },
+  {
+    "id_usuario": 68,
+    "nome": "Luciana Braga",
+    "email": "luciana@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0068",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três gatos angorá, brancos e peludos."
+  },
+  {
+    "id_usuario": 69,
+    "nome": "Paulo Vasconcelos",
+    "email": "paulo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0069",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Fila Brasileiro chamado Leão, protetor da propriedade."
+  },
+  {
+    "id_usuario": 70,
+    "nome": "Adriana Silveira",
+    "email": "adriana@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0070",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois sapos de estimação em um terrário."
+  },
+  {
+    "id_usuario": 71,
+    "nome": "Guilherme Marques",
+    "email": "guilherme@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0071",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Maltês chamado Snow, todo branquinho."
+  },
+  {
+    "id_usuario": 72,
+    "nome": "Eliane Nogueira",
+    "email": "eliane@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0072",
+    "quantidade_pets": 4,
+    "descricao_pets": "Tenho quatro coelhos que vivem soltos no quintal."
+  },
+  {
+    "id_usuario": 73,
+    "nome": "Mateus Carvalho",
+    "email": "mateus@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0073",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um São Bernardo chamado Bernie, gigante e gentil."
+  },
+  {
+    "id_usuario": 74,
+    "nome": "Viviane Rezende",
+    "email": "viviane@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0074",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho duas cobras corn snake, Coral e Ruby."
+  },
+  {
+    "id_usuario": 75,
+    "nome": "Renato Soares",
+    "email": "renato@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0075",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Chow Chow chamado Simba, parece um leãozinho."
+  },
+  {
+    "id_usuario": 76,
+    "nome": "Natalia Miranda",
+    "email": "natalia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0076",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três geckos leopardo em terrários separados."
+  },
+  {
+    "id_usuario": 77,
+    "nome": "Fernando Guimaraes",
+    "email": "fernando@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0077",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Lhasa Apso chamado Buddy, muito peludo."
+  },
+  {
+    "id_usuario": 78,
+    "nome": "Carla Medeiros",
+    "email": "carla@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0078",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho duas araras azuis que vivem em um viveiro grande."
+  },
+  {
+    "id_usuario": 79,
+    "nome": "Igor Figueiredo",
+    "email": "igor@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0079",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um American Bully chamado Tank, musculoso mas dócil."
+  },
+  {
+    "id_usuario": 80,
+    "nome": "Silvia Barros",
+    "email": "silvia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0080",
+    "quantidade_pets": 5,
+    "descricao_pets": "Tenho cinco peixinhos dourados em um aquário decorado."
+  },
+  {
+    "id_usuario": 81,
+    "nome": "Cesar Andrade",
+    "email": "cesar@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0081",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Dogue Alemão chamado Zeus, enorme mas manso."
+  },
+  {
+    "id_usuario": 82,
+    "nome": "Juliana Bastos",
+    "email": "juliana@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0082",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois gatos Sphynx, sem pelos e muito carinhosos."
+  },
+  {
+    "id_usuario": 83,
+    "nome": "Antonio Mesquita",
+    "email": "antonio@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0083",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Springer Spaniel chamado Hunter, adora nadar."
+  },
+  {
+    "id_usuario": 84,
+    "nome": "Rosana Caldeira",
+    "email": "rosana@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0084",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três mini coelhos anões de orelhas caídas."
+  },
+  {
+    "id_usuario": 85,
+    "nome": "Claudio Santana",
+    "email": "claudio@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0085",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Mastiff Inglês chamado Hércules, gigante e protetor."
+  },
+  {
+    "id_usuario": 86,
+    "nome": "Denise Vargas",
+    "email": "denise@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0086",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois dragões barbudos, Spike e Draco."
+  },
+  {
+    "id_usuario": 87,
+    "nome": "Marcelo Peixoto",
+    "email": "marcelo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0087",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um West Highland Terrier chamado Mac, todo branco."
+  },
+  {
+    "id_usuario": 88,
+    "nome": "Alessandra Siqueira",
+    "email": "alessandra@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0088",
+    "quantidade_pets": 4,
+    "descricao_pets": "Tenho quatro ratos de estimação, muito inteligentes e limpos."
+  },
+  {
+    "id_usuario": 89,
+    "nome": "Joao Henrique",
+    "email": "joaohenrique@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0089",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Shar Pei chamado Rugas, cheio de dobrinhas."
+  },
+  {
+    "id_usuario": 90,
+    "nome": "Michele Furtado",
+    "email": "michele@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0090",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois hamsters roborovskis, os menores que existem."
+  },
+  {
+    "id_usuario": 91,
+    "nome": "Fabiano Castro",
+    "email": "fabiano@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0091",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Bernese Mountain Dog chamado Alpes, peludo e amoroso."
+  },
+  {
+    "id_usuario": 92,
+    "nome": "Raquel Cordeiro",
+    "email": "raquel@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0092",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três porquinhos-da-índia de pelo comprido."
+  },
+  {
+    "id_usuario": 93,
+    "nome": "Gilberto Rangel",
+    "email": "gilberto@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0093",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Pointer Inglês chamado Hunter, caçador nato."
+  },
+  {
+    "id_usuario": 94,
+    "nome": "Sabrina Moreira",
+    "email": "sabrina@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0094",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho duas cacatuas brancas que adoram conversar."
+  },
+  {
+    "id_usuario": 95,
+    "nome": "Walter Nascimento",
+    "email": "walter@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0095",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Newfoundland chamado Ursinho, parece um urso."
+  },
+  {
+    "id_usuario": 96,
+    "nome": "Regina Assis",
+    "email": "regina@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0096",
+    "quantidade_pets": 6,
+    "descricao_pets": "Tenho seis guppys coloridos em um aquário plantado."
+  },
+  {
+    "id_usuario": 97,
+    "nome": "Nelson Horta",
+    "email": "nelson@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0097",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Bull Terrier chamado Spike, cabeça de ovo."
+  },
+  {
+    "id_usuario": 98,
+    "nome": "Valeria Prado",
+    "email": "valeria@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0098",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois gatos Scottish Fold, com orelhinhas dobradas."
+  },
+  {
+    "id_usuario": 99,
+    "nome": "Eder Baptista",
+    "email": "eder@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0099",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Boiadeiro Australiano chamado Blue, muito ativo."
+  },
+  {
+    "id_usuario": 100,
+    "nome": "Sonia Antunes",
+    "email": "sonia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0100",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três axolotls de cores diferentes em aquários."
+  },
+  {
+    "id_usuario": 101,
+    "nome": "Luiz Felipe",
+    "email": "luizfelipe@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0101",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Setter Irlandês chamado Ruivo, lindo e elegante."
+  },
+  {
+    "id_usuario": 102,
+    "nome": "Miriam Salazar",
+    "email": "miriam@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0102",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois agapornis inseparáveis, sempre juntinhos."
+  },
+  {
+    "id_usuario": 103,
+    "nome": "Edson Madureira",
+    "email": "edson@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0103",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Airedale Terrier chamado Rex, rei dos terriers."
+  },
+  {
+    "id_usuario": 104,
+    "nome": "Jaqueline Torres",
+    "email": "jaqueline@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0104",
+    "quantidade_pets": 4,
+    "descricao_pets": "Tenho quatro patos ornamentais no lago do sítio."
+  },
+  {
+    "id_usuario": 105,
+    "nome": "Wilson Vilela",
+    "email": "wilson@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0105",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Ridgeback da Rodésia chamado Simba, caçador de leões."
+  },
+  {
+    "id_usuario": 106,
+    "nome": "Glaucia Queiroz",
+    "email": "glaucia@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0106",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois gatos Exóticos de pelo curto, cara achatadinha."
+  },
+  {
+    "id_usuario": 107,
+    "nome": "Ronaldo Bittencourt",
+    "email": "ronaldo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0107",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Vizsla Húngaro chamado Rusty, cor de ferrugem."
+  },
+  {
+    "id_usuario": 108,
+    "nome": "Sandra Guedes",
+    "email": "sandra@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0108",
+    "quantidade_pets": 5,
+    "descricao_pets": "Tenho cinco galinhas ornamentais no quintal, coloridas."
+  },
+  {
+    "id_usuario": 109,
+    "nome": "Robson Quintana",
+    "email": "robson@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0109",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Cane Corso chamado Brutus, guardião imponente."
+  },
+  {
+    "id_usuario": 110,
+    "nome": "Angela Vasques",
+    "email": "angela@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0110",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois gatos Toyger, parecem tigres em miniatura."
+  },
+  {
+    "id_usuario": 111,
+    "nome": "Milton Xavier",
+    "email": "milton@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0111",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Kerry Blue Terrier chamado Blue, pelagem azulada."
+  },
+  {
+    "id_usuario": 112,
+    "nome": "Elza Barreto",
+    "email": "elza@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0112",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três tartarugas terrestres que vivem no jardim."
+  },
+  {
+    "id_usuario": 113,
+    "nome": "Jair Fonseca",
+    "email": "jair@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0113",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Galgo Espanhol chamado Veloz, corridista nato."
+  },
+  {
+    "id_usuario": 114,
+    "nome": "Vera Machado",
+    "email": "vera@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0114",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois esquilos degus, muito sociáveis e ativos."
+  },
+  {
+    "id_usuario": 115,
+    "nome": "Jorge Ayres",
+    "email": "jorge@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0115",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Leonberger chamado Leo, gigante e gentil."
+  },
+  {
+    "id_usuario": 116,
+    "nome": "Sueli Gregorio",
+    "email": "sueli@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0116",
+    "quantidade_pets": 4,
+    "descricao_pets": "Tenho quatro gatos vira-latas de idades diferentes."
+  },
+  {
+    "id_usuario": 117,
+    "nome": "Geraldo Linhares",
+    "email": "geraldo@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0117",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Saluki chamado Faraó, elegante e veloz."
+  },
+  {
+    "id_usuario": 118,
+    "nome": "Lucia Helena",
+    "email": "luciahelena@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0118",
+    "quantidade_pets": 2,
+    "descricao_pets": "Tenho dois ouriços africanos, Espinho e Espetinho."
+  },
+  {
+    "id_usuario": 119,
+    "nome": "Mauro Sacramento",
+    "email": "mauro@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0119",
+    "quantidade_pets": 1,
+    "descricao_pets": "Tenho um Boerboel chamado Maximus, protetor sul-africano."
+  },
+  {
+    "id_usuario": 120,
+    "nome": "Marta Evangelista",
+    "email": "marta@tutor.com",
+    "senha": "1234aA@#",
+    "telefone": "(28) 99999-0120",
+    "quantidade_pets": 3,
+    "descricao_pets": "Tenho três galos de briga aposentados, agora só pets."
   }
 ]

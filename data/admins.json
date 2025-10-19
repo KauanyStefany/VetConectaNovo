@@ -2,7 +2,31 @@
   {
     "id_admin": 1,
     "nome": "Administrador Padrão",
-    "email": "admin@email.com",
+    "email": "padrao@admin.com",
+    "senha": "1234aA@#"
+  },
+  {
+    "id_admin": 2,
+    "nome": "Brenda Souza",
+    "email": "brenda@admin.com",
+    "senha": "1234aA@#"
+  },
+  {
+    "id_admin": 3,
+    "nome": "Kauany Gomes",
+    "email": "kauany@admin.com",
+    "senha": "1234aA@#"
+  },
+  {
+    "id_admin": 4,
+    "nome": "Luana Santos",
+    "email": "luana@admin.com",
+    "senha": "1234aA@#"
+  },
+  {
+    "id_admin": 5,
+    "nome": "Sofia Koppe",
+    "email": "sofia@admin.com",
     "senha": "1234aA@#"
   }
 ]

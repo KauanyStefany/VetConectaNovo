@@ -1,0 +1,32 @@
+[
+  {
+    "id_categoria_artigo": 1,
+    "nome": "Caninos",
+    "cor": "#652c61"
+  },
+  {
+    "id_categoria_artigo": 2,
+    "nome": "Felinos",
+    "cor": "#e95a16"
+  },
+  {
+    "id_categoria_artigo": 3,
+    "nome": "Roedores",
+    "cor": "#eb6391"
+  },
+  {
+    "id_categoria_artigo": 4,
+    "nome": "Aves",
+    "cor": "#4f5faa"
+  },
+  {
+    "id_categoria_artigo": 5,
+    "nome": "Répteis",
+    "cor": "#4a615b"
+  },
+  {
+    "id_categoria_artigo": 6,
+    "nome": "Peixes",
+    "cor": "#22a4ae"
+  }
+]

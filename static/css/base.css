@@ -52,7 +52,7 @@ body {
 
 /* Fundo Animais que caiba na altura do conteiner */
 .bg-img-animais {
-    background-image: url('/static/img/animais-hd.webp') !important;
+    background-image: url('/static/img/animais.webp') !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: contain !important;
