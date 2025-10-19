@@ -90,6 +90,7 @@ def inicializar_banco():
     importar_admins()
     importar_veterinarios()
     importar_tutores()
+    importar_categorias_artigos()
 
 
 def importar_admins():
@@ -204,3 +205,34 @@ def importar_veterinarios():
         )
         veterinario_repo.importar(vet)
         logger.info(f"Veterinário '{vet.nome}' importado com sucesso.")
+
+
+def importar_categorias_artigos():
+    """Importa categorias de artigos do arquivo JSON se a tabela estiver vazia."""
+    from repo import categoria_artigo_repo
+    from model.categoria_artigo_model import CategoriaArtigo
+
+    # Verifica se a tabela está vazia
+    categorias_existentes = categoria_artigo_repo.obter_pagina(offset=0, limite=1)
+    if categorias_existentes:
+        logger.info("Tabela de categorias de artigos já contém dados. Importação ignorada.")
+        return
+
+    # Lê o arquivo JSON
+    json_path = Path(__file__).parent.parent / "data" / "categorias_artigos.json"
+    if not json_path.exists():
+        logger.warning(f"Arquivo {json_path} não encontrado.")
+        return
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    # Importa cada categoria
+    for item in dados:
+        categoria = CategoriaArtigo(
+            id_categoria_artigo=item["id_categoria_artigo"],
+            nome=item["nome"],
+            cor=item["cor"],
+        )
+        categoria_artigo_repo.importar(categoria)
+        logger.info(f"Categoria '{categoria.nome}' importada com sucesso.")

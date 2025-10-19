@@ -85,7 +85,7 @@ class TestComentarioRepo:
         veterinario_teste.id_usuario = id_usuario_vet
 
         categoria_artigo_teste = CategoriaArtigo(
-            0, "Categoria Teste", "#FF5733", "categoria.png"
+            0, "Categoria Teste", "#FF5733"
         )
         id_categoria_artigo = inserir_categoria(categoria_artigo_teste)
         assert id_categoria_artigo is not None
@@ -171,7 +171,7 @@ class TestComentarioRepo:
         id_vet = inserir_veterinario(veterinario)
         assert id_vet is not None
 
-        categoria = CategoriaArtigo(0, "Saúde", "#FF5733", "saude.png")
+        categoria = CategoriaArtigo(0, "Saúde", "#FF5733")
         id_categoria = inserir_categoria(categoria)
         assert id_categoria is not None
 
@@ -271,7 +271,7 @@ class TestComentarioRepo:
         )
         id_vet = inserir_veterinario(veterinario)
 
-        categoria = CategoriaArtigo(0, "Nutrição", "#00FF00", "nutricao.png")
+        categoria = CategoriaArtigo(0, "Nutrição", "#00FF00")
         id_categoria = inserir_categoria(categoria)
         assert id_categoria is not None
 
@@ -358,7 +358,7 @@ class TestComentarioRepo:
         )
         id_vet = inserir_veterinario(veterinario)
 
-        categoria = CategoriaArtigo(0, "Comportamento", "#0000FF", "comportamento.png")
+        categoria = CategoriaArtigo(0, "Comportamento", "#0000FF")
         id_categoria = inserir_categoria(categoria)
         assert id_categoria is not None
 

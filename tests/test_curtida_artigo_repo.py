@@ -70,7 +70,6 @@ class TestCurtidaArtigoRepo:
             id_categoria_artigo=0,
             nome="Cuidados",
             cor="#3498DB",
-            imagem="cuidados.png",
         )
         id_categoria = categoria_artigo_repo.inserir(categoria)
         assert id_categoria is not None
@@ -162,7 +161,7 @@ class TestCurtidaArtigoRepo:
         assert id_veterinario is not None
 
         # Criar categoria
-        categoria = CategoriaArtigo(0, "Saúde", "#2ECC71", "saude.png")
+        categoria = CategoriaArtigo(0, "Saúde", "#2ECC71")
         id_categoria = categoria_artigo_repo.inserir(categoria)
         assert id_categoria is not None
 
@@ -233,7 +232,7 @@ class TestCurtidaArtigoRepo:
         assert id_veterinario is not None
 
         # Criar categoria
-        categoria = CategoriaArtigo(0, "Nutrição", "#E74C3C", "nutricao.png")
+        categoria = CategoriaArtigo(0, "Nutrição", "#E74C3C")
         id_categoria = categoria_artigo_repo.inserir(categoria)
         assert id_categoria is not None
 

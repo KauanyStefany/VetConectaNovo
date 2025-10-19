@@ -49,7 +49,6 @@ class TestPostagemArtigoRepo:
             id_categoria_artigo=0,
             nome="Saúde Felina",
             cor="#27AE60",
-            imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
         assert id_cat is not None
@@ -115,7 +114,6 @@ class TestPostagemArtigoRepo:
             id_categoria_artigo=0,
             nome="Saúde Felina",
             cor="#27AE60",
-            imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
         assert id_cat is not None
@@ -178,7 +176,6 @@ class TestPostagemArtigoRepo:
             id_categoria_artigo=0,
             nome="Saúde Felina",
             cor="#27AE60",
-            imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
         assert id_cat is not None
@@ -245,7 +242,6 @@ class TestPostagemArtigoRepo:
             id_categoria_artigo=0,
             nome="Saúde Felina",
             cor="#27AE60",
-            imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
         assert id_cat is not None
@@ -293,7 +289,6 @@ class TestPostagemArtigoRepo:
             id_categoria_artigo=0,
             nome="Saúde Felina",
             cor="#27AE60",
-            imagem="saude_felina.png",
         )
         id_cat = categoria_artigo_repo.inserir(categoria)
         assert id_vet is not None

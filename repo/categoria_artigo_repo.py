@@ -18,7 +18,7 @@ def criar_tabela() -> bool:
 def inserir(categoria: CategoriaArtigo) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(INSERIR, (categoria.nome, categoria.cor, categoria.imagem))
+        cursor.execute(INSERIR, (categoria.nome, categoria.cor))
         return cursor.lastrowid
 
 
@@ -30,7 +30,6 @@ def atualizar(categoria: CategoriaArtigo) -> bool:
             (
                 categoria.nome,
                 categoria.cor,
-                categoria.imagem,
                 categoria.id_categoria_artigo,
             ),
         )
@@ -58,3 +57,10 @@ def obter_por_id(id_categoria: int) -> Optional[CategoriaArtigo]:
         cursor.execute(OBTER_POR_ID, (id_categoria,))
         row = cursor.fetchone()
         return CategoriaArtigo(**row) if row else None
+
+
+def importar(categoria: CategoriaArtigo) -> Optional[int]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(IMPORTAR, (categoria.id_categoria_artigo, categoria.nome, categoria.cor))
+        return categoria.id_categoria_artigo
