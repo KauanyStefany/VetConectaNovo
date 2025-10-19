@@ -41,6 +41,15 @@ FROM categoria_artigo
 WHERE id_categoria_artigo = ?;
 """
 
+OBTER_TODOS = """
+SELECT
+    id_categoria_artigo,
+    nome,
+    cor
+FROM categoria_artigo
+ORDER BY nome;
+"""
+
 IMPORTAR = """
 INSERT INTO categoria_artigo (id_categoria_artigo, nome, cor)
 VALUES (?, ?, ?);

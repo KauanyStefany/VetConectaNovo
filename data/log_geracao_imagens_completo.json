@@ -1,0 +1,711 @@
+{
+  "total": 100,
+  "generated": 0,
+  "existing": 0,
+  "failed": 0,
+  "start_time": "2025-10-19T19:42:15.170911",
+  "details": [
+    {
+      "id": 1,
+      "filename": "00000001.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173111",
+      "prompt": "professional veterinary photograph of a dog, young, cute, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 2,
+      "filename": "00000002.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173138",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, with food bowl, feeding time, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 3,
+      "filename": "00000003.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173152",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 4,
+      "filename": "00000004.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173162",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 5,
+      "filename": "00000005.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173170",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 6,
+      "filename": "00000006.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173179",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary clinic, medical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 7,
+      "filename": "00000007.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173187",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 8,
+      "filename": "00000008.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173199",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 9,
+      "filename": "00000009.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173209",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 10,
+      "filename": "00000010.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173260",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 11,
+      "filename": "00000011.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173278",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 12,
+      "filename": "00000012.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173288",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 13,
+      "filename": "00000013.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173296",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 14,
+      "filename": "00000014.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173305",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 15,
+      "filename": "00000015.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173312",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 16,
+      "filename": "00000016.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173321",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 17,
+      "filename": "00000017.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173328",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 18,
+      "filename": "00000018.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173335",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 19,
+      "filename": "00000019.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173345",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 20,
+      "filename": "00000020.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173354",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 21,
+      "filename": "00000021.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173365",
+      "prompt": "professional veterinary photograph of a pet bird, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 22,
+      "filename": "00000022.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173372",
+      "prompt": "professional veterinary photograph of a rodent (hamster, guinea pig, or rabbit), healthy, alert, with food bowl, feeding time, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 23,
+      "filename": "00000023.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173379",
+      "prompt": "professional veterinary photograph of a reptile (turtle, lizard, or snake), healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 24,
+      "filename": "00000024.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173386",
+      "prompt": "professional veterinary photograph of a reptile (turtle, lizard, or snake), healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 25,
+      "filename": "00000025.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173394",
+      "prompt": "professional veterinary photograph of a pet bird, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 26,
+      "filename": "00000026.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173401",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 27,
+      "filename": "00000027.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173408",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 28,
+      "filename": "00000028.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173415",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 29,
+      "filename": "00000029.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173423",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 30,
+      "filename": "00000030.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173430",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 31,
+      "filename": "00000031.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173439",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 32,
+      "filename": "00000032.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173483",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 33,
+      "filename": "00000033.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173505",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 34,
+      "filename": "00000034.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173515",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 35,
+      "filename": "00000035.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173524",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 36,
+      "filename": "00000036.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173532",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 37,
+      "filename": "00000037.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173539",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 38,
+      "filename": "00000038.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173546",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 39,
+      "filename": "00000039.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173554",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 40,
+      "filename": "00000040.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173561",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 41,
+      "filename": "00000041.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173570",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 42,
+      "filename": "00000042.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173577",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 43,
+      "filename": "00000043.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173584",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 44,
+      "filename": "00000044.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173591",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 45,
+      "filename": "00000045.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173598",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 46,
+      "filename": "00000046.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173604",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 47,
+      "filename": "00000047.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173611",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 48,
+      "filename": "00000048.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173618",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 49,
+      "filename": "00000049.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173626",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 50,
+      "filename": "00000050.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173633",
+      "prompt": "professional veterinary photograph of a dog, young, cute, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 51,
+      "filename": "00000051.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173642",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 52,
+      "filename": "00000052.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173649",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 53,
+      "filename": "00000053.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173656",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 54,
+      "filename": "00000054.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173664",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 55,
+      "filename": "00000055.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173671",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 56,
+      "filename": "00000056.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173678",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 57,
+      "filename": "00000057.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173685",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 58,
+      "filename": "00000058.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173693",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 59,
+      "filename": "00000059.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173700",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 60,
+      "filename": "00000060.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173706",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 61,
+      "filename": "00000061.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173717",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 62,
+      "filename": "00000062.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173726",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 63,
+      "filename": "00000063.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173734",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 64,
+      "filename": "00000064.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173741",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 65,
+      "filename": "00000065.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173750",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 66,
+      "filename": "00000066.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173782",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 67,
+      "filename": "00000067.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173792",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 68,
+      "filename": "00000068.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173799",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 69,
+      "filename": "00000069.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173806",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 70,
+      "filename": "00000070.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173815",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 71,
+      "filename": "00000071.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173824",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 72,
+      "filename": "00000072.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173831",
+      "prompt": "professional veterinary photograph of a pet bird, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 73,
+      "filename": "00000073.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173838",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 74,
+      "filename": "00000074.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173845",
+      "prompt": "professional veterinary photograph of a pet bird, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 75,
+      "filename": "00000075.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173852",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 76,
+      "filename": "00000076.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173858",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 77,
+      "filename": "00000077.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173870",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 78,
+      "filename": "00000078.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173878",
+      "prompt": "professional veterinary photograph of a cat, senior, mature, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 79,
+      "filename": "00000079.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173885",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 80,
+      "filename": "00000080.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173891",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 81,
+      "filename": "00000081.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173902",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 82,
+      "filename": "00000082.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173908",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, veterinary clinic, medical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 83,
+      "filename": "00000083.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173916",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 84,
+      "filename": "00000084.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173923",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 85,
+      "filename": "00000085.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173929",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 86,
+      "filename": "00000086.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173936",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 87,
+      "filename": "00000087.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173943",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 88,
+      "filename": "00000088.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173950",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 89,
+      "filename": "00000089.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173956",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 90,
+      "filename": "00000090.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173963",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 91,
+      "filename": "00000091.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173972",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 92,
+      "filename": "00000092.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173978",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 93,
+      "filename": "00000093.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173985",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 94,
+      "filename": "00000094.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.173993",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 95,
+      "filename": "00000095.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.174000",
+      "prompt": "professional veterinary photograph of a dog, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 96,
+      "filename": "00000096.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.174009",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 97,
+      "filename": "00000097.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.174016",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, veterinary examination, clinical setting, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 98,
+      "filename": "00000098.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.174023",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 99,
+      "filename": "00000099.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.174072",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    },
+    {
+      "id": 100,
+      "filename": "00000100.jpg",
+      "status": "needs_generation",
+      "timestamp": "2025-10-19T19:42:15.174092",
+      "prompt": "professional veterinary photograph of a cat, healthy, alert, clean veterinary clinic background, professional photography, natural lighting, high quality, detailed, realistic"
+    }
+  ],
+  "end_time": "2025-10-19T19:42:15.175760",
+  "cost_estimate_usd": 0.0
+}

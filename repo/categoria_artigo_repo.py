@@ -59,6 +59,14 @@ def obter_por_id(id_categoria: int) -> Optional[CategoriaArtigo]:
         return CategoriaArtigo(**row) if row else None
 
 
+def obter_todos() -> List[CategoriaArtigo]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_TODOS)
+        rows = cursor.fetchall()
+        return [CategoriaArtigo(**row) for row in rows]
+
+
 def importar(categoria: CategoriaArtigo) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()

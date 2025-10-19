@@ -14,13 +14,52 @@ templates = criar_templates()
 
 @router.get("/")
 async def get_root(request: Request):
-    response = templates.TemplateResponse("publico/index.html", {"request": request})
+    # Buscar artigos recentes (6 primeiros)
+    artigos_recentes = postagem_artigo_repo.obter_recentes_com_dados(6)
+
+    # Buscar todas as categorias
+    categorias = categoria_artigo_repo.obter_todos()
+
+    context = {
+        "request": request,
+        "artigos_recentes": artigos_recentes,
+        "categorias": categorias
+    }
+
+    response = templates.TemplateResponse("publico/index.html", context)
     return response
 
 
 @router.get("/quemsomos")
 async def get_sobre(request: Request):
     return templates.TemplateResponse("publico/quem_somos.html", {"request": request})
+
+
+@router.get("/artigos", response_class=HTMLResponse)
+async def get_artigos(request: Request, pagina: int = 1, categoria: int = None):
+    """Lista todos os artigos com paginação e filtro por categoria."""
+    tamanho_pagina = 12
+
+    # Buscar artigos
+    if categoria:
+        artigos = postagem_artigo_repo.obter_por_categoria_com_dados(categoria, pagina, tamanho_pagina)
+        categoria_selecionada = categoria_artigo_repo.obter_por_id(categoria)
+    else:
+        artigos = postagem_artigo_repo.obter_pagina_com_dados(pagina, tamanho_pagina)
+        categoria_selecionada = None
+
+    # Buscar todas as categorias
+    categorias = categoria_artigo_repo.obter_todos()
+
+    context = {
+        "request": request,
+        "artigos": artigos,
+        "categorias": categorias,
+        "categoria_selecionada": categoria_selecionada,
+        "pagina": pagina,
+    }
+
+    return templates.TemplateResponse("publico/artigos.html", context)
 
 
 @router.get("/artigos/{id_postagem_artigo}", response_class=HTMLResponse)

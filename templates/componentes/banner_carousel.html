@@ -1,31 +1,40 @@
 <!-- Carousel de Banners -->
-<div id="carouselBanners" class="carousel slide mb-5 mx-5" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Banner 1"></button>
-        <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="1" aria-label="Banner 2"></button>
-        <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="2" aria-label="Banner 3"></button>
+<div class="container">
+    <div id="carouselBanners" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Banner 1"></button>
+            <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="1" aria-label="Banner 2"></button>
+            <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="2" aria-label="Banner 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/static/img/banners/banner1.jpg" class="d-block w-100" alt="Banner 1">
+            </div>
+            <div class="carousel-item">
+                <img src="/static/img/banners/banner2.jpg" class="d-block w-100" alt="Banner 2">
+            </div>
+            <div class="carousel-item">
+                <img src="/static/img/banners/banner3.jpg" class="d-block w-100" alt="Banner 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev justify-content-start" type="button" data-bs-target="#carouselBanners"
+            data-bs-slide="prev">
+            <span
+                class="carousel-control-prev-icon bg-img-none rounded-circle fs-3 p-4 bg-light text-black d-flex align-items-center justify-content-center ms-3"
+                aria-hidden="true">
+                <i class="bi bi-chevron-left"></i>
+            </span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next justify-content-end" type="button" data-bs-target="#carouselBanners"
+            data-bs-slide="next">
+            <span
+                class="carousel-control-next-icon bg-img-none rounded-circle fs-3 p-4 bg-light text-black d-flex align-items-center justify-content-center me-3"
+                aria-hidden="true">
+                <i class="bi bi-chevron-right"></i>
+            </span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="/static/img/banners/banner1.jpg" class="d-block w-100" alt="Banner 1">
-        </div>
-        <div class="carousel-item">
-            <img src="/static/img/banners/banner2.jpg" class="d-block w-100" alt="Banner 2">
-        </div>
-        <div class="carousel-item">
-            <img src="/static/img/banners/banner3.jpg" class="d-block w-100" alt="Banner 3">
-        </div>
-    </div>
-    <button class="carousel-control-prev justify-content-start" type="button" data-bs-target="#carouselBanners" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-img-none rounded-circle fs-3 p-4 bg-light text-black d-flex align-items-center justify-content-center ms-3" aria-hidden="true">
-            <i class="bi bi-chevron-left"></i>
-        </span>
-        <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next justify-content-end" type="button" data-bs-target="#carouselBanners" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-img-none rounded-circle fs-3 p-4 bg-light text-black d-flex align-items-center justify-content-center me-3" aria-hidden="true">
-            <i class="bi bi-chevron-right"></i>
-        </span>
-        <span class="visually-hidden">Próximo</span>
-    </button>
 </div>

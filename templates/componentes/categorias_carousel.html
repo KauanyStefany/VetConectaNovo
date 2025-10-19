@@ -1,64 +1,24 @@
-<!-- Carousel de Ícones de Animais -->
-<div class="mb-5 mx-5 position-relative">
-    <div class="overflow-hidden">
-        <div class="row row-cols-6 g-5 mx-5" id="categoriasTrack">
-            <div class="col">
-                <a href="/animais/caes" class="text-decoration-none">
-                    <div class="card h-100 bg-transparent border-0">
-                        <img src="/static/img/icons/cao_icon.jpg" class="card-img-top rounded-circle p-2" alt="Cães">
-                        <span class="bg-bege text-dark fw-bold text-center fs-5 p-2 w-100 mx-auto rounded-pill my-3">Cães</span>
-                    </div>
-                </a>
+<!-- Carousel de Categorias de Artigos -->
+<div class="container">
+    <div class="mb-5 position-relative">
+        <div class="overflow-hidden">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-5" id="categoriasTrack">
+                {% for categoria in categorias %}
+                <div class="col">
+                    <a href="/artigos?categoria={{ categoria.id_categoria_artigo }}" class="text-decoration-none">
+                        <div class="card h-100 bg-transparent border-0 text-center">
+                            <img src="/static/img/categorias/{{ '%02d' % categoria.id_categoria_artigo }}.jpg"
+                                class="card-img-top rounded-circle p-2" alt="{{ categoria.nome }}"
+                                style="object-fit: cover; aspect-ratio: 1/1;">
+                            <span
+                                class="bg-bege text-dark fw-bold text-center fs-5 p-2 w-100 mx-auto rounded-pill my-3">
+                                {{ categoria.nome }}
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
             </div>
-            
-            <div class="col">
-                <a href="/animais/gatos" class="text-decoration-none">
-                    <div class="card h-100 bg-transparent border-0">
-                        <img src="/static/img/icons/gato_icon.jpg" class="card-img-top rounded-circle p-2" alt="Gatos">
-                        <span class="bg-bege text-dark fw-bold text-center fs-5 p-2 w-100 mx-auto rounded-pill my-3">Gatos</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col">
-                <a href="/animais/passaros" class="text-decoration-none">
-                    <div class="card h-100 bg-transparent border-0">
-                        <img src="/static/img/icons/passaro_icon.jpg" class="card-img-top rounded-circle p-2" alt="Pássaros">
-                        <span class="bg-bege text-dark fw-bold text-center fs-5 p-2 w-100 mx-auto rounded-pill my-3">Pássaros</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col">
-                <a href="/animais/roedores" class="text-decoration-none">
-                    <div class="card h-100 bg-transparent border-0">
-                        <img src="/static/img/icons/roedor_icon.jpg" class="card-img-top rounded-circle p-2" alt="Roedores">
-                        <span class="bg-bege text-dark fw-bold text-center fs-5 p-2 w-100 mx-auto rounded-pill my-3">Roedores</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col">
-                <a href="/animais/tartarugas" class="text-decoration-none">
-                    <div class="card h-100 bg-transparent border-0">
-                        <img src="/static/img/icons/tartaruga_icon.jpg" class="card-img-top rounded-circle p-2" alt="Tartarugas">
-                        <span class="bg-bege text-dark fw-bold text-center fs-5 p-2 w-100 mx-auto rounded-pill my-3">Tartarugas</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col">
-                <a href="/animais/caes" class="text-decoration-none">
-                    <div class="card h-100 bg-transparent border-0">
-                        <img src="/static/img/icons/cao_icon.jpg" class="card-img-top rounded-circle p-2" alt="Cães">
-                        <span class="bg-bege text-dark fw-bold text-center fs-5 p-2 w-100 mx-auto rounded-pill my-3">Cães</span>
-                    </div>
-                </a>
-            </div>    
         </div>
-    </div>    
+    </div>
 </div>
-
-<script>
-    
-</script>

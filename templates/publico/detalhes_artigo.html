@@ -4,7 +4,7 @@
 
 {% block conteudo %}
 
-<div class="container py-5">
+<div class="container">
     <!-- Cabeçalho do Artigo -->
     <div class="row mb-4">
         <div class="col-12">
@@ -41,11 +41,19 @@
     <div class="row">
         <!-- Conteúdo Principal -->
         <div class="col-lg-8">
+            <!-- Imagem do Artigo -->
+            <div class="mb-4">
+                <img src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg"
+                     alt="{{ artigo.titulo }}"
+                     class="img-fluid rounded shadow-sm w-100"
+                     style="max-height: 500px; object-fit: cover;">
+            </div>
+
             <!-- Card do Conteúdo -->
             <div class="card border-0 shadow-sm mb-4">
-                <div class="card-body p-4">
+                <div class="card-body py-0">
                     <!-- Conteúdo do Artigo -->
-                    <div class="article-content" style="line-height: 1.8; font-size: 1.05rem;">
+                    <div class="article-content lh-lg px-2">
                         {{ artigo.conteudo|safe }}
                     </div>
                 </div>
@@ -92,6 +100,15 @@
                     </h5>
                 </div>
                 <div class="card-body p-4">
+                    <!-- Foto do Veterinário -->
+                    <div class="text-center mb-3">
+                        <img src="/static/img/usuarios/{{ '%08d' % veterinario.id_usuario }}.jpg"
+                             alt="{{ veterinario.nome }}"
+                             class="rounded-circle shadow mb-3"
+                             style="width: 120px; height: 120px; object-fit: cover;"
+                             onerror="this.src='/static/img/default-avatar.jpg'">
+                    </div>
+
                     <!-- Nome do Veterinário -->
                     <div class="text-center mb-3">
                         <h5 class="fw-bold text-roxo mb-2">{{ veterinario.nome }}</h5>
@@ -144,15 +161,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Botão Voltar -->
-    <div class="row mt-4">
-        <div class="col-12 text-center">
-            <a href="/" class="btn btn-outline-roxo btn-lg px-5">
-                <i class="bi bi-arrow-left me-2"></i>Voltar para a Página Inicial
-            </a>
-        </div>
-    </div>
 </div>
 
 {% endblock %}
@@ -163,10 +171,6 @@
     .article-content {
         text-align: justify;
         white-space: pre-wrap;
-    }
-
-    .article-content p {
-        margin-bottom: 1.2rem;
     }
 
     .btn-roxo {
@@ -188,10 +192,6 @@
         background-color: var(--cor-roxo);
         border-color: var(--cor-roxo);
         color: #fff;
-    }
-
-    .sticky-top {
-        position: sticky;
     }
 
     @media (max-width: 991px) {

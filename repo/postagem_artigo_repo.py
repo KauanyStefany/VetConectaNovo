@@ -99,6 +99,37 @@ def obter_por_id(id_postagem_artigo: int) -> Optional[PostagemArtigo]:
         return None
 
 
+def obter_recentes_com_dados(limite: int) -> List[dict]:
+    """Retorna os artigos mais recentes com dados do veterinário e categoria."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_RECENTES_COM_DADOS, (limite,))
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+
+
+def obter_pagina_com_dados(pagina: int, tamanho_pagina: int) -> List[dict]:
+    """Retorna uma página de artigos com dados do veterinário e categoria."""
+    limite = tamanho_pagina
+    offset = (pagina - 1) * tamanho_pagina
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_PAGINA_COM_DADOS, (limite, offset))
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+
+
+def obter_por_categoria_com_dados(id_categoria: int, pagina: int, tamanho_pagina: int) -> List[dict]:
+    """Retorna artigos de uma categoria específica com dados do veterinário e categoria."""
+    limite = tamanho_pagina
+    offset = (pagina - 1) * tamanho_pagina
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_POR_CATEGORIA_COM_DADOS, (id_categoria, limite, offset))
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+
+
 def importar(postagem: PostagemArtigo) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()

@@ -15,6 +15,8 @@ body {
     font-family: 'Montserrat', sans-serif !important;
 }
 
+/* Cores e Imagens de Fundo */
+
 .bg-roxo {
     background-color: var(--cor-roxo) !important;
 }
@@ -58,6 +60,8 @@ body {
     background-size: contain !important;
 }
 
+/* Cores de Textos */
+
 .text-branco {
     color: #fff !important;
 }
@@ -82,9 +86,13 @@ body {
     color: var(--cor-rosa) !important;
 }
 
+/* Bordas */
+
 .border-laranja {
     border-color: var(--cor-laranja) !important;
 }
+
+/* Botões */
 
 .btn-outline-laranja {
     border-color: var(--cor-laranja) !important;
@@ -121,4 +129,36 @@ body {
 
 .toast.text-bg-danger {
     background-color: var(--cor-rosa) !important;
+}
+
+/* Estilos de Cards de Categorias */
+
+#categoriasTrack .card {
+    transition: transform 0.3s ease;
+}
+
+#categoriasTrack .card:hover {
+    transform: scale(1.05);
+}
+
+#categoriasTrack .card:hover .bg-bege {
+    background-color: var(--cor-roxo) !important;
+    color: white !important;
+}
+
+/* Artigos Recentes */
+
+.artigos-card .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artigos-card .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+@media (max-width: 768px) {
+    .artigos-card h2 {
+        font-size: 2rem !important;
+    }
 }
