@@ -26,7 +26,6 @@ SELECT
     u.nome AS nome_usuario,
     cf.id_postagem_feed,
     pf.descricao AS descricao_postagem,
-    pf.imagem,
     cf.data_curtida
 FROM curtida_feed cf
 JOIN usuario u ON cf.id_usuario = u.id_usuario
@@ -39,7 +38,6 @@ OBTER_POR_ID = """
 SELECT
     u.nome AS nome_usuario,
     pf.descricao AS descricao_postagem,
-    pf.imagem,
     cf.data_curtida
 FROM curtida_feed cf
 JOIN usuario u ON cf.id_usuario = u.id_usuario

@@ -1,0 +1,802 @@
+[
+  {
+    "id_postagem_artigo": 1,
+    "id_veterinario": 1,
+    "titulo": "Cuidados essenciais com cães filhotes",
+    "conteudo": "Os primeiros meses de vida de um filhote são cruciais para seu desenvolvimento saudável. É fundamental estabelecer uma rotina de vacinação adequada, começando com a primeira dose entre 6 e 8 semanas de vida. Além disso, a vermifugação deve ser iniciada precocemente. A alimentação deve ser específica para filhotes, rica em proteínas e cálcio. O processo de socialização também é essencial nesta fase, expondo o animal gradualmente a diferentes ambientes, pessoas e outros animais de forma segura e controlada.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 245
+  },
+  {
+    "id_postagem_artigo": 2,
+    "id_veterinario": 1,
+    "titulo": "Alimentação balanceada para gatos adultos",
+    "conteudo": "Gatos são carnívoros obrigatórios e necessitam de uma dieta rica em proteínas de origem animal. Uma alimentação balanceada deve conter taurina, um aminoácido essencial para a saúde cardíaca e visual dos felinos. É importante oferecer água fresca constantemente, pois gatos têm tendência à desidratação. A ração deve ser de qualidade premium e adequada à idade e condição física do animal. Evite alimentar gatos com comida caseira sem orientação veterinária, pois isso pode causar deficiências nutricionais.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 189
+  },
+  {
+    "id_postagem_artigo": 3,
+    "id_veterinario": 1,
+    "titulo": "Prevenção de doenças parasitárias em cães",
+    "conteudo": "As doenças parasitárias são uma preocupação constante para tutores de cães. Pulgas, carrapatos e vermes podem causar sérios problemas de saúde. A prevenção deve ser feita através do uso regular de antiparasitários, que podem ser na forma de comprimidos, pipetas ou coleiras. É essencial manter o calendário de vermifugação em dia, realizando o procedimento a cada 3-4 meses. Ambientes limpos e higienizados também contribuem significativamente para a prevenção dessas doenças.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 4,
+    "id_veterinario": 1,
+    "titulo": "Sinais de que seu gato pode estar doente",
+    "conteudo": "Gatos são mestres em esconder sintomas de doenças, um comportamento instintivo de sobrevivência. Alguns sinais que indicam problemas de saúde incluem: mudanças no apetite, alterações no uso da caixa de areia, vocalização excessiva, letargia, vômitos frequentes e mudanças no comportamento. Observe também alterações na pelagem, que pode ficar opaca ou emaranhada. Qualquer mudança significativa no comportamento habitual do seu gato merece atenção veterinária imediata.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 278
+  },
+  {
+    "id_postagem_artigo": 5,
+    "id_veterinario": 1,
+    "titulo": "A importância da castração em cães e gatos",
+    "conteudo": "A castração é um procedimento cirúrgico que traz diversos benefícios para a saúde e bem-estar dos animais. Em fêmeas, previne infecções uterinas e reduz significativamente o risco de câncer de mama. Em machos, diminui comportamentos territoriais, reduz o risco de câncer de próstata e testículos, e evita fugas motivadas por instinto reprodutivo. Além dos benefícios individuais, a castração contribui para o controle populacional de animais abandonados. O procedimento é seguro quando realizado por profissionais qualificados.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 421
+  },
+  {
+    "id_postagem_artigo": 6,
+    "id_veterinario": 2,
+    "titulo": "Cirurgia ortopédica em cães: quando é necessária?",
+    "conteudo": "A cirurgia ortopédica veterinária é indicada para diversas condições que afetam ossos, articulações e ligamentos. Fraturas complexas, luxações recorrentes, rupturas de ligamento cruzado e displasias graves são algumas das principais indicações. O diagnóstico precoce é fundamental para o sucesso do tratamento. Exames de imagem como radiografias e, em casos mais complexos, tomografias ou ressonâncias magnéticas, auxiliam no planejamento cirúrgico. A recuperação pós-operatória requer fisioterapia e repouso controlado.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 356
+  },
+  {
+    "id_postagem_artigo": 7,
+    "id_veterinario": 2,
+    "titulo": "Recuperação pós-cirúrgica: cuidados essenciais",
+    "conteudo": "O período pós-operatório é crucial para o sucesso de qualquer procedimento cirúrgico. É fundamental seguir rigorosamente as orientações do veterinário quanto à medicação analgésica e anti-inflamatória. O uso de colar elisabetano previne que o animal lamba ou morda a ferida cirúrgica. O repouso deve ser respeitado, limitando atividades físicas conforme orientação. A alimentação pode precisar de ajustes temporários. Retornos regulares ao veterinário para avaliação da cicatrização são essenciais.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 8,
+    "id_veterinario": 2,
+    "titulo": "Displasia coxofemoral em cães: diagnóstico e tratamento",
+    "conteudo": "A displasia coxofemoral é uma doença ortopédica comum em cães de raças grandes. Trata-se de uma má formação da articulação do quadril que causa dor e limitação de movimentos. O diagnóstico é feito através de exame clínico e radiográfico. O tratamento pode ser conservador, com controle de peso, fisioterapia e medicações, ou cirúrgico em casos mais graves. A cirurgia de prótese total de quadril é uma opção para casos severos, proporcionando excelente qualidade de vida ao animal.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 402
+  },
+  {
+    "id_postagem_artigo": 9,
+    "id_veterinario": 2,
+    "titulo": "Ruptura de ligamento cruzado em cães",
+    "conteudo": "A ruptura do ligamento cruzado cranial é uma das lesões ortopédicas mais comuns em cães. Geralmente ocorre devido a degeneração do ligamento ao longo do tempo, mas pode ser causada por trauma. Os sinais incluem claudicação súbita, dor ao manipular o joelho e dificuldade de apoiar o membro afetado. O diagnóstico é confirmado através do teste de gaveta e radiografias. O tratamento cirúrgico é o mais indicado, com técnicas como TPLO, TTA ou sutura extracapsular.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 10,
+    "id_veterinario": 2,
+    "titulo": "Fraturas em gatos: particularidades do tratamento",
+    "conteudo": "Gatos possuem particularidades anatômicas e comportamentais que influenciam o tratamento de fraturas. Seus ossos são mais flexíveis que os dos cães, mas também mais propensos a fraturas cominutivas. O tamanho reduzido dificulta alguns procedimentos de fixação interna. A escolha da técnica cirúrgica depende da localização e tipo de fratura. Placas, pinos e fixadores externos são opções disponíveis. O manejo pós-operatório em gatos requer atenção especial ao estresse e à aceitação de restrição de movimento.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 223
+  },
+  {
+    "id_postagem_artigo": 11,
+    "id_veterinario": 3,
+    "titulo": "Manejo sanitário em bovinos de corte",
+    "conteudo": "O manejo sanitário adequado é fundamental para a produtividade e lucratividade da pecuária de corte. O calendário de vacinações deve incluir proteção contra febre aftosa, raiva, clostridioses e doenças reprodutivas. O controle de parasitas internos e externos deve ser realizado estrategicamente, considerando a época do ano e a categoria animal. A nutrição mineral adequada previne diversas enfermidades. Inspeções regulares do rebanho permitem identificação precoce de animais doentes.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 178
+  },
+  {
+    "id_postagem_artigo": 12,
+    "id_veterinario": 3,
+    "titulo": "Cólica em equinos: reconhecer e agir rapidamente",
+    "conteudo": "A cólica é uma das emergências mais comuns e potencialmente fatais em cavalos. Pode ser causada por impactação, torção intestinal, gases ou obstruções. Os sinais incluem inquietação, olhar para o flanco, rolar no chão, sudorese e ausência de sons intestinais. É crucial chamar o veterinário imediatamente aos primeiros sinais. Enquanto aguarda atendimento, mantenha o cavalo em movimento e evite que role excessivamente. O tratamento varia desde medicação até cirurgia de emergência.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 13,
+    "id_veterinario": 3,
+    "titulo": "Nutrição de bovinos leiteiros para alta produção",
+    "conteudo": "A nutrição adequada é essencial para maximizar a produção leiteira. A dieta deve ser balanceada em energia, proteína, minerais e vitaminas. O volumoso de qualidade, como silagem de milho ou pastagem bem manejada, forma a base da alimentação. O concentrado deve ser ajustado conforme a produção individual. A suplementação mineral é crucial, especialmente cálcio e fósforo. O fornecimento de água limpa e fresca à vontade é fundamental. Ajustes nutricionais devem ser feitos conforme a fase de lactação.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 195
+  },
+  {
+    "id_postagem_artigo": 14,
+    "id_veterinario": 3,
+    "titulo": "Principais doenças reprodutivas em bovinos",
+    "conteudo": "As doenças reprodutivas causam grandes perdas econômicas na pecuária. A brucelose causa abortos e infertilidade, sendo uma zoonose importante. A leptospirose também provoca abortos e queda na produção de leite. A IBR (rinotraqueíte infecciosa bovina) e BVD (diarreia viral bovina) afetam a reprodução e causam abortos. A campilobacteriose e tricomonose são transmitidas durante a cobertura. A prevenção inclui vacinação, manejo sanitário adequado e exames reprodutivos regulares.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 167
+  },
+  {
+    "id_postagem_artigo": 15,
+    "id_veterinario": 3,
+    "titulo": "Casqueamento em bovinos: importância e técnica",
+    "conteudo": "O casqueamento preventivo é essencial para a saúde e produtividade dos bovinos. Cascos saudáveis garantem locomoção adequada, acesso ao alimento e conforto animal. O procedimento deve ser realizado por profissional capacitado, utilizando ferramentas apropriadas. A frequência ideal é semestral ou anual, dependendo do manejo. Cascos mal cuidados predispõem a claudicações, dermatite digital e laminite. Em bovinos leiteiros, problemas de casco impactam diretamente a produção de leite.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 142
+  },
+  {
+    "id_postagem_artigo": 16,
+    "id_veterinario": 4,
+    "titulo": "Dermatite atópica em cães: diagnóstico e manejo",
+    "conteudo": "A dermatite atópica é uma doença inflamatória crônica da pele, causada por reação alérgica a alérgenos ambientais. É comum em raças como Bulldog, West Highland White Terrier e Shar-Pei. Os sintomas incluem coceira intensa, lambedura excessiva das patas, otites recorrentes e lesões cutâneas. O diagnóstico é baseado em histórico clínico, exames de pele e exclusão de outras causas. O tratamento é multimodal, incluindo controle ambiental, banhos terapêuticos, medicações e imunoterapia.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 334
+  },
+  {
+    "id_postagem_artigo": 17,
+    "id_veterinario": 4,
+    "titulo": "Alergia alimentar em gatos: como identificar",
+    "conteudo": "A alergia alimentar em gatos manifesta-se principalmente através de sintomas cutâneos, como coceira na face, pescoço e orelhas, além de lesões por autotraumatismo. Problemas gastrointestinais como vômitos e diarreia também podem ocorrer. O diagnóstico é feito através de dieta de eliminação, oferecendo uma proteína e carboidrato que o gato nunca consumiu por 8-12 semanas. Após melhora dos sintomas, realiza-se o desafio alimentar para confirmar o diagnóstico. O tratamento consiste em evitar o ingrediente causador da alergia.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 18,
+    "id_veterinario": 4,
+    "titulo": "Otite em cães: causas e prevenção",
+    "conteudo": "A otite é uma inflamação do conduto auditivo muito comum em cães, especialmente em raças com orelhas caídas. Pode ser causada por alergias, corpos estranhos, ácaros, fungos ou bactérias. Os sinais incluem balançar a cabeça, coçar as orelhas, odor desagradável e secreção. O diagnóstico requer exame otoscópico e, frequentemente, exames laboratoriais. O tratamento depende da causa e pode incluir limpeza profissional, medicações tópicas e sistêmicas. A prevenção envolve limpeza regular e controle de alergias.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 19,
+    "id_veterinario": 4,
+    "titulo": "Piodermite canina: tratamento e cuidados",
+    "conteudo": "A piodermite é uma infecção bacteriana da pele, geralmente causada por Staphylococcus pseudintermedius. Pode ser superficial ou profunda, dependendo das camadas da pele afetadas. Manifesta-se através de pápulas, pústulas, crostas e áreas de alopecia. Frequentemente é secundária a alergias, parasitas ou doenças endócrinas. O tratamento inclui antibioticoterapia por período prolongado (geralmente 3-6 semanas), banhos medicados e tratamento da causa subjacente. Casos recorrentes exigem investigação detalhada.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 245
+  },
+  {
+    "id_postagem_artigo": 20,
+    "id_veterinario": 4,
+    "titulo": "Complexo granuloma eosinofílico felino",
+    "conteudo": "O complexo granuloma eosinofílico felino engloba três apresentações: úlcera indolente, placa eosinofílica e granuloma eosinofílico. Estas lesões são reações inflamatórias da pele e mucosas, frequentemente relacionadas a alergias (pulgas, alimentos, atopia). As lesões podem aparecer em lábios, boca, pele e membros posteriores. O diagnóstico baseia-se em apresentação clínica e histopatologia. O tratamento inclui identificação e controle da causa alérgica, além de medicações anti-inflamatórias. Casos refratários podem requerer imunoterapia.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 189
+  },
+  {
+    "id_postagem_artigo": 21,
+    "id_veterinario": 5,
+    "titulo": "Cuidados básicos com calopsitas",
+    "conteudo": "As calopsitas são aves de companhia populares que requerem cuidados específicos. A gaiola deve ser espaçosa, com poleiros de diferentes diâmetros e materiais naturais. A alimentação deve consistir em ração extrusada de qualidade, complementada com vegetais, frutas e sementes em pequena quantidade. A higiene é fundamental: a gaiola e comedouros devem ser limpos diariamente. O contato social é essencial, pois são aves gregárias. Consultas veterinárias anuais preventivas são recomendadas.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 22,
+    "id_veterinario": 5,
+    "titulo": "Alimentação adequada para hamsters",
+    "conteudo": "Hamsters são roedores onívoros que necessitam de dieta balanceada. A base da alimentação deve ser ração comercial específica para hamsters, complementada com pequenas quantidades de vegetais frescos, proteínas (como ovo cozido ou insetos) e ocasionalmente frutas. Evite alimentos tóxicos como cebola, alho, chocolate e cítricos em excesso. Água fresca deve estar sempre disponível. Forneça também feno para auxiliar no desgaste dos dentes. A obesidade é comum e deve ser prevenida com porções controladas.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 278
+  },
+  {
+    "id_postagem_artigo": 23,
+    "id_veterinario": 5,
+    "titulo": "Principais doenças em tartarugas domésticas",
+    "conteudo": "Tartarugas podem desenvolver várias doenças quando mantidas inadequadamente. A doença metabólica óssea é comum, causada por deficiência de cálcio e/ou vitamina D3, resultando em carapaça mole e deformidades. Infecções respiratórias manifestam-se por respiração com boca aberta e secreção nasal. Problemas de carapaça incluem apodrecimento e infecções fúngicas. Parasitas intestinais são frequentes. A prevenção inclui UVB adequado, dieta balanceada, temperatura correta e higiene do habitat.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 256
+  },
+  {
+    "id_postagem_artigo": 24,
+    "id_veterinario": 5,
+    "titulo": "Manutenção de iguanas em cativeiro",
+    "conteudo": "Iguanas são répteis herbívoros que crescem consideravelmente, atingindo até 2 metros de comprimento. Requerem terrários espaçosos com gradiente térmico (26-35°C) e fonte de UVB adequada. A alimentação deve consistir principalmente de vegetais folhosos escuros, flores e frutas ocasionais. Evite proteína animal. A umidade ambiente deve ser mantida entre 65-75%. São animais territoriais e podem tornar-se agressivos na maturidade sexual. Exames veterinários regulares são essenciais.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 198
+  },
+  {
+    "id_postagem_artigo": 25,
+    "id_veterinario": 5,
+    "titulo": "Cuidados com periquitos australianos",
+    "conteudo": "Periquitos australianos são aves sociais e ativas que necessitam de estimulação mental e física. A gaiola deve permitir voo curto, com pelo menos 50cm de comprimento. Forneça brinquedos variados e troque-os regularmente. A dieta deve basear-se em ração extrusada, complementada com milho verde, vegetais e ocasionalmente frutas. Ofereça osso de siba para cálcio. Banhos regulares são importantes para a saúde da plumagem. Atenção a sinais de doença como penas eriçadas e letargia.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 26,
+    "id_veterinario": 6,
+    "titulo": "Cardiomiopatia hipertrófica em gatos",
+    "conteudo": "A cardiomiopatia hipertrófica é a doença cardíaca mais comum em gatos, caracterizada pelo espessamento anormal do músculo cardíaco. Raças como Maine Coon, Persa e Ragdoll têm predisposição genética. Muitos gatos são assintomáticos nas fases iniciais. Sintomas incluem dificuldade respiratória, letargia e intolerância ao exercício. Complicações graves incluem edema pulmonar e tromboembolismo. O diagnóstico é feito por ecocardiografia. O tratamento visa controlar sintomas e prevenir complicações, incluindo medicações e dieta específica.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 367
+  },
+  {
+    "id_postagem_artigo": 27,
+    "id_veterinario": 6,
+    "titulo": "Insuficiência cardíaca congestiva em cães",
+    "conteudo": "A insuficiência cardíaca congestiva ocorre quando o coração não consegue bombear sangue adequadamente. Em cães, frequentemente resulta de doença valvar degenerativa crônica ou cardiomiopatia dilatada. Os sinais incluem tosse (especialmente noturna), dificuldade respiratória, fadiga, distensão abdominal e síncope. O diagnóstico requer exame clínico, radiografia torácica e ecocardiografia. O tratamento inclui diuréticos, vasodilatadores, medicações inotrópicas e restrição de sódio na dieta. O prognóstico varia conforme a gravidade.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 28,
+    "id_veterinario": 6,
+    "titulo": "Arritmias cardíacas em animais de companhia",
+    "conteudo": "Arritmias são alterações no ritmo cardíaco normal que podem ser benignas ou potencialmente fatais. Podem ser causadas por doenças cardíacas primárias, distúrbios eletrolíticos, doenças sistêmicas ou intoxicações. Algumas raças têm predisposição a arritmias específicas, como Boxers com cardiomiopatia arritmogênica. Os sinais incluem fraqueza, colapso, síncope e intolerância ao exercício. O diagnóstico requer eletrocardiografia e, às vezes, Holter 24h. O tratamento depende do tipo e gravidade da arritmia.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 223
+  },
+  {
+    "id_postagem_artigo": 29,
+    "id_veterinario": 6,
+    "titulo": "Emergências cardiológicas: como reconhecer",
+    "conteudo": "Emergências cardiológicas requerem reconhecimento e ação imediatos. Sinais de alerta incluem: dificuldade respiratória súbita, mucosas azuladas (cianose), colapso, dor evidente, extremidades frias e paralisia súbita de membros posteriores (tromboembolismo em gatos). Edema pulmonar manifesta-se por respiração rápida e ruidosa, com espuma rosada pela boca. Em casos de suspeita de emergência cardíaca, minimize o estresse do animal e procure atendimento veterinário imediatamente. Cada minuto é crucial.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 412
+  },
+  {
+    "id_postagem_artigo": 30,
+    "id_veterinario": 6,
+    "titulo": "Monitoramento cardíaco em terapia intensiva veterinária",
+    "conteudo": "O monitoramento cardíaco contínuo é essencial na medicina intensiva veterinária. Permite detecção precoce de arritmias, hipotensão e outras complicações. Inclui eletrocardiografia, pressão arterial (invasiva ou não invasiva), oximetria de pulso e capnografia. Pacientes críticos requerem avaliação frequente de parâmetros como frequência cardíaca, pulso, tempo de preenchimento capilar e coloração de mucosas. A interpretação adequada dos dados permite ajustes terapêuticos rápidos, melhorando significativamente o prognóstico de pacientes graves.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 178
+  },
+  {
+    "id_postagem_artigo": 31,
+    "id_veterinario": 7,
+    "titulo": "Calendário de vacinação para cães",
+    "conteudo": "A vacinação é fundamental para prevenir doenças infecciosas graves em cães. O protocolo básico inclui vacina polivalente (V8 ou V10) que protege contra cinomose, parvovirose, hepatite, leptospirose e outras doenças. Filhotes recebem 3-4 doses com intervalo de 21-30 dias, iniciando entre 6-8 semanas. A vacina antirrábica é obrigatória e aplicada aos 4 meses. Reforços anuais são recomendados. Cães com acesso a áreas de risco podem necessitar de vacinas adicionais, como tosse dos canis e giardíase.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 445
+  },
+  {
+    "id_postagem_artigo": 32,
+    "id_veterinario": 7,
+    "titulo": "Nutrição e bem-estar animal: a conexão vital",
+    "conteudo": "A nutrição adequada é pilar fundamental do bem-estar animal. Uma dieta balanceada não apenas previne deficiências nutricionais, mas também fortalece o sistema imunológico, melhora a qualidade da pele e pelagem, e contribui para a saúde mental. Cada espécie, idade e condição física requer necessidades nutricionais específicas. Alimentos de qualidade, porções adequadas e horários regulares promovem rotina saudável. Obesidade e desnutrição são extremos prejudiciais. Consulte sempre um veterinário para orientação nutricional personalizada.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 33,
+    "id_veterinario": 7,
+    "titulo": "Prevenção de obesidade em gatos domésticos",
+    "conteudo": "A obesidade felina é uma epidemia crescente, afetando mais de 50% dos gatos domésticos. Gatos obesos têm maior risco de diabetes, doenças articulares, problemas urinários e hepáticos. A prevenção inicia com alimentação controlada: meça as porções e evite alimentação ad libitum. Estimule atividade física através de brincadeiras interativas diárias. Evite petiscos em excesso. Castração aumenta o risco, exigindo ajuste calórico. Monitore o peso regularmente e ajuste a dieta conforme necessário. Um gato saudável deve ter cintura visível.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 334
+  },
+  {
+    "id_postagem_artigo": 34,
+    "id_veterinario": 7,
+    "titulo": "Enriquecimento ambiental para animais domésticos",
+    "conteudo": "O enriquecimento ambiental é essencial para o bem-estar físico e mental dos animais. Para cães, inclui passeios variados, brinquedos interativos, treinamento de comandos e socialização. Gatos beneficiam-se de arranhadores, prateleiras em diferentes alturas, esconderijos e brinquedos que estimulem o comportamento de caça. Aves necessitam de brinquedos variados, poleiros naturais e tempo fora da gaiola. Roedores requerem túneis, rodas e materiais para roer. Animais mentalmente estimulados apresentam menos problemas comportamentais.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 35,
+    "id_veterinario": 7,
+    "titulo": "Cuidados preventivos em clínica veterinária",
+    "conteudo": "A medicina preventiva é mais eficaz e econômica que o tratamento de doenças estabelecidas. Consultas veterinárias regulares (anuais ou semestrais em animais idosos) permitem detecção precoce de problemas. O exame físico completo avalia todos os sistemas orgânicos. Exames laboratoriais periódicos (hemograma, bioquímicos) identificam alterações antes de sintomas aparecerem. Manutenção do calendário de vacinação e vermifugação, controle de ectoparasitas, higiene dental e nutrição adequada são pilares da prevenção.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 389
+  },
+  {
+    "id_postagem_artigo": 36,
+    "id_veterinario": 8,
+    "titulo": "Câncer em cães: sinais de alerta",
+    "conteudo": "O câncer é uma das principais causas de morte em cães idosos. Sinais de alerta incluem: massas ou inchaços que crescem ou mudam de aparência, feridas que não cicatrizam, perda de peso inexplicável, diminuição do apetite, dificuldade para respirar, mancar persistente, sangramento anormal e alterações na eliminação. Detecção precoce é crucial para o sucesso do tratamento. Exames regulares e atenção a mudanças sutis no comportamento ou aparência do animal podem salvar vidas. Consulte o veterinário imediatamente ao notar qualquer sinal suspeito.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 478
+  },
+  {
+    "id_postagem_artigo": 37,
+    "id_veterinario": 8,
+    "titulo": "Tratamentos oncológicos em medicina veterinária",
+    "conteudo": "A oncologia veterinária avançou significativamente, oferecendo diversas opções terapêuticas. A cirurgia oncológica visa remoção completa do tumor com margens adequadas. A quimioterapia utiliza medicamentos que destroem células cancerígenas, geralmente com menos efeitos colaterais que em humanos. A radioterapia é eficaz para tumores localizados. Imunoterapia e terapias-alvo são opções emergentes. O tratamento multimodal, combinando diferentes abordagens, frequentemente oferece melhores resultados. O objetivo pode ser curativo ou paliativo, sempre priorizando qualidade de vida.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 356
+  },
+  {
+    "id_postagem_artigo": 38,
+    "id_veterinario": 8,
+    "titulo": "Linfoma em gatos: diagnóstico e prognóstico",
+    "conteudo": "O linfoma é o câncer mais comum em gatos, podendo afetar diversos órgãos. Existem várias formas: alimentar (intestinal), mediastinal (tórax), renal, nasal e multicêntrica. Gatos FeLV positivos têm maior risco. Sintomas variam conforme localização: vômitos e diarreia (alimentar), dificuldade respiratória (mediastinal), perda de peso e letargia (comum a todos). O diagnóstico requer citologia ou biópsia. A quimioterapia é o tratamento de escolha, podendo induzir remissão em muitos casos. O prognóstico depende do tipo e resposta ao tratamento.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 39,
+    "id_veterinario": 8,
+    "titulo": "Mastocitoma canino: entendendo o tumor",
+    "conteudo": "Mastocitomas são tumores de mastócitos, células do sistema imunológico, muito comuns em cães. Raças como Boxer, Bulldog e Boston Terrier têm predisposição. Podem aparecer em qualquer parte do corpo, frequentemente na pele. A aparência é variável, desde nódulos pequenos até massas ulceradas. A graduação histológica (I, II ou III) e índice mitótico determinam prognóstico e tratamento. Cirurgia com margens amplas é o tratamento primário. Casos de alto grau podem requerer quimioterapia e/ou radioterapia. Estadiamento completo é essencial.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 40,
+    "id_veterinario": 8,
+    "titulo": "Qualidade de vida em pacientes oncológicos",
+    "conteudo": "Manter a qualidade de vida é prioridade máxima no tratamento oncológico veterinário. Avalie regularmente: apetite, nível de energia, controle de dor, interação social e capacidade de realizar atividades que o animal aprecia. Escalas de qualidade de vida ajudam a quantificar o bem-estar. Manejo adequado da dor é fundamental. Nutrição adequada, ambiente confortável e manutenção de rotinas proporcionam conforto. É importante ter conversas honestas com o veterinário sobre expectativas, prognóstico e quando considerar cuidados paliativos ou eutanásia humanitária.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 401
+  },
+  {
+    "id_postagem_artigo": 41,
+    "id_veterinario": 9,
+    "titulo": "Doença periodontal em cães: prevenção e tratamento",
+    "conteudo": "A doença periodontal afeta mais de 80% dos cães acima de 3 anos, sendo a condição mais comum em medicina veterinária. Inicia com acúmulo de placa bacteriana, progredindo para gengivite e, eventualmente, periodontite com perda óssea. Sinais incluem mau hálito, sangramento gengival, dificuldade de mastigação e perda de dentes. Complicações incluem abscessos, fraturas de mandíbula e disseminação bacteriana para órgãos vitais. A prevenção envolve escovação dental regular, dieta adequada e limpezas profissionais periódicas. Tratamento inclui destartarização, polimento e extrações quando necessário.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 523
+  },
+  {
+    "id_postagem_artigo": 42,
+    "id_veterinario": 9,
+    "titulo": "Fratura dentária em animais de companhia",
+    "conteudo": "Fraturas dentárias são comuns em cães e gatos, geralmente resultantes de trauma, mastigação de objetos duros ou doença periodontal. Os dentes caninos e carniceiros são mais afetados. Fraturas complicadas expõem a polpa dentária, causando dor intensa e risco de infecção. Sinais incluem salivação excessiva, relutância em mastigar, sangramento oral e mudança de comportamento. O tratamento depende da severidade: desde polimento de bordas em fraturas simples até tratamento endodôntico (canal) ou extração. Radiografias dentárias são essenciais para avaliação completa.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 43,
+    "id_veterinario": 9,
+    "titulo": "Reabsorção dentária felina",
+    "conteudo": "A reabsorção dentária é uma condição dolorosa muito comum em gatos, afetando 20-75% dos felinos adultos. As células odontoclásticas destroem gradualmente a estrutura dentária, iniciando na raiz ou junção amelocementária. Lesões aparecem como defeitos na linha gengival, frequentemente com tecido gengival inflamado cobrindo a área. Os gatos afetados podem apresentar salivação, dificuldade de comer, preferência por alimentos macios e ranger de dentes. O diagnóstico requer exame oral e radiografias dentárias. O único tratamento efetivo é a extração do dente afetado.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 44,
+    "id_veterinario": 9,
+    "titulo": "Gengivostomatite crônica felina",
+    "conteudo": "A gengivostomatite crônica felina é uma condição inflamatória severa e dolorosa da cavidade oral. Caracteriza-se por inflamação intensa da gengiva e mucosa oral, especialmente na região caudal. A causa exata é desconhecida, mas envolve resposta imunológica exagerada à placa bacteriana. Vírus como calicivírus e FIV podem contribuir. Gatos afetados apresentam dor ao comer, salivação, mau hálito e perda de peso. O tratamento inclui higiene dental meticulosa, medicações anti-inflamatórias e imunossupressoras. Extração dentária total ou subtotal frequentemente oferece melhor alívio.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 45,
+    "id_veterinario": 9,
+    "titulo": "Higiene oral em casa: guia para tutores",
+    "conteudo": "A higiene oral domiciliar é fundamental para manter a saúde dental de cães e gatos. A escovação diária com pasta específica para pets é o padrão ouro, removendo placa antes que calcifique em tártaro. Introduza gradualmente, começando apenas com dedo e recompensas, progredindo para dedeira e escova. Use movimentos circulares suaves, focando na linha gengival. Alternativas incluem aditivos na água, dietas dentais, brinquedos específicos e mastigáveis dentais. Nenhuma substitui completamente a escovação, mas combinações ajudam. Consultas regulares e limpezas profissionais permanecem necessárias.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 445
+  },
+  {
+    "id_postagem_artigo": 46,
+    "id_veterinario": 10,
+    "titulo": "Ansiedade de separação em cães",
+    "conteudo": "A ansiedade de separação é um dos problemas comportamentais mais comuns em cães. Manifesta-se quando o animal fica sozinho, com comportamentos como vocalização excessiva, destruição, eliminação inapropriada e tentativas de fuga. Não é birra ou vingança, mas sim angústia genuína. O tratamento envolve modificação comportamental gradual: dessensibilização à partida, criação de associações positivas com a ausência e evitar despedidas/chegadas dramáticas. Casos graves podem requerer medicação ansiolítica. Enriquecimento ambiental e exercício adequado também são fundamentais.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 567
+  },
+  {
+    "id_postagem_artigo": 47,
+    "id_veterinario": 10,
+    "titulo": "Agressividade em gatos: causas e manejo",
+    "conteudo": "A agressividade felina tem múltiplas causas: medo, dor, territorialidade, predatória, redirecionada ou por brincadeira. Identificar o tipo é crucial para o tratamento. Agressão por medo geralmente resulta de socialização inadequada. Agressão territorial ocorre com outros gatos. Agressão predatória direciona-se a movimentos rápidos. Agressão redirecionada ocorre quando o gato, frustrado por um estímulo (ex: gato externo), ataca quem está próximo. O tratamento inclui modificação ambiental, dessensibilização, contra-condicionamento e, às vezes, medicação. Nunca puna fisicamente um gato agressivo.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 423
+  },
+  {
+    "id_postagem_artigo": 48,
+    "id_veterinario": 10,
+    "titulo": "Comportamento destrutivo: além da desobediência",
+    "conteudo": "Comportamento destrutivo em cães raramente é desobediência intencional. Causas comuns incluem: energia não gasta (especialmente raças de trabalho), ansiedade de separação, tédio, fase de dentição em filhotes, ou comportamento exploratório. Cães jovens e raças energéticas são mais propensos. A solução envolve exercício físico adequado, estimulação mental através de brinquedos interativos e treinamento, estabelecimento de rotinas e manejo ambiental (remover tentações, oferecer alternativas apropriadas). Punição pós-fato é ineficaz; o cão não associa a destruição passada à consequência presente.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 389
+  },
+  {
+    "id_postagem_artigo": 49,
+    "id_veterinario": 10,
+    "titulo": "Eliminação inapropriada em gatos",
+    "conteudo": "Quando gatos urinam ou defecam fora da caixa de areia, as causas podem ser médicas ou comportamentais. Descarte primeiro problemas médicos como cistite, diabetes ou artrite. Causas comportamentais incluem: caixa de areia suja, localização inadequada, tipo de areia não preferido, número insuficiente de caixas (regra: n+1, sendo n o número de gatos), estresse ambiental ou marcação territorial. A solução envolve múltiplas caixas limpas diariamente, em locais acessíveis e privados, areia sem perfume, redução de estressores e limpeza adequada de áreas marcadas.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 498
+  },
+  {
+    "id_postagem_artigo": 50,
+    "id_veterinario": 10,
+    "titulo": "Socialização de filhotes: período crítico",
+    "conteudo": "O período de socialização em cães ocorre entre 3-14 semanas de idade, sendo crucial para desenvolvimento comportamental saudável. Nesta janela, filhotes são naturalmente curiosos e receptivos a novas experiências. Exposição positiva a pessoas diversas, outros cães, ambientes variados, sons e manipulações reduz medos futuros. A socialização deve ser gradual, positiva e não forçada. Classes de socialização supervisionadas são excelentes. Após 14 semanas, a janela fecha parcialmente, mas socialização continua importante. Filhotes não totalmente vacinados podem socializar em ambientes controlados, ponderando riscos e benefícios.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 534
+  },
+  {
+    "id_postagem_artigo": 51,
+    "id_veterinario": 11,
+    "titulo": "Inseminação artificial em bovinos",
+    "conteudo": "A inseminação artificial (IA) é uma biotecnologia reprodutiva fundamental na pecuária moderna. Permite o uso de touros geneticamente superiores, melhora sanitária do rebanho (evita transmissão de doenças venéreas), possibilita cruzamentos planejados e acelera o melhoramento genético. O sucesso depende de detecção eficiente de cio, técnica adequada de inseminação, qualidade do sêmen e saúde reprodutiva das fêmeas. A IA pode ser em tempo fixo (IATF), usando protocolos hormonais que sincronizam o cio, eliminando a necessidade de detecção. A IATF revolucionou a reprodução em bovinos de corte.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 52,
+    "id_veterinario": 11,
+    "titulo": "Gestação em cadelas: cuidados essenciais",
+    "conteudo": "A gestação em cadelas dura aproximadamente 63 dias. Nos primeiros 30 dias, mantenha a alimentação e exercícios normais. Após 30 dias, aumente gradualmente a alimentação (usar ração para filhotes) até 50% a mais no final da gestação. Evite exercícios extenuantes, mas mantenha atividade leve. Suplementação geralmente não é necessária com ração de qualidade. Consultas veterinárias incluem confirmação de gestação (ultrassom aos 25-30 dias), acompanhamento e radiografia pré-parto para contar filhotes. Prepare local tranquilo para o parto. Esteja preparado para possíveis complicações que exigem cesariana.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 445
+  },
+  {
+    "id_postagem_artigo": 53,
+    "id_veterinario": 11,
+    "titulo": "Distocia em pequenos animais",
+    "conteudo": "Distocia é a dificuldade no parto, comum em raças braquicefálicas, cães de porte pequeno e gatas de primeira gestação. Causas maternas incluem inércia uterina, canal pélvico estreito e torção uterina. Causas fetais incluem tamanho excessivo, má apresentação ou malformações. Sinais de alerta: contrações fortes sem expulsão após 30min, intervalo >2h entre filhotes, secreção esverdeada antes do primeiro filhote, gestação >70 dias em cadelas ou >67 dias em gatas. A distocia é emergência e pode requerer medicações, manipulação obstétrica ou cesariana. Atraso no tratamento compromete vida materna e fetal.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 54,
+    "id_veterinario": 11,
+    "titulo": "Manejo reprodutivo de equinos",
+    "conteudo": "O manejo reprodutivo equino requer conhecimento do ciclo estral da égua, que dura em média 21 dias, com 5-7 dias de cio. A detecção de cio é feita por rufiação (apresentação ao garanhão) ou ultrassonografia ovariana. A cobertura natural ou IA deve ocorrer quando o folículo atinge 35-40mm, idealmente 24-48h antes da ovulação. Protocolos hormonais podem induzir ovulação. Diagnóstico de gestação por ultrassom é possível a partir do 14º dia. Cuidados gestacionais incluem nutrição adequada, vacinações e controle de parasitas. Acompanhamento do parto é essencial.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 198
+  },
+  {
+    "id_postagem_artigo": 55,
+    "id_veterinario": 11,
+    "titulo": "Piometra: emergência reprodutiva",
+    "conteudo": "Piometra é infecção uterina grave que ocorre durante o diestro (fase pós-cio), mais comum em cadelas e gatas não castradas acima de 5 anos. A progesterona causa espessamento endometrial e suprime imunidade uterina, predispondo à infecção bacteriana. Pode ser aberta (com descarga vaginal purulenta) ou fechada (mais grave). Sintomas incluem apatia, anorexia, vômitos, aumento abdominal e sede excessiva. Pode causar insuficiência renal, sepse e morte. O tratamento preferencial é cirúrgico (ovariohisterectomia), constituindo emergência médica. Tratamento médico existe mas tem resultados inferiores e recidivas são comuns.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 478
+  },
+  {
+    "id_postagem_artigo": 56,
+    "id_veterinario": 12,
+    "titulo": "Epilepsia em cães: diagnóstico e controle",
+    "conteudo": "A epilepsia é a causa mais comum de convulsões recorrentes em cães. Pode ser idiopática (genética), estrutural (lesões cerebrais) ou reativa (metabólica). Raças como Pastor Alemão, Beagle e Labrador têm predisposição. As convulsões manifestam-se com perda de consciência, movimentos de pedalagem, salivação e eventualmente perda de controle vesical. O diagnóstico exige exclusão de causas metabólicas e estruturais através de exames laboratoriais e imagem cerebral. O tratamento com anticonvulsivantes (fenobarbital, brometo, levetiracetam) visa reduzir frequência e intensidade das crises. Controle total nem sempre é possível.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 423
+  },
+  {
+    "id_postagem_artigo": 57,
+    "id_veterinario": 12,
+    "titulo": "Doença do disco intervertebral em cães",
+    "conteudo": "A doença do disco intervertebral (DDIV) é causa comum de dor e paralisia em cães, especialmente raças condrodistróficas como Dachshund, Beagle e Shih-Tzu. Ocorre quando o material do disco degenera e protrude ou extrude para o canal vertebral, comprimindo a medula. Sintomas variam de dor leve a paralisia completa, dependendo da localização e grau de compressão. O diagnóstico requer exame neurológico e imagem avançada (RM ou TC). Casos leves podem responder a repouso e medicações. Casos graves com perda de função motora ou dor profunda requerem cirurgia descompressiva urgente.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 356
+  },
+  {
+    "id_postagem_artigo": 58,
+    "id_veterinario": 12,
+    "titulo": "Síndrome vestibular em gatos",
+    "conteudo": "A síndrome vestibular afeta o sistema de equilíbrio, causando sinais dramáticos: inclinação de cabeça, nistagmo (movimento ocular anormal), incoordenação e quedas. Pode ser periférica (ouvido interno) ou central (tronco cerebral). Causas periféricas incluem otite interna, pólipos e idiopática (comum em gatos idosos). Causas centrais são mais graves: tumores, infecções ou AVC. O diagnóstico diferencial requer exame neurológico detalhado e exames de imagem. A síndrome vestibular idiopática felina tem excelente prognóstico, com recuperação espontânea em dias a semanas. Casos centrais têm prognóstico reservado.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 59,
+    "id_veterinario": 12,
+    "titulo": "Meningite e encefalite em animais de companhia",
+    "conteudo": "Meningite (inflamação das meninges) e encefalite (inflamação do cérebro) são condições neurológicas graves. Causas incluem infecções virais (cinomose), bacterianas, fúngicas, parasitárias ou imunomediadas. Sintomas incluem febre, dor cervical, alterações comportamentais, convulsões e déficits neurológicos. O diagnóstico requer exame neurológico, análise de líquido cefalorraquidiano (punção liquórica), exames de imagem e testes infecciosos. O tratamento depende da causa: antibióticos para infecções bacterianas, antifúngicos, antivirais ou imunossupressores para causas imunomediadas. O prognóstico varia amplamente conforme a etiologia.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 60,
+    "id_veterinario": 12,
+    "titulo": "Mielopatia degenerativa em cães",
+    "conteudo": "A mielopatia degenerativa é uma doença progressiva da medula espinhal, comum em Pastor Alemão, mas ocorre em diversas raças. É causada por degeneração da substância branca medular, resultando em perda progressiva de função dos membros posteriores. Inicia com incoordenação leve, progredindo para fraqueza, paralisia e eventualmente afetando membros anteriores. Não há cura. O diagnóstico é por exclusão de outras causas de paraparesia através de imagem avançada. Teste genético identifica predisposição. O tratamento é suportivo: fisioterapia, suplementação, cadeiras de rodas e cuidados com qualidade de vida. A progressão varia entre meses a anos.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 61,
+    "id_veterinario": 13,
+    "titulo": "Ultrassonografia abdominal em cães e gatos",
+    "conteudo": "A ultrassonografia é método diagnóstico não invasivo essencial para avaliar órgãos abdominais. Permite visualização de fígado, baço, rins, bexiga, trato gastrointestinal, pâncreas, linfonodos e vasos. É especialmente útil para detectar massas, líquido livre, cálculos vesicais ou renais, e avaliar arquitetura de órgãos. Diferentemente do raio-x, fornece imagem em tempo real e detalhamento de tecidos moles. O exame requer jejum de 8-12h (para melhor visualização) e tricotomia da área. Pode guiar coleta de amostras (aspiração ou biópsia). Limitações incluem ar intestinal e obesidade.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 62,
+    "id_veterinario": 13,
+    "titulo": "Radiografia torácica: interpretação básica",
+    "conteudo": "A radiografia torácica é fundamental para avaliar pulmões, coração, mediastino e estruturas ósseas. São necessárias pelo menos duas projeções (lateral e ventrodorsal/dorsoventral). Avalia-se padrão pulmonar (intersticial, alveolar, bronquial, vascular), tamanho e forma cardíaca (VHS - vertebral heart score), campo pulmonar, espaço pleural e estruturas ósseas. Indicações comuns incluem tosse, dispneia, trauma, massas e avaliação pré-cirúrgica. Achados incluem edema pulmonar, pneumonia, massas, efusão pleural, pneumotórax e cardiomegalia. A interpretação requer conhecimento anatômico e experiência.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 278
+  },
+  {
+    "id_postagem_artigo": 63,
+    "id_veterinario": 13,
+    "titulo": "Ecocardiografia: janela para o coração",
+    "conteudo": "A ecocardiografia é o padrão ouro para diagnóstico de cardiopatias em animais. Avalia estrutura e função cardíaca em tempo real, incluindo tamanho de câmaras, espessura de paredes, função valvar, contratilidade e fluxo sanguíneo (Doppler). Diagnostica cardiomiopatias, doenças valvares, defeitos congênitos, efusão pericárdica e massas cardíacas. Permite estadiamento de doenças cardíacas e guia decisões terapêuticas. O exame é não invasivo, realizado com o animal acordado. Requer equipamento especializado e treinamento específico. É essencial para monitoramento de animais com sopro ou sinais de insuficiência cardíaca.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 245
+  },
+  {
+    "id_postagem_artigo": 64,
+    "id_veterinario": 13,
+    "titulo": "Diagnóstico por imagem de obstrução intestinal",
+    "conteudo": "A obstrução intestinal é emergência comum em cães e gatos, causada por corpos estranhos, intussuscepção, massas ou torção. Sinais incluem vômitos, anorexia, dor abdominal e ausência de defecação. Radiografias simples podem mostrar dilatação de alças intestinais, corpo estranho radiopaco e padrão gasoso anormal. Estudos contrastados com bário ou iodo ajudam a confirmar obstrução e localização. A ultrassonografia identifica corpos estranhos, intussuscepção (imagem em alvo), massas e alterações de motilidade. Obstruções completas requerem cirurgia urgente. Tempo é crucial para prevenir necrose intestinal.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 367
+  },
+  {
+    "id_postagem_artigo": 65,
+    "id_veterinario": 13,
+    "titulo": "Tomografia e ressonância: quando indicar",
+    "conteudo": "Tomografia computadorizada (TC) e ressonância magnética (RM) são exames avançados cada vez mais acessíveis em medicina veterinária. A TC oferece excelente detalhamento ósseo e é rápida, ideal para trauma, avaliação pulmonar, planejamento cirúrgico ortopédico e oncológico. A RM é superior para tecidos moles, especialmente sistema nervoso, sendo essencial para doenças cerebrais, medulares e articulares (ligamentos). Ambos requerem anestesia geral. Indicações incluem casos complexos onde radiografia e ultrassom são insuficientes, estadiamento oncológico e planejamento de neurocirurgias. O custo é maior, mas o detalhamento diagnóstico justifica em casos selecionados.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 66,
+    "id_veterinario": 14,
+    "titulo": "Doença renal crônica em gatos: manejo nutricional",
+    "conteudo": "A doença renal crônica (DRC) é extremamente comum em gatos idosos. O manejo nutricional é pilar fundamental do tratamento. Dietas renais formuladas têm proteína de alta qualidade em quantidade controlada, redução de fósforo, suplementação de ômega-3, antioxidantes e alcalinizantes. A restrição proteica excessiva é prejudicial; o importante é qualidade e biodisponibilidade. A hidratação é crucial: estimule ingestão hídrica com fontes múltiplas de água, alimentação úmida e eventualmente fluidoterapia subcutânea. O controle de fósforo sérico através da dieta e quelantes é essencial. A transição para dieta renal deve ser gradual.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 445
+  },
+  {
+    "id_postagem_artigo": 67,
+    "id_veterinario": 14,
+    "titulo": "Insuficiência renal aguda: reconhecer e agir",
+    "conteudo": "A insuficiência renal aguda (IRA) é emergência caracterizada por perda súbita da função renal. Causas incluem intoxicações (anticongelante, uvas/passas em cães, lírios em gatos), infecções (leptospirose), obstrução urinária, isquemia e medicamentos nefrotóxicos. Sinais incluem anorexia súbita, vômitos, letargia, oligúria ou anúria. Diagnóstico: elevação rápida de ureia e creatinina, alterações eletrolíticas, urina diluída. O tratamento é agressivo: fluidoterapia intensiva, correção de desequilíbrios, suporte nutricional e tratamento da causa. Casos graves podem requerer diálise. Prognóstico depende da causa e rapidez do tratamento.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 389
+  },
+  {
+    "id_postagem_artigo": 68,
+    "id_veterinario": 14,
+    "titulo": "Urolitíase em cães: tipos e prevenção",
+    "conteudo": "Urolitíase é formação de cálculos no trato urinário. Os tipos mais comuns em cães são estruvita (fosfato-amônio-magnésio) e oxalato de cálcio. Cálculos de estruvita associam-se a infecções urinárias e pH alcalino; podem ser dissolvidos com dieta acidificante e antibióticos. Cálculos de oxalato requerem remoção cirúrgica, pois não dissolvem. Outros tipos incluem urato, cistina e sílica. Sintomas incluem disúria, hematúria, estrangúria e obstrução (emergência em machos). Diagnóstico por radiografia, ultrassom e urinálise. Prevenção: hidratação adequada, dieta específica conforme tipo de cálculo e tratamento de infecções.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 334
+  },
+  {
+    "id_postagem_artigo": 69,
+    "id_veterinario": 14,
+    "titulo": "Proteinúria em animais: significado clínico",
+    "conteudo": "Proteinúria é presença anormal de proteína na urina. Pode ser pré-renal (hemólise, rabdomiólise), renal (doença glomerular, tubular) ou pós-renal (inflamação do trato urinário inferior). A distinção é feita pela relação proteína:creatinina urinária (RPC) e exame de sedimento. RPC >0,5 em cães e >0,4 em gatos é anormal. Proteinúria glomerular persistente indica doença renal significativa e requer investigação: exames laboratoriais completos, pressão arterial, sorologias e possivelmente biópsia renal. O tratamento visa a causa subjacente e proteção renal com inibidores da ECA. Monitoramento periódico é essencial.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 70,
+    "id_veterinario": 14,
+    "titulo": "Fluidoterapia em pacientes renais",
+    "conteudo": "A fluidoterapia é intervenção crucial no manejo de doenças renais. Em IRA, fluidoterapia agressiva intravenosa visa restaurar perfusão renal, corrigir desidratação e promover diurese. Em DRC, fluidoterapia subcutânea intermitente pode melhorar qualidade de vida, especialmente em crises urêmicas. A escolha do fluido depende dos eletrólitos: solução salina 0,9% em hipocalemia, Ringer lactato em outros casos. Monitore débito urinário, hidratação, peso e parâmetros laboratoriais. Risco de sobrecarga hídrica em oligúria/anúria. A fluidoterapia domiciliar subcutânea é opção viável em gatos com DRC estabilizados.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 71,
+    "id_veterinario": 15,
+    "titulo": "Manejo sanitário em suinocultura",
+    "conteudo": "O manejo sanitário eficiente é fundamental para produtividade e lucratividade na suinocultura. Baseia-se em biosseguridade rigorosa: controle de entrada de pessoas e veículos, quarentena de animais novos, programa de vazio sanitário. O calendário vacinal deve incluir proteção contra parvovirose, erisipela, circovirose, rinite atrófica e pneumonias. Vermifugação estratégica de matrizes e leitões. Monitoramento de doenças como PRRS, influenza suína e disenteria. A densidade populacional adequada previne estresse e doenças. Nutrição balanceada e água de qualidade são essenciais. Programas de monitoramento constante permitem detecção precoce de problemas.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 178
+  },
+  {
+    "id_postagem_artigo": 72,
+    "id_veterinario": 15,
+    "titulo": "Principais doenças em avicultura de postura",
+    "conteudo": "A avicultura de postura enfrenta diversos desafios sanitários. A doença de Newcastle é viral, altamente contagiosa e causa alta mortalidade; vacinação é obrigatória. A bronquite infecciosa afeta trato respiratório e reprodutivo, reduzindo produção. A doença de Gumboro compromete o sistema imunológico de aves jovens. Salmoneloses causam perdas produtivas e são preocupação de saúde pública. Coccidiose causa diarreia e mortalidade em aves jovens. Micoplasmoses causam problemas respiratórios crônicos. O controle envolve vacinação rigorosa, biosseguridade, densidade adequada, ventilação e nutrição balanceada.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 189
+  },
+  {
+    "id_postagem_artigo": 73,
+    "id_veterinario": 15,
+    "titulo": "Bem-estar animal em sistemas de produção",
+    "conteudo": "O bem-estar animal tornou-se requisito fundamental em sistemas produtivos modernos. Baseia-se nas cinco liberdades: ausência de fome e sede, de desconforto, de dor/doença, de medo/estresse, e liberdade para expressar comportamento natural. Em suínos, inclui fornecimento de materiais manipuláveis, espaço adequado e abolição de gaiolas gestação. Em aves, densidade populacional adequada, poleiros, ninhos e enriquecimento ambiental. Em bovinos, acesso a pastagem, sombra e água. Sistemas que respeitam bem-estar animal apresentam melhor produtividade, qualidade de produto e aceitação do consumidor.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 223
+  },
+  {
+    "id_postagem_artigo": 74,
+    "id_veterinario": 15,
+    "titulo": "Nutrição em frangos de corte",
+    "conteudo": "A nutrição é responsável por 60-70% do custo de produção em frango de corte, sendo crucial para eficiência. As rações devem ser balanceadas conforme a fase: pré-inicial (1-7 dias), inicial (8-21), crescimento (22-35) e final (36-abate). Energia e proteína são ajustadas progressivamente. Aminoácidos essenciais (metionina, lisina, treonina) devem estar em proporção ideal. Minerais e vitaminas são fundamentais para crescimento e imunidade. Aditivos como enzimas, probióticos e prebióticos melhoram conversão alimentar. A qualidade da matéria-prima e processamento da ração impactam diretamente os resultados zootécnicos.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 167
+  },
+  {
+    "id_postagem_artigo": 75,
+    "id_veterinario": 15,
+    "titulo": "Controle de ectoparasitas em produção animal",
+    "conteudo": "Ectoparasitas causam grandes perdas econômicas na produção animal. Em bovinos, carrapatos transmitem doenças (babesiose, anaplasmose) e causam anemia e lesões cutâneas. Moscas causam estresse, miíases e transmitem doenças. Em suínos, sarna causa coceira intensa e perdas produtivas. Em aves, ácaros e piolhos causam anemia, estresse e queda na produção. O controle deve ser integrado: químico (acaricidas, inseticidas aplicados estrategicamente), ambiental (limpeza, rotação de pastagens) e biológico (predadores naturais). A resistência parasitária exige rotação de princípios ativos e uso racional.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 198
+  },
+  {
+    "id_postagem_artigo": 76,
+    "id_veterinario": 16,
+    "titulo": "Diabetes mellitus em cães: diagnóstico e tratamento",
+    "conteudo": "O diabetes mellitus canino é geralmente do tipo 1 (deficiência absoluta de insulina), mais comum em fêmeas e raças como Poodle, Schnauzer e Dachshund. Sinais clássicos: poliúria, polidipsia, polifagia e perda de peso. Complicações incluem catarata (quase universal), infecções urinárias e cetoacidose diabética (emergência). Diagnóstico: hiperglicemia persistente e glicosúria. O tratamento é insulinoterapia (NPH ou insulinas veterinárias), administrada duas vezes ao dia. Dieta rica em fibras e carboidratos complexos auxilia no controle. Monitoramento inclui curva glicêmica periódica e frutosamina. Controle adequado permite vida de qualidade.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 456
+  },
+  {
+    "id_postagem_artigo": 77,
+    "id_veterinario": 16,
+    "titulo": "Hipotireoidismo canino: doença subdiagnosticada",
+    "conteudo": "O hipotireoidismo é uma das endocrinopatias mais comuns em cães, resultando de produção insuficiente de hormônios tireoidianos. Raças médias a grandes têm predisposição. Sinais incluem letargia, ganho de peso, intolerância ao frio, alterações dermatológicas (pele seca, alopecia bilateral simétrica, piodermites recorrentes) e alterações comportamentais. O diagnóstico requer dosagem de T4 total, T4 livre e TSH. Falso-positivos podem ocorrer em doenças não-tireoidianas. O tratamento é reposição hormonal com levotiroxina via oral, com ajustes conforme monitoramento. Resposta clínica geralmente é excelente.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 389
+  },
+  {
+    "id_postagem_artigo": 78,
+    "id_veterinario": 16,
+    "titulo": "Hipertireoidismo felino: doença do gato idoso",
+    "conteudo": "O hipertireoidismo é a endocrinopatia mais comum em gatos idosos (>10 anos), causado por adenoma tireoidiano benigno em >95% dos casos. Há produção excessiva de hormônios tireoidianos. Sinais: perda de peso apesar de apetite aumentado, hiperatividade, vocalização, vômitos, diarreia e pelagem de má qualidade. Complicações incluem hipertensão e cardiomiopatia. Diagnóstico: elevação de T4 total. Opções de tratamento incluem: medicação oral (metimazol), dieta restrita em iodo, iodo radioativo (curativo) ou tireoidectomia cirúrgica. Cada opção tem vantagens e limitações. Monitoramento de função renal é crucial.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 423
+  },
+  {
+    "id_postagem_artigo": 79,
+    "id_veterinario": 16,
+    "titulo": "Hiperadrenocorticismo (Síndrome de Cushing)",
+    "conteudo": "A síndrome de Cushing resulta de excesso de cortisol, podendo ser hipófise-dependente (80-85%), adrenal-dependente (15-20%) ou iatrogênico (uso excessivo de corticoides). Raças pequenas e idosas são predispostas. Sinais incluem: poliúria/polidipsia, polifagia, distensão abdominal (abdômen pendular), fraqueza muscular, alopecia bilateral, pele fina e calcificações cutâneas. Complicações: diabetes, hipertensão, tromboembolismo. Diagnóstico: testes de supressão com dexametasona e estimulação com ACTH. Tratamento: trilostano ou mitotano para Cushing hipofisário; cirurgia para tumores adrenais. Monitoramento vitalício é necessário.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 367
+  },
+  {
+    "id_postagem_artigo": 80,
+    "id_veterinario": 16,
+    "titulo": "Hipoadrenocorticismo (Doença de Addison)",
+    "conteudo": "A doença de Addison resulta de deficiência de hormônios adrenais (cortisol e aldosterona). É menos comum que Cushing, mas potencialmente fatal se não tratada. Afeta principalmente fêmeas jovens a meia-idade. Sintomas são inespecíficos: letargia, anorexia, vômitos, diarreia, fraqueza e colapso intermitente. Crises addisonianas são emergências com choque e colapso cardiovascular. Diagnóstico: hiponatremia, hipercalemia, hipoglicemia e teste de estimulação com ACTH. Tratamento de crise: fluidoterapia agressiva e corticoides. Tratamento de manutenção: reposição de mineralocorticoides (fludrocortisona ou pivalato de desoxicorticosterona) e glicocorticoides. Prognóstico excelente com tratamento.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 81,
+    "id_veterinario": 17,
+    "titulo": "Anestesia em pacientes cardiopatas",
+    "conteudo": "Pacientes cardiopatas apresentam riscos anestésicos aumentados, exigindo protocolo cuidadoso. A avaliação pré-anestésica deve incluir ecocardiografia, radiografia torácica e eletrocardiografia para estratificação de risco. Cardiopatas descompensados devem ter condição estabilizada antes de procedimentos eletivos. Evite fármacos depressores cardíacos (tiopental, propofol em doses altas). Prefira protocolos balanceados com opioides, benzodiazepínicos e anestésicos inalatórios em concentrações mínimas. Monitoramento intensivo é essencial: ECG, pressão arterial, capnografia, oximetria. Fluidoterapia cautelosa para evitar sobrecarga. Oxigenação adequada e controle rigoroso da dor peri-operatória são cruciais.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 82,
+    "id_veterinario": 17,
+    "titulo": "Analgesia multimodal em cirurgias ortopédicas",
+    "conteudo": "Cirurgias ortopédicas causam dor intensa, exigindo analgesia multimodal: combinação de fármacos com diferentes mecanismos de ação para potencializar efeito e reduzir doses individuais. O protocolo ideal inclui: opioides (morfina, metadona, fentanil) como base; anti-inflamatórios não-esteroidais (carprofeno, meloxicam); anestesia locorregional (bloqueios nervosos ou epidural); cetamina em infusão contínua para analgesia preventiva; e gabapentina/pregabalina para dor neuropática. Avalie dor regularmente com escalas validadas. Analgesia inadequada compromete recuperação, retarda cicatrização e causa sofrimento desnecessário.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 334
+  },
+  {
+    "id_postagem_artigo": 83,
+    "id_veterinario": 17,
+    "titulo": "Anestesia em pacientes braquicefálicos",
+    "conteudo": "Raças braquicefálicas (Bulldog, Pug, Shih-Tzu, Persa) apresentam síndrome das vias aéreas obstrutivas: narinas estenóticas, palato mole alongado, sáculos laríngeos evertidos e traqueia hipoplásica. Isso aumenta riscos anestésicos significativamente. Precauções incluem: pré-oxigenação adequada, indução rápida e segura com intubação imediata, tubo de maior diâmetro possível, evitar extubação precoce (manter até reflexos protetores completos), suplementação de oxigênio pós-extubação e monitoramento estendido. Sedação profunda antes da indução reduz estresse. Posicione em decúbito esternal durante recuperação. Tenha equipamento de emergência (laringoscópio, tubos de vários tamanhos) prontamente disponível.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 378
+  },
+  {
+    "id_postagem_artigo": 84,
+    "id_veterinario": 17,
+    "titulo": "Bloqueios locorregionais em medicina veterinária",
+    "conteudo": "Bloqueios locorregionais são técnicas anestésicas que bloqueiam condução nervosa em área específica, proporcionando excelente analgesia trans e pós-operatória. Vantagens: redução de anestésicos gerais, analgesia superior, recuperação mais rápida e menos efeitos adversos. Técnicas comuns: epidural (para cirurgias de membros posteriores, pelve, abdômen caudal), bloqueio de plexo braquial (membro anterior), bloqueio dental, bloqueio intercostal. Anestésicos locais usados: lidocaína (curta duração) e bupivacaína (longa duração). O uso de ultrassom e neuroestimulador aumenta precisão e segurança. Complicações são raras quando realizado corretamente.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 85,
+    "id_veterinario": 17,
+    "titulo": "Emergências anestésicas: reconhecimento e manejo",
+    "conteudo": "Emergências durante anestesia requerem reconhecimento imediato e ação rápida. Parada cardiorrespiratória: inicie RCP imediatamente, intube e ventile com oxigênio 100%, comprima tórax (100-120 bpm), administre atropina e epinefrina. Hipoventilação: ventilação assistida imediata. Hipotensão severa: bolus de fluidos, reduzir anestésico inalatório, vasopressores (efedrina, dopamina). Bradicardia: atropina ou glicopirrolato. Taquicardia/arritmias: tratar causas (dor, hipóxia, hipovolemia) e antiarrítmicos se necessário. Hipotermia: aquecimento ativo. Hipertermia maligna (rara): interrompa anestésicos, resfrie ativamente, dantroleno. Prevenção através de monitoramento adequado é fundamental.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 423
+  },
+  {
+    "id_postagem_artigo": 86,
+    "id_veterinario": 18,
+    "titulo": "Catarata em cães: quando operar?",
+    "conteudo": "A catarata é opacificação do cristalino que interfere na visão. Em cães, é frequentemente hereditária (Poodle, Cocker, Golden) ou secundária a diabetes. Classificação: incipiente (<15% cristalino), imatura (15-99%), madura (100%) ou hipermadura (com degeneração). Sinais: reflexo de tapete diminuído, pupila esbranquiçada e déficit visual progressivo. A cirurgia (facoemulsificação) é indicada quando causa déficit visual significativo e antes de complicações (glaucoma, uveíte). Avaliação pré-cirúrgica inclui eletrorretinografia e ultrassom ocular. Prognóstico visual é excelente (>90%) quando realizada no momento apropriado. Colírios pós-operatórios intensivos são necessários.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 445
+  },
+  {
+    "id_postagem_artigo": 87,
+    "id_veterinario": 18,
+    "titulo": "Úlcera de córnea: emergência oftálmica",
+    "conteudo": "Úlceras de córnea são perdas do epitélio corneano, comuns em cães e gatos. Causas: trauma, cílios ectópicos, olho seco, queimaduras químicas ou infecções. Sinais: blefaroespasmo (piscar excessivo), epífora (lacrimejamento), hiperemia conjuntival e dor ocular. Diagnóstico: teste de fluoresceína cora área ulcerada. Classificação: superficial ou profunda (risco de perfuração). Úlceras profundas são emergências! Tratamento: antibióticos tópicos frequentes, atropina para dor, colar elisabetano. Úlceras profundas ou infectadas podem requerer cirurgia (flap conjuntival, ceratoplastia). Reavaliações frequentes são essenciais. Cicatrização geralmente ocorre em 5-7 dias para úlceras superficiais.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 378
+  },
+  {
+    "id_postagem_artigo": 88,
+    "id_veterinario": 18,
+    "titulo": "Glaucoma em animais de companhia",
+    "conteudo": "Glaucoma é aumento da pressão intraocular que causa dor intensa e dano ao nervo óptico, levando à cegueira. Pode ser primário (predisposição genética em raças como Cocker, Basset, Husky) ou secundário a uveíte, luxação de cristalino ou tumores. Sinais agudos: olho vermelho, pupila dilatada, córnea opaca (edema), dor intensa e perda visual súbita. Pressão intraocular normal: 15-25 mmHg; glaucoma: >25-30 mmHg. Glaucoma agudo é emergência! Tratamento visa reduzir pressão: medicações tópicas e sistêmicas. Casos refratários requerem cirurgia. Olhos cegos e dolorosos podem necessitar enucleação ou prótese intraescleral.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 356
+  },
+  {
+    "id_postagem_artigo": 89,
+    "id_veterinario": 18,
+    "titulo": "Olho seco (ceratoconjuntivite seca) em cães",
+    "conteudo": "A ceratoconjuntivite seca (CCS) resulta de produção lacrimal inadequada. Causas: imunomediada (mais comum), medicamentos (sulfa), trauma em glândula lacrimal ou doenças sistêmicas. Raças predispostas: Bulldog, Lhasa Apso, Shih-Tzu, Cocker. Sinais: secreção ocular mucopurulenta, hiperemia conjuntival, pigmentação e vascularização corneana. Diagnóstico: teste de Schirmer (<10-15mm/min é anormal). Complicações incluem úlceras de córnea e cegueira. Tratamento: estimulantes lacrimais (ciclosporina, tacrolimus), lágrimas artificiais frequentes, limpeza ocular. O tratamento é vitalício. Resposta geralmente é boa, mas alguns casos não respondem.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 389
+  },
+  {
+    "id_postagem_artigo": 90,
+    "id_veterinario": 18,
+    "titulo": "Entrópio e ectrópio: alterações palpebrais",
+    "conteudo": "Entrópio é inversão da pálpebra (margem vira para dentro), fazendo pelos e cílios irritarem a córnea. Raças predispostas: Shar-Pei, Chow-Chow, Bulldog. Causa desconforto, epífora, blefaroespasmo e úlceras corneanas. Ectrópio é eversão palpebral (margem vira para fora), expondo conjuntiva. Comum em Bloodhound, Basset, São Bernardo. Causa conjuntivite crônica por exposição. Ambos podem ser congênitos ou adquiridos (cicatricial, senil). Entrópio geralmente requer correção cirúrgica. Ectrópio leve pode não necessitar tratamento; casos graves requerem cirurgia. Lubrificação ocular ajuda em ambos os casos.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 91,
+    "id_veterinario": 19,
+    "titulo": "Acupuntura veterinária: ciência e tradição",
+    "conteudo": "A acupuntura é medicina tradicional chinesa reconhecida pela OMS, cada vez mais utilizada em veterinária. Baseia-se na estimulação de pontos específicos para restaurar equilíbrio energético. Cientificamente, promove liberação de endorfinas, melhora circulação, modula inflamação e estimula sistema nervoso. Indicações: dor crônica (artrite, DDIV), problemas neurológicos, distúrbios gastrointestinais, doenças respiratórias, ansiedade e suporte oncológico. As sessões duram 20-40 minutos, com agulhas finas inseridas em pontos específicos. Maioria dos animais tolera bem, alguns relaxam profundamente. Efeitos colaterais são raros. Melhor resultado quando integrada à medicina convencional.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 334
+  },
+  {
+    "id_postagem_artigo": 92,
+    "id_veterinario": 19,
+    "titulo": "Homeopatia em medicina veterinária",
+    "conteudo": "A homeopatia baseia-se no princípio 'semelhante cura semelhante', usando substâncias altamente diluídas para estimular capacidade curativa do organismo. Em veterinária, trata condições agudas e crônicas: alergias, problemas comportamentais, distúrbios digestivos, doenças crônicas e suporte em enfermidades graves. A prescrição é individualizada, considerando sintomas físicos, comportamentais e características únicas do animal. Os medicamentos são administrados via oral (glóbulos, líquidos). Não apresentam efeitos colaterais ou interações medicamentosas. A resposta varia; alguns animais melhoram rapidamente, outros requerem ajustes. Funciona melhor integrando cuidados convencionais quando necessário.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 93,
+    "id_veterinario": 19,
+    "titulo": "Fitoterapia: o poder das plantas medicinais",
+    "conteudo": "A fitoterapia utiliza plantas medicinais para prevenir e tratar doenças. Diferente da homeopatia, usa concentrações materiais de princípios ativos vegetais. Exemplos: cúrcuma (anti-inflamatório), camomila (digestivo e calmante), cavalinha (diurético), ginkgo biloba (circulação cerebral), valeriana (ansiedade). As formulações incluem chás, tinturas, cápsulas e extratos. Vantagens: origem natural, menos efeitos colaterais, custo acessível. Importante: nem tudo natural é seguro; algumas plantas são tóxicas para animais (alho, cebola). A prescrição deve ser feita por veterinário capacitado, considerando dose, interações e contraindicações específicas para cada espécie.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 94,
+    "id_veterinario": 19,
+    "titulo": "Ozonioterapia em cães e gatos",
+    "conteudo": "A ozonioterapia utiliza ozônio medicinal (O3) por suas propriedades antimicrobianas, imunomoduladoras e melhoradoras de oxigenação tecidual. Aplicações: feridas infectadas, cistite, artrite, doença do disco intervertebral, doenças autoimunes e suporte oncológico. Vias de administração: auto-hemoterapia (sangue ozonizado reinfundido), insuflação retal, aplicação tópica em feridas, injeções locais. Promove cicatrização, reduz inflamação e dor, ativa sistema imunológico. É adjuvante, não substitui tratamentos convencionais. Sessões semanais inicialmente, espaçando conforme resposta. Contraindicações: gestação, hipertireoidismo descontrolado. Efeitos colaterais são mínimos quando aplicado corretamente.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 223
+  },
+  {
+    "id_postagem_artigo": 95,
+    "id_veterinario": 19,
+    "titulo": "Medicina integrativa: o melhor dos dois mundos",
+    "conteudo": "A medicina integrativa combina tratamentos convencionais baseados em evidências com terapias complementares seguras e eficazes. O objetivo é tratar o animal holisticamente, considerando corpo, mente e ambiente. Exemplo: cão com artrite pode receber anti-inflamatórios convencionais, acupuntura para dor, suplementação nutricional, fisioterapia e ajustes ambientais. Essa abordagem frequentemente permite reduzir doses de medicamentos, minimizar efeitos colaterais e melhorar qualidade de vida. O sucesso depende de avaliação criteriosa, diagnóstico preciso e combinação racional de terapias. Não é rejeitar ciência, mas expandir ferramentas terapêuticas disponíveis para benefício do paciente.",
+    "id_categoria_artigo": 1,
+    "visualizacoes": 389
+  },
+  {
+    "id_postagem_artigo": 96,
+    "id_veterinario": 20,
+    "titulo": "Particularidades da medicina felina",
+    "conteudo": "Gatos não são cães pequenos: possuem diferenças anatômicas, fisiológicas, metabólicas e comportamentais significativas. Metabolicamente, têm deficiência de glucuronidase, tornando-os sensíveis a muitos medicamentos seguros para cães (paracetamol, aspirina). São carnívoros obrigatórios com necessidades nutricionais específicas (taurina, arginina, vitamina A pré-formada). O estresse impacta profundamente sua saúde, causando cistite idiopática, inapetência e imunossupressão. Doenças comuns incluem DRC, hipertireoidismo, diabetes, cardiomiopatia hipertrófica e DTUIF. O manejo clínico requer técnicas de baixo estresse: manipulação gentil, feromônios, tempo adequado para aclimatação.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 478
+  },
+  {
+    "id_postagem_artigo": 97,
+    "id_veterinario": 20,
+    "titulo": "Doença do trato urinário inferior felino (DTUIF)",
+    "conteudo": "A DTUIF engloba diversas condições que afetam bexiga e uretra de gatos. Causas incluem cistite idiopática (mais comum, 60-70%), urolitíase, infecções (raras em gatos jovens) e neoplasias. Sinais: disúria, hematúria, estrangúria, lambedura excessiva da região perineal e periúria. Obstrução uretral (quase exclusiva de machos) é emergência fatal se não tratada: anúria, vocalização de dor, letargia. Fatores de risco: estresse, obesidade, sedentarismo, baixa ingestão hídrica. Tratamento de cistite idiopática: manejo de estresse, enriquecimento ambiental, analgesia e aumento de ingestão hídrica. Obstrução requer desobstrução urgente, fluidoterapia e internação.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 523
+  },
+  {
+    "id_postagem_artigo": 98,
+    "id_veterinario": 20,
+    "titulo": "Enriquecimento ambiental para gatos indoor",
+    "conteudo": "Gatos domésticos mantidos exclusivamente dentro de casa vivem mais e com menor risco de doenças e traumas, mas requerem enriquecimento ambiental adequado para saúde física e mental. Elementos essenciais: múltiplos arranhadores verticais e horizontais, prateleiras e árvores em diferentes alturas, esconderijos e tocas, brinquedos variados (especialmente interativos tipo caça), acesso a janelas para observação, áreas de descanso em locais elevados e aquecidos. Rotação de brinquedos mantém novidade. Sessões diárias de brincadeira interativa simulam caça. Considere catio (área externa protegida) ou passeios supervisionados com guia. Ambiente enriquecido previne obesidade, problemas comportamentais e doenças relacionadas ao estresse.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 567
+  },
+  {
+    "id_postagem_artigo": 99,
+    "id_veterinario": 20,
+    "titulo": "Manejo de estresse em consultas veterinárias",
+    "conteudo": "O estresse em consultas veterinárias pode ter consequências graves em gatos: alterações em parâmetros fisiológicos (pressão, glicemia), imunossupressão e desenvolvimento de cistite idiopática. Estratégias de baixo estresse: agendar gatos em horários mais calmos, usar salas exclusivas quando possível, aplicar feromônios faciais sintéticos (Feliway), oferecer tempo para aclimatação, usar toalhas e cobertores para segurança, manipulação gentil e mínima, realizar procedimentos dentro do transportador quando possível. Tutores podem ajudar: treinar o gato para aceitar transportador em casa (associações positivas), usar toalha com odor familiar, evitar jejum prolongado. Sedação pode ser necessária em casos de estresse extremo.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 445
+  },
+  {
+    "id_postagem_artigo": 100,
+    "id_veterinario": 20,
+    "titulo": "Introdução de novos gatos no lar multifelino",
+    "conteudo": "Gatos são territoriais e a introdução inadequada de novos membros pode causar estresse crônico, agressão e problemas comportamentais. O processo deve ser gradual: inicialmente, mantenha o novo gato em cômodo separado com recursos próprios (caixa de areia, comedouros, água, arranhador). Troque odores entre os gatos usando toalhas. Após alguns dias, permita visualização através de barreira (porta entreaberta, grade). Quando houver aceitação visual, permita contato supervisionado breve, aumentando gradualmente. Ofereça recompensas durante interações positivas. Mantenha recursos suficientes: n+1 caixas de areia, múltiplos pontos de alimentação/água, arranhadores e áreas de descanso. O processo pode levar semanas a meses.",
+    "id_categoria_artigo": 2,
+    "visualizacoes": 498
+  }
+]

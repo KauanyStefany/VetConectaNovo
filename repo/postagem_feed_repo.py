@@ -19,7 +19,7 @@ def criar_tabela() -> bool:
 def inserir(postagem: PostagemFeed) -> Optional[int]:
     with get_connection() as conn:
         cursor = conn.cursor()
-        cursor.execute(INSERIR, (postagem.id_tutor, postagem.imagem, postagem.descricao))
+        cursor.execute(INSERIR, (postagem.id_tutor, postagem.descricao))
         return cursor.lastrowid
 
 
@@ -48,7 +48,6 @@ def obter_pagina(pagina: int, tamanho_pagina: int) -> List[PostagemFeed]:
             PostagemFeed(
                 id_postagem_feed=row["id_postagem_feed"],
                 id_tutor=row["id_tutor"],
-                imagem=row["imagem"],
                 descricao=row["descricao"],
                 data_postagem=datetime.strptime(row["data_postagem"][:10], "%Y-%m-%d").date(),
             )
@@ -65,8 +64,22 @@ def obter_por_id(id_postagem_feed: int) -> Optional[PostagemFeed]:
             return PostagemFeed(
                 id_postagem_feed=row["id_postagem_feed"],
                 id_tutor=row["id_tutor"],
-                imagem=row["imagem"],
                 descricao=row["descricao"],
                 data_postagem=datetime.strptime(row["data_postagem"][:10], "%Y-%m-%d").date(),
             )
         return None
+
+
+def importar(postagem: PostagemFeed) -> Optional[int]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            IMPORTAR,
+            (
+                postagem.id_postagem_feed,
+                postagem.id_tutor,
+                postagem.descricao,
+                postagem.data_postagem,
+            ),
+        )
+        return postagem.id_postagem_feed

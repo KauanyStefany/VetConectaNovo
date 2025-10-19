@@ -1,0 +1,204 @@
+{% extends "base_publica.html" %}
+
+{% block title %}{{ artigo.titulo }}{% endblock %}
+
+{% block conteudo %}
+
+<div class="container py-5">
+    <!-- Cabeçalho do Artigo -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="fw-bold text-roxo mb-3">{{ artigo.titulo }}</h1>
+
+            <!-- Metadados -->
+            <div class="d-flex flex-wrap gap-3 align-items-center mb-3">
+                <!-- Categoria -->
+                <span class="badge rounded-pill px-3 py-2" style="background-color: {{ categoria.cor }}; color: #fff; font-size: 0.9rem;">
+                    <i class="bi bi-tag-fill me-1"></i>{{ categoria.nome }}
+                </span>
+
+                <!-- Data de Publicação -->
+                <span class="text-muted">
+                    <i class="bi bi-calendar-event me-1"></i>
+                    {{ artigo.data_publicacao.strftime('%d/%m/%Y') }}
+                </span>
+
+                <!-- Visualizações -->
+                <span class="text-muted">
+                    <i class="bi bi-eye me-1"></i>
+                    {{ artigo.visualizacoes }} visualizações
+                </span>
+
+                <!-- Curtidas -->
+                <span class="text-muted">
+                    <i class="bi bi-heart-fill text-danger me-1"></i>
+                    {{ total_curtidas }} curtida{{ 's' if total_curtidas != 1 else '' }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Conteúdo Principal -->
+        <div class="col-lg-8">
+            <!-- Card do Conteúdo -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <!-- Conteúdo do Artigo -->
+                    <div class="article-content" style="line-height: 1.8; font-size: 1.05rem;">
+                        {{ artigo.conteudo|safe }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão de Curtir -->
+            {% if request.session.get('usuario') %}
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4 text-center">
+                    <p class="mb-3 text-muted">Gostou deste artigo?</p>
+                    {% if usuario_curtiu %}
+                    <button class="btn btn-danger btn-lg px-5" disabled>
+                        <i class="bi bi-heart-fill me-2"></i>Você curtiu este artigo
+                    </button>
+                    {% else %}
+                    <button class="btn btn-outline-danger btn-lg px-5" onclick="alert('Funcionalidade de curtir em breve!')">
+                        <i class="bi bi-heart me-2"></i>Curtir este artigo
+                    </button>
+                    {% endif %}
+                    <p class="mt-3 mb-0 small text-muted">
+                        {{ total_curtidas }} pessoa{{ 's' if total_curtidas != 1 else '' }} curtiu{{ '' if total_curtidas != 1 else '' }} este artigo
+                    </p>
+                </div>
+            </div>
+            {% else %}
+            <div class="card border-0 shadow-sm mb-4 bg-light">
+                <div class="card-body p-4 text-center">
+                    <p class="mb-3">Gostou deste artigo? Faça login para curtir!</p>
+                    <a href="/login" class="btn btn-roxo text-white btn-lg px-5">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Fazer Login
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar - Informações do Autor -->
+        <div class="col-lg-4">
+            <!-- Card do Veterinário -->
+            <div class="card border-0 shadow-sm sticky-top" style="top: 20px;">
+                <div class="card-header bg-roxo text-white text-center py-3">
+                    <h5 class="mb-0 fw-semibold">
+                        <i class="bi bi-person-badge me-2"></i>Sobre o Autor
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Nome do Veterinário -->
+                    <div class="text-center mb-3">
+                        <h5 class="fw-bold text-roxo mb-2">{{ veterinario.nome }}</h5>
+
+                        <!-- Badge de Verificado -->
+                        {% if veterinario.verificado %}
+                        <span class="badge bg-success">
+                            <i class="bi bi-patch-check-fill me-1"></i>Verificado
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- CRMV -->
+                    <div class="mb-3 p-3 bg-light rounded">
+                        <small class="text-muted d-block mb-1">CRMV</small>
+                        <strong class="text-roxo">{{ veterinario.crmv }}</strong>
+                    </div>
+
+                    <!-- Bio -->
+                    {% if veterinario.bio %}
+                    <div class="mb-3">
+                        <small class="text-muted d-block mb-2">
+                            <i class="bi bi-info-circle me-1"></i>Sobre
+                        </small>
+                        <p class="mb-0" style="line-height: 1.6; font-size: 0.95rem;">
+                            {{ veterinario.bio }}
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Estatísticas do Artigo -->
+                    <hr class="my-3">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="p-2">
+                                <i class="bi bi-eye text-roxo" style="font-size: 1.5rem;"></i>
+                                <div class="fw-bold text-roxo mt-1">{{ artigo.visualizacoes }}</div>
+                                <small class="text-muted">Visualizações</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-2">
+                                <i class="bi bi-heart-fill text-danger" style="font-size: 1.5rem;"></i>
+                                <div class="fw-bold text-danger mt-1">{{ total_curtidas }}</div>
+                                <small class="text-muted">Curtidas</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Voltar -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="/" class="btn btn-outline-roxo btn-lg px-5">
+                <i class="bi bi-arrow-left me-2"></i>Voltar para a Página Inicial
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block head %}
+<style>
+    /* Estilos adicionais para o artigo */
+    .article-content {
+        text-align: justify;
+        white-space: pre-wrap;
+    }
+
+    .article-content p {
+        margin-bottom: 1.2rem;
+    }
+
+    .btn-roxo {
+        background-color: var(--cor-roxo);
+        border-color: var(--cor-roxo);
+    }
+
+    .btn-roxo:hover {
+        background-color: #362947;
+        border-color: #362947;
+    }
+
+    .btn-outline-roxo {
+        border-color: var(--cor-roxo);
+        color: var(--cor-roxo);
+    }
+
+    .btn-outline-roxo:hover {
+        background-color: var(--cor-roxo);
+        border-color: var(--cor-roxo);
+        color: #fff;
+    }
+
+    .sticky-top {
+        position: sticky;
+    }
+
+    @media (max-width: 991px) {
+        .sticky-top {
+            position: relative !important;
+            top: auto !important;
+        }
+    }
+</style>
+{% endblock %}

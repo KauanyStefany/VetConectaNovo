@@ -49,7 +49,6 @@ class TestCurtidaFeedRepo:
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
             id_tutor=tutor_id,
-            imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
             data_postagem=date.today(),
         )
@@ -109,7 +108,6 @@ class TestCurtidaFeedRepo:
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
             id_tutor=tutor_id,
-            imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
             data_postagem=date.today(),
         )
@@ -165,7 +163,6 @@ class TestCurtidaFeedRepo:
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
             id_tutor=tutor_id,
-            imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
             data_postagem=date.today(),
         )
@@ -228,7 +225,6 @@ class TestCurtidaFeedRepo:
         postagem = postagem_feed_model.PostagemFeed(
             id_postagem_feed=0,
             id_tutor=tutor_id,
-            imagem="imagem_teste.jpg",
             descricao="Descrição da postagem teste",
             data_postagem=date.today(),
         )

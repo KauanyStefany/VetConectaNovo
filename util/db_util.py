@@ -91,6 +91,8 @@ def inicializar_banco():
     importar_veterinarios()
     importar_tutores()
     importar_categorias_artigos()
+    importar_postagens_artigos()
+    importar_postagens_feeds()
 
 
 def importar_admins():
@@ -236,3 +238,72 @@ def importar_categorias_artigos():
         )
         categoria_artigo_repo.importar(categoria)
         logger.info(f"Categoria '{categoria.nome}' importada com sucesso.")
+
+
+def importar_postagens_artigos():
+    """Importa postagens de artigos do arquivo JSON se a tabela estiver vazia."""
+    from datetime import date
+    from repo import postagem_artigo_repo
+    from model.postagem_artigo_model import PostagemArtigo
+
+    # Verifica se a tabela está vazia
+    postagens_existentes = postagem_artigo_repo.obter_pagina(pagina=1, tamanho_pagina=1)
+    if postagens_existentes:
+        logger.info("Tabela de postagens de artigos já contém dados. Importação ignorada.")
+        return
+
+    # Lê o arquivo JSON
+    json_path = Path(__file__).parent.parent / "data" / "postagens_artigos.json"
+    if not json_path.exists():
+        logger.warning(f"Arquivo {json_path} não encontrado.")
+        return
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    # Importa cada postagem
+    for item in dados:
+        postagem = PostagemArtigo(
+            id_postagem_artigo=item["id_postagem_artigo"],
+            id_veterinario=item["id_veterinario"],
+            titulo=item["titulo"],
+            conteudo=item["conteudo"],
+            id_categoria_artigo=item["id_categoria_artigo"],
+            data_publicacao=date.today(),  # Usa data atual pois não está no JSON
+            visualizacoes=item.get("visualizacoes", 0),  # Usa 0 como padrão se não existir
+        )
+        postagem_artigo_repo.importar(postagem)
+        logger.info(f"Postagem '{postagem.titulo}' importada com sucesso.")
+
+
+def importar_postagens_feeds():
+    """Importa postagens de feeds do arquivo JSON se a tabela estiver vazia."""
+    from datetime import datetime
+    from repo import postagem_feed_repo
+    from model.postagem_feed_model import PostagemFeed
+
+    # Verifica se a tabela está vazia
+    postagens_existentes = postagem_feed_repo.obter_pagina(pagina=1, tamanho_pagina=1)
+    if postagens_existentes:
+        logger.info("Tabela de postagens de feeds já contém dados. Importação ignorada.")
+        return
+
+    # Lê o arquivo JSON
+    json_path = Path(__file__).parent.parent / "data" / "postagens_feeds.json"
+    if not json_path.exists():
+        logger.warning(f"Arquivo {json_path} não encontrado.")
+        return
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    # Importa cada postagem
+    for item in dados:
+        postagem = PostagemFeed(
+            id_postagem_feed=item["id_postagem_feed"],
+            id_tutor=item["id_tutor"],
+            descricao=item["descricao"],
+            data_postagem=datetime.strptime(item["data_postagem"], "%Y-%m-%d %H:%M:%S").date(),
+        )
+        postagem_feed_repo.importar(postagem)
+        logger.info(f"Postagem feed #{postagem.id_postagem_feed} do tutor {postagem.id_tutor} importada com sucesso.")

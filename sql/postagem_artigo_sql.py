@@ -60,3 +60,8 @@ SELECT
 FROM postagem_artigo
 WHERE id_postagem_artigo = ?;
 """
+
+IMPORTAR = """
+INSERT INTO postagem_artigo (id_postagem_artigo, id_veterinario, titulo, conteudo, id_categoria_artigo, visualizacoes)
+VALUES (?, ?, ?, ?, ?, ?);
+"""

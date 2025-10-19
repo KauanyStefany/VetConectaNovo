@@ -40,7 +40,6 @@ class TestPostagemFeedRepo:
         postagem = PostagemFeed(
             id_postagem_feed=0,
             id_tutor=id_tutor,
-            imagem="imagem.jpg",
             descricao="Descrição da postagem",
             data_postagem=datetime.today().date(),
         )
@@ -55,9 +54,6 @@ class TestPostagemFeedRepo:
         assert (
             postagem_db.id_tutor == postagem.id_tutor
         ), "O tutor da postagem recuperada está incorreto"
-        assert (
-            postagem_db.imagem == postagem.imagem
-        ), "A imagem da postagem recuperada está incorreta"
         assert (
             postagem_db.descricao == postagem.descricao
         ), "A descrição da postagem recuperada está incorreta"
@@ -92,7 +88,6 @@ class TestPostagemFeedRepo:
         postagem = PostagemFeed(
             0,
             id_tutor,
-            "foto.jpg",
             "Descrição original",
             datetime.today().date(),
         )
@@ -117,7 +112,7 @@ class TestPostagemFeedRepo:
         # Arrange
         postagem_feed_repo.criar_tabela()
         postagem = PostagemFeed(
-            9999, 1, "foto.jpg", "Descrição", datetime.today().date()
+            9999, 1, "Descrição", datetime.today().date()
         )
 
         # Act
@@ -153,7 +148,7 @@ class TestPostagemFeedRepo:
         assert id_tutor is not None
 
         postagem = PostagemFeed(
-            0, id_tutor, "gato.jpg", "Meus gatos", datetime.today().date()
+            0, id_tutor, "Meus gatos", datetime.today().date()
         )
         id_postagem = postagem_feed_repo.inserir(postagem)
 
@@ -209,7 +204,6 @@ class TestPostagemFeedRepo:
             postagem = PostagemFeed(
                 0,
                 id_tutor,
-                f"foto{i}.jpg",
                 f"Postagem {i}",
                 datetime.today().date(),
             )

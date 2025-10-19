@@ -98,3 +98,24 @@ def obter_por_id(id_usuario: int, id_postagem_artigo: int) -> Optional[CurtidaAr
     except Exception as e:
         print(f"Erro ao obter curtida por ID: {e}")
         return None
+
+
+def contar_curtidas_por_artigo(id_postagem_artigo: int) -> int:
+    """
+    Conta o total de curtidas de um artigo específico
+
+    Args:
+        id_postagem_artigo: ID do artigo
+
+    Returns:
+        Total de curtidas do artigo
+    """
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(CONTAR_CURTIDAS_POR_ARTIGO, (id_postagem_artigo,))
+            row = cursor.fetchone()
+            return row["total_curtidas"] if row else 0
+    except Exception as e:
+        print(f"Erro ao contar curtidas do artigo: {e}")
+        return 0

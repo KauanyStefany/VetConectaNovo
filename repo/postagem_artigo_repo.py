@@ -97,3 +97,20 @@ def obter_por_id(id_postagem_artigo: int) -> Optional[PostagemArtigo]:
                 visualizacoes=row["visualizacoes"],
             )
         return None
+
+
+def importar(postagem: PostagemArtigo) -> Optional[int]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            IMPORTAR,
+            (
+                postagem.id_postagem_artigo,
+                postagem.id_veterinario,
+                postagem.titulo,
+                postagem.conteudo,
+                postagem.id_categoria_artigo,
+                postagem.visualizacoes,
+            ),
+        )
+        return postagem.id_postagem_artigo
