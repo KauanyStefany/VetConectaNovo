@@ -8,10 +8,8 @@ from typing import Set
 class UploadConfig:
     """Configurações centralizadas para upload de arquivos"""
 
-    # Diretórios
-    BASE_DIR = Path("static/uploads")
-    USUARIOS_DIR = Path("static/img/usuarios")  # Nova localização para fotos de usuários
-    TEMP_DIR = BASE_DIR / "temp"
+    # Diretórios    
+    USUARIOS_DIR = Path("static/img/usuarios")      
 
     # Formato de nome de arquivo para fotos de usuários
     FOTO_USUARIO_PATTERN = "{:06d}"  # Formato: 000123 (6 dígitos)
@@ -51,7 +49,7 @@ class UploadConfig:
     @classmethod
     def init_directories(cls):
         """Cria diretórios necessários com permissões corretas"""
-        for directory in [cls.USUARIOS_DIR, cls.TEMP_DIR]:
+        for directory in [cls.USUARIOS_DIR]:
             directory.mkdir(parents=True, exist_ok=True)
             directory.chmod(cls.DIR_PERMISSIONS)
 
