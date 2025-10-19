@@ -2,76 +2,70 @@
 
 {% block title %}Login{% endblock %}
 
+{% set content_bg_class = 'bg-img-animais' %}
+
 {% block conteudo %}
-<div class="container-fluid d-flex justify-content-center align-items-center">
-    <div class="col-12 col-md-8 col-lg-5 col-xl-4">
-        <div class="card shadow-lg rounded-4 border-0 bg-white bg-opacity-50">
-            <div class="card-body p-4 p-md-5 text-center">
-                <!-- Login Title -->
-                <h5 class="mb-4 fw-semibold fs-2">Login</h5>
+<div class="bg-img-animais">
+    <div class="d-flex justify-content-center align-items-center flex-grow-1 ">
+        <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3">
+            <div class="card shadow-lg rounded-4 border-0 bg-white bg-opacity-75">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <!-- Título -->
+                    <h5 class="mb-4 fw-semibold fs-2">Login</h5>
 
-                <!-- Form -->
-                <form action="/login" method="post" class="text-start">
-                    <!-- Hidden redirect field -->
-                    {% if redirect %}
-                    <input type="hidden" name="next" value="{{ redirect }}">
-                    {% endif %}
+                    <!-- Formulário -->
+                    <form action="/login" method="post" class="text-start">
 
-                    <!-- General error alert -->
-                    {% if erros and erros.geral %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ erros.geral }}
-                    </div>
-                    {% endif %}
-
-                    <!-- Email field -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label fw-bold">Email</label>
-                        <input
-                            type="email"
-                            class="form-control {% if erros and erros.email %}is-invalid{% endif %}"
-                            id="email"
-                            name="email"
-                            value="{{ dados.email if dados else '' }}"
-                            placeholder="Digite seu e-mail"
-                            required
-                        >
-                        {% if erros and erros.email  %}
-                        <div class="invalid-feedback">{{ erros.email }}</div>
+                        <!-- Campo oculto para redirecionamento -->
+                        {% if redirect %}
+                        <input type="hidden" name="next" value="{{ redirect }}">
                         {% endif %}
-                    </div>
 
-                    <!-- Password field -->
-                    <div class="mb-3">
-                        <label for="senha" class="form-label fw-bold">Senha</label>
-                        <input
-                            type="password"
-                            class="form-control {% if erros and erros.senha %}is-invalid{% endif %}"
-                            id="senha"
-                            name="senha"
-                            placeholder="Digite sua senha"
-                            required
-                        >
-                        {% if erros and erros.senha %}
-                        <div class="invalid-feedback">{{ erros.senha }}</div>
+                        <!-- Alerta de erro geral -->
+                        {% if erros and erros.geral %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ erros.geral }}
+                        </div>
                         {% endif %}
+
+                        <!-- Campo de e-mail -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">E-mail</label>
+                            <input type="email" class="form-control {% if erros and erros.email %}is-invalid{% endif %}"
+                                id="email" name="email" value="{{ dados.email if dados else '' }}"
+                                placeholder="Digite seu e-mail" required>
+                            {% if erros and erros.email %}
+                            <div class="invalid-feedback">{{ erros.email }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Campo de senha -->
+                        <div class="mb-3">
+                            <label for="senha" class="form-label fw-bold">Senha</label>
+                            <input type="password"
+                                class="form-control {% if erros and erros.senha %}is-invalid{% endif %}" id="senha"
+                                name="senha" placeholder="Digite sua senha" required>
+                            {% if erros and erros.senha %}
+                            <div class="invalid-feedback">{{ erros.senha }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Botão de envio -->
+                        <button type="submit" class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-3 rounded-3">
+                            Entrar
+                        </button>
+
+                        <!-- Link para recuperação de senha -->
+                        <div class="text-center mb-3">
+                            <a href="/esqueci-senha" class="text-decoration-none">Esqueci minha senha</a>
+                        </div>
+                    </form>
+
+                    <!-- Link para cadastro -->
+                    <div class="text-center border-top pt-3">
+                        <span class="text-muted">Não tem uma conta cadastrada?</span>
+                        <a href="/cadastro" class="text-primary fw-semibold text-decoration-none ms-1">Cadastre-se!</a>
                     </div>
-
-                    <!-- Submit button -->
-                    <button type="submit" class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-3 rounded-3">
-                        Entrar
-                    </button>
-
-                    <!-- Forgot password link -->
-                    <div class="text-center mb-3">
-                        <a href="/esqueci-senha" class="text-decoration-none">Esqueci minha senha</a>
-                    </div>
-                </form>
-
-                <!-- Sign up link -->
-                <div class="text-center border-top pt-3">
-                    <span class="text-muted">Não tem uma conta cadastrada?</span>
-                    <a href="/cadastro" class="text-primary fw-semibold text-decoration-none ms-1">Cadastre-se!</a>
                 </div>
             </div>
         </div>

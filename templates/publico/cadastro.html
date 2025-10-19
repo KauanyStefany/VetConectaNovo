@@ -3,193 +3,144 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block conteudo %}
-<div class="container-fluid d-flex justify-content-center align-items-center py-5">
-    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-lg rounded-4 border-0">
-            <div class="card-body p-4 p-md-5 text-center">
-                <!-- Logo -->
-                <img src="/static/img/pata_icon.png" alt="Logo VetConecta" class="mb-3" style="width: 100px; height: auto;">
+<div class="bg-img-animais">
+    <div class="container">
+        <div class="row justify-content-center align-items-center flex-grow-1">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
+                <div class="card shadow-lg rounded-4 border-0 bg-white bg-opacity-75">
+                    <div class="card-body p-4 p-md-5 text-center">
+                        <!-- Título -->
+                        <h5 class="mb-4 fw-semibold fs-2">Cadastro</h5>
 
-                <!-- Brand Title -->
-                <div class="mb-4">
-                    <h1 class="d-inline fw-bold text-laranja" style="font-size: 2.5rem;">Vet</h1>
-                    <h1 class="d-inline fw-bold text-verde" style="font-size: 2.5rem;">Conecta</h1>
-                </div>
+                        <!-- Formulário -->
+                        <form action="/cadastro" method="post" class="text-start">
 
-                <!-- Cadastro Title -->
-                <h5 class="mb-4 fw-semibold" style="font-size: 1.875rem;">Cadastro</h5>
-
-                <!-- Form -->
-                <form action="/cadastro" method="post" class="text-start">
-                    <!-- General error alert -->
-                    {% if erros and 'GERAL' in erros.keys() %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ erros['GERAL'] }}
-                    </div>
-                    {% endif %}
-
-                    <!-- Profile selection -->
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Se cadastrar como:</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="perfil"
-                                    id="tutor"
-                                    value="tutor"
-                                    required
-                                    {% if dados and dados.perfil == 'tutor' %}checked{% endif %}
-                                >
-                                <label class="form-check-label" for="tutor">Tutor</label>
+                            <!-- Alerta de erro geral -->
+                            {% if erros and erros.geral %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ erros.geral }}
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="perfil"
-                                    id="veterinario"
-                                    value="veterinario"
-                                    required
-                                    {% if dados and dados.perfil == 'veterinario' %}checked{% endif %}
-                                >
-                                <label class="form-check-label" for="veterinario">Veterinário</label>
+                            {% endif %}
+
+                            <!-- Seleção de perfil -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Se cadastrar como:</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="perfil" id="tutor"
+                                            value="tutor" required {% if dados and dados.perfil=='tutor' %}checked{%
+                                            endif %}>
+                                        <label class="form-check-label" for="tutor">Tutor</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="perfil" id="veterinario"
+                                            value="veterinario" required {% if dados and dados.perfil=='veterinario'
+                                            %}checked{% endif %}>
+                                        <label class="form-check-label" for="veterinario">Veterinário</label>
+                                    </div>
+                                </div>
+                                {% if erros and erros.perfil %}
+                                <div class="invalid-feedback d-block">{{ erros.perfil }}</div>
+                                {% endif %}
                             </div>
+
+                            <!-- Campo Nome -->
+                            <div class="mb-3">
+                                <label for="nome" class="form-label fw-bold">Nome</label>
+                                <input type="text"
+                                    class="form-control {% if erros and erros.nome %}is-invalid{% endif %}" id="nome"
+                                    name="nome" value="{{ dados.nome if dados else '' }}" placeholder="Digite seu nome"
+                                    required>
+                                {% if erros and erros.nome %}
+                                <div class="invalid-feedback">{{ erros.nome }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Campo Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold">E-mail</label>
+                                <input type="email"
+                                    class="form-control {% if erros and erros.email %}is-invalid{% endif %}" id="email"
+                                    name="email" value="{{ dados.email if dados else '' }}"
+                                    placeholder="Digite seu e-mail" required>
+                                {% if erros and erros.email %}
+                                <div class="invalid-feedback">{{ erros.email }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Campo Telefone -->
+                            <div class="mb-3">
+                                <label for="telefone" class="form-label fw-bold">Telefone</label>
+                                <input type="tel"
+                                    class="form-control {% if erros and erros.telefone %}is-invalid{% endif %}"
+                                    id="telefone" name="telefone" value="{{ dados.telefone if dados else '' }}"
+                                    placeholder="Digite seu telefone" required>
+                                {% if erros and erros.telefone %}
+                                <div class="invalid-feedback">{{ erros.telefone }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Campo CRMV (somente se Veterinário) -->
+                            <div class="mb-3" id="crmv-field" style="display: none;">
+                                <label for="crmv" class="form-label fw-bold">CRMV</label>
+                                <input type="text"
+                                    class="form-control {% if erros and erros.crmv %}is-invalid{% endif %}" id="crmv"
+                                    name="crmv" value="{{ dados.crmv if dados else '' }}" placeholder="Digite seu CRMV">
+                                {% if erros and erros.crmv %}
+                                <div class="invalid-feedback">{{ erros.crmv }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Campo Senha -->
+                            <div class="mb-3">
+                                <label for="senha" class="form-label fw-bold">Senha</label>
+                                <input type="password"
+                                    class="form-control {% if erros and erros.senha %}is-invalid{% endif %}" id="senha"
+                                    name="senha" placeholder="Digite sua senha" required>
+                                {% if erros and erros.senha %}
+                                <div class="invalid-feedback">{{ erros.senha }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Campo Confirmar Senha -->
+                            <div class="mb-3">
+                                <label for="confirmar_senha" class="form-label fw-bold">Confirmar Senha</label>
+                                <input type="password"
+                                    class="form-control {% if erros and erros.confirmar_senha %}is-invalid{% endif %}"
+                                    id="confirmar_senha" name="confirmar_senha" placeholder="Confirme sua senha"
+                                    required>
+                                {% if erros and erros.confirmar_senha %}
+                                <div class="invalid-feedback">{{ erros.confirmar_senha }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Campo Termos -->
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="termos" name="termos" required {% if
+                                    dados and dados.termos %}checked{% endif %}>
+                                <label class="form-check-label" for="termos">
+                                    Aceito os
+                                    <a href="/termos" class="text-primary fw-semibold text-decoration-none">Termos de
+                                        privacidade.</a>
+                                </label>
+                                {% if erros and erros.termos %}
+                                <div class="invalid-feedback d-block">{{ erros.termos }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Botão de Envio do Formulário -->
+                            <button type="submit"
+                                class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-3 rounded-3">
+                                Cadastrar
+                            </button>
+                        </form>
+
+                        <!-- Link para Login -->
+                        <div class="text-center border-top pt-3">
+                            <span class="text-muted">Já tem uma conta cadastrada?</span>
+                            <a href="/login" class="text-primary fw-semibold text-decoration-none ms-1">Faça login!</a>
                         </div>
-                        {% if erros and 'PERFIL' in erros %}
-                        <div class="invalid-feedback d-block">{{ erros['PERFIL'] }}</div>
-                        {% endif %}
                     </div>
-
-                    <!-- Nome field -->
-                    <div class="mb-3">
-                        <label for="nome" class="form-label fw-bold">Nome</label>
-                        <input
-                            type="text"
-                            class="form-control {% if erros and 'NOME' in erros.keys() %}is-invalid{% endif %}"
-                            id="nome"
-                            name="nome"
-                            value="{{ dados.nome if dados else '' }}"
-                            placeholder="Digite seu nome"
-                            required
-                        >
-                        {% if erros and 'NOME' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['NOME'] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Email field -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label fw-bold">Email</label>
-                        <input
-                            type="email"
-                            class="form-control {% if erros and 'EMAIL' in erros.keys() %}is-invalid{% endif %}"
-                            id="email"
-                            name="email"
-                            value="{{ dados.email if dados else '' }}"
-                            placeholder="Digite seu email"
-                            required
-                        >
-                        {% if erros and 'EMAIL' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['EMAIL'] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Telefone field -->
-                    <div class="mb-3">
-                        <label for="telefone" class="form-label fw-bold">Telefone</label>
-                        <input
-                            type="tel"
-                            class="form-control {% if erros and 'TELEFONE' in erros.keys() %}is-invalid{% endif %}"
-                            id="telefone"
-                            name="telefone"
-                            value="{{ dados.telefone if dados else '' }}"
-                            placeholder="Digite seu telefone"
-                            required
-                        >
-                        {% if erros and 'TELEFONE' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['TELEFONE'] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- CRMV field (conditional) -->
-                    <div class="mb-3" id="crmv-field" style="display: none;">
-                        <label for="crmv" class="form-label fw-bold">CRMV</label>
-                        <input
-                            type="text"
-                            class="form-control {% if erros and 'CRMV' in erros.keys() %}is-invalid{% endif %}"
-                            id="crmv"
-                            name="crmv"
-                            value="{{ dados.crmv if dados else '' }}"
-                            placeholder="Digite seu CRMV"
-                        >
-                        {% if erros and 'CRMV' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['CRMV'] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Senha field -->
-                    <div class="mb-3">
-                        <label for="senha" class="form-label fw-bold">Senha</label>
-                        <input
-                            type="password"
-                            class="form-control {% if erros and 'SENHA' in erros.keys() %}is-invalid{% endif %}"
-                            id="senha"
-                            name="senha"
-                            placeholder="Digite sua senha"
-                            required
-                        >
-                        {% if erros and 'SENHA' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['SENHA'] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Confirmar Senha field -->
-                    <div class="mb-3">
-                        <label for="confirmar_senha" class="form-label fw-bold">Confirmar Senha</label>
-                        <input
-                            type="password"
-                            class="form-control {% if erros and 'CONFIRMAR_SENHA' in erros.keys() %}is-invalid{% endif %}"
-                            id="confirmar_senha"
-                            name="confirmar_senha"
-                            placeholder="Confirme sua senha"
-                            required
-                        >
-                        {% if erros and 'CONFIRMAR_SENHA' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['CONFIRMAR_SENHA'] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Termos checkbox -->
-                    <div class="form-check mb-3">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="termos"
-                            name="termos"
-                            required
-                            {% if dados and dados.termos %}checked{% endif %}
-                        >
-                        <label class="form-check-label" for="termos">
-                            Aceito os
-                            <a href="/termos" class="text-primary fw-semibold text-decoration-none">Termos de privacidade.</a>
-                        </label>
-                        {% if erros and 'TERMOS' in erros.keys() %}
-                        <div class="invalid-feedback d-block">{{ erros['TERMOS'] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Submit button -->
-                    <button type="submit" class="btn bg-laranja text-white w-100 fw-semibold py-2 mb-3 rounded-3">
-                        Cadastrar
-                    </button>
-                </form>
-
-                <!-- Login link -->
-                <div class="text-center border-top pt-3">
-                    <span class="text-muted">Já tem uma conta cadastrada?</span>
-                    <a href="/login" class="text-primary fw-semibold text-decoration-none ms-1">Faça login!</a>
                 </div>
             </div>
         </div>
@@ -199,27 +150,27 @@
 
 {% block scripts %}
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const tutorRadio = document.getElementById('tutor');
-    const veterinarioRadio = document.getElementById('veterinario');
-    const crmvField = document.getElementById('crmv-field');
-    const crmvInput = document.getElementById('crmv');
+    document.addEventListener('DOMContentLoaded', function () {
+        const tutorRadio = document.getElementById('tutor');
+        const veterinarioRadio = document.getElementById('veterinario');
+        const crmvField = document.getElementById('crmv-field');
+        const crmvInput = document.getElementById('crmv');
 
-    function toggleCrmvField() {
-        if (veterinarioRadio.checked) {
-            crmvField.style.display = 'block';
-            crmvInput.setAttribute('required', 'required');
-        } else {
-            crmvField.style.display = 'none';
-            crmvInput.removeAttribute('required');
+        function toggleCrmvField() {
+            if (veterinarioRadio.checked) {
+                crmvField.style.display = 'block';
+                crmvInput.setAttribute('required', 'required');
+            } else {
+                crmvField.style.display = 'none';
+                crmvInput.removeAttribute('required');
+            }
         }
-    }
 
-    tutorRadio.addEventListener('change', toggleCrmvField);
-    veterinarioRadio.addEventListener('change', toggleCrmvField);
+        tutorRadio.addEventListener('change', toggleCrmvField);
+        veterinarioRadio.addEventListener('change', toggleCrmvField);
 
-    // Inicializa o campo corretamente ao carregar a página
-    toggleCrmvField();
-});
+        // Inicializa o campo corretamente ao carregar a página
+        toggleCrmvField();
+    });
 </script>
 {% endblock %}
