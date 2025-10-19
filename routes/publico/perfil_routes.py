@@ -8,8 +8,8 @@ from model.usuario_model import Usuario
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
 from repo import usuario_repo, tutor_repo
-from util.security import criar_hash_senha, verificar_senha, validar_forca_senha
-from util.auth_decorator import requer_autenticacao, obter_usuario_logado
+from util.security import criar_hash_senha, verificar_senha
+from util.auth_decorator import requer_autenticacao
 from util.template_util import criar_templates
 from repo import veterinario_repo
 from util.file_validator import FileValidator, FileValidationError
@@ -144,8 +144,7 @@ async def post_perfil(
         "id": usuario.id_usuario,
         "nome": nome,
         "email": email,
-        "perfil": usuario.perfil,
-        "foto": usuario.foto,
+        "perfil": usuario.perfil
     }
     criar_sessao(request, usuario_dict)
 
@@ -185,13 +184,6 @@ async def post_alterar_senha(
         return templates.TemplateResponse(
             "alterar_senha.html",
             {"request": request, "erro": "As novas senhas não coincidem"},
-        )
-
-    # Validar força da nova senha
-    senha_valida, msg_erro = validar_forca_senha(senha_nova)
-    if not senha_valida:
-        return templates.TemplateResponse(
-            "alterar_senha.html", {"request": request, "erro": msg_erro}
         )
 
     # Atualizar senha
@@ -251,8 +243,6 @@ async def alterar_foto(
             logger.error(f"Usuário {usuario_id} não encontrado")
             return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
-        foto_antiga = usuario.foto
-
         # 4. Gerar nome de arquivo baseado no ID do usuário
         nome_arquivo = FileManager.gerar_nome_foto_usuario(usuario_id, extensao)
 
@@ -268,26 +258,9 @@ async def alterar_foto(
                 status.HTTP_303_SEE_OTHER,
             )
 
-        # 6. Atualizar banco de dados
-        try:
-            usuario_repo.atualizar_foto(usuario_id, caminho_relativo)
-        except Exception as e:
-            logger.error(f"Erro ao atualizar banco: {e}", exc_info=True)
-            # Rollback: deletar arquivo recém-criado
-            FileManager.deletar_todas_fotos_usuario(usuario_id)
-            return RedirectResponse(
-                "/perfil?erro=Erro ao atualizar perfil", status.HTTP_303_SEE_OTHER
-            )
-
-        # 7. Deletar todas as fotos antigas do usuário (LGPD compliance)
+        # 6. Deletar todas as fotos antigas do usuário (LGPD compliance)
         FileManager.deletar_todas_fotos_usuario(usuario_id)
-
-        # 8. Atualizar sessão
-        usuario_logado["foto"] = caminho_relativo
-        from util.auth_decorator import criar_sessao
-
-        criar_sessao(request, usuario_logado)
-
+        
         logger.info(f"Upload concluído com sucesso para usuário {usuario_id}")
         return RedirectResponse("/perfil?foto_sucesso=1", status.HTTP_303_SEE_OTHER)
 

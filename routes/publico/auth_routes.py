@@ -22,7 +22,7 @@ from util.security import (
     criar_hash_senha,
     verificar_senha,
     gerar_token_redefinicao,
-    obter_data_expiracao_token
+    obter_data_expiracao_token,
 )
 from util.auth_decorator import criar_sessao, destruir_sessao, esta_logado
 from util.template_util import criar_templates
@@ -87,7 +87,7 @@ async def post_login(
             "email": usuario.email,
             "telefone": usuario.telefone,
             "perfil": usuario.perfil,
-            "foto": usuario.foto,
+            "foto": f"/static/img/usuarios/{usuario.id_usuario:06d}.jpg",
         }
         criar_sessao(request, usuario_dict)
 
@@ -209,7 +209,6 @@ async def post_cadastro(
                 senha=criar_hash_senha(cadastro_dto.senha),
                 telefone=cadastro_dto.telefone,
                 perfil=perfil,
-                foto=None,
                 token_redefinicao=None,
                 data_token=None,
                 data_cadastro=None,
@@ -242,7 +241,6 @@ async def post_cadastro(
                 senha=criar_hash_senha(cadastro_dto.senha),
                 telefone=cadastro_dto.telefone,
                 perfil=perfil,
-                foto=None,
                 token_redefinicao=None,
                 data_token=None,
                 data_cadastro=None,

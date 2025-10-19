@@ -127,10 +127,7 @@ def configurar_middlewares(app: FastAPI) -> None:
         allow_headers=["*"],
     )
 
-    # Middleware de rate limiting
-    app.add_middleware(SlowAPIMiddleware)
-
-    # Middleware de sessão
+    # Middleware de sessão (deve vir antes do SlowAPI para ser executado primeiro)
     app.add_middleware(
         SessionMiddleware,
         secret_key=secret_key,
@@ -138,6 +135,9 @@ def configurar_middlewares(app: FastAPI) -> None:
         same_site="strict" if environment == "production" else "lax",
         https_only=(environment == "production"),  # HTTPS obrigatório em produção
     )
+
+    # Middleware de rate limiting
+    app.add_middleware(SlowAPIMiddleware)
 
     # Middleware de segurança customizado - Security Headers
     app.middleware("http")(security_headers_middleware)
