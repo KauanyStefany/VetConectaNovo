@@ -4,9 +4,6 @@ Fornece configurações padrão e métodos de validação comuns.
 """
 
 from pydantic import BaseModel, ConfigDict
-from typing import Dict, Any
-from util.validacoes_dto import ValidacaoError
-
 
 class BaseDTO(BaseModel):
     """
@@ -31,43 +28,6 @@ class BaseDTO(BaseModel):
         # Validar valores padrão também
         validate_default=True
     )
-
-    @classmethod
-    def criar_exemplo_json(cls, **overrides) -> Dict[str, Any]:
-        """
-        Cria um exemplo JSON para documentação da API.
-        Pode ser sobrescrito nas classes filhas.
-
-        Args:
-            **overrides: Valores específicos para sobrescrever no exemplo
-
-        Returns:
-            Dict com exemplo de dados para este DTO
-        """
-        return {"exemplo": "Sobrescrever na classe filha", **overrides}
-
-    @classmethod
-    def validar_campo_wrapper(cls, validador_func, campo_nome: str = ""):
-        """
-        Wrapper para padronizar o tratamento de erros de validação.
-        Evita repetir try/except em cada field_validator.
-
-        Args:
-            validador_func: Função de validação a ser envolvida
-            campo_nome: Nome do campo para mensagens de erro
-
-        Returns:
-            Função wrapper que trata os erros automaticamente
-        """
-        def wrapper(valor, **kwargs):
-            try:
-                if campo_nome:
-                    return validador_func(valor, campo_nome, **kwargs)
-                else:
-                    return validador_func(valor, **kwargs)
-            except ValidacaoError as e:
-                raise ValueError(str(e))
-        return wrapper
 
     def to_dict(self) -> dict:
         """

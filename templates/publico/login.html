@@ -3,21 +3,12 @@
 {% block title %}Login{% endblock %}
 
 {% block conteudo %}
-<div class="container-fluid d-flex justify-content-center align-items-center py-5">
+<div class="container-fluid d-flex justify-content-center align-items-center">
     <div class="col-12 col-md-8 col-lg-5 col-xl-4">
-        <div class="card shadow-lg rounded-4 border-0">
+        <div class="card shadow-lg rounded-4 border-0 bg-white bg-opacity-50">
             <div class="card-body p-4 p-md-5 text-center">
-                <!-- Logo -->
-                <img src="/static/img/pata_icon.png" alt="Logo VetConecta" class="mb-3" style="width: 100px; height: auto;">
-
-                <!-- Brand Title -->
-                <div class="mb-4">
-                    <h1 class="d-inline fw-bold text-laranja" style="font-size: 2.5rem;">Vet</h1>
-                    <h1 class="d-inline fw-bold text-verde" style="font-size: 2.5rem;">Conecta</h1>
-                </div>
-
                 <!-- Login Title -->
-                <h5 class="mb-4 fw-semibold" style="font-size: 1.875rem;">Login</h5>
+                <h5 class="mb-4 fw-semibold fs-2">Login</h5>
 
                 <!-- Form -->
                 <form action="/login" method="post" class="text-start">
@@ -27,9 +18,9 @@
                     {% endif %}
 
                     <!-- General error alert -->
-                    {% if erros and 'GERAL' in erros.keys() %}
+                    {% if erros and erros.geral %}
                     <div class="alert alert-danger" role="alert">
-                        {{ erros['GERAL'] }}
+                        {{ erros.geral }}
                     </div>
                     {% endif %}
 
@@ -38,15 +29,15 @@
                         <label for="email" class="form-label fw-bold">Email</label>
                         <input
                             type="email"
-                            class="form-control {% if erros and 'EMAIL' in erros.keys() %}is-invalid{% endif %}"
+                            class="form-control {% if erros and erros.email %}is-invalid{% endif %}"
                             id="email"
                             name="email"
                             value="{{ dados.email if dados else '' }}"
                             placeholder="Digite seu e-mail"
                             required
                         >
-                        {% if erros and 'EMAIL' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['EMAIL'] }}</div>
+                        {% if erros and erros.email  %}
+                        <div class="invalid-feedback">{{ erros.email }}</div>
                         {% endif %}
                     </div>
 
@@ -55,14 +46,14 @@
                         <label for="senha" class="form-label fw-bold">Senha</label>
                         <input
                             type="password"
-                            class="form-control {% if erros and 'SENHA' in erros.keys() %}is-invalid{% endif %}"
+                            class="form-control {% if erros and erros.senha %}is-invalid{% endif %}"
                             id="senha"
                             name="senha"
                             placeholder="Digite sua senha"
                             required
                         >
-                        {% if erros and 'SENHA' in erros.keys() %}
-                        <div class="invalid-feedback">{{ erros['SENHA'] }}</div>
+                        {% if erros and erros.senha %}
+                        <div class="invalid-feedback">{{ erros.senha }}</div>
                         {% endif %}
                     </div>
 

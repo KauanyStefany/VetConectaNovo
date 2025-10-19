@@ -1,6 +1,7 @@
 """
 Módulo de segurança para gerenciar senhas e tokens
 """
+
 import secrets
 import string
 import logging
@@ -17,10 +18,10 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def criar_hash_senha(senha: str) -> str:
     """
     Cria um hash seguro da senha usando bcrypt
-    
+
     Args:
         senha: Senha em texto plano
-    
+
     Returns:
         Hash da senha
     """
@@ -51,24 +52,24 @@ def verificar_senha(senha_plana: str, senha_hash: str) -> bool:
 def gerar_token_redefinicao(tamanho: int = 32) -> str:
     """
     Gera um token aleatório seguro para redefinição de senha
-    
+
     Args:
         tamanho: Tamanho do token em caracteres
-    
+
     Returns:
         Token aleatório
     """
     caracteres = string.ascii_letters + string.digits
-    return ''.join(secrets.choice(caracteres) for _ in range(tamanho))
+    return "".join(secrets.choice(caracteres) for _ in range(tamanho))
 
 
 def obter_data_expiracao_token(horas: int = 24) -> str:
     """
     Calcula a data de expiração do token
-    
+
     Args:
         horas: Número de horas de validade do token
-    
+
     Returns:
         Data de expiração no formato ISO
     """
@@ -76,52 +77,16 @@ def obter_data_expiracao_token(horas: int = 24) -> str:
     return expiracao.isoformat()
 
 
-def validar_forca_senha(senha: str) -> tuple[bool, str]:
-    """
-    Valida se a senha atende aos requisitos mínimos de segurança
-
-    Args:
-        senha: Senha a ser validada
-
-    Returns:
-        Tupla (válida, mensagem de erro se inválida)
-    """
-    if len(senha) < 8:
-        return False, "A senha deve ter pelo menos 8 caracteres"
-
-    if not any(c.islower() for c in senha):
-        return False, "A senha deve conter pelo menos uma letra minúscula"
-
-    if not any(c.isupper() for c in senha):
-        return False, "A senha deve conter pelo menos uma letra maiúscula"
-
-    if not any(c.isdigit() for c in senha):
-        return False, "A senha deve conter pelo menos um número"
-
-    if not any(c in "!@#$%^&*(),.?\":{}|<>_-+=[]\\;'/" for c in senha):
-        return False, "A senha deve conter pelo menos um caractere especial (!@#$%^&*(),.?\":{}|<>_-+=[]\\;'/)"
-
-    # Lista de senhas comuns que devem ser rejeitadas
-    senhas_comuns = [
-        "123456", "password", "123456789", "12345678", "12345",
-        "1234567", "qwerty", "abc123", "password1", "123123"
-    ]
-    if senha.lower() in senhas_comuns:
-        return False, "Esta senha é muito comum. Escolha uma senha mais segura."
-
-    return True, ""
-
-
 def gerar_senha_aleatoria(tamanho: int = 8) -> str:
     """
     Gera uma senha aleatória segura
-    
+
     Args:
         tamanho: Tamanho da senha
-    
+
     Returns:
         Senha aleatória
     """
     caracteres = string.ascii_letters + string.digits + "!@#$%"
-    senha = ''.join(secrets.choice(caracteres) for _ in range(tamanho))
+    senha = "".join(secrets.choice(caracteres) for _ in range(tamanho))
     return senha

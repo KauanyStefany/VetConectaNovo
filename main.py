@@ -7,6 +7,10 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from dotenv import load_dotenv
 
+from util.db_util import inicializar_banco
+from routes.publico import auth_routes, public_routes
+from util.middlewares import configurar_middlewares
+
 # Carregar variáveis de ambiente
 load_dotenv()
 
@@ -37,16 +41,8 @@ logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler]
 # Logger específico para aplicação
 logger = logging.getLogger(__name__)
 
-from repo import administrador_repo, tutor_repo, usuario_repo, veterinario_repo
-from routes.publico import public_routes
-
-from util.middlewares import configurar_middlewares
-
-
-usuario_repo.criar_tabela()
-tutor_repo.criar_tabela()
-veterinario_repo.criar_tabela()
-administrador_repo.criar_tabela()
+# Inicializar banco de dados
+inicializar_banco()
 
 # Inicializar FastAPI
 app = FastAPI(
@@ -58,26 +54,14 @@ app = FastAPI(
 # Configurar middlewares
 configurar_middlewares(app)
 
-
+# Montar arquivos estáticos
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+# Incluir rotas
 app.include_router(public_routes.router)
-# app.include_router(auth.router)
+app.include_router(auth_routes.router)
 
-# app.include_router(categorias.router, prefix="/admin")
-# app.include_router(chamados.router, prefix="/admin")
-# app.include_router(comentarios.router, prefix="/admin")
-# app.include_router(denuncias.router, prefix="/admin")
-# app.include_router(verificacoes_crmv.router, prefix="/admin")
-
-# app.include_router(postagens_feed.router, prefix="/tutor")
-# app.include_router(artigos.router, prefix="/veterinario")
-# app.include_router(estatisticas.router, prefix="/veterinario")
-# app.include_router(solicitacoes_crmv.router, prefix="/veterinario")
-
-# app.include_router(usuario.router, prefix="/usuario")
-# app.include_router(perfil.router, prefix="/perfil")
-
+# Inícialização do servidor
 if __name__ == "__main__":
     environment = os.getenv("ENVIRONMENT", "development")
     logger.info("Iniciando aplicação VetConecta")

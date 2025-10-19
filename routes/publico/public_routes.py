@@ -1,19 +1,17 @@
+import logging
 from fastapi import APIRouter, Request
-from fastapi.templating import Jinja2Templates
+
+from util.template_util import criar_templates
 
 
+logger = logging.getLogger(__name__)
 router = APIRouter()
-templates = Jinja2Templates(directory="templates")
+templates = criar_templates()
 
 
 @router.get("/")
 async def get_root(request: Request):
     response = templates.TemplateResponse("publico/index.html", {"request": request})
-    return response
-
-@router.get("/login")
-async def get_login(request: Request):
-    response = templates.TemplateResponse("publico/login.html", {"request": request})
     return response
 
 

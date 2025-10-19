@@ -4,14 +4,13 @@ from contextlib import contextmanager
 from typing import Generator
 import logging
 
-from repo import comentario_artigo_repo
-
 logger = logging.getLogger(__name__)
 
 # Timeout padrão
 DB_TIMEOUT: float = float(os.getenv("DATABASE_TIMEOUT", "30.0"))
 
-
+# Função para obter o caminho do banco de dados, considerando variáveis 
+# de ambiente que indicam caminhos diferentes para testes e produção.
 def _get_db_path() -> str:
     """Retorna o caminho do banco, lendo variáveis de ambiente dinamicamente."""
     return os.getenv("TEST_DATABASE_PATH") or os.getenv("DATABASE_PATH") or "dados.db"
@@ -73,5 +72,11 @@ def inicializar_banco():
     tutor_repo.criar_tabela()
     veterinario_repo.criar_tabela()
     administrador_repo.criar_tabela()
-    
-    
+    categoria_artigo_repo.criar_tabela()
+    postagem_artigo_repo.criar_tabela()
+    curtida_artigo_repo.criar_tabela()
+    postagem_feed_repo.criar_tabela()
+    curtida_feed_repo.criar_tabela()
+    denuncia_repo.criar_tabela()
+    verificacao_crmv_repo.criar_tabela()
+    seguida_repo.criar_tabela()
