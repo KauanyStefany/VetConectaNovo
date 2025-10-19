@@ -1,0 +1,962 @@
+[
+  {
+    "id_usuario": 1,
+    "nome": "Veterinário Padrão",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, light brown skin, black hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000001.jpg",
+    "filepath": "static/img/usuarios/00000001.jpg"
+  },
+  {
+    "id_usuario": 2,
+    "nome": "Marina Santos",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, fair skin, black hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000002.jpg",
+    "filepath": "static/img/usuarios/00000002.jpg"
+  },
+  {
+    "id_usuario": 3,
+    "nome": "Carlos Mendes",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 45 years old, light brown skin, dark brown hair, buzzcut, clean shaven, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000003.jpg",
+    "filepath": "static/img/usuarios/00000003.jpg"
+  },
+  {
+    "id_usuario": 4,
+    "nome": "Juliana Oliveira",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, light brown skin, black hair, straight hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000004.jpg",
+    "filepath": "static/img/usuarios/00000004.jpg"
+  },
+  {
+    "id_usuario": 5,
+    "nome": "Roberto Almeida",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, tan skin, light brown hair, short hair, clean shaven, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000005.jpg",
+    "filepath": "static/img/usuarios/00000005.jpg"
+  },
+  {
+    "id_usuario": 6,
+    "nome": "Fernanda Costa",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, tan skin, blonde hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000006.jpg",
+    "filepath": "static/img/usuarios/00000006.jpg"
+  },
+  {
+    "id_usuario": 7,
+    "nome": "Paulo Ribeiro",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, medium brown skin, gray hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000007.jpg",
+    "filepath": "static/img/usuarios/00000007.jpg"
+  },
+  {
+    "id_usuario": 8,
+    "nome": "Beatriz Ferreira",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, light brown skin, blonde hair, medium length hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000008.jpg",
+    "filepath": "static/img/usuarios/00000008.jpg"
+  },
+  {
+    "id_usuario": 9,
+    "nome": "André Silva",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, light brown hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000009.jpg",
+    "filepath": "static/img/usuarios/00000009.jpg"
+  },
+  {
+    "id_usuario": 10,
+    "nome": "Camila Rodrigues",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, tan skin, blonde hair, shoulder length hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000010.jpg",
+    "filepath": "static/img/usuarios/00000010.jpg"
+  },
+  {
+    "id_usuario": 11,
+    "nome": "Ricardo Pereira",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 45 years old, dark brown skin, gray hair, short professional haircut, with beard, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000011.jpg",
+    "filepath": "static/img/usuarios/00000011.jpg"
+  },
+  {
+    "id_usuario": 12,
+    "nome": "Larissa Martins",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, dark brown skin, auburn hair, straight hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000012.jpg",
+    "filepath": "static/img/usuarios/00000012.jpg"
+  },
+  {
+    "id_usuario": 13,
+    "nome": "Gabriel Souza",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, medium brown skin, dark brown hair, very short hair, with beard, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000013.jpg",
+    "filepath": "static/img/usuarios/00000013.jpg"
+  },
+  {
+    "id_usuario": 14,
+    "nome": "Patricia Lima",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, fair skin, auburn hair, medium length hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000014.jpg",
+    "filepath": "static/img/usuarios/00000014.jpg"
+  },
+  {
+    "id_usuario": 15,
+    "nome": "Lucas Barbosa",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, light brown skin, black hair, very short hair, with beard, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000015.jpg",
+    "filepath": "static/img/usuarios/00000015.jpg"
+  },
+  {
+    "id_usuario": 16,
+    "nome": "Amanda Carvalho",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, medium brown skin, blonde hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000016.jpg",
+    "filepath": "static/img/usuarios/00000016.jpg"
+  },
+  {
+    "id_usuario": 17,
+    "nome": "Thiago Gomes",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, tan skin, light brown hair, buzzcut, with mustache, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000017.jpg",
+    "filepath": "static/img/usuarios/00000017.jpg"
+  },
+  {
+    "id_usuario": 18,
+    "nome": "Renata Araújo",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, light brown skin, blonde hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000018.jpg",
+    "filepath": "static/img/usuarios/00000018.jpg"
+  },
+  {
+    "id_usuario": 19,
+    "nome": "Bruno Teixeira",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian man, 45 years old, fair skin, black hair, very short hair, clean shaven, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000019.jpg",
+    "filepath": "static/img/usuarios/00000019.jpg"
+  },
+  {
+    "id_usuario": 20,
+    "nome": "Isabela Dias",
+    "tipo": "veterinario",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, light brown skin, black hair, short hair, veterinarian, professional appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000020.jpg",
+    "filepath": "static/img/usuarios/00000020.jpg"
+  },
+  {
+    "id_usuario": 21,
+    "nome": "Tutor Padrão",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, light brown skin, blonde hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000021.jpg",
+    "filepath": "static/img/usuarios/00000021.jpg"
+  },
+  {
+    "id_usuario": 22,
+    "nome": "Maria Silva",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, light brown skin, black hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000022.jpg",
+    "filepath": "static/img/usuarios/00000022.jpg"
+  },
+  {
+    "id_usuario": 23,
+    "nome": "João Santos",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, medium brown skin, black hair, buzzcut, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000023.jpg",
+    "filepath": "static/img/usuarios/00000023.jpg"
+  },
+  {
+    "id_usuario": 24,
+    "nome": "Ana Costa",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, dark brown hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000024.jpg",
+    "filepath": "static/img/usuarios/00000024.jpg"
+  },
+  {
+    "id_usuario": 25,
+    "nome": "Pedro Oliveira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, dark brown skin, dark brown hair, buzzcut, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000025.jpg",
+    "filepath": "static/img/usuarios/00000025.jpg"
+  },
+  {
+    "id_usuario": 26,
+    "nome": "Julia Rodrigues",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 50 years old, light brown skin, dark brown hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000026.jpg",
+    "filepath": "static/img/usuarios/00000026.jpg"
+  },
+  {
+    "id_usuario": 27,
+    "nome": "Carlos Ferreira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 50 years old, dark brown skin, light brown hair, buzzcut, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000027.jpg",
+    "filepath": "static/img/usuarios/00000027.jpg"
+  },
+  {
+    "id_usuario": 28,
+    "nome": "Beatriz Lima",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 50 years old, fair skin, dark brown hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000028.jpg",
+    "filepath": "static/img/usuarios/00000028.jpg"
+  },
+  {
+    "id_usuario": 29,
+    "nome": "Lucas Almeida",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, tan skin, light brown hair, buzzcut, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000029.jpg",
+    "filepath": "static/img/usuarios/00000029.jpg"
+  },
+  {
+    "id_usuario": 30,
+    "nome": "Camila Souza",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, tan skin, auburn hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000030.jpg",
+    "filepath": "static/img/usuarios/00000030.jpg"
+  },
+  {
+    "id_usuario": 31,
+    "nome": "Rafael Martins",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, fair skin, black hair, short professional haircut, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000031.jpg",
+    "filepath": "static/img/usuarios/00000031.jpg"
+  },
+  {
+    "id_usuario": 32,
+    "nome": "Fernanda Pereira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, fair skin, dark brown hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000032.jpg",
+    "filepath": "static/img/usuarios/00000032.jpg"
+  },
+  {
+    "id_usuario": 33,
+    "nome": "Gustavo Ribeiro",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, tan skin, dark brown hair, buzzcut, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000033.jpg",
+    "filepath": "static/img/usuarios/00000033.jpg"
+  },
+  {
+    "id_usuario": 34,
+    "nome": "Mariana Castro",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, tan skin, auburn hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000034.jpg",
+    "filepath": "static/img/usuarios/00000034.jpg"
+  },
+  {
+    "id_usuario": 35,
+    "nome": "Felipe Gomes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, tan skin, dark brown hair, buzzcut, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000035.jpg",
+    "filepath": "static/img/usuarios/00000035.jpg"
+  },
+  {
+    "id_usuario": 36,
+    "nome": "Patricia Dias",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, medium brown skin, black hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000036.jpg",
+    "filepath": "static/img/usuarios/00000036.jpg"
+  },
+  {
+    "id_usuario": 37,
+    "nome": "Ricardo Mendes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, tan skin, black hair, buzzcut, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000037.jpg",
+    "filepath": "static/img/usuarios/00000037.jpg"
+  },
+  {
+    "id_usuario": 38,
+    "nome": "Amanda Cardoso",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, dark brown skin, black hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000038.jpg",
+    "filepath": "static/img/usuarios/00000038.jpg"
+  },
+  {
+    "id_usuario": 39,
+    "nome": "Diego Barbosa",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, light brown skin, gray hair, short hair, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000039.jpg",
+    "filepath": "static/img/usuarios/00000039.jpg"
+  },
+  {
+    "id_usuario": 40,
+    "nome": "Leticia Ramos",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, auburn hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000040.jpg",
+    "filepath": "static/img/usuarios/00000040.jpg"
+  },
+  {
+    "id_usuario": 41,
+    "nome": "Thiago Nunes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, dark brown skin, dark brown hair, very short hair, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000041.jpg",
+    "filepath": "static/img/usuarios/00000041.jpg"
+  },
+  {
+    "id_usuario": 42,
+    "nome": "Gabriela Cunha",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, fair skin, light brown hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000042.jpg",
+    "filepath": "static/img/usuarios/00000042.jpg"
+  },
+  {
+    "id_usuario": 43,
+    "nome": "Marcos Freitas",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, fair skin, dark brown hair, short professional haircut, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000043.jpg",
+    "filepath": "static/img/usuarios/00000043.jpg"
+  },
+  {
+    "id_usuario": 44,
+    "nome": "Renata Moraes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, auburn hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000044.jpg",
+    "filepath": "static/img/usuarios/00000044.jpg"
+  },
+  {
+    "id_usuario": 45,
+    "nome": "Bruno Teixeira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, medium brown skin, gray hair, buzzcut, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000045.jpg",
+    "filepath": "static/img/usuarios/00000045.jpg"
+  },
+  {
+    "id_usuario": 46,
+    "nome": "Vanessa Araujo",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, fair skin, black hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000046.jpg",
+    "filepath": "static/img/usuarios/00000046.jpg"
+  },
+  {
+    "id_usuario": 47,
+    "nome": "Roberto Lopes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, medium brown skin, gray hair, short professional haircut, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000047.jpg",
+    "filepath": "static/img/usuarios/00000047.jpg"
+  },
+  {
+    "id_usuario": 48,
+    "nome": "Claudia Monteiro",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, tan skin, dark brown hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000048.jpg",
+    "filepath": "static/img/usuarios/00000048.jpg"
+  },
+  {
+    "id_usuario": 49,
+    "nome": "Eduardo Pinto",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, fair skin, blonde hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000049.jpg",
+    "filepath": "static/img/usuarios/00000049.jpg"
+  },
+  {
+    "id_usuario": 50,
+    "nome": "Larissa Vieira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, dark brown skin, light brown hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000050.jpg",
+    "filepath": "static/img/usuarios/00000050.jpg"
+  },
+  {
+    "id_usuario": 51,
+    "nome": "Andre Rocha",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 45 years old, light brown skin, dark brown hair, very short hair, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000051.jpg",
+    "filepath": "static/img/usuarios/00000051.jpg"
+  },
+  {
+    "id_usuario": 52,
+    "nome": "Tatiana Campos",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, medium brown skin, auburn hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000052.jpg",
+    "filepath": "static/img/usuarios/00000052.jpg"
+  },
+  {
+    "id_usuario": 53,
+    "nome": "Rodrigo Azevedo",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, tan skin, gray hair, short professional haircut, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000053.jpg",
+    "filepath": "static/img/usuarios/00000053.jpg"
+  },
+  {
+    "id_usuario": 54,
+    "nome": "Priscila Borges",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, light brown skin, auburn hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000054.jpg",
+    "filepath": "static/img/usuarios/00000054.jpg"
+  },
+  {
+    "id_usuario": 55,
+    "nome": "Fabio Cavalcanti",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, fair skin, dark brown hair, buzzcut, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000055.jpg",
+    "filepath": "static/img/usuarios/00000055.jpg"
+  },
+  {
+    "id_usuario": 56,
+    "nome": "Simone Macedo",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, tan skin, blonde hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000056.jpg",
+    "filepath": "static/img/usuarios/00000056.jpg"
+  },
+  {
+    "id_usuario": 57,
+    "nome": "Vinicius Batista",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, fair skin, black hair, very short hair, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000057.jpg",
+    "filepath": "static/img/usuarios/00000057.jpg"
+  },
+  {
+    "id_usuario": 58,
+    "nome": "Daniela Fonseca",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, tan skin, dark brown hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000058.jpg",
+    "filepath": "static/img/usuarios/00000058.jpg"
+  },
+  {
+    "id_usuario": 59,
+    "nome": "Leandro Correia",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, light brown skin, gray hair, short hair, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000059.jpg",
+    "filepath": "static/img/usuarios/00000059.jpg"
+  },
+  {
+    "id_usuario": 60,
+    "nome": "Isabela Moura",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, medium brown skin, auburn hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000060.jpg",
+    "filepath": "static/img/usuarios/00000060.jpg"
+  },
+  {
+    "id_usuario": 61,
+    "nome": "Alexandre Melo",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, dark brown skin, dark brown hair, buzzcut, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000061.jpg",
+    "filepath": "static/img/usuarios/00000061.jpg"
+  },
+  {
+    "id_usuario": 62,
+    "nome": "Monica Farias",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, tan skin, black hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000062.jpg",
+    "filepath": "static/img/usuarios/00000062.jpg"
+  },
+  {
+    "id_usuario": 63,
+    "nome": "Sergio Duarte",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, dark brown skin, light brown hair, buzzcut, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000063.jpg",
+    "filepath": "static/img/usuarios/00000063.jpg"
+  },
+  {
+    "id_usuario": 64,
+    "nome": "Aline Tavares",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, dark brown skin, auburn hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000064.jpg",
+    "filepath": "static/img/usuarios/00000064.jpg"
+  },
+  {
+    "id_usuario": 65,
+    "nome": "Henrique Xavier",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, dark brown skin, light brown hair, very short hair, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000065.jpg",
+    "filepath": "static/img/usuarios/00000065.jpg"
+  },
+  {
+    "id_usuario": 66,
+    "nome": "Cristina Pacheco",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, fair skin, blonde hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000066.jpg",
+    "filepath": "static/img/usuarios/00000066.jpg"
+  },
+  {
+    "id_usuario": 67,
+    "nome": "Mauricio Esteves",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, fair skin, gray hair, short professional haircut, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000067.jpg",
+    "filepath": "static/img/usuarios/00000067.jpg"
+  },
+  {
+    "id_usuario": 68,
+    "nome": "Luciana Braga",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 50 years old, dark brown skin, auburn hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000068.jpg",
+    "filepath": "static/img/usuarios/00000068.jpg"
+  },
+  {
+    "id_usuario": 69,
+    "nome": "Paulo Vasconcelos",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, fair skin, dark brown hair, short hair, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000069.jpg",
+    "filepath": "static/img/usuarios/00000069.jpg"
+  },
+  {
+    "id_usuario": 70,
+    "nome": "Adriana Silveira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, fair skin, blonde hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000070.jpg",
+    "filepath": "static/img/usuarios/00000070.jpg"
+  },
+  {
+    "id_usuario": 71,
+    "nome": "Guilherme Marques",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 45 years old, medium brown skin, black hair, buzzcut, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000071.jpg",
+    "filepath": "static/img/usuarios/00000071.jpg"
+  },
+  {
+    "id_usuario": 72,
+    "nome": "Eliane Nogueira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, fair skin, dark brown hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000072.jpg",
+    "filepath": "static/img/usuarios/00000072.jpg"
+  },
+  {
+    "id_usuario": 73,
+    "nome": "Mateus Carvalho",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 25 years old, medium brown skin, gray hair, very short hair, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000073.jpg",
+    "filepath": "static/img/usuarios/00000073.jpg"
+  },
+  {
+    "id_usuario": 74,
+    "nome": "Viviane Rezende",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, tan skin, black hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000074.jpg",
+    "filepath": "static/img/usuarios/00000074.jpg"
+  },
+  {
+    "id_usuario": 75,
+    "nome": "Renato Soares",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, blonde hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000075.jpg",
+    "filepath": "static/img/usuarios/00000075.jpg"
+  },
+  {
+    "id_usuario": 76,
+    "nome": "Natalia Miranda",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, medium brown skin, blonde hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000076.jpg",
+    "filepath": "static/img/usuarios/00000076.jpg"
+  },
+  {
+    "id_usuario": 77,
+    "nome": "Fernando Guimaraes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, medium brown skin, dark brown hair, very short hair, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000077.jpg",
+    "filepath": "static/img/usuarios/00000077.jpg"
+  },
+  {
+    "id_usuario": 78,
+    "nome": "Carla Medeiros",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, light brown skin, light brown hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000078.jpg",
+    "filepath": "static/img/usuarios/00000078.jpg"
+  },
+  {
+    "id_usuario": 79,
+    "nome": "Igor Figueiredo",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, light brown skin, light brown hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000079.jpg",
+    "filepath": "static/img/usuarios/00000079.jpg"
+  },
+  {
+    "id_usuario": 80,
+    "nome": "Silvia Barros",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, medium brown skin, auburn hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000080.jpg",
+    "filepath": "static/img/usuarios/00000080.jpg"
+  },
+  {
+    "id_usuario": 81,
+    "nome": "Cesar Andrade",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, tan skin, light brown hair, short professional haircut, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000081.jpg",
+    "filepath": "static/img/usuarios/00000081.jpg"
+  },
+  {
+    "id_usuario": 82,
+    "nome": "Juliana Bastos",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, light brown skin, auburn hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000082.jpg",
+    "filepath": "static/img/usuarios/00000082.jpg"
+  },
+  {
+    "id_usuario": 83,
+    "nome": "Antonio Mesquita",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, dark brown skin, black hair, very short hair, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000083.jpg",
+    "filepath": "static/img/usuarios/00000083.jpg"
+  },
+  {
+    "id_usuario": 84,
+    "nome": "Rosana Caldeira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, medium brown skin, blonde hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000084.jpg",
+    "filepath": "static/img/usuarios/00000084.jpg"
+  },
+  {
+    "id_usuario": 85,
+    "nome": "Claudio Santana",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 50 years old, light brown skin, black hair, buzzcut, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000085.jpg",
+    "filepath": "static/img/usuarios/00000085.jpg"
+  },
+  {
+    "id_usuario": 86,
+    "nome": "Denise Vargas",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, fair skin, light brown hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000086.jpg",
+    "filepath": "static/img/usuarios/00000086.jpg"
+  },
+  {
+    "id_usuario": 87,
+    "nome": "Marcelo Peixoto",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 50 years old, light brown skin, dark brown hair, short hair, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000087.jpg",
+    "filepath": "static/img/usuarios/00000087.jpg"
+  },
+  {
+    "id_usuario": 88,
+    "nome": "Alessandra Siqueira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, dark brown skin, light brown hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000088.jpg",
+    "filepath": "static/img/usuarios/00000088.jpg"
+  },
+  {
+    "id_usuario": 89,
+    "nome": "Joao Henrique",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, fair skin, light brown hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000089.jpg",
+    "filepath": "static/img/usuarios/00000089.jpg"
+  },
+  {
+    "id_usuario": 90,
+    "nome": "Michele Furtado",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 50 years old, light brown skin, black hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000090.jpg",
+    "filepath": "static/img/usuarios/00000090.jpg"
+  },
+  {
+    "id_usuario": 91,
+    "nome": "Fabiano Castro",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, fair skin, dark brown hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000091.jpg",
+    "filepath": "static/img/usuarios/00000091.jpg"
+  },
+  {
+    "id_usuario": 92,
+    "nome": "Raquel Cordeiro",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, auburn hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000092.jpg",
+    "filepath": "static/img/usuarios/00000092.jpg"
+  },
+  {
+    "id_usuario": 93,
+    "nome": "Gilberto Rangel",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, light brown hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000093.jpg",
+    "filepath": "static/img/usuarios/00000093.jpg"
+  },
+  {
+    "id_usuario": 94,
+    "nome": "Sabrina Moreira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, tan skin, black hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000094.jpg",
+    "filepath": "static/img/usuarios/00000094.jpg"
+  },
+  {
+    "id_usuario": 95,
+    "nome": "Walter Nascimento",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 45 years old, tan skin, dark brown hair, short professional haircut, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000095.jpg",
+    "filepath": "static/img/usuarios/00000095.jpg"
+  },
+  {
+    "id_usuario": 96,
+    "nome": "Regina Assis",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, medium brown skin, blonde hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000096.jpg",
+    "filepath": "static/img/usuarios/00000096.jpg"
+  },
+  {
+    "id_usuario": 97,
+    "nome": "Nelson Horta",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, light brown skin, light brown hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000097.jpg",
+    "filepath": "static/img/usuarios/00000097.jpg"
+  },
+  {
+    "id_usuario": 98,
+    "nome": "Valeria Prado",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, medium brown skin, black hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000098.jpg",
+    "filepath": "static/img/usuarios/00000098.jpg"
+  },
+  {
+    "id_usuario": 99,
+    "nome": "Eder Baptista",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 40 years old, dark brown skin, dark brown hair, very short hair, with beard, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000099.jpg",
+    "filepath": "static/img/usuarios/00000099.jpg"
+  },
+  {
+    "id_usuario": 100,
+    "nome": "Sonia Antunes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 40 years old, light brown skin, blonde hair, medium length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000100.jpg",
+    "filepath": "static/img/usuarios/00000100.jpg"
+  },
+  {
+    "id_usuario": 101,
+    "nome": "Luiz Felipe",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, tan skin, light brown hair, short professional haircut, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000101.jpg",
+    "filepath": "static/img/usuarios/00000101.jpg"
+  },
+  {
+    "id_usuario": 102,
+    "nome": "Miriam Salazar",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 50 years old, light brown skin, auburn hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000102.jpg",
+    "filepath": "static/img/usuarios/00000102.jpg"
+  },
+  {
+    "id_usuario": 103,
+    "nome": "Edson Madureira",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 50 years old, dark brown skin, dark brown hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000103.jpg",
+    "filepath": "static/img/usuarios/00000103.jpg"
+  },
+  {
+    "id_usuario": 104,
+    "nome": "Jaqueline Torres",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, fair skin, dark brown hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000104.jpg",
+    "filepath": "static/img/usuarios/00000104.jpg"
+  },
+  {
+    "id_usuario": 105,
+    "nome": "Wilson Vilela",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, tan skin, black hair, short hair, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000105.jpg",
+    "filepath": "static/img/usuarios/00000105.jpg"
+  },
+  {
+    "id_usuario": 106,
+    "nome": "Glaucia Queiroz",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 25 years old, dark brown skin, auburn hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000106.jpg",
+    "filepath": "static/img/usuarios/00000106.jpg"
+  },
+  {
+    "id_usuario": 107,
+    "nome": "Ronaldo Bittencourt",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 45 years old, light brown skin, gray hair, short professional haircut, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000107.jpg",
+    "filepath": "static/img/usuarios/00000107.jpg"
+  },
+  {
+    "id_usuario": 108,
+    "nome": "Sandra Guedes",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 50 years old, light brown skin, black hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000108.jpg",
+    "filepath": "static/img/usuarios/00000108.jpg"
+  },
+  {
+    "id_usuario": 109,
+    "nome": "Robson Quintana",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, medium brown skin, gray hair, short professional haircut, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000109.jpg",
+    "filepath": "static/img/usuarios/00000109.jpg"
+  },
+  {
+    "id_usuario": 110,
+    "nome": "Angela Vasques",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, dark brown skin, dark brown hair, shoulder length hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000110.jpg",
+    "filepath": "static/img/usuarios/00000110.jpg"
+  },
+  {
+    "id_usuario": 111,
+    "nome": "Milton Xavier",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 35 years old, light brown skin, gray hair, very short hair, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000111.jpg",
+    "filepath": "static/img/usuarios/00000111.jpg"
+  },
+  {
+    "id_usuario": 112,
+    "nome": "Elza Barreto",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 50 years old, dark brown skin, auburn hair, wavy hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000112.jpg",
+    "filepath": "static/img/usuarios/00000112.jpg"
+  },
+  {
+    "id_usuario": 113,
+    "nome": "Jair Fonseca",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 50 years old, fair skin, light brown hair, short hair, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000113.jpg",
+    "filepath": "static/img/usuarios/00000113.jpg"
+  },
+  {
+    "id_usuario": 114,
+    "nome": "Vera Machado",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, light brown skin, black hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000114.jpg",
+    "filepath": "static/img/usuarios/00000114.jpg"
+  },
+  {
+    "id_usuario": 115,
+    "nome": "Jorge Ayres",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, medium brown skin, black hair, short hair, with mustache, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000115.jpg",
+    "filepath": "static/img/usuarios/00000115.jpg"
+  },
+  {
+    "id_usuario": 116,
+    "nome": "Sueli Gregorio",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 45 years old, tan skin, light brown hair, long hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000116.jpg",
+    "filepath": "static/img/usuarios/00000116.jpg"
+  },
+  {
+    "id_usuario": 117,
+    "nome": "Geraldo Linhares",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, light brown skin, dark brown hair, very short hair, clean shaven, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000117.jpg",
+    "filepath": "static/img/usuarios/00000117.jpg"
+  },
+  {
+    "id_usuario": 118,
+    "nome": "Lucia Helena",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 35 years old, light brown skin, black hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000118.jpg",
+    "filepath": "static/img/usuarios/00000118.jpg"
+  },
+  {
+    "id_usuario": 119,
+    "nome": "Mauro Sacramento",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian man, 30 years old, medium brown skin, gray hair, short hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000119.jpg",
+    "filepath": "static/img/usuarios/00000119.jpg"
+  },
+  {
+    "id_usuario": 120,
+    "nome": "Marta Evangelista",
+    "tipo": "tutor",
+    "prompt": "Professional passport-style photo of a Brazilian woman, 30 years old, tan skin, dark brown hair, straight hair, friendly appearance, neutral background, front facing, centered composition, natural lighting, high quality portrait photograph, professional headshot, looking at camera, neutral expression",
+    "filename": "00000120.jpg",
+    "filepath": "static/img/usuarios/00000120.jpg"
+  }
+]
