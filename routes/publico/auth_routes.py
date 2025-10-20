@@ -67,6 +67,9 @@ async def post_login(
 
         # Buscar usuário pelo email
         usuario = administrador_repo.obter_por_email(login_dto.email)
+        usuario.perfil = PerfilUsuario.ADMIN.value
+        usuario.id_usuario = usuario.id_admin
+        usuario.telefone = ""
 
         if not usuario:
             usuario = usuario_repo.obter_por_email(login_dto.email)
@@ -122,6 +125,22 @@ async def post_login(
             {
                 "request": request,
                 "erros": erros,
+                "dados": dados_formulario,
+                "redirect": redirect,
+            },
+        )
+    
+    # Processar erros de validação do DTO
+    except Exception as e:        
+        # Logar os erros de validação para auditoria
+        logger.warning(f"Erros geral: {str(e)}")
+
+        # Retornar template com erros
+        return templates.TemplateResponse(
+            "publico/login.html",
+            {
+                "request": request,
+                "erros": {"geral": "Ocorreu um erro ao processar o login."},
                 "dados": dados_formulario,
                 "redirect": redirect,
             },
