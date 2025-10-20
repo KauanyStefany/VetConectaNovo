@@ -44,3 +44,9 @@ JOIN usuario u ON cf.id_usuario = u.id_usuario
 JOIN postagem_feed pf ON cf.id_postagem_feed = pf.id_postagem_feed
 WHERE cf.id_usuario = ? AND cf.id_postagem_feed = ?;
 """
+
+CONTAR_CURTIDAS_POR_POSTAGEM = """
+SELECT COUNT(*) as total
+FROM curtida_feed
+WHERE id_postagem_feed = ?;
+"""

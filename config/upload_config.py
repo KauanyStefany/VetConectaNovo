@@ -12,7 +12,7 @@ class UploadConfig:
     USUARIOS_DIR = Path("static/img/usuarios")      
 
     # Formato de nome de arquivo para fotos de usuários
-    FOTO_USUARIO_PATTERN = "{:06d}"  # Formato: 000123 (6 dígitos)
+    FOTO_USUARIO_PATTERN = "{:08d}"  # Formato: 00000123 (8 dígitos)
 
     # Limites de tamanho
     MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB

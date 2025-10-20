@@ -3,14 +3,16 @@
     <!-- Título -->
     <div class="row mb-4">
         <div class="col-12">
-            <h2 class="fw-bold text-dark" style="font-family: 'Montserrat', sans-serif; font-size: 3rem;">
+            <h2 class="fw-bold text-dark">
+                <i class="bi bi-file-post me-2"></i>
                 Artigos recentes
             </h2>
+            <p class="text-muted">Últimos artigos postados pelos veterinários da comunidade</p>
         </div>
     </div>
 
     <!-- Grid de Cards -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 mb-4">
         {% for artigo in artigos_recentes %}
         <div class="col artigo-card">
             {% include "componentes/artigo_card.html" %}

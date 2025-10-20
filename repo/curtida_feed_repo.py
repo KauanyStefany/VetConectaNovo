@@ -56,3 +56,12 @@ def obter_por_id(id_usuario: int, id_postagem_feed: int) -> Optional[CurtidaFeed
                 data_curtida=row["data_curtida"],
             )
         return None
+
+
+def contar_curtidas_por_postagem(id_postagem_feed: int) -> int:
+    """Retorna o total de curtidas de uma postagem."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(CONTAR_CURTIDAS_POR_POSTAGEM, (id_postagem_feed,))
+        row = cursor.fetchone()
+        return row["total"] if row else 0

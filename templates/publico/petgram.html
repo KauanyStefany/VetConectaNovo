@@ -1,0 +1,85 @@
+{% extends "base_publica.html" %}
+
+{% block title %}Petgram - Posts da Comunidade{% endblock %}
+
+{% block conteudo %}
+
+<div class="container">
+    <!-- Título da Página -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="fw-bold text-dark">
+                <i class="bi bi-camera-fill me-2"></i>Petgram
+            </h1>
+            <p class="text-muted fs-5">Confira os posts da comunidade sobre seus pets</p>
+        </div>
+    </div>
+
+    <!-- Grid de Posts -->
+    {% if posts %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
+        {% for post in posts %}
+        <div class="col">
+            {% include "componentes/petgram_card.html" %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Paginação -->
+    <div class="row">
+        <div class="col-12">
+            {% set url_base = '/petgram' %}
+            {% set params = {} %}
+            {% include "componentes/paginacao.html" %}
+        </div>
+    </div>
+
+    {% else %}
+    <!-- Mensagem quando não há posts -->
+    <div class="row">
+        <div class="col-12 text-center py-5">
+            <i class="bi bi-camera text-muted" style="font-size: 4rem;"></i>
+            <h4 class="text-muted mt-3">Nenhum post encontrado</h4>
+            <p class="text-muted">
+                Não há posts cadastrados no momento.
+            </p>
+            <a href="/" class="btn btn-primary btn-lg mt-3">
+                <i class="bi bi-arrow-left me-2"></i>Voltar à Página Inicial
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Botão Voltar -->
+    {% if posts %}
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <a href="/" class="btn btn-outline-primary btn-lg px-5">
+                <i class="bi bi-arrow-left me-2"></i>Voltar à Página Inicial
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block head %}
+<style>
+    /* Efeito hover nos cards */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Cor da borda roxa para cards Petgram */
+    .border-primary {
+        border-color: var(--cor-roxo) !important;
+        border-width: 2px !important;
+    }
+</style>
+{% endblock %}

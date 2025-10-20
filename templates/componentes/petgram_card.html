@@ -1,0 +1,80 @@
+{#
+  Espera a variável 'post' no contexto com os campos:
+  - id_postagem_feed
+  - id_tutor
+  - descricao
+  - data_postagem
+  - nome_tutor
+  - quantidade_pets
+  - total_curtidas
+#}
+
+<a href="/petgram/{{ post.id_postagem_feed }}" class="text-decoration-none">
+    <div class="card h-100 border-roxo border-5 bg-white bg-opacity-50 shadow-sm rounded-4 petgram-card">
+        <!-- Imagem do Post com Padding -->
+        <div class="p-4 pb-0">
+            <img src="/static/img/feeds/{{ '%08d' % post.id_postagem_feed }}.jpg"
+                 class="card-img-top rounded"
+                 alt="Post de {{ post.nome_tutor }}">
+        </div>
+
+        <!-- Corpo do Card -->
+        <div class="card-body d-flex flex-column p-4">
+            <!-- Cabeçalho: Avatar + Nome + Badge -->
+            <div class="d-flex align-items-center mb-2">
+                <!-- Avatar do Tutor -->
+                <img src="/static/img/usuarios/{{ '%08d' % post.id_tutor }}.jpg"
+                     alt="{{ post.nome_tutor }}"
+                     class="rounded-circle me-2"
+                     width="40"
+                     height="40"
+                     onerror="this.src='/static/img/default-avatar.jpg'">
+
+                <!-- Nome e Badge -->
+                <div class="flex-grow-1">
+                    <div class="fw-bold text-dark small">{{ post.nome_tutor }}</div>
+                    <span class="badge bg-secondary small">
+                        <i class="bi bi-heart-fill me-1"></i>{{ post.quantidade_pets }} pet{{ 's' if post.quantidade_pets != 1 else '' }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Data -->
+            <p class="text-muted small mb-2">
+                <i class="bi bi-calendar3 me-1"></i>
+                {{ post.data_postagem[:10] | replace('-', '/') if post.data_postagem is string else post.data_postagem.strftime('%d/%m/%Y') }}
+            </p>
+
+            <!-- Descrição (truncada) -->
+            <p class="card-text text-dark mb-3 flex-grow-1">
+                {{ post.descricao[:100] }}{% if post.descricao|length > 100 %}...{% endif %}
+            </p>
+
+            <!-- Footer: Curtidas e Comentários -->
+            <div class="d-flex justify-content-start gap-3 mt-auto border-top pt-2">
+                <!-- Curtidas -->
+                <span class="text-muted small">
+                    <i class="bi bi-heart-fill text-danger me-1"></i>
+                    {{ post.total_curtidas }}
+                </span>
+
+                <!-- Comentários (placeholder) -->
+                <span class="text-muted small">
+                    <i class="bi bi-chat-fill text-primary me-1"></i>
+                    0
+                </span>
+            </div>
+        </div>
+    </div>
+</a>
+
+<style>
+    .petgram-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .petgram-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+    }
+</style>

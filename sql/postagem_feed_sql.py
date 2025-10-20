@@ -50,3 +50,55 @@ IMPORTAR = """
 INSERT INTO postagem_feed (id_postagem_feed, id_tutor, descricao, data_postagem)
 VALUES (?, ?, ?, ?);
 """
+
+OBTER_RECENTES_COM_DADOS = """
+SELECT
+    pf.id_postagem_feed,
+    pf.id_tutor,
+    pf.descricao,
+    pf.data_postagem,
+    u.nome as nome_tutor,
+    t.quantidade_pets
+FROM postagem_feed pf
+JOIN tutor t ON pf.id_tutor = t.id_tutor
+JOIN usuario u ON t.id_tutor = u.id_usuario
+ORDER BY pf.data_postagem DESC
+LIMIT ?;
+"""
+
+OBTER_PAGINA_COM_DADOS = """
+SELECT
+    pf.id_postagem_feed,
+    pf.id_tutor,
+    pf.descricao,
+    pf.data_postagem,
+    u.nome as nome_tutor,
+    t.quantidade_pets
+FROM postagem_feed pf
+JOIN tutor t ON pf.id_tutor = t.id_tutor
+JOIN usuario u ON t.id_tutor = u.id_usuario
+ORDER BY pf.data_postagem DESC
+LIMIT ? OFFSET ?;
+"""
+
+CONTAR_TOTAL = """
+SELECT COUNT(*) as total
+FROM postagem_feed;
+"""
+
+OBTER_POR_ID_COM_DADOS = """
+SELECT
+    pf.id_postagem_feed,
+    pf.id_tutor,
+    pf.descricao,
+    pf.data_postagem,
+    u.id_usuario,
+    u.nome as nome_tutor,
+    u.email as email_tutor,
+    u.telefone as telefone_tutor,
+    t.quantidade_pets
+FROM postagem_feed pf
+JOIN tutor t ON pf.id_tutor = t.id_tutor
+JOIN usuario u ON t.id_tutor = u.id_usuario
+WHERE pf.id_postagem_feed = ?;
+"""

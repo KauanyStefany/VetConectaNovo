@@ -35,7 +35,13 @@
                 <div class="row w-100 align-items-center bg-roxo p-4">
                     <!-- Coluna Esquerda: Link "Quem Somos" -->
                     <div class="col-12 col-lg-3 text-center text-lg-start">
-                        <a href="/quemsomos" class="text-decoration-none text-white">Quem Somos</a>
+                        <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+                            <a href="/artigos" class="text-decoration-none text-white">Artigos</a>
+                            <span class="text-white">|</span>
+                            <a href="/petgram" class="text-decoration-none text-white">Petgram</a>
+                            <span class="text-white">|</span>
+                            <a href="/quemsomos" class="text-decoration-none text-white">Quem Somos</a>
+                        </div>
                     </div>
 
                     <!-- Coluna Central: Logo e Barra de Pesquisa -->
@@ -59,11 +65,11 @@
                         <div class="dropdown d-inline-block">
                             <button class="btn btn-link p-0" type="button" id="dropdownUsuario"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                {% if request.session.get('usuario').foto %}
-                                <img src="{{ request.session.get('usuario').foto }}" alt="Avatar" class="rounded-circle" height="40">
-                                {% else %}
-                                <i class="bi bi-person-circle text-white" style="font-size: 50px;"></i>
-                                {% endif %}
+                                <img src="/static/img/usuarios/{{ '%08d' % request.session.get('usuario').id }}.jpg"
+                                     alt="Avatar"
+                                     class="rounded-circle"
+                                     style="width: 50px; height: 50px; object-fit: cover;"
+                                     onerror="this.src='/static/img/default-avatar.jpg'">
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUsuario">
                                 <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>

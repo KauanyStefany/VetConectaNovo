@@ -92,6 +92,10 @@ body {
     border-color: var(--cor-laranja) !important;
 }
 
+.border-roxo {
+    border-color: var(--cor-roxo) !important;
+}
+
 /* Botões */
 
 .btn-outline-laranja {

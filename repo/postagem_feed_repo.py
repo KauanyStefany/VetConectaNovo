@@ -83,3 +83,43 @@ def importar(postagem: PostagemFeed) -> Optional[int]:
             ),
         )
         return postagem.id_postagem_feed
+
+
+def obter_recentes_com_dados(limite: int) -> List[dict]:
+    """Retorna os posts mais recentes com dados do tutor."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_RECENTES_COM_DADOS, (limite,))
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+
+
+def obter_pagina_com_dados(pagina: int, tamanho_pagina: int) -> List[dict]:
+    """Retorna uma página de posts com dados do tutor."""
+    limite = tamanho_pagina
+    offset = (pagina - 1) * tamanho_pagina
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_PAGINA_COM_DADOS, (limite, offset))
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+
+
+def contar_total() -> int:
+    """Retorna o total de posts no feed."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(CONTAR_TOTAL)
+        row = cursor.fetchone()
+        return row["total"] if row else 0
+
+
+def obter_por_id_com_dados(id_postagem_feed: int) -> Optional[dict]:
+    """Retorna um post por ID com dados completos do tutor."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_POR_ID_COM_DADOS, (id_postagem_feed,))
+        row = cursor.fetchone()
+        if row:
+            return dict(row)
+        return None

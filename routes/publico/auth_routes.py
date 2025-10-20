@@ -87,7 +87,7 @@ async def post_login(
             "email": usuario.email,
             "telefone": usuario.telefone,
             "perfil": usuario.perfil,
-            "foto": f"/static/img/usuarios/{usuario.id_usuario:06d}.jpg",
+            "foto": f"/static/img/usuarios/{usuario.id_usuario:08d}.jpg",
         }
         criar_sessao(request, usuario_dict)
 
