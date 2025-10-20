@@ -7,3 +7,4 @@ class PostagemFeed:
     id_tutor: int
     descricao: str
     data_postagem: date
+    visualizacoes: int = 0

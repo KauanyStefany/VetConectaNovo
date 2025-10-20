@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS postagem_feed (
     id_tutor INTEGER NOT NULL,
     descricao TEXT,
     data_postagem DATETIME DEFAULT CURRENT_TIMESTAMP,
+    visualizacoes INTEGER DEFAULT 0,
     FOREIGN KEY (id_tutor) REFERENCES tutor(id_tutor)
 
 );
@@ -30,7 +31,8 @@ SELECT
     id_postagem_feed,
     id_tutor,
     descricao,
-    data_postagem
+    data_postagem,
+    visualizacoes
 FROM postagem_feed
 ORDER BY data_postagem DESC
 LIMIT ? OFFSET ?;
@@ -41,14 +43,21 @@ SELECT
     id_postagem_feed,
     id_tutor,
     descricao,
-    data_postagem
+    data_postagem,
+    visualizacoes
 FROM postagem_feed
 WHERE id_postagem_feed = ?;
 """
 
+INCREMENTAR_VISUALIZACOES = """
+UPDATE postagem_feed
+SET visualizacoes = visualizacoes + 1
+WHERE id_postagem_feed = ?;
+"""
+
 IMPORTAR = """
-INSERT INTO postagem_feed (id_postagem_feed, id_tutor, descricao, data_postagem)
-VALUES (?, ?, ?, ?);
+INSERT INTO postagem_feed (id_postagem_feed, id_tutor, descricao, data_postagem, visualizacoes)
+VALUES (?, ?, ?, ?, ?);
 """
 
 OBTER_RECENTES_COM_DADOS = """
@@ -57,6 +66,7 @@ SELECT
     pf.id_tutor,
     pf.descricao,
     pf.data_postagem,
+    pf.visualizacoes,
     u.nome as nome_tutor,
     t.quantidade_pets
 FROM postagem_feed pf
@@ -72,6 +82,7 @@ SELECT
     pf.id_tutor,
     pf.descricao,
     pf.data_postagem,
+    pf.visualizacoes,
     u.nome as nome_tutor,
     t.quantidade_pets
 FROM postagem_feed pf
@@ -92,6 +103,7 @@ SELECT
     pf.id_tutor,
     pf.descricao,
     pf.data_postagem,
+    pf.visualizacoes,
     u.id_usuario,
     u.nome as nome_tutor,
     u.email as email_tutor,

@@ -5,33 +5,33 @@
 {% block conteudo %}
 
 <div class="container">
-    
     <!-- Cabeçalho do Post -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="d-flex align-items-center gap-3 mb-3">
-                <!-- Avatar do Tutor -->
-                <img src="/static/img/usuarios/{{ '%08d' % post.id_usuario }}.jpg"
-                     alt="{{ post.nome_tutor }}"
-                     class="rounded-circle"
-                     style="width: 60px; height: 60px; object-fit: cover;"
-                     onerror="this.src='/static/img/default-avatar.jpg'">
-
-                <div>
-                    <h5 class="mb-0 fw-bold text-roxo">{{ post.nome_tutor }}</h5>
-                    <small class="text-muted">
-                        <i class="bi bi-calendar-event me-1"></i>
-                        {{ post.data_postagem[:10] | replace('-', '/') if post.data_postagem is string else post.data_postagem.strftime('%d/%m/%Y') }}
-                    </small>
-                </div>
-            </div>
-
             <!-- Metadados -->
             <div class="d-flex flex-wrap gap-3 align-items-center">
+                <!-- Data da Postagem -->
+                <span class="text-muted">
+                    <i class="bi bi-calendar-event me-1"></i>
+                    {{ post.data_postagem[:10] | replace('-', '/') if post.data_postagem is string else post.data_postagem.strftime('%d/%m/%Y') }}
+                </span>
+
+                <!-- Visualizações -->
+                <span class="text-muted">
+                    <i class="bi bi-eye me-1"></i>
+                    {{ post.visualizacoes }} visualizaç{{ 'ões' if post.visualizacoes != 1 else 'ão' }}
+                </span>
+
                 <!-- Curtidas -->
                 <span class="text-muted">
                     <i class="bi bi-heart-fill text-danger me-1"></i>
                     {{ total_curtidas }} curtida{{ 's' if total_curtidas != 1 else '' }}
+                </span>
+
+                <!-- Comentários -->
+                <span class="text-muted">
+                    <i class="bi bi-chat-dots me-1"></i>
+                    Comentários em breve!
                 </span>
             </div>
         </div>
@@ -76,7 +76,7 @@
                     </button>
                     {% endif %}
                     <p class="mt-3 mb-0 small text-muted">
-                        {{ total_curtidas }} pessoa{{ 's' if total_curtidas != 1 else '' }} curtiu{{ '' if total_curtidas != 1 else '' }} este post
+                        {{ total_curtidas }} pessoa{{ 's' if total_curtidas != 1 else '' }} curti{{ 'ram' if total_curtidas != 1 else 'u' }} este post
                     </p>
                 </div>
             </div>
@@ -164,11 +164,27 @@
 
                     <!-- Estatísticas do Post -->
                     <hr class="my-3">
-                    <div class="text-center">
-                        <div class="p-2">
-                            <i class="bi bi-heart-fill text-danger" style="font-size: 2rem;"></i>
-                            <div class="fw-bold text-danger mt-1" style="font-size: 1.5rem;">{{ total_curtidas }}</div>
-                            <small class="text-muted">Curtida{{ 's' if total_curtidas != 1 else '' }}</small>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <div class="p-2">
+                                <i class="bi bi-eye text-roxo" style="font-size: 1.5rem;"></i>
+                                <div class="fw-bold text-roxo mt-1">{{ post.visualizacoes }}</div>
+                                <small class="text-muted">Visitas</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2">
+                                <i class="bi bi-heart-fill text-danger" style="font-size: 1.5rem;"></i>
+                                <div class="fw-bold text-danger mt-1">{{ total_curtidas }}</div>
+                                <small class="text-muted">Curtidas</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2">
+                                <i class="bi bi-chat-dots" style="font-size: 1.5rem;"></i>
+                                <div class="fw-bold text-danger mt-1">{{ total_comentarios or 0 }}</div>
+                                <small class="text-muted">Comentários</small>
+                            </div>
                         </div>
                     </div>
                 </div>

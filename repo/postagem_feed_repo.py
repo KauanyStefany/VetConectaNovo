@@ -50,6 +50,7 @@ def obter_pagina(pagina: int, tamanho_pagina: int) -> List[PostagemFeed]:
                 id_tutor=row["id_tutor"],
                 descricao=row["descricao"],
                 data_postagem=datetime.strptime(row["data_postagem"][:10], "%Y-%m-%d").date(),
+                visualizacoes=row["visualizacoes"],
             )
             for row in rows
         ]
@@ -66,6 +67,7 @@ def obter_por_id(id_postagem_feed: int) -> Optional[PostagemFeed]:
                 id_tutor=row["id_tutor"],
                 descricao=row["descricao"],
                 data_postagem=datetime.strptime(row["data_postagem"][:10], "%Y-%m-%d").date(),
+                visualizacoes=row["visualizacoes"],
             )
         return None
 
@@ -80,6 +82,7 @@ def importar(postagem: PostagemFeed) -> Optional[int]:
                 postagem.id_tutor,
                 postagem.descricao,
                 postagem.data_postagem,
+                postagem.visualizacoes,
             ),
         )
         return postagem.id_postagem_feed
@@ -123,3 +126,11 @@ def obter_por_id_com_dados(id_postagem_feed: int) -> Optional[dict]:
         if row:
             return dict(row)
         return None
+
+
+def incrementar_visualizacoes(id_postagem_feed: int) -> bool:
+    """Incrementa o contador de visualizações de um post."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(INCREMENTAR_VISUALIZACOES, (id_postagem_feed,))
+        return cursor.rowcount > 0

@@ -157,6 +157,9 @@ async def get_detalhes_post(request: Request, id_postagem_feed: int):
     if not post:
         raise HTTPException(status_code=404, detail="Post não encontrado")
 
+    # Incrementar visualizações
+    postagem_feed_repo.incrementar_visualizacoes(id_postagem_feed)
+
     # Contar curtidas do post
     total_curtidas = curtida_feed_repo.contar_curtidas_por_postagem(id_postagem_feed)
 
