@@ -17,7 +17,7 @@ from dtos.auth_dto import (
 from model.enums import PerfilUsuario
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
-from repo import usuario_repo, tutor_repo, veterinario_repo
+from repo import administrador_repo, usuario_repo, tutor_repo, veterinario_repo
 from util.security import (
     criar_hash_senha,
     verificar_senha,
@@ -66,7 +66,10 @@ async def post_login(
         login_dto = LoginDTO(email=email, senha=senha)
 
         # Buscar usuário pelo email
-        usuario = usuario_repo.obter_por_email(login_dto.email)
+        usuario = administrador_repo.obter_por_email(login_dto.email)
+
+        if not usuario:
+            usuario = usuario_repo.obter_por_email(login_dto.email)
 
         # Verificar credenciais
         if not usuario or not verificar_senha(login_dto.senha, usuario.senha):

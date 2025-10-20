@@ -57,6 +57,14 @@ def obter_por_id(id_admin: int) -> Optional[Administrador]:
         cursor.execute(OBTER_POR_ID, (id_admin,))
         row = cursor.fetchone()
         return Administrador(**row) if row else None
+    
+
+def obter_por_email(email: str) -> Optional[Administrador]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_POR_EMAIL, (email,))
+        row = cursor.fetchone()
+        return Administrador(**row) if row else None
 
 
 def importar(admin: Administrador) -> bool:

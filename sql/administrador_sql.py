@@ -42,6 +42,12 @@ FROM administrador
 WHERE id_admin = ?;
 """
 
+OBTER_POR_EMAIL = """
+SELECT *
+FROM administrador
+WHERE email = ?;
+"""
+
 IMPORTAR = """
 INSERT INTO administrador (id_admin, nome, email, senha)
 VALUES (?, ?, ?, ?);

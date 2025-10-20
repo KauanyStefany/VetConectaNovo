@@ -61,6 +61,42 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(public_routes.router)
 app.include_router(auth_routes.router)
 
+# Rotas públicas adicionais
+from routes.publico import perfil_routes
+app.include_router(perfil_routes.router, prefix="/perfil", tags=["perfil"])
+
+# Rotas admin
+from routes.admin import (
+    categoria_artigo_routes,
+    chamado_routes,
+    comentario_admin_routes,
+    denuncia_admin_routes,
+    verificacao_crmv_routes
+)
+app.include_router(categoria_artigo_routes.router, prefix="/administrador", tags=["admin-categorias"])
+app.include_router(chamado_routes.router, prefix="/administrador", tags=["admin-chamados"])
+app.include_router(comentario_admin_routes.router, prefix="/administrador", tags=["admin-comentarios"])
+app.include_router(denuncia_admin_routes.router, prefix="/administrador", tags=["admin-denuncias"])
+app.include_router(verificacao_crmv_routes.router, prefix="/administrador", tags=["admin-crmv"])
+
+# Rotas tutor
+from routes.tutor import postagem_feed_routes
+app.include_router(postagem_feed_routes.router, prefix="/tutor", tags=["tutor"])
+
+# Rotas veterinário
+from routes.veterinario import (
+    postagem_artigo_routes,
+    solicitacao_crmv_routes,
+    estatisticas_routes
+)
+app.include_router(postagem_artigo_routes.router, prefix="/veterinario", tags=["veterinario-artigos"])
+app.include_router(solicitacao_crmv_routes.router, prefix="/veterinario", tags=["veterinario-crmv"])
+app.include_router(estatisticas_routes.router, prefix="/veterinario", tags=["veterinario-stats"])
+
+# Rotas usuário
+from routes.usuario import usuario_routes
+app.include_router(usuario_routes.router, prefix="/usuario", tags=["usuario"])
+
 # Inícialização do servidor
 if __name__ == "__main__":
     environment = os.getenv("ENVIRONMENT", "development")
