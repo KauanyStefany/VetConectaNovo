@@ -475,9 +475,12 @@ Este projeto está sob a licença MIT. Ver arquivo [LICENSE](LICENSE) para mais 
 ## 📞 Contato
 
 **Instituição:** Instituto Federal do Espírito Santo
+
 **Campus:** Cachoeiro de Itapemirim
-**Email:** vetconecta@ifes.edu.br
-**Site:** [www.vetconecta.com.br](http://www.vetconecta.com.br)
+
+**Email:** contato@vetconecta.cachoeiro.es
+
+**Site:** [vetconecta.cachoeiro.es](https://vetconecta.cachoeiro.es)
 
 ---
 
