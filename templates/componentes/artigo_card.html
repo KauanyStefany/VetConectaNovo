@@ -3,45 +3,84 @@
 
   Espera a variável 'artigo' no contexto com os campos:
   - id_postagem_artigo
+  - id_veterinario
   - titulo
   - data_publicacao
   - nome_veterinario
   - nome_categoria
   - cor_categoria
   - id_categoria_artigo
+  - visualizacoes (opcional)
+  - total_curtidas (opcional)
 #}
 
 <a href="/artigos/{{ artigo.id_postagem_artigo }}" class="text-decoration-none">
-    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="background-color: {{ artigo.cor_categoria }};">
+    <div class="card card-hover-effect h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="background-color: {{ artigo.cor_categoria }};">
         <!-- Imagem do Artigo -->
-        <img src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg"
-             class="card-img-top"
-             alt="{{ artigo.titulo }}"
-             style="height: 220px; object-fit: cover;"
-             onerror="this.src='/static/img/categorias/{{ '%02d' % artigo.id_categoria_artigo }}.jpg'">
+        <div class="p-4 pb-0">
+            <img src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg"
+                 class="card-img-top rounded-top-3"
+                 alt="{{ artigo.titulo }}"
+                 style="height: 200px; object-fit: cover;"
+                 onerror="this.src='/static/img/categorias/{{ '%02d' % artigo.id_categoria_artigo }}.jpg'">
+        </div>
 
         <!-- Corpo do Card -->
-        <div class="card-body text-white d-flex flex-column p-3">
+        <div class="card-body text-white d-flex flex-column p-4">
+            <!-- Cabeçalho: Avatar + Nome + Badge Categoria -->
+            <div class="d-flex align-items-center mb-3">
+                <!-- Avatar do Veterinário -->
+                <img src="/static/img/usuarios/{{ '%08d' % artigo.id_veterinario }}.jpg"
+                     alt="{{ artigo.nome_veterinario }}"
+                     class="rounded-circle me-2"
+                     width="40"
+                     height="40"
+                     style="object-fit: cover;"
+                     onerror="this.src='/static/img/default-avatar.jpg'">
+
+                <!-- Nome e Badge -->
+                <div class="flex-grow-1">
+                    <div class="fw-bold small mb-1">{{ artigo.nome_veterinario }}</div>
+                    <span class="badge rounded-pill px-2 py-1"
+                          style="background-color: rgba(255, 255, 255, 0.34); font-size: 0.75rem;">
+                        {{ artigo.nome_categoria }}
+                    </span>
+                </div>
+            </div>
+
             <!-- Título -->
             <h6 class="card-title fw-bold mb-2" style="min-height: 2.8rem; line-height: 1.4rem; font-size: 1rem;">
                 {{ artigo.titulo[:65] }}{% if artigo.titulo|length > 65 %}...{% endif %}
             </h6>
 
             <!-- Data -->
-            <p class="card-text mb-2">
-                <small>{{ artigo.data_publicacao[:10] | replace('-', '/') if artigo.data_publicacao is string else artigo.data_publicacao.strftime('%d/%m/%Y') }}</small>
+            <p class="card-text mb-3 small">
+                <i class="bi bi-calendar3 me-1"></i>
+                {{ artigo.data_publicacao[:10] | replace('-', '/') if artigo.data_publicacao is string else artigo.data_publicacao.strftime('%d/%m/%Y') }}
             </p>
 
-            <!-- Nome do Veterinário -->
-            <p class="card-text mb-2">
-                <small>@{{ artigo.nome_veterinario.lower().replace(' ', '') }}</small>
-            </p>
+            <!-- Footer: Estatísticas -->
+            <div class="d-flex justify-content-start gap-3 mt-auto border-top border-white border-opacity-25 pt-2">
+                <!-- Visualizações -->
+                {% if artigo.visualizacoes is defined %}
+                <span class="small">
+                    <i class="bi bi-eye-fill me-1"></i>
+                    {{ artigo.visualizacoes }}
+                </span>
+                {% endif %}
 
-            <!-- Badge da Categoria -->
-            <div class="mt-auto">
-                <span class="badge rounded-pill px-2 py-1"
-                      style="background-color: rgba(255, 255, 255, 0.34); font-size: 0.85rem;">
-                    {{ artigo.nome_categoria }}
+                <!-- Curtidas -->
+                {% if artigo.total_curtidas is defined %}
+                <span class="small">
+                    <i class="bi bi-heart-fill me-1"></i>
+                    {{ artigo.total_curtidas }}
+                </span>
+                {% endif %}
+
+                <!-- Comentários (placeholder) -->
+                <span class="small">
+                    <i class="bi bi-chat-fill me-1"></i>
+                    0
                 </span>
             </div>
         </div>

@@ -108,6 +108,27 @@ body {
     color: #fff !important;
 }
 
+.btn-roxo {
+    background-color: var(--cor-roxo);
+    border-color: var(--cor-roxo);
+}
+
+.btn-roxo:hover {
+    background-color: #362947;
+    border-color: #362947;
+}
+
+.btn-outline-roxo {
+    border-color: var(--cor-roxo);
+    color: var(--cor-roxo);
+}
+
+.btn-outline-roxo:hover {
+    background-color: var(--cor-roxo);
+    border-color: var(--cor-roxo);
+    color: #fff;
+}
+
 /* Toast Customization */
 .toast-container {
     z-index: 9999;
@@ -150,12 +171,14 @@ body {
     color: white !important;
 }
 
-/* Artigos Recentes */
+/* Efeitos de Hover em Cards */
 
+.card-hover-effect,
 .artigos-card .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card-hover-effect:hover,
 .artigos-card .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
@@ -165,4 +188,22 @@ body {
     .artigos-card h2 {
         font-size: 2rem !important;
     }
+}
+
+/* Responsividade para sidebars sticky */
+@media (max-width: 991px) {
+    .sticky-top {
+        position: relative !important;
+        top: auto !important;
+    }
+}
+
+/* Avatares em Cards */
+.card .rounded-circle {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.card:hover .rounded-circle {
+    transform: scale(1.05);
 }

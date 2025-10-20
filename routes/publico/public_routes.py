@@ -17,6 +17,10 @@ async def get_root(request: Request):
     # Buscar artigos recentes (6 primeiros)
     artigos_recentes = postagem_artigo_repo.obter_recentes_com_dados(6)
 
+    # Adicionar contagem de curtidas para cada artigo
+    for artigo in artigos_recentes:
+        artigo['total_curtidas'] = curtida_artigo_repo.contar_curtidas_por_artigo(artigo['id_postagem_artigo'])
+
     # Buscar todas as categorias
     categorias = categoria_artigo_repo.obter_todos()
 
@@ -61,6 +65,10 @@ async def get_artigos(request: Request, pagina: int = 1, categoria: int = None):
     # Calcular total de páginas
     import math
     total_paginas = math.ceil(total_artigos / tamanho_pagina) if total_artigos > 0 else 1
+
+    # Adicionar contagem de curtidas para cada artigo
+    for artigo in artigos:
+        artigo['total_curtidas'] = curtida_artigo_repo.contar_curtidas_por_artigo(artigo['id_postagem_artigo'])
 
     # Buscar todas as categorias
     categorias = categoria_artigo_repo.obter_todos()

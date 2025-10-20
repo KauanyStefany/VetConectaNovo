@@ -304,6 +304,7 @@ def importar_postagens_feeds():
             id_tutor=item["id_tutor"],
             descricao=item["descricao"],
             data_postagem=datetime.strptime(item["data_postagem"], "%Y-%m-%d %H:%M:%S").date(),
+            visualizacoes=item.get("visualizacoes", 0),
         )
         postagem_feed_repo.importar(postagem)
         logger.info(f"Postagem feed #{postagem.id_postagem_feed} do tutor {postagem.id_tutor} importada com sucesso.")
