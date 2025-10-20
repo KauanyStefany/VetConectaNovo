@@ -1,0 +1,90 @@
+{# TODO: Moderação de Comentários
+
+   DESCRIÇÃO:
+   Tabela com todos os comentários de artigos para moderação.
+   Admin pode visualizar e excluir comentários inapropriados.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Título: "Moderar Comentários"
+
+   2. TABELA RESPONSIVA:
+      Colunas: ID | Usuário | Artigo | Comentário | Data | Ações
+
+   3. LOOP PELOS COMENTÁRIOS:
+      {% for comentario in comentarios %}
+      <tr>
+        <td>{{ comentario.id_comentario_artigo }}</td>
+        <td>{{ comentario.nome_usuario }}</td>
+        <td>
+          <a href="/artigos/{{ comentario.id_postagem_artigo }}" target="_blank">
+            {{ comentario.titulo_artigo[:50] }}...
+          </a>
+        </td>
+        <td>{{ comentario.texto[:100] }}{% if comentario.texto|length > 100 %}...{% endif %}</td>
+        <td>{{ comentario.data_comentario | data_hora_br }}</td>
+        <td>
+          <form method="post" action="/administrador/excluir_comentario" style="display: inline;">
+            <input type="hidden" name="id_comentario" value="{{ comentario.id_comentario_artigo }}">
+            <button type="submit" class="btn btn-sm btn-outline-danger"
+                    onclick="return confirm('Deseja realmente excluir este comentário?')">
+              <i class="bi bi-trash"></i> Excluir
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+
+   4. MENSAGEM SE VAZIO:
+      {% if comentarios|length == 0 %}
+      <tr>
+        <td colspan="6" class="text-center">Nenhum comentário encontrado.</td>
+      </tr>
+      {% endif %}
+
+   5. PAGINAÇÃO (OPCIONAL):
+      Se houver muitos comentários, adicionar componente de paginação:
+      {% if total_paginas > 1 %}
+        {% set url_base = '/administrador/moderar_comentarios' %}
+        {% include "componentes/paginacao.html" %}
+      {% endif %}
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - comentarios: Lista de objetos ComentarioArtigo (com joins de usuario e artigo)
+
+   ATRIBUTOS DO ComentarioArtigo (com joins):
+   - id_comentario_artigo: int
+   - texto: str (o comentário)
+   - data_comentario: datetime
+   - nome_usuario: str (via join)
+   - id_postagem_artigo: int
+   - titulo_artigo: str (via join)
+
+   TÉCNICAS JINJA2:
+   - [:50]: Slice para limitar texto (primeiros 50 caracteres)
+   - |length: Retorna tamanho da string
+   - {% if texto|length > 100 %}: Condicional para adicionar "..."
+
+   CONFIRMAÇÃO JAVASCRIPT:
+   - onclick="return confirm('...')" pergunta antes de excluir
+   - Se usuário cancelar, o form não é enviado
+   - É uma proteção adicional contra exclusão acidental
+
+   LINK PARA ARTIGO:
+   - target="_blank" abre em nova aba
+   - Permite admin ver contexto do comentário
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver listar_categorias.html para estrutura de tabela
+   Ver listar_chamados.html para badges e formatação
+
+   ATENÇÃO:
+   - Botão de excluir tem confirmação JavaScript
+   - Form é inline (style="display: inline;") para não quebrar layout
+   - Texto do comentário pode ser muito longo, usar slice [:100]
+#}
+
+{# Seu código HTML aqui #}

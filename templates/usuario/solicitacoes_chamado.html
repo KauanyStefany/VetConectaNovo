@@ -1,0 +1,13 @@
+{# TODO: Lista de Chamados do Usuário
+   - Título: "Meus Chamados" com botão "Novo Chamado" (btn btn-roxo)
+   - Tabela responsiva: ID | Título | Status | Data | Respostas
+   - Loop: {% for chamado in chamados %}
+     * Status com badges coloridos (igual admin/listar_chamados.html)
+     * Coluna Respostas: Link "Ver Detalhes" abre modal ou página
+   - {% if chamados|length == 0 %}
+     Alert info: "Você ainda não tem chamados. Precisa de ajuda? Abra um chamado!"
+     Link: href="/usuario/solicitar_chamado"
+   Variáveis: request, chamados (lista de Chamado)
+   EXPANSÃO FUTURA: Adicionar página de detalhes mostrando histórico de respostas
+   Referência: templates/admin/listar_chamados.html (estrutura de tabela)
+#}

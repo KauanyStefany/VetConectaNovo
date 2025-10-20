@@ -1,0 +1,100 @@
+{# TODO: Listagem de Chamados de Suporte
+
+   DESCRIÇÃO:
+   Tabela com todos os chamados de suporte, com filtros por status.
+   Permite ao admin visualizar e responder chamados.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Título: "Chamados de Suporte"
+
+   2. BOTÕES DE FILTRO POR STATUS:
+      <div class="btn-group mb-3" role="group">
+        <a href="?status=todos" class="btn btn-outline-roxo">
+          Todos ({{ total }})
+        </a>
+        <a href="?status=aberto" class="btn btn-outline-warning">
+          Abertos
+        </a>
+        <a href="?status=em_andamento" class="btn btn-outline-info">
+          Em Andamento
+        </a>
+        <a href="?status=resolvido" class="btn btn-outline-success">
+          Resolvidos
+        </a>
+      </div>
+
+   3. TABELA RESPONSIVA:
+      Colunas: ID | Usuário | Título | Status | Data | Ações
+
+   4. LOOP PELOS CHAMADOS:
+      {% for chamado in chamados %}
+      <tr>
+        <td>{{ chamado.id_chamado }}</td>
+        <td>{{ chamado.nome_usuario }}</td>
+        <td>{{ chamado.titulo }}</td>
+        <td>
+          {% if chamado.status == 'aberto' %}
+            <span class="badge bg-warning">Aberto</span>
+          {% elif chamado.status == 'em_andamento' %}
+            <span class="badge bg-info">Em Andamento</span>
+          {% else %}
+            <span class="badge bg-success">Resolvido</span>
+          {% endif %}
+        </td>
+        <td>{{ chamado.data | data_br }}</td>
+        <td>
+          <a href="/administrador/responder_chamado/{{ chamado.id_chamado }}"
+             class="btn btn-sm btn-outline-roxo">
+            Ver/Responder
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+
+   5. MENSAGEM SE VAZIO:
+      {% if chamados|length == 0 %}
+      <tr>
+        <td colspan="6" class="text-center">Nenhum chamado encontrado.</td>
+      </tr>
+      {% endif %}
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - chamados: Lista de objetos Chamado (com join de usuario)
+   - total: Inteiro com total de chamados
+
+   ATRIBUTOS DO OBJETO Chamado (com join):
+   - id_chamado: int
+   - titulo: str
+   - descricao: str
+   - status: str ('aberto', 'em_andamento', 'resolvido')
+   - data: datetime
+   - nome_usuario: str (do join com tabela usuario)
+   - email_usuario: str (do join)
+
+   FILTRO JINJA2:
+   - data_br: Formata data como dd/mm/yyyy (já definido em util/template_util.py)
+
+   BADGES DE STATUS:
+   - bg-warning: Amarelo (Bootstrap) para "aberto"
+   - bg-info: Azul para "em_andamento"
+   - bg-success: Verde para "resolvido"
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver listar_categorias.html para estrutura de tabela
+
+   FUNCIONALIDADE DOS FILTROS:
+   - Botões adicionam parâmetro ?status=... na URL
+   - Backend filtra chamados conforme status
+   - Botão "Todos" mostra quantidade total
+
+   ATENÇÃO:
+   - Usar condicional {% if %} para cor do badge conforme status
+   - Filtro | data_br já está disponível globalmente
+   - Botão "Ver/Responder" leva para página de detalhes do chamado
+#}
+
+{# Seu código HTML aqui #}

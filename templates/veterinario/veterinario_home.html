@@ -1,0 +1,14 @@
+{# TODO: Dashboard do Veterinário
+   - Estender base_publica.html
+   - Título: "Meu Painel - Veterinário"
+   - Grid com 3 cards de métricas:
+     * Card 1: Total de Artigos ({{ total_artigos }}) - ícone bi-file-text text-roxo
+     * Card 2: Total de Visualizações ({{ total_visualizacoes }}) - ícone bi-eye text-laranja
+     * Card 3: Total de Curtidas ({{ total_curtidas }}) - ícone bi-heart text-rosa
+   - Seção "Meus Artigos" com grid dos últimos 6 artigos
+     Usar: {% include "componentes/artigo_card.html" %}
+   - Botão: href="/veterinario/cadastrar_postagem_artigo" class="btn btn-roxo"
+   - Link: href="/veterinario/listar_postagem_artigo" Ver Todos os Artigos
+   Variáveis: request, artigos, total_artigos, total_visualizacoes, total_curtidas
+   Referência: templates/admin/home_administrador.html e templates/tutor/home_tutor.html
+#}

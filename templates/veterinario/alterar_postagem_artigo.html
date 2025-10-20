@@ -1,0 +1,17 @@
+{# TODO: Formulário de Edição de Artigo
+   - Título: "Editar Artigo"
+   - Form: method="post" action="/veterinario/alterar_postagem_artigo"
+   - Hidden: <input type="hidden" name="id_postagem" value="{{ artigo.id_postagem_artigo }}">
+   - Campos preenchidos:
+     * Título: value="{{ artigo.titulo }}"
+     * Categoria: <option selected> se {{ categoria.id == artigo.id_categoria_artigo }}
+     * Conteúdo: {{ artigo.conteudo }} (dentro de textarea)
+   - Mostrar imagem atual (não editável):
+     <img src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg" class="img-fluid">
+   - Campo opcional: Nova Foto (type="file" name="foto" - SEM required)
+     Small text: "Deixe em branco para manter imagem atual"
+   - Botões: Salvar Alterações (btn-roxo) e Cancelar
+   Variáveis: request, artigo (PostagemArtigo), categorias (lista)
+   NOTA: Upload de foto é OPCIONAL na edição
+   Referência: templates/admin/alterar_categoria.html e templates/tutor/editar_postagem_feed.html
+#}

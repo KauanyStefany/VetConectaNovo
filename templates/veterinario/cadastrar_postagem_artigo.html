@@ -1,0 +1,18 @@
+{# TODO: Formulário de Novo Artigo
+   - Título: "Novo Artigo"
+   - Form: method="post" action="/veterinario/cadastrar_postagem_artigo" enctype="multipart/form-data"
+   - Campo 1: Título (type="text" name="titulo" required)
+   - Campo 2: Categoria (select name="id_categoria_artigo" required)
+     Loop de categorias:
+     {% for categoria in categorias %}
+       <option value="{{ categoria.id_categoria_artigo }}">{{ categoria.nome }}</option>
+     {% endfor %}
+   - Campo 3: Conteúdo (textarea name="conteudo" rows="15" required)
+   - Campo 4: Foto (type="file" name="foto" accept="image/*" required)
+     Small text: "Tamanho máximo: 5MB. Será salva como imagem do artigo."
+   - Botões: Publicar (btn-roxo) e Cancelar (href="/veterinario/listar_postagem_artigo")
+   Variáveis: request, categorias (lista de CategoriaArtigo)
+   ATENÇÃO: enctype="multipart/form-data" é OBRIGATÓRIO!
+   VALIDAÇÃO: Título min 2 palavras, Conteúdo min 10 palavras (DTO)
+   Referência: templates/tutor/fazer_postagem_feed.html e templates/publico/cadastro.html
+#}

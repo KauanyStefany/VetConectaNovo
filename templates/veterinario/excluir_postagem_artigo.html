@@ -1,0 +1,16 @@
+{# TODO: Confirmação de Exclusão de Artigo
+   - Título: "Excluir Artigo" (text-danger)
+   - Alert warning: "Esta ação não pode ser desfeita. Curtidas e comentários também serão removidos."
+   - Card mostrando:
+     * Título: {{ artigo.titulo }}
+     * Categoria: Badge com cor
+     * Data: {{ artigo.data_publicacao | data_br }}
+     * Visualizações: {{ artigo.visualizacoes }}
+     * Preview do conteúdo: {{ artigo.conteudo[:200] }}...
+   - Form: method="post" action="/veterinario/excluir_postagem_artigo"
+   - Hidden: id_postagem
+   - Botão: Confirmar Exclusão (btn-danger) com ícone bi-trash
+   - Link: Cancelar
+   Variáveis: request, artigo
+   Referência: templates/admin/excluir_categoria.html
+#}

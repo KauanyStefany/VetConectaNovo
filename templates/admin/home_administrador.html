@@ -1,0 +1,76 @@
+{# TODO: Dashboard do Administrador
+
+   DESCRIÇÃO:
+   Página inicial do administrador com resumo de atividades e links rápidos.
+   Exibe cards com métricas principais.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Título: "Painel Administrativo"
+
+   2. GRID DE CARDS (row com col-md-3):
+      Criar 4 cards com as seguintes informações:
+
+      Card 1 - Categorias:
+      - Ícone: <i class="bi bi-folder icon-lg text-roxo"></i>
+      - Título: "Categorias"
+      - Número: {{ categoria_artigo|length }} (ou contar)
+      - Link: href="/administrador/listar_categorias" class="btn btn-sm btn-outline-roxo"
+
+      Card 2 - Chamados:
+      - Ícone: <i class="bi bi-chat-dots icon-lg text-laranja"></i>
+      - Título: "Chamados"
+      - Número: {{ total_chamados }} (se disponível)
+      - Link: href="/administrador/listar_chamados"
+
+      Card 3 - Denúncias:
+      - Ícone: <i class="bi bi-exclamation-triangle icon-lg text-rosa"></i>
+      - Título: "Denúncias"
+      - Número: {{ total_denuncias }}
+      - Link: href="/administrador/listar_denuncias"
+
+      Card 4 - Verificações CRMV:
+      - Ícone: <i class="bi bi-shield-check icon-lg text-verde"></i>
+      - Título: "Verificações CRMV"
+      - Número: {{ total_verificacoes }}
+      - Link: href="/administrador/listar_verificacao_crmv"
+
+   3. ESTRUTURA DO CARD:
+      <div class="card">
+        <div class="card-body text-center">
+          <!-- Ícone -->
+          <h5 class="mt-3">Título</h5>
+          <p class="display-6">Número</p>
+          <!-- Botão -->
+        </div>
+      </div>
+
+   4. SEÇÃO ADICIONAL (OPCIONAL):
+      - Lista de últimas ações
+      - Gráfico de atividades
+      - Avisos importantes
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - categoria_artigo: Lista de categorias
+   - total_chamados: Inteiro (opcional)
+   - total_denuncias: Inteiro (opcional)
+   - total_verificacoes: Inteiro (opcional)
+
+   CLASSES CSS ÚTEIS:
+   - icon-lg: Ícone grande (4rem) - definida em base.css
+   - text-roxo, text-laranja, text-rosa, text-verde: Cores do projeto
+   - display-6: Tamanho grande para números (Bootstrap)
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver estrutura de cards em templates/publico/index.html
+
+   ATENÇÃO:
+   - Usar Bootstrap Icons para ícones (já incluído no base_publica.html)
+   - Cards devem ser responsivos (col-md-3 vira col-12 em mobile)
+   - Links devem ter class="btn" para aparência consistente
+#}
+
+{# Seu código HTML aqui #}

@@ -1,0 +1,25 @@
+{# TODO: Lista de Comentários do Usuário
+   - Título: "Meus Comentários"
+   - {% for comentario in comentarios %}
+     Card para cada comentário:
+     <div class="card mb-3">
+       <div class="card-header">
+         Em: <a href="/artigos/{{ comentario.id_postagem_artigo }}">{{ comentario.titulo_artigo }}</a>
+         <small class="text-muted float-end">{{ comentario.data_comentario | data_hora_br }}</small>
+       </div>
+       <div class="card-body">
+         <p>{{ comentario.texto }}</p>
+         <form method="post" action="/usuario/excluir_comentario/{{ comentario.id_comentario_artigo }}" style="display: inline;">
+           <button type="submit" class="btn btn-sm btn-outline-danger"
+                   onclick="return confirm('Excluir este comentário?')">
+             <i class="bi bi-trash"></i> Excluir
+           </button>
+         </form>
+       </div>
+     </div>
+   {% endfor %}
+   - {% if comentarios|length == 0 %}
+     Alert info: "Você ainda não fez comentários."
+   Variáveis: request, comentarios (lista de ComentarioArtigo com join de artigo)
+   Referência: templates/admin/responder_chamado.html (cards de respostas)
+#}

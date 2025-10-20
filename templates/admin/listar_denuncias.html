@@ -1,0 +1,113 @@
+{# TODO: Listagem de Denúncias
+
+   DESCRIÇÃO:
+   Tabela com todas as denúncias de conteúdo, com filtros por status.
+   Admin pode analisar, aprovar ou rejeitar denúncias.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Título: "Denúncias de Conteúdo"
+
+   2. BOTÕES DE FILTRO POR STATUS:
+      <div class="btn-group mb-3" role="group">
+        <a href="?status=todos" class="btn btn-outline-roxo">Todas</a>
+        <a href="?status=pendente" class="btn btn-outline-warning">Pendentes</a>
+        <a href="?status=em_analise" class="btn btn-outline-info">Em Análise</a>
+        <a href="?status=resolvida" class="btn btn-outline-success">Resolvidas</a>
+        <a href="?status=rejeitada" class="btn btn-outline-danger">Rejeitadas</a>
+      </div>
+
+   3. TABELA RESPONSIVA:
+      Colunas: ID | Usuário | Motivo | Status | Data | Ações
+
+   4. LOOP PELAS DENÚNCIAS:
+      {% for denuncia in denuncias %}
+      <tr>
+        <td>{{ denuncia.id_denuncia }}</td>
+        <td>{{ denuncia.nome_usuario }}</td>
+        <td>{{ denuncia.motivo[:80] }}...</td>
+        <td>
+          {% if denuncia.status == 'pendente' %}
+            <span class="badge bg-warning">Pendente</span>
+          {% elif denuncia.status == 'em_analise' %}
+            <span class="badge bg-info">Em Análise</span>
+          {% elif denuncia.status == 'resolvida' %}
+            <span class="badge bg-success">Resolvida</span>
+          {% else %}
+            <span class="badge bg-danger">Rejeitada</span>
+          {% endif %}
+        </td>
+        <td>{{ denuncia.data_denuncia | data_br }}</td>
+        <td>
+          <div class="btn-group btn-group-sm" role="group">
+            <form method="post" action="/administrador/analisar_denuncia" style="display: inline;">
+              <input type="hidden" name="id_denuncia" value="{{ denuncia.id_denuncia }}">
+              <input type="hidden" name="novo_status" value="em_analise">
+              <button type="submit" class="btn btn-outline-info">Analisar</button>
+            </form>
+
+            <form method="post" action="/administrador/analisar_denuncia" style="display: inline;">
+              <input type="hidden" name="id_denuncia" value="{{ denuncia.id_denuncia }}">
+              <input type="hidden" name="novo_status" value="resolvida">
+              <button type="submit" class="btn btn-outline-success">Resolver</button>
+            </form>
+
+            <form method="post" action="/administrador/analisar_denuncia" style="display: inline;">
+              <input type="hidden" name="id_denuncia" value="{{ denuncia.id_denuncia }}">
+              <input type="hidden" name="novo_status" value="rejeitada">
+              <button type="submit" class="btn btn-outline-danger">Rejeitar</button>
+            </form>
+
+            <form method="post" action="/administrador/excluir_denuncia" style="display: inline;">
+              <input type="hidden" name="id_denuncia" value="{{ denuncia.id_denuncia }}">
+              <button type="submit" class="btn btn-outline-secondary"
+                      onclick="return confirm('Excluir esta denúncia?')">
+                <i class="bi bi-trash"></i>
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - denuncias: Lista de objetos Denuncia (com join de usuario)
+
+   ATRIBUTOS DO Objeto Denuncia (com join):
+   - id_denuncia: int
+   - motivo: str (descrição da denúncia)
+   - status: str ('pendente', 'em_analise', 'resolvida', 'rejeitada')
+   - data_denuncia: datetime
+   - nome_usuario: str (quem fez a denúncia)
+
+   GRUPO DE BOTÕES:
+   - btn-group: Agrupa botões lado a lado (Bootstrap)
+   - btn-group-sm: Versão pequena dos botões
+   - role="group": Acessibilidade
+
+   MÚLTIPLOS FORMS NA MESMA CÉLULA:
+   Cada ação tem seu próprio form com:
+   - mesmo id_denuncia
+   - novo_status diferente conforme ação
+   - forms inline (não quebram layout)
+
+   AÇÕES DISPONÍVEIS:
+   1. Analisar: Muda status para 'em_analise'
+   2. Resolver: Muda status para 'resolvida'
+   3. Rejeitar: Muda status para 'rejeitada'
+   4. Excluir: Remove permanentemente do banco
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver listar_chamados.html para filtros e badges
+   Ver moderar_comentarios.html para confirmação de exclusão
+
+   ATENÇÃO:
+   - Cada botão é um form separado (permite POST para ações diferentes)
+   - Confirmação JavaScript apenas no botão de excluir
+   - Campo novo_status determina a ação no backend
+#}
+
+{# Seu código HTML aqui #}

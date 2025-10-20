@@ -1,0 +1,98 @@
+{# TODO: Listagem de Verificações de CRMV
+
+   DESCRIÇÃO:
+   Tabela com solicitações de verificação de CRMV de veterinários.
+   Admin pode aprovar ou rejeitar para dar selo verificado.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Título: "Verificações de CRMV"
+
+   2. BOTÕES DE FILTRO:
+      <div class="btn-group mb-3" role="group">
+        <a href="?status=todos" class="btn btn-outline-roxo">Todas</a>
+        <a href="?status=pendente" class="btn btn-outline-warning">Pendentes</a>
+        <a href="?status=aprovado" class="btn btn-outline-success">Aprovadas</a>
+        <a href="?status=rejeitado" class="btn btn-outline-danger">Rejeitadas</a>
+      </div>
+
+   3. TABELA RESPONSIVA:
+      Colunas: ID | Veterinário | CRMV | Status | Data Solicitação | Ações
+
+   4. LOOP PELAS VERIFICAÇÕES:
+      {% for verificacao in verificacoes %}
+      <tr>
+        <td>{{ verificacao.id_verificacao_crmv }}</td>
+        <td>
+          {{ verificacao.nome_veterinario }}<br>
+          <small class="text-muted">{{ verificacao.email_veterinario }}</small>
+        </td>
+        <td>
+          <span class="badge bg-secondary">{{ verificacao.crmv }}</span>
+        </td>
+        <td>
+          {% if verificacao.status_verificacao == 'pendente' %}
+            <span class="badge bg-warning">Pendente</span>
+          {% elif verificacao.status_verificacao == 'aprovado' %}
+            <span class="badge bg-success">Aprovado</span>
+          {% elif verificacao.status_verificacao == 'rejeitado' %}
+            <span class="badge bg-danger">Rejeitado</span>
+          {% else %}
+            <span class="badge bg-info">Em Análise</span>
+          {% endif %}
+        </td>
+        <td>{{ verificacao.data_verificacao | data_br }}</td>
+        <td>
+          {% if verificacao.status_verificacao == 'pendente' %}
+          <a href="/administrador/responder_verificacao_crmv/{{ verificacao.id_verificacao_crmv }}"
+             class="btn btn-sm btn-outline-roxo">
+            Analisar
+          </a>
+          {% else %}
+          <span class="text-muted">Processado</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+
+   5. MENSAGEM SE VAZIO:
+      {% if verificacoes|length == 0 %}
+      <tr>
+        <td colspan="6" class="text-center">Nenhuma solicitação encontrada.</td>
+      </tr>
+      {% endif %}
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - verificacoes: Lista de objetos VerificacaoCRMV (com join de veterinario e usuario)
+
+   ATRIBUTOS DO VerificacaoCRMV (com joins):
+   - id_verificacao_crmv: int
+   - status_verificacao: str ('pendente', 'aprovado', 'rejeitado', 'em_analise')
+   - data_verificacao: datetime (data da solicitação)
+   - nome_veterinario: str (via join)
+   - email_veterinario: str (via join)
+   - crmv: str (número do CRMV do veterinário)
+
+   CONDICIONAL DE AÇÕES:
+   - Se status == 'pendente': Mostrar botão "Analisar"
+   - Se status != 'pendente': Mostrar "Processado" (não pode mais alterar)
+
+   INFORMAÇÃO ADICIONAL:
+   - Nome e email em linhas separadas usando <br>
+   - Email em small.text-muted para destaque menor
+   - CRMV em badge secundário para destaque
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver listar_chamados.html para estrutura similar
+   Ver listar_denuncias.html para filtros por status
+
+   ATENÇÃO:
+   - Botão "Analisar" leva para página de detalhes (responder_verificacao_crmv.html)
+   - Apenas verificações pendentes podem ser processadas
+   - Após aprovação/rejeição, não mostrar botão (já processado)
+#}
+
+{# Seu código HTML aqui #}

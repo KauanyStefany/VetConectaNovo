@@ -1,0 +1,123 @@
+{# TODO: Responder Solicitação de Verificação CRMV
+
+   DESCRIÇÃO:
+   Página para admin aprovar ou rejeitar verificação de CRMV de veterinário.
+   Exibe dados do veterinário e formulário de decisão.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Título: "Verificar CRMV - {{ verificacao.nome_veterinario }}"
+
+   2. CARD COM DADOS DO VETERINÁRIO:
+      <div class="card mb-4">
+        <div class="card-header bg-verde text-white">
+          <h5>Solicitação de Verificação CRMV</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <img src="/static/img/usuarios/{{ '%08d' % verificacao.id_veterinario }}.jpg"
+                   class="avatar-lg"
+                   onerror="this.src='/static/img/default-avatar.jpg'">
+            </div>
+            <div class="col-md-9">
+              <p><strong>Nome:</strong> {{ verificacao.nome_veterinario }}</p>
+              <p><strong>Email:</strong> {{ verificacao.email_veterinario }}</p>
+              <p><strong>CRMV:</strong>
+                <span class="badge bg-secondary fs-5">{{ verificacao.crmv }}</span>
+              </p>
+              <p><strong>Data da Solicitação:</strong> {{ verificacao.data_verificacao | data_br }}</p>
+              <p><strong>Status Atual:</strong>
+                <span class="badge bg-warning">{{ verificacao.status_verificacao|capitalize }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   3. INFORMAÇÕES IMPORTANTES:
+      <div class="alert alert-info">
+        <strong>Atenção:</strong> Verifique o número do CRMV em fontes oficiais antes de aprovar.
+        A aprovação concede selo verificado ao veterinário.
+      </div>
+
+   4. FORMULÁRIO DE DECISÃO:
+      <div class="card">
+        <div class="card-body">
+          <h5>Sua Decisão</h5>
+          <form method="post" action="/administrador/responder_verificacao_crmv">
+            <input type="hidden" name="id_verificacao" value="{{ verificacao.id_verificacao_crmv }}">
+
+            <div class="mb-3">
+              <label class="form-label">Selecione a ação:</label>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="status_verificacao"
+                       id="aprovar" value="aprovado" required>
+                <label class="form-check-label" for="aprovar">
+                  <strong class="text-success">Aprovar</strong> - Conceder selo verificado
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="status_verificacao"
+                       id="rejeitar" value="rejeitado" required>
+                <label class="form-check-label" for="rejeitar">
+                  <strong class="text-danger">Rejeitar</strong> - CRMV inválido ou não verificado
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-roxo">Confirmar Decisão</button>
+            <a href="/administrador/listar_verificacao_crmv" class="btn btn-outline-secondary">
+              Cancelar
+            </a>
+          </form>
+        </div>
+      </div>
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - verificacao: Objeto VerificacaoCRMV (com join de veterinario e usuario)
+
+   ATRIBUTOS DO verificacao (com joins):
+   - id_verificacao_crmv: int
+   - id_veterinario: int
+   - status_verificacao: str (geralmente 'pendente' nesta página)
+   - data_verificacao: datetime
+   - nome_veterinario: str
+   - email_veterinario: str
+   - crmv: str
+
+   RADIO BUTTONS:
+   - type="radio" permite apenas UMA seleção
+   - name deve ser igual em ambos: "status_verificacao"
+   - value será enviado: "aprovado" ou "rejeitado"
+   - required garante que uma opção seja selecionada
+
+   ESTRUTURA DO FORM-CHECK (Bootstrap):
+   <div class="form-check">
+     <input class="form-check-input" type="radio" ...>
+     <label class="form-check-label" for="...">Texto</label>
+   </div>
+
+   CLASSES CSS:
+   - bg-verde: Background verde (tema do projeto)
+   - avatar-lg: Avatar 150x150px
+   - fs-5: Font size 5 (Bootstrap) para CRMV maior
+   - text-success: Verde para "Aprovar"
+   - text-danger: Vermelho para "Rejeitar"
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver responder_chamado.html para estrutura de card com dados
+   Ver templates/publico/cadastro.html para radio buttons
+
+   ATENÇÃO:
+   - Campo hidden com id_verificacao é obrigatório
+   - Radio buttons devem ter required para obrigar seleção
+   - Avatar do veterinário com fallback
+#}
+
+{# Seu código HTML aqui #}

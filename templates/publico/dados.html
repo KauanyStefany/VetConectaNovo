@@ -1,0 +1,75 @@
+{# TODO: Template de Edição de Dados Pessoais
+
+   DESCRIÇÃO:
+   Formulário para o usuário editar seus dados pessoais (nome, email, telefone).
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Definir {% block titulo %}Editar Dados{% endblock %}
+      - Container centralizado: row justify-content-center com col-md-6
+
+   2. TÍTULO:
+      - <h2 class="mb-4">Editar Dados Pessoais</h2>
+
+   3. EXIBIR MENSAGENS DE ERRO:
+      - {% if erro %}
+          <div class="alert alert-danger">{{ erro }}</div>
+        {% endif %}
+
+   4. FORMULÁRIO:
+      - method="post" action="/perfil/alterar"
+      - Campos obrigatórios com required
+
+   5. CAMPOS DO FORMULÁRIO:
+
+      a) Nome:
+         - Label: "Nome"
+         - Input: type="text" name="nome" class="form-control"
+         - Value: {{ usuario.nome }}
+         - Atributo: required
+
+      b) Email:
+         - Label: "Email"
+         - Input: type="email" name="email" class="form-control"
+         - Value: {{ usuario.email }}
+         - Atributo: required
+
+      c) Telefone:
+         - Label: "Telefone"
+         - Input: type="text" name="telefone" class="form-control"
+         - Value: {{ usuario.telefone or '' }}
+         - Não obrigatório (sem required)
+         - Dica: Usar {{ usuario.telefone or '' }} para evitar "None"
+
+   6. BOTÕES DE AÇÃO:
+      - Salvar: <button type="submit" class="btn btn-roxo">Salvar Alterações</button>
+      - Cancelar: <a href="/perfil" class="btn btn-outline-secondary">Cancelar</a>
+
+   7. ESTRUTURA HTML RECOMENDADA PARA CADA CAMPO:
+      <div class="mb-3">
+          <label class="form-label">Nome do Campo</label>
+          <input type="..." name="..." class="form-control" value="..." required>
+      </div>
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - usuario: Objeto Usuario com dados atuais
+   - dados_perfil: Objeto Tutor/Veterinario/Administrador (pode ser None)
+   - erro: String com mensagem de erro (opcional)
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver templates/publico/cadastro.html para estrutura similar de formulário
+
+   VALIDAÇÃO:
+   - A validação é feita no backend (routes/publico/perfil_routes.py)
+   - Se email já existe, retorna com mensagem de erro
+
+   ATENÇÃO:
+   - Usar {{ usuario.telefone or '' }} em vez de {{ usuario.telefone }}
+     para evitar mostrar "None" quando telefone é null
+   - O campo telefone é opcional (não tem required)
+#}
+
+{# Seu código HTML aqui #}

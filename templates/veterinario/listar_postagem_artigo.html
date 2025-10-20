@@ -1,0 +1,16 @@
+{# TODO: Listagem de Artigos do Veterinário
+   - Título: "Meus Artigos" com botão "Novo Artigo" (btn btn-roxo)
+   - Tabela responsiva com colunas: ID | Título | Categoria | Visualizações | Data | Ações
+   - Loop: {% for artigo in artigos %}
+   - Cada linha deve ter:
+     * ID: {{ artigo.id_postagem_artigo }}
+     * Título: {{ artigo.titulo }}
+     * Categoria: Badge com cor (style="background-color: {{ artigo.cor_categoria }}")
+     * Visualizações: {{ artigo.visualizacoes }}
+     * Data: {{ artigo.data_publicacao | data_br }}
+     * Ações: Editar e Excluir (botões btn-sm)
+   - Botão Editar: href="/veterinario/alterar_postagem_artigo/{{ artigo.id_postagem_artigo }}"
+   - Botão Excluir: href="/veterinario/excluir_postagem_artigo/{{ artigo.id_postagem_artigo }}"
+   Variáveis: request, artigos (lista de PostagemArtigo com dados de categoria)
+   Referência: templates/admin/listar_categorias.html
+#}

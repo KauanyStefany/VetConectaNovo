@@ -1,0 +1,33 @@
+# TODO: Adicionar rotas POST para chamados
+
+# Adicionar após a função get_responder_chamado():
+
+# TODO: Implementar POST para responder chamado
+# @router.post("/responder_chamado")
+# @requer_autenticacao(perfis_autorizados=["admin"])
+# async def post_responder_chamado(request: Request, id_chamado: int = Form(...),
+#                                   titulo: str = Form(...), descricao: str = Form(...),
+#                                   usuario_logado: dict = None):
+#     PASSOS:
+#       1. Importar: from dtos.resposta_chamado_dto import RespostaChamadoDTO
+#                    from model.resposta_chamado_model import RespostaChamado
+#                    from datetime import datetime
+#                    from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_erro
+#       2. Validar com DTO: dto = RespostaChamadoDTO(titulo=titulo, descricao=descricao)
+#       3. Criar objeto RespostaChamado
+#       4. Inserir no banco: resposta_chamado_repo.inserir(resposta)
+#       5. Atualizar status do chamado para 'em_andamento': chamado_repo.atualizar_status()
+#       6. Adicionar mensagem de sucesso e redirecionar
+#     Ver PENDENCIAS.md seção 4.2 para código completo
+
+# TODO: Implementar POST para fechar chamado
+# @router.post("/fechar_chamado")
+# @requer_autenticacao(perfis_autorizados=["admin"])
+# async def post_fechar_chamado(request: Request, id_chamado: int = Form(...)):
+#     PASSOS:
+#       1. Atualizar status: chamado_repo.atualizar_status(id_chamado, "resolvido")
+#       2. Adicionar mensagem de sucesso
+#       3. Redirecionar para lista
+#     Ver PENDENCIAS.md seção 4.2 para código completo
+
+# NOTA: A função atualizar_status() já existe em repo/chamado_repo.py ✓

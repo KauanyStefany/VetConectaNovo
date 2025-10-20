@@ -1,0 +1,26 @@
+{# TODO: Dashboard de Estatísticas do Veterinário
+   - Título: "Minhas Estatísticas"
+   - Grid com 4 cards de métricas (row com col-md-3):
+     * Total de Artigos: {{ total_artigos }}
+     * Total de Visualizações: {{ total_visualizacoes }}
+     * Total de Curtidas: {{ total_curtidas }}
+     * Média de Visualizações: {{ (total_visualizacoes / total_artigos)|round(1) if total_artigos > 0 else 0 }}
+   - Seção "Artigos Mais Populares":
+     Tabela com: Título | Visualizações | Curtidas
+     Ordenar artigos por visualizações (descendente)
+     {% for artigo in artigos|sort(attribute='visualizacoes', reverse=True)[:10] %}
+       <tr>
+         <td>{{ artigo.titulo }}</td>
+         <td>{{ artigo.visualizacoes }}</td>
+         <td>{{ artigo.total_curtidas }}</td>
+       </tr>
+     {% endfor %}
+   - {% if artigo_mais_visto %}
+     Alert success: "Seu artigo mais visto é: <strong>{{ artigo_mais_visto.titulo }}</strong> com {{ artigo_mais_visto.visualizacoes }} visualizações!"
+     {% endif %}
+   Variáveis: request, total_artigos, total_visualizacoes, total_curtidas, artigos, artigo_mais_visto
+   FILTRO JINJA2: |sort(attribute='...', reverse=True) ordena lista
+   FILTRO JINJA2: [:10] pega apenas os 10 primeiros
+   FILTRO JINJA2: |round(1) arredonda para 1 casa decimal
+   Referência: templates/admin/home_administrador.html (cards) e listar_categorias.html (tabela)
+#}

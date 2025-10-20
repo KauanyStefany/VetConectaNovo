@@ -1,0 +1,10 @@
+{# TODO: Listagem de Posts do Tutor
+   - Título: "Meus Posts" com botão "Novo Post" (btn btn-laranja)
+   - Grid row com col-md-4 para cada post
+   - Cada card deve ter: imagem, descrição, data, botões Editar e Excluir
+   - Imagem: /static/img/feeds/{{ '%08d' % post.id_postagem_feed }}.jpg
+   - Botão Editar: href="/tutor/editar_postagem_feed/{{ post.id_postagem_feed }}"
+   - Botão Excluir: href="/tutor/excluir_postagem_feed/{{ post.id_postagem_feed }}"
+   Variáveis: request, posts (lista de PostagemFeed)
+   Referência: Ver templates/publico/petgram.html
+#}

@@ -1,0 +1,68 @@
+{# TODO: Template de Visualização de Perfil do Usuário
+
+   DESCRIÇÃO:
+   Esta página exibe as informações do perfil do usuário logado (Tutor ou Veterinário).
+   Deve mostrar avatar, dados pessoais e links para edição.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Definir {% block titulo %}Meu Perfil{% endblock %}
+      - Criar {% block conteudo %} com container Bootstrap
+
+   2. LAYOUT EM DUAS COLUNAS:
+      - Coluna esquerda (col-md-4): Avatar e botão de upload
+      - Coluna direita (col-md-8): Informações e ações
+
+   3. AVATAR DO USUÁRIO:
+      - Usar classe CSS: avatar-xl (definida em static/css/base.css)
+      - Caminho: /static/img/usuarios/{{ '%08d' % usuario.id_usuario }}.jpg
+      - Fallback com onerror: this.src='/static/img/default-avatar.jpg'
+
+   4. FORMULÁRIO DE UPLOAD DE FOTO:
+      - method="post" action="/perfil/alterar-foto"
+      - enctype="multipart/form-data" (OBRIGATÓRIO para upload)
+      - Input: <input type="file" name="foto" accept="image/*">
+      - Botão: class="btn btn-roxo"
+
+   5. INFORMAÇÕES DO USUÁRIO:
+      - Nome: {{ usuario.nome }}
+      - Email: {{ usuario.email }}
+      - Perfil: {{ usuario.perfil|capitalize }}
+
+   6. INFORMAÇÕES ESPECÍFICAS POR PERFIL:
+      - Se tutor: Mostrar {{ usuario.quantidade_pets }} pets
+      - Se veterinário: Mostrar CRMV {{ usuario.crmv }} e status verificado
+
+   7. LINKS DE AÇÃO:
+      - Editar Dados: href="/perfil/alterar" class="btn btn-outline-roxo"
+      - Alterar Senha: href="/perfil/alterar-senha" class="btn btn-outline-laranja"
+
+   8. MENSAGENS DE FEEDBACK:
+      - Verificar parâmetros GET para exibir alertas:
+        * ?sucesso=1 → "Dados atualizados com sucesso!"
+        * ?foto_sucesso=1 → "Foto alterada com sucesso!"
+        * ?erro=... → Exibir mensagem de erro
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request do FastAPI
+   - usuario: Objeto Tutor ou Veterinario (com atributos de Usuario)
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver templates/publico/cadastro.html para estrutura de formulário
+   Ver templates/publico/quem_somos.html para layout de duas colunas
+
+   CLASSES CSS ÚTEIS:
+   - avatar-xl: Avatar grande (120x120px) - ver static/css/base.css linha ~200
+   - btn-roxo: Botão roxo sólido
+   - btn-outline-roxo: Botão roxo outline
+   - btn-outline-laranja: Botão laranja outline
+
+   ATENÇÃO:
+   - A rota POST /perfil/alterar-foto já está implementada em routes/publico/perfil_routes.py
+   - Não esquecer enctype="multipart/form-data" no form de upload
+   - Usar {% if usuario.perfil == 'tutor' %} para condicionar exibição
+#}
+
+{# Seu código HTML aqui #}

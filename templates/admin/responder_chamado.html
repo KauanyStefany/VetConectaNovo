@@ -1,0 +1,110 @@
+{# TODO: Responder Chamado de Suporte
+
+   DESCRIÇÃO:
+   Página para visualizar detalhes de um chamado e adicionar respostas.
+   Exibe histórico de respostas anteriores.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Título: "Chamado #{{ chamado.id_chamado }}"
+
+   2. CARD COM INFORMAÇÕES DO CHAMADO:
+      <div class="card mb-4">
+        <div class="card-header bg-roxo text-white">
+          <h5>{{ chamado.titulo }}</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>Usuário:</strong> {{ chamado.nome_usuario }}</p>
+          <p><strong>Email:</strong> {{ chamado.email_usuario }}</p>
+          <p><strong>Data:</strong> {{ chamado.data | data_br }}</p>
+          <p><strong>Status:</strong>
+            <span class="badge bg-{{ 'warning' if chamado.status == 'aberto' else 'info' }}">
+              {{ chamado.status|capitalize }}
+            </span>
+          </p>
+          <hr>
+          <p><strong>Descrição:</strong></p>
+          <p>{{ chamado.descricao }}</p>
+        </div>
+      </div>
+
+   3. HISTÓRICO DE RESPOSTAS (se houver):
+      {% if respostas %}
+      <h4>Respostas</h4>
+      {% for resposta in respostas %}
+      <div class="card mb-3">
+        <div class="card-header">
+          <strong>{{ resposta.titulo }}</strong>
+          <small class="text-muted float-end">{{ resposta.data | data_hora_br }}</small>
+        </div>
+        <div class="card-body">
+          {{ resposta.descricao }}
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+   4. FORMULÁRIO DE NOVA RESPOSTA (se não resolvido):
+      {% if chamado.status != 'resolvido' %}
+      <h4 class="mt-4">Nova Resposta</h4>
+      <form method="post" action="/administrador/responder_chamado">
+        <input type="hidden" name="id_chamado" value="{{ chamado.id_chamado }}">
+
+        <div class="mb-3">
+          <label class="form-label">Título</label>
+          <input type="text" name="titulo" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Descrição</label>
+          <textarea name="descricao" class="form-control" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-roxo">Enviar Resposta</button>
+      </form>
+
+   5. BOTÃO PARA FECHAR CHAMADO:
+      <form method="post" action="/administrador/fechar_chamado" class="mt-3">
+        <input type="hidden" name="id_chamado" value="{{ chamado.id_chamado }}">
+        <button type="submit" class="btn btn-success">
+          Marcar como Resolvido
+        </button>
+      </form>
+      {% endif %}
+
+   6. LINK PARA VOLTAR:
+      <a href="/administrador/listar_chamados" class="btn btn-outline-secondary mt-3">
+        Voltar para Lista
+      </a>
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - chamado: Objeto Chamado (com dados de usuário via join)
+   - respostas: Lista de objetos RespostaChamado (pode ser vazia)
+
+   FILTROS JINJA2:
+   - data_br: Formato dd/mm/yyyy
+   - data_hora_br: Formato dd/mm/yyyy HH:MM
+   - capitalize: Primeira letra maiúscula
+
+   CONDICIONAL IMPORTANTE:
+   - Se status == 'resolvido', NÃO mostrar formulário de resposta
+   - Usar {% if chamado.status != 'resolvido' %}
+
+   CLASSES CSS:
+   - bg-roxo: Background roxo (definido em base.css)
+   - text-white: Texto branco (Bootstrap)
+   - float-end: Alinha à direita (Bootstrap 5)
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver templates/publico/detalhes_artigo.html para estrutura de cards
+
+   ATENÇÃO:
+   - Campo hidden com id_chamado é obrigatório em ambos os forms
+   - Histórico de respostas pode estar vazio ({% if respostas %})
+   - Form de fechar é separado do form de responder
+#}
+
+{# Seu código HTML aqui #}

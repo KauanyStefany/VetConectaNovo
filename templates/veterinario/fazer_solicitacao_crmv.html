@@ -1,0 +1,20 @@
+{# TODO: Solicitar Verificação de CRMV
+   - Título: "Solicitar Verificação de CRMV"
+   - Card com informações:
+     <div class="card mb-4 bg-light">
+       <div class="card-body">
+         <h5>O que é a verificação de CRMV?</h5>
+         <p>A verificação confirma que você é um veterinário registrado e concede o selo verificado ao seu perfil.</p>
+         <p><strong>Seu CRMV cadastrado:</strong> <span class="badge bg-secondary">{{ crmv }}</span></p>
+       </div>
+     </div>
+   - Alert warning: "Certifique-se de que seu CRMV está correto antes de solicitar."
+   - Form: method="post" action="/veterinario/fazer_solicitacao_crmv"
+   - Sem campos (apenas botão de confirmação)
+   - Botão: "Confirmar Solicitação" (btn btn-verde)
+   - Link: Cancelar (href="/veterinario/obter_solicitacao_crmv")
+   - Texto explicativo: "Após solicitar, um administrador verificará seu CRMV e você receberá uma resposta."
+   Variáveis: request, crmv (string do CRMV do veterinário logado)
+   NOTA: O CRMV já está cadastrado no perfil, esta página apenas envia solicitação
+   Referência: templates/admin/excluir_categoria.html (confirmação simples)
+#}

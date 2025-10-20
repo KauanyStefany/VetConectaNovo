@@ -1,0 +1,95 @@
+{# TODO: Listagem de Categorias de Artigos
+
+   DESCRIÇÃO:
+   Tabela com todas as categorias, permitindo editar e excluir.
+   Inclui botão para criar nova categoria.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Container com my-5
+
+   2. CABEÇALHO COM BOTÃO:
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Categorias de Artigos</h2>
+        <a href="/administrador/cadastrar_categoria" class="btn btn-roxo">
+          <i class="bi bi-plus-circle"></i> Nova Categoria
+        </a>
+      </div>
+
+   3. TABELA RESPONSIVA:
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Cor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loop aqui -->
+          </tbody>
+        </table>
+      </div>
+
+   4. LOOP PELAS CATEGORIAS:
+      {% for categoria in categorias %}
+      <tr>
+        <td>{{ categoria.id_categoria_artigo }}</td>
+        <td>
+          <span class="badge" style="background-color: {{ categoria.cor }}">
+            {{ categoria.nome }}
+          </span>
+        </td>
+        <td>{{ categoria.cor }}</td>
+        <td>
+          <a href="/administrador/alterar_categoria/{{ categoria.id_categoria_artigo }}"
+             class="btn btn-sm btn-outline-roxo">
+            Editar
+          </a>
+          <a href="/administrador/excluir_categoria/{{ categoria.id_categoria_artigo }}"
+             class="btn btn-sm btn-outline-danger">
+            Excluir
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+
+   5. MENSAGEM SE VAZIO (opcional):
+      {% if categorias|length == 0 %}
+      <tr>
+        <td colspan="4" class="text-center">Nenhuma categoria cadastrada.</td>
+      </tr>
+      {% endif %}
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - categorias: Lista de objetos CategoriaArtigo
+
+   ATRIBUTOS DO OBJETO CategoriaArtigo:
+   - id_categoria_artigo: int
+   - nome: str
+   - cor: str (hexadecimal, ex: "#44345A")
+   - imagem: str (nome do arquivo)
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver estrutura de tabela (não existe exemplo no projeto, mas é HTML padrão)
+
+   CLASSES BOOTSTRAP:
+   - table: Tabela básica
+   - table-hover: Efeito hover nas linhas
+   - table-responsive: Scroll horizontal em mobile
+   - btn-sm: Botões pequenos
+   - btn-outline-roxo: Botão roxo outline (definido em base.css)
+   - btn-outline-danger: Botão vermelho outline (Bootstrap)
+
+   ATENÇÃO:
+   - Usar inline style para background-color do badge com a cor da categoria
+   - Links de ação devem incluir o ID da categoria na URL
+   - Botão "Nova Categoria" deve ter ícone Bootstrap Icons
+#}
+
+{# Seu código HTML aqui #}

@@ -1,0 +1,75 @@
+{# TODO: Confirmação de Exclusão de Categoria
+
+   DESCRIÇÃO:
+   Página de confirmação antes de excluir uma categoria.
+   Exibe dados da categoria e botão de confirmação.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Container centralizado
+
+   2. TÍTULO COM ESTILO DE ALERTA:
+      - <h2 class="mb-4 text-danger">Excluir Categoria</h2>
+
+   3. AVISO DE ATENÇÃO:
+      <div class="alert alert-warning">
+        <strong>Atenção!</strong> Esta ação não pode ser desfeita.
+        Artigos vinculados a esta categoria podem ser afetados.
+      </div>
+
+   4. CARD COM DADOS DA CATEGORIA:
+      <div class="card">
+        <div class="card-body">
+          <h5>Categoria a ser excluída:</h5>
+          <p><strong>Nome:</strong> {{ categoria_artigo.nome }}</p>
+          <p><strong>Cor:</strong>
+            <span class="badge" style="background-color: {{ categoria_artigo.cor }}">
+              {{ categoria_artigo.cor }}
+            </span>
+          </p>
+          <p><strong>ID:</strong> {{ categoria_artigo.id_categoria_artigo }}</p>
+        </div>
+      </div>
+
+   5. FORMULÁRIO DE CONFIRMAÇÃO:
+      <form method="post" action="/administrador/excluir_categoria" class="mt-3">
+        <input type="hidden" name="id_categoria" value="{{ categoria_artigo.id_categoria_artigo }}">
+
+        <button type="submit" class="btn btn-danger">
+          <i class="bi bi-trash"></i> Confirmar Exclusão
+        </button>
+
+        <a href="/administrador/listar_categorias" class="btn btn-outline-secondary">
+          Cancelar
+        </a>
+      </form>
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - categoria_artigo: Objeto CategoriaArtigo a ser excluído
+
+   CORES E CLASSES:
+   - text-danger: Vermelho para título de exclusão
+   - btn-danger: Botão vermelho para ação destrutiva
+   - alert-warning: Alerta amarelo de atenção
+   - bi bi-trash: Ícone de lixeira (Bootstrap Icons)
+
+   EXEMPLO DE REFERÊNCIA:
+   Não há exemplo similar no projeto, mas é padrão de confirmação
+
+   FLUXO:
+   1. Usuário clica "Excluir" na lista de categorias
+   2. Vem para esta página (GET /excluir_categoria/{id})
+   3. Vê dados da categoria e botão de confirmação
+   4. Se confirmar: POST /excluir_categoria com id_categoria no form
+   5. Backend exclui e redireciona para lista
+
+   ATENÇÃO:
+   - Usar class="text-danger" no título para indicar ação destrutiva
+   - Botão de confirmação deve ser btn-danger (vermelho)
+   - Campo hidden com ID é obrigatório
+#}
+
+{# Seu código HTML aqui #}

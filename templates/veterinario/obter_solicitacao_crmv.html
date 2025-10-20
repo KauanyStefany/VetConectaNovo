@@ -1,0 +1,25 @@
+{# TODO: Status da Solicitação de Verificação CRMV
+   - Título: "Verificação de CRMV"
+   - {% if verificacao %} (existe solicitação):
+     Card mostrando:
+     * Status atual: Badge colorido conforme status
+       - 'pendente': badge bg-warning "Aguardando Análise"
+       - 'em_analise': badge bg-info "Em Análise"
+       - 'aprovado': badge bg-success "Aprovado ✓"
+       - 'rejeitado': badge bg-danger "Rejeitado"
+     * Data da solicitação: {{ verificacao.data_verificacao | data_br }}
+     * Mensagem conforme status
+     {% if verificacao.status_verificacao == 'pendente' %}
+       Alert info: "Sua solicitação está em análise. Aguarde o retorno da administração."
+     {% elif verificacao.status_verificacao == 'aprovado' %}
+       Alert success: "Parabéns! Seu CRMV foi verificado. Você agora tem o selo verificado."
+     {% elif verificacao.status_verificacao == 'rejeitado' %}
+       Alert danger: "Sua solicitação foi rejeitada. Entre em contato com o suporte."
+       Link: href="/veterinario/fazer_solicitacao_crmv" "Solicitar Novamente"
+     {% endif %}
+   - {% else %} (não existe):
+     Alert info: "Você ainda não solicitou verificação de CRMV."
+     Link: href="/veterinario/fazer_solicitacao_crmv" class="btn btn-verde" "Solicitar Verificação"
+   Variáveis: request, verificacao (VerificacaoCRMV ou None)
+   Referência: Estrutura única, mas ver outros templates para cards e alerts
+#}

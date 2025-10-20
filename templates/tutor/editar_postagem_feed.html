@@ -1,0 +1,11 @@
+{# TODO: Formulário de Edição de Post (apenas descrição)
+   - Título: "Editar Post"
+   - Mostrar imagem atual: /static/img/feeds/{{ '%08d' % post.id_postagem_feed }}.jpg
+   - Form: method="post" action="/tutor/editar_postagem_feed"
+   - Hidden: <input type="hidden" name="id_postagem" value="{{ post.id_postagem_feed }}">
+   - Campo: Descrição (textarea com value="{{ post.descricao }}" required)
+   - Botões: Salvar (btn-laranja) e Cancelar
+   Variáveis: request, post (objeto PostagemFeed)
+   NOTA: Não permite trocar foto, apenas descrição
+   Referência: Ver templates/admin/alterar_categoria.html
+#}

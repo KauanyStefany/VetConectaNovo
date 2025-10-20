@@ -1,0 +1,13 @@
+{# TODO: Formulário para Criar Chamado de Suporte
+   - Título: "Abrir Chamado de Suporte"
+   - Descrição: "Precisa de ajuda? Descreva seu problema e nossa equipe responderá em breve."
+   - Form: method="post" action="/usuario/solicitar_chamado"
+   - Campo 1: Título (type="text" name="titulo" required)
+     Placeholder: "Resumo do problema"
+   - Campo 2: Descrição (textarea name="descricao" rows="6" required)
+     Placeholder: "Descreva seu problema em detalhes..."
+   - Botões: Enviar Chamado (btn-roxo) e Cancelar (href="/usuario/solicitacoes_chamado")
+   Variáveis: request
+   VALIDAÇÃO DTO: Título min 2 palavras, Descrição min 5 palavras
+   Referência: templates/admin/responder_chamado.html (form similar)
+#}

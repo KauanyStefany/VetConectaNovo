@@ -1,0 +1,79 @@
+{# TODO: Formulário de Cadastro de Categoria
+
+   DESCRIÇÃO:
+   Formulário para criar uma nova categoria de artigos.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Container centralizado (col-md-6 ou col-md-8)
+
+   2. TÍTULO:
+      - <h2 class="mb-4">Nova Categoria</h2>
+
+   3. EXIBIR MENSAGEM DE ERRO (se houver):
+      {% if mensagem %}
+      <div class="alert alert-danger">{{ mensagem }}</div>
+      {% endif %}
+
+   4. FORMULÁRIO:
+      - method="post" action="/administrador/cadastrar_categoria"
+
+   5. CAMPOS DO FORMULÁRIO:
+
+      a) Nome:
+         - Label: "Nome"
+         - Input: type="text" name="nome" class="form-control" required
+         - Placeholder: Ex: "Saúde Animal"
+
+      b) Cor (hexadecimal):
+         - Label: "Cor (hexadecimal)"
+         - Input: type="color" name="cor" class="form-control" required
+         - Usar type="color" para seletor de cor visual
+
+      c) Imagem:
+         - Label: "Imagem (nome do arquivo)"
+         - Input: type="text" name="imagem" class="form-control" required
+         - Placeholder: Ex: "01.jpg"
+         - Small text: "Arquivo deve estar em static/img/categorias/"
+
+   6. BOTÕES DE AÇÃO:
+      - Cadastrar: <button type="submit" class="btn btn-roxo">Cadastrar</button>
+      - Cancelar: <a href="/administrador/listar_categorias" class="btn btn-outline-secondary">Cancelar</a>
+
+   7. ESTRUTURA RECOMENDADA PARA CAMPO:
+      <div class="mb-3">
+        <label class="form-label">Nome do Campo</label>
+        <input type="..." name="..." class="form-control" required>
+        <small class="form-text text-muted">Dica opcional</small>
+      </div>
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - mensagem: String com mensagem de erro (opcional)
+
+   VALIDAÇÃO:
+   - Todos os campos são obrigatórios (required)
+   - Validação adicional é feita no backend
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver templates/publico/cadastro.html para estrutura de formulário
+
+   INFORMAÇÃO IMPORTANTE SOBRE IMAGENS:
+   As imagens de categoria devem ser colocadas manualmente em:
+   /static/img/categorias/
+
+   Exemplos existentes:
+   - 01.jpg (Comportamento)
+   - 02.jpg (Nutrição)
+   - 03.jpg (Saúde)
+   - etc.
+
+   ATENÇÃO:
+   - Input type="color" cria um seletor de cor visual (HTML5)
+   - O valor será enviado como hexadecimal (ex: #FF5733)
+   - Campo imagem aceita apenas o nome do arquivo, não upload
+#}
+
+{# Seu código HTML aqui #}

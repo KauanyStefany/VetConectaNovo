@@ -1,0 +1,17 @@
+{# TODO: Formulário para Comentar em Artigo
+   - Título: "Comentar no Artigo"
+   - Card mostrando preview do artigo:
+     * Título: {{ artigo.titulo }}
+     * Autor: {{ artigo.nome_veterinario }}
+     * Link: href="/artigos/{{ artigo.id_postagem_artigo }}" "Ver Artigo Completo"
+   - Form: method="post" action="/usuario/comentar"
+   - Hidden: id_artigo
+   - Campo: Comentário (textarea name="texto" rows="4" required)
+     Placeholder: "Escreva seu comentário..."
+   - Small text: "Seja respeitoso e construtivo."
+   - Botões: Publicar Comentário (btn-roxo) e Cancelar
+   Variáveis: request, artigo (PostagemArtigo)
+   CHAMADA: GET /usuario/comentar?id_artigo=123
+   VALIDAÇÃO DTO: Texto min 5 palavras
+   Referência: templates/usuario/denunciar.html (estrutura similar)
+#}

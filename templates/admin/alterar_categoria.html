@@ -1,0 +1,59 @@
+{# TODO: Formulário de Edição de Categoria
+
+   DESCRIÇÃO:
+   Formulário para editar uma categoria existente.
+   Estrutura MUITO similar a cadastrar_categoria.html, mas com campos preenchidos.
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Copiar estrutura de cadastrar_categoria.html
+      - Mudar título para "Editar Categoria"
+
+   2. DIFERENÇAS EM RELAÇÃO AO CADASTRO:
+
+      a) Adicionar campo hidden com ID:
+         <input type="hidden" name="id_categoria" value="{{ categoria_artigo.id_categoria_artigo }}">
+
+      b) Preencher valores dos campos:
+         - Nome: value="{{ categoria_artigo.nome }}"
+         - Cor: value="{{ categoria_artigo.cor }}"
+         - Imagem: value="{{ categoria_artigo.imagem }}"
+
+      c) Mudar action do form:
+         action="/administrador/alterar_categoria"
+
+      d) Mudar texto do botão:
+         "Salvar Alterações" em vez de "Cadastrar"
+
+   3. ESTRUTURA COMPLETA DO FORMULÁRIO:
+      <form method="post" action="/administrador/alterar_categoria">
+        <input type="hidden" name="id_categoria" value="{{ categoria_artigo.id_categoria_artigo }}">
+
+        <div class="mb-3">
+          <label class="form-label">Nome</label>
+          <input type="text" name="nome" class="form-control"
+                 value="{{ categoria_artigo.nome }}" required>
+        </div>
+
+        <!-- Repetir para cor e imagem -->
+
+        <button type="submit" class="btn btn-roxo">Salvar Alterações</button>
+        <a href="/administrador/listar_categorias" class="btn btn-outline-secondary">Cancelar</a>
+      </form>
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - categoria_artigo: Objeto CategoriaArtigo com dados atuais
+   - mensagem: String com mensagem de erro (opcional)
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver cadastrar_categoria.html (criado anteriormente)
+
+   ATENÇÃO:
+   - OBRIGATÓRIO: Campo hidden com id_categoria para o backend saber qual atualizar
+   - Usar value="{{ categoria_artigo.nome }}" para preencher campos
+   - Action do form é diferente: /alterar_categoria em vez de /cadastrar_categoria
+#}
+
+{# Seu código HTML aqui #}

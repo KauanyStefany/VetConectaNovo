@@ -1,0 +1,16 @@
+{# TODO: Formulário de Denúncia de Conteúdo
+   - Título: "Denunciar Conteúdo"
+   - Alert warning: "Use denúncias apenas para conteúdo inapropriado, spam ou violações."
+   - Card mostrando informações do conteúdo denunciado:
+     * Tipo: {{ tipo|capitalize }} (Artigo ou Petgram)
+     * ID: {{ id_conteudo }}
+   - Form: method="post" action="/usuario/denunciar"
+   - Hidden: tipo, id_conteudo
+   - Campo: Motivo (textarea name="motivo" rows="5" required)
+     Placeholder: "Descreva o motivo da denúncia..."
+   - Botões: Enviar Denúncia (btn-danger) e Cancelar
+   Variáveis: request, tipo ('artigo' ou 'feed'), id_conteudo (int)
+   CHAMADA: Esta página é acessada via query params: ?tipo=artigo&id_conteudo=123
+   VALIDAÇÃO DTO: Motivo min 5 palavras
+   Referência: templates/usuario/solicitar_chamado.html (form similar)
+#}

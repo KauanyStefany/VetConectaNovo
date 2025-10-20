@@ -1,0 +1,92 @@
+{# TODO: Template de Resultados de Busca
+
+   DESCRIÇÃO:
+   Exibe resultados de busca em artigos ou posts do Petgram.
+   Reutiliza componentes existentes (artigo_card.html e petgram_card.html).
+
+   PASSOS PARA IMPLEMENTAÇÃO:
+
+   1. ESTRUTURA BASE:
+      - Estender {% extends "base_publica.html" %}
+      - Definir {% block titulo %}Busca: {{ termo }}{% endblock %}
+      - Container principal
+
+   2. EXIBIR MENSAGEM DE ERRO (se houver):
+      - {% if erro %}
+          <div class="alert alert-warning">{{ erro }}</div>
+        {% endif %}
+      - Exemplo de erro: "Digite pelo menos 3 caracteres para buscar."
+
+   3. SE NÃO HOUVER ERRO, EXIBIR RESULTADOS:
+
+      a) Cabeçalho:
+         - <h2>Resultados da busca: "{{ termo }}"</h2>
+         - <p class="text-muted">{{ total }} resultado(s) encontrado(s) em {{ tipo }}</p>
+
+      b) Se não houver resultados (total == 0):
+         - <div class="alert alert-info">
+             Nenhum resultado encontrado. Tente outros termos.
+           </div>
+
+      c) Se houver resultados, exibir em grid:
+         - <div class="row">
+         - Loop pelos resultados com {% for %}
+
+   4. EXIBIR RESULTADOS CONFORME TIPO:
+
+      a) Se tipo == 'artigos':
+         {% for artigo in resultados %}
+         <div class="col-md-4 mb-4">
+           {% include "componentes/artigo_card.html" %}
+         </div>
+         {% endfor %}
+
+      b) Se tipo == 'petgram':
+         {% for post in resultados %}
+         <div class="col-md-4 mb-4">
+           {% include "componentes/petgram_card.html" %}
+         </div>
+         {% endfor %}
+
+   5. ESTRUTURA CONDICIONAL COMPLETA:
+      {% if erro %}
+        <!-- Alerta de erro -->
+      {% else %}
+        <!-- Título e contador -->
+
+        {% if total == 0 %}
+          <!-- Alerta de sem resultados -->
+        {% endif %}
+
+        <div class="row">
+          {% if tipo == 'artigos' %}
+            <!-- Loop artigos -->
+          {% elif tipo == 'petgram' %}
+            <!-- Loop posts -->
+          {% endif %}
+        </div>
+      {% endif %}
+
+   VARIÁVEIS RECEBIDAS DO BACKEND:
+   - request: Objeto Request
+   - termo: String com termo pesquisado (pode ser None se houver erro)
+   - tipo: String 'artigos' ou 'petgram'
+   - resultados: Lista de objetos (artigos ou posts)
+   - total: Inteiro com quantidade de resultados
+   - erro: String com mensagem de erro (opcional)
+
+   EXEMPLO DE REFERÊNCIA:
+   Ver templates/publico/artigos.html para estrutura de grid com artigos
+   Ver templates/publico/petgram.html para estrutura de grid com posts
+
+   COMPONENTES REUTILIZADOS:
+   - componentes/artigo_card.html: Requer variável 'artigo'
+   - componentes/petgram_card.html: Requer variável 'post'
+
+   ATENÇÃO:
+   - Os componentes já estão prontos, apenas incluir com {% include %}
+   - Verificar tipo para decidir qual componente usar
+   - A variável nos loops deve ter o nome correto: 'artigo' ou 'post'
+#}
+
+{# Seu código HTML aqui #}
