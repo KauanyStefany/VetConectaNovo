@@ -98,4 +98,5 @@ node_modules/
 dados.db
 codebase_default.md
 docs/antigos/
-
+.aidigestignore
+*.temp
