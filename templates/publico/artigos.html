@@ -33,20 +33,10 @@
 
     <!-- Paginação -->
     <div class="row">
-        <div class="col-12 d-flex justify-content-center gap-2">
-            {% if pagina > 1 %}
-            <a href="/artigos?pagina={{ pagina - 1 }}{% if categoria_selecionada %}&categoria={{ categoria_selecionada.id_categoria_artigo }}{% endif %}"
-               class="btn btn-outline-roxo">
-                <i class="bi bi-chevron-left me-1"></i>Anterior
-            </a>
-            {% endif %}
-
-            {% if artigos|length == 12 %}
-            <a href="/artigos?pagina={{ pagina + 1 }}{% if categoria_selecionada %}&categoria={{ categoria_selecionada.id_categoria_artigo }}{% endif %}"
-               class="btn btn-outline-roxo">
-                Próxima<i class="bi bi-chevron-right ms-1"></i>
-            </a>
-            {% endif %}
+        <div class="col-12">
+            {% set url_base = '/artigos' %}
+            {% set params = {'categoria': categoria_selecionada.id_categoria_artigo} if categoria_selecionada else {} %}
+            {% include "componentes/paginacao.html" %}
         </div>
     </div>
 

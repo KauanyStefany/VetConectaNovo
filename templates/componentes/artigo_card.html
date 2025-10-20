@@ -1,28 +1,15 @@
 {#
   Componente de Card de Artigo
 
-  Parâmetros:
-  - artigo: objeto com dados do artigo (obrigatório)
-  - img_height: altura da imagem (padrão: 200px)
-  - titulo_tag: tag HTML para título (padrão: h6)
-  - titulo_size: font-size do título (padrão: 0.95rem)
-  - titulo_min_height: min-height do título (padrão: 2.5rem)
-  - titulo_line_height: line-height do título (padrão: 1.25rem)
-  - titulo_max_chars: máximo de caracteres do título (padrão: 60)
-  - card_padding: padding do card-body (padrão: p-3)
-  - badge_padding: padding do badge (padrão: px-2 py-1)
-  - badge_size: font-size do badge (padrão: 0.85rem)
+  Espera a variável 'artigo' no contexto com os campos:
+  - id_postagem_artigo
+  - titulo
+  - data_publicacao
+  - nome_veterinario
+  - nome_categoria
+  - cor_categoria
+  - id_categoria_artigo
 #}
-
-{% set img_height = img_height|default('200px') %}
-{% set titulo_tag = titulo_tag|default('h6') %}
-{% set titulo_size = titulo_size|default('0.95rem') %}
-{% set titulo_min_height = titulo_min_height|default('2.5rem') %}
-{% set titulo_line_height = titulo_line_height|default('1.25rem') %}
-{% set titulo_max_chars = titulo_max_chars|default(60) %}
-{% set card_padding = card_padding|default('p-3') %}
-{% set badge_padding = badge_padding|default('px-2 py-1') %}
-{% set badge_size = badge_size|default('0.85rem') %}
 
 <a href="/artigos/{{ artigo.id_postagem_artigo }}" class="text-decoration-none">
     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="background-color: {{ artigo.cor_categoria }};">
@@ -30,21 +17,15 @@
         <img src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg"
              class="card-img-top"
              alt="{{ artigo.titulo }}"
-             style="height: {{ img_height }}; object-fit: cover;"
+             style="height: 220px; object-fit: cover;"
              onerror="this.src='/static/img/categorias/{{ '%02d' % artigo.id_categoria_artigo }}.jpg'">
 
         <!-- Corpo do Card -->
-        <div class="card-body text-white d-flex flex-column {{ card_padding }}">
+        <div class="card-body text-white d-flex flex-column p-3">
             <!-- Título -->
-            {% if titulo_tag == 'h5' %}
-            <h5 class="card-title fw-bold mb-3" style="min-height: {{ titulo_min_height }}; line-height: {{ titulo_line_height }};">
-                {{ artigo.titulo[:titulo_max_chars] }}{% if artigo.titulo|length > titulo_max_chars %}...{% endif %}
-            </h5>
-            {% else %}
-            <h6 class="card-title fw-bold mb-2" style="min-height: {{ titulo_min_height }}; line-height: {{ titulo_line_height }}; font-size: {{ titulo_size }};">
-                {{ artigo.titulo[:titulo_max_chars] }}{% if artigo.titulo|length > titulo_max_chars %}...{% endif %}
+            <h6 class="card-title fw-bold mb-2" style="min-height: 2.8rem; line-height: 1.4rem; font-size: 1rem;">
+                {{ artigo.titulo[:65] }}{% if artigo.titulo|length > 65 %}...{% endif %}
             </h6>
-            {% endif %}
 
             <!-- Data -->
             <p class="card-text mb-2">
@@ -52,14 +33,14 @@
             </p>
 
             <!-- Nome do Veterinário -->
-            <p class="card-text {% if titulo_tag == 'h5' %}mb-3{% else %}mb-2{% endif %}">
+            <p class="card-text mb-2">
                 <small>@{{ artigo.nome_veterinario.lower().replace(' ', '') }}</small>
             </p>
 
             <!-- Badge da Categoria -->
             <div class="mt-auto">
-                <span class="badge rounded-pill {{ badge_padding }}"
-                      style="background-color: rgba(255, 255, 255, 0.34); font-size: {{ badge_size }};">
+                <span class="badge rounded-pill px-2 py-1"
+                      style="background-color: rgba(255, 255, 255, 0.34); font-size: 0.85rem;">
                     {{ artigo.nome_categoria }}
                 </span>
             </div>

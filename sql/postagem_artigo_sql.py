@@ -126,3 +126,14 @@ IMPORTAR = """
 INSERT INTO postagem_artigo (id_postagem_artigo, id_veterinario, titulo, conteudo, id_categoria_artigo, visualizacoes)
 VALUES (?, ?, ?, ?, ?, ?);
 """
+
+CONTAR_TOTAL = """
+SELECT COUNT(*) as total
+FROM postagem_artigo;
+"""
+
+CONTAR_POR_CATEGORIA = """
+SELECT COUNT(*) as total
+FROM postagem_artigo
+WHERE id_categoria_artigo = ?;
+"""

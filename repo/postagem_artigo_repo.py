@@ -145,3 +145,21 @@ def importar(postagem: PostagemArtigo) -> Optional[int]:
             ),
         )
         return postagem.id_postagem_artigo
+
+
+def contar_total() -> int:
+    """Retorna o total de artigos publicados."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(CONTAR_TOTAL)
+        row = cursor.fetchone()
+        return row["total"] if row else 0
+
+
+def contar_por_categoria(id_categoria: int) -> int:
+    """Retorna o total de artigos de uma categoria específica."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(CONTAR_POR_CATEGORIA, (id_categoria,))
+        row = cursor.fetchone()
+        return row["total"] if row else 0

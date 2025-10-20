@@ -13,16 +13,7 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
         {% for artigo in artigos_recentes %}
         <div class="col artigo-card">
-            {% include "componentes/artigo_card.html" with
-                img_height='250px',
-                titulo_tag='h5',
-                titulo_min_height='3rem',
-                titulo_line_height='1.5rem',
-                titulo_max_chars=70,
-                card_padding='p-4',
-                badge_padding='px-3 py-2',
-                badge_size='0.95rem'
-            %}
+            {% include "componentes/artigo_card.html" %}
         </div>
         {% endfor %}
     </div>

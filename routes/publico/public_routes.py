@@ -40,13 +40,19 @@ async def get_artigos(request: Request, pagina: int = 1, categoria: int = None):
     """Lista todos os artigos com paginação e filtro por categoria."""
     tamanho_pagina = 12
 
-    # Buscar artigos
+    # Buscar artigos e contar total
     if categoria:
         artigos = postagem_artigo_repo.obter_por_categoria_com_dados(categoria, pagina, tamanho_pagina)
         categoria_selecionada = categoria_artigo_repo.obter_por_id(categoria)
+        total_artigos = postagem_artigo_repo.contar_por_categoria(categoria)
     else:
         artigos = postagem_artigo_repo.obter_pagina_com_dados(pagina, tamanho_pagina)
         categoria_selecionada = None
+        total_artigos = postagem_artigo_repo.contar_total()
+
+    # Calcular total de páginas
+    import math
+    total_paginas = math.ceil(total_artigos / tamanho_pagina) if total_artigos > 0 else 1
 
     # Buscar todas as categorias
     categorias = categoria_artigo_repo.obter_todos()
@@ -57,6 +63,7 @@ async def get_artigos(request: Request, pagina: int = 1, categoria: int = None):
         "categorias": categorias,
         "categoria_selecionada": categoria_selecionada,
         "pagina": pagina,
+        "total_paginas": total_paginas,
     }
 
     return templates.TemplateResponse("publico/artigos.html", context)
