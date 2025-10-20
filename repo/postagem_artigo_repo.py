@@ -163,3 +163,5 @@ def contar_por_categoria(id_categoria: int) -> int:
         cursor.execute(CONTAR_POR_CATEGORIA, (id_categoria,))
         row = cursor.fetchone()
         return row["total"] if row else 0
+
+def obter_por_veterinario()

@@ -1,4 +1,4 @@
-{# TODO: Formulário de Edição de Categoria
+<!-- {# TODO: Formulário de Edição de Categoria
 
    DESCRIÇÃO:
    Formulário para editar uma categoria existente.
@@ -36,9 +36,9 @@
                  value="{{ categoria_artigo.nome }}" required>
         </div>
 
-        <!-- Repetir para cor e imagem -->
+         Repetir para cor e imagem -->
 
-        <button type="submit" class="btn btn-roxo">Salvar Alterações</button>
+        <!-- <button type="submit" class="btn btn-roxo">Salvar Alterações</button>
         <a href="/administrador/listar_categorias" class="btn btn-outline-secondary">Cancelar</a>
       </form>
 
@@ -54,6 +54,42 @@
    - OBRIGATÓRIO: Campo hidden com id_categoria para o backend saber qual atualizar
    - Usar value="{{ categoria_artigo.nome }}" para preencher campos
    - Action do form é diferente: /alterar_categoria em vez de /cadastrar_categoria
-#}
+#} --> 
 
-{# Seu código HTML aqui #}
+{% extends "base_publica.html" %}
+
+{% block title %}Editar Categoria{% endblock %}
+
+{% block conteudo %}
+   <div class="container my-5">
+      <div class="col-md-8 mx-auto bg-white p-4 rounded shadow-sm">
+         <h2 class="mb-4">Editar Categoria</h2>
+
+         {% if mensagem %}
+            <div class="alert alert-danger">{{ mensagem }}</div>
+         {% endif %}
+
+         <form method="post" action="/administrador/alterar_categoria">
+            <input type="hidden" name="id_categoria" value="{{ categoria_artigo.id_categoria_artigo if categoria_artigo else '' }}">
+
+            <div class="mb-3">
+               <label class="form-label">Nome</label>
+               <input type="text" name="nome" class="form-control" value="{{ categoria_artigo.nome if categoria_artigo else '' }}" placeholder="Ex: Saúde Animal" required>
+            </div>
+
+            <div class="mb-3">
+               <label class="form-label">Cor (hexadecimal)</label>
+               <input type="color" name="cor" class="form-control form-control-color" value="{{ categoria_artigo.cor if categoria_artigo else '#44345A' }}" required>
+            </div>
+
+            <div class="mb-3">
+               <label class="form-label">Imagem (nome do arquivo)</label>
+               <input type="text" name="imagem" class="form-control" value="{{ categoria_artigo.imagem if categoria_artigo else '' }}" placeholder="Ex: 01.jpg" required>
+            </div>
+
+            <button type="submit" class="btn btn-roxo">Salvar Alterações</button>
+            <a href="/administrador/listar_categorias" class="btn btn-outline-secondary ms-2">Cancelar</a>
+         </form>
+      </div>
+   </div>
+{% endblock %}

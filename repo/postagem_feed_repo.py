@@ -156,3 +156,19 @@ def incrementar_visualizacoes(id_postagem_feed: int) -> bool:
         cursor = conn.cursor()
         cursor.execute(INCREMENTAR_VISUALIZACOES, (id_postagem_feed,))
         return cursor.rowcount > 0
+
+
+def obter_por_tutor(id_tutor: int) -> list[PostagemFeed]:
+    """Retorna todos os posts de um tutor"""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT pf.*, t.nome as nome_tutor, t.quantidade_pets
+            FROM postagem_feed pf
+            JOIN tutor tut ON pf.id_tutor = tut.id_tutor
+            JOIN usuario t ON tut.id_tutor = t.id_usuario
+            WHERE pf.id_tutor = ?
+            ORDER BY pf.data_postagem DESC
+        """, (id_tutor,))
+        rows = cursor.fetchall()
+        return [PostagemFeed(**row) for row in rows]
