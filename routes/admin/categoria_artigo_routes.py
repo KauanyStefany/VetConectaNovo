@@ -5,6 +5,8 @@ from fastapi.templating import Jinja2Templates
 from model.categoria_artigo_model import CategoriaArtigo
 from repo import categoria_artigo_repo
 from util.auth_decorator import requer_autenticacao, obter_usuario_logado
+from util.mensagens import adicionar_mensagem_sucesso
+from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_erro
 
 
 router = APIRouter()
@@ -18,7 +20,7 @@ async def get_root(request: Request):
     # SOLUÇÃO: Trocar {} por request (sem aspas, é a variável request do parâmetro)
     # CORRETO: {"request": request, "categoria_artigo": categoria_artigo}
     categoria_artigo = categoria_artigo_repo.obter_pagina(limite=10, offset=0)
-    response = templates.TemplateResponse("administrador/home_administrador.html", {"request": {}, "categoria_artigo": categoria_artigo})
+    response = templates.TemplateResponse("administrador/home_administrador.html", {"request": request, "categoria_artigo": categoria_artigo})
     return response
 
 @router.get("/listar_categorias")
@@ -72,7 +74,8 @@ async def post_categoria_artigor(request: Request, nome: str = Form(...), cor: s
         # PROBLEMA: "/administrador/cadastrar_categoria.html" é um caminho de arquivo, não uma rota
         # SOLUÇÃO: Trocar por "/administrador/listar_categorias" (rota que lista as categorias)
         # OPCIONAL: Adicionar mensagem de sucesso com util.mensagens.adicionar_mensagem_sucesso()
-        response = RedirectResponse("/administrador/cadastrar_categoria.html", status_code=303)
+        adicionar_mensagem_sucesso(request, "Categoria cadastrada com sucesso!")
+        response = RedirectResponse("/administrador/listar_categorias", status_code=303)
         return response
     return templates.TemplateResponse("administrador/cadastrar_categoria.html", {"request": request, "mensagem": "Erro ao cadastrar categoria."})
 
@@ -110,7 +113,12 @@ async def post_categoria_excluir(
     #   else:
     #       adicionar_mensagem_erro(request, "Erro ao excluir. Pode haver artigos vinculados.")
     #   return RedirectResponse("/administrador/listar_categorias", status_code=303)
-    if categoria_artigo_repo.obter_por_id(id_categoria):
-        response = RedirectResponse("/administrador/categorias", status_code=303)
-        return response
-    return templates.TemplateResponse("administrador/excluir_categoria.html", {"request": request, "mensagem": "Erro ao excluir categoria."})
+    categoria = categoria_artigo_repo.obter_por_id(id_categoria)
+    if not categoria:
+        adicionar_mensagem_erro(request, "Categoria não encontrada.")
+    elif categoria_artigo_repo.excluir(id_categoria):
+        adicionar_mensagem_sucesso(request, "Categoria excluída com sucesso!")
+    else:
+        adicionar_mensagem_erro(request, "Erro ao excluir. Pode haver artigos vinculados.")
+
+    return RedirectResponse("/administrador/listar_categorias", status_code=303)

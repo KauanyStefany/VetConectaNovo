@@ -17,7 +17,7 @@ from dtos.auth_dto import (
 from model.enums import PerfilUsuario
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
-from repo import usuario_repo, tutor_repo, veterinario_repo
+from repo import administrador_repo, usuario_repo, tutor_repo, veterinario_repo
 from util.security import (
     criar_hash_senha,
     verificar_senha,
@@ -66,7 +66,13 @@ async def post_login(
         login_dto = LoginDTO(email=email, senha=senha)
 
         # Buscar usuário pelo email
-        usuario = usuario_repo.obter_por_email(login_dto.email)
+        usuario = administrador_repo.obter_por_email(login_dto.email)
+        usuario.perfil = PerfilUsuario.ADMIN.value
+        usuario.id_usuario = usuario.id_admin
+        usuario.telefone = ""
+
+        if not usuario:
+            usuario = usuario_repo.obter_por_email(login_dto.email)
 
         # Verificar credenciais
         if not usuario or not verificar_senha(login_dto.senha, usuario.senha):
@@ -119,6 +125,22 @@ async def post_login(
             {
                 "request": request,
                 "erros": erros,
+                "dados": dados_formulario,
+                "redirect": redirect,
+            },
+        )
+    
+    # Processar erros de validação do DTO
+    except Exception as e:        
+        # Logar os erros de validação para auditoria
+        logger.warning(f"Erros geral: {str(e)}")
+
+        # Retornar template com erros
+        return templates.TemplateResponse(
+            "publico/login.html",
+            {
+                "request": request,
+                "erros": {"geral": "Ocorreu um erro ao processar o login."},
                 "dados": dados_formulario,
                 "redirect": redirect,
             },
