@@ -48,7 +48,7 @@
                     <div class="col-12 col-lg-6 text-center my-3 my-lg-0">
                         <!-- Barra de Pesquisa -->
                         <form class="d-flex justify-content-center" role="search">
-                            <div class="input-group" style="max-width: 600px;">
+                            <div class="input-group content-container">
                                 <input class="form-control rounded-0 border-0" type="search"
                                     placeholder="O que seu pet necessita?" aria-label="Pesquisar">
                                 <button class="btn btn-light rounded-0 border-0" type="submit">
@@ -63,13 +63,11 @@
                         {% if request.session.get('usuario') %}
                         <!-- Dropdown do Usuário Logado -->
                         <div class="dropdown d-inline-block">
-                            <button class="btn btn-link p-0" type="button" id="dropdownUsuario"
+                            <button class="btn btn-link p-0 rounded-circle border-bege-claro border-3" type="button" id="dropdownUsuario"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="/static/img/usuarios/{{ '%08d' % request.session.get('usuario').id }}.jpg"
-                                     alt="Avatar"
-                                     class="rounded-circle"
-                                     style="width: 50px; height: 50px; object-fit: cover;"
-                                     onerror="this.src='/static/img/default-avatar.jpg'">
+                                    alt="Avatar" class="avatar-md"
+                                    onerror="this.src='/static/img/default-avatar.jpg'">
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUsuario">
                                 <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>
@@ -118,10 +116,10 @@
 
             <!-- Informações Legais -->
             <div class="footer-text">
-                <p class="mb-2" style="font-size: 1rem;">
+                <p class="mb-2">
                     Informações seguras - A VetConecta garante segurança nas informações prestadas
                 </p>
-                <p class="mb-0" style="font-size: 1rem;">
+                <p class="mb-0">
                     Copyright 2025 © Todos os direitos reservados à VetConecta
                 </p>
             </div>

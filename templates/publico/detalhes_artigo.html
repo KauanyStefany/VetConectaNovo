@@ -20,7 +20,7 @@
                 <!-- Data de Publicação -->
                 <span class="text-muted">
                     <i class="bi bi-calendar-event me-1"></i>
-                    {{ artigo.data_publicacao.strftime('%d/%m/%Y') }}
+                    {{ artigo.data_publicacao | data_br }}
                 </span>
 
                 <!-- Visualizações -->
@@ -45,8 +45,7 @@
             <div class="mb-4">
                 <img src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg"
                      alt="{{ artigo.titulo }}"
-                     class="img-fluid rounded shadow-sm w-100"
-                     style="max-height: 500px; object-fit: cover;">
+                     class="img-fluid rounded shadow-sm img-post-featured">
             </div>
 
             <!-- Card do Conteúdo -->
@@ -93,7 +92,7 @@
         <!-- Sidebar - Informações do Autor -->
         <div class="col-lg-4">
             <!-- Card do Veterinário -->
-            <div class="card border-0 shadow-sm sticky-top" style="top: 20px;">
+            <div class="card border-0 shadow-sm sidebar-sticky">
                 <div class="card-header bg-roxo text-white text-center py-3">
                     <h5 class="mb-0 fw-semibold">
                         <i class="bi bi-person-badge me-2"></i>Sobre o Autor
@@ -104,8 +103,7 @@
                     <div class="text-center mb-3">
                         <img src="/static/img/usuarios/{{ '%08d' % veterinario.id_usuario }}.jpg"
                              alt="{{ veterinario.nome }}"
-                             class="rounded-circle shadow mb-3"
-                             style="width: 120px; height: 120px; object-fit: cover;"
+                             class="avatar-xl shadow mb-3"
                              onerror="this.src='/static/img/default-avatar.jpg'">
                     </div>
 
@@ -163,14 +161,4 @@
     </div>
 </div>
 
-{% endblock %}
-
-{% block head %}
-<style>
-    /* Estilos específicos para o conteúdo do artigo */
-    .article-content {
-        text-align: justify;
-        white-space: pre-wrap;
-    }
-</style>
 {% endblock %}

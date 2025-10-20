@@ -38,7 +38,7 @@
     <!-- Mensagem quando não há posts -->
     <div class="row">
         <div class="col-12 text-center py-5">
-            <i class="bi bi-camera text-muted" style="font-size: 4rem;"></i>
+            <i class="bi bi-camera text-muted icon-lg"></i>
             <h4 class="text-muted mt-3">Nenhum post encontrado</h4>
             <p class="text-muted">
                 Não há posts cadastrados no momento.
@@ -62,24 +62,4 @@
     {% endif %}
 </div>
 
-{% endblock %}
-
-{% block head %}
-<style>
-    /* Efeito hover nos cards */
-    .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
-    }
-
-    /* Cor da borda roxa para cards Petgram */
-    .border-primary {
-        border-color: var(--cor-roxo) !important;
-        border-width: 2px !important;
-    }
-</style>
 {% endblock %}

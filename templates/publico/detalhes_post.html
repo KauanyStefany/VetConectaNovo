@@ -10,10 +10,10 @@
         <div class="col-12">
             <!-- Metadados -->
             <div class="d-flex flex-wrap gap-3 align-items-center">
-                <!-- Data da Postagem -->
+                <!-- Data e Hora da Postagem -->
                 <span class="text-muted">
                     <i class="bi bi-calendar-event me-1"></i>
-                    {{ post.data_postagem[:10] | replace('-', '/') if post.data_postagem is string else post.data_postagem.strftime('%d/%m/%Y') }}
+                    {{ post.data_postagem | data_hora_br }}
                 </span>
 
                 <!-- Visualizações -->
@@ -44,8 +44,7 @@
             <div class="mb-4">
                 <img src="/static/img/feeds/{{ '%08d' % post.id_postagem_feed }}.jpg"
                      alt="Post de {{ post.nome_tutor }}"
-                     class="img-fluid rounded shadow-sm w-100"
-                     style="max-height: 600px; object-fit: cover;"
+                     class="img-fluid rounded shadow-sm img-post-detail"
                      onerror="this.src='/static/img/default-post.jpg'">
             </div>
 
@@ -56,7 +55,7 @@
                     <h6 class="text-muted mb-3">
                         <i class="bi bi-chat-quote me-2"></i>Descrição
                     </h6>
-                    <p class="mb-0" style="line-height: 1.8; white-space: pre-wrap;">{{ post.descricao }}</p>
+                    <p class="mb-0 post-content">{{ post.descricao }}</p>
                 </div>
             </div>
             {% endif %}
@@ -108,7 +107,7 @@
         <!-- Sidebar - Informações do Tutor -->
         <div class="col-lg-4">
             <!-- Card do Tutor -->
-            <div class="card border-0 shadow-sm sticky-top" style="top: 20px;">
+            <div class="card border-0 shadow-sm sidebar-sticky">
                 <div class="card-header bg-roxo text-white text-center py-3">
                     <h5 class="mb-0 fw-semibold">
                         <i class="bi bi-person-circle me-2"></i>Sobre o Tutor
@@ -119,8 +118,7 @@
                     <div class="text-center mb-3">
                         <img src="/static/img/usuarios/{{ '%08d' % post.id_usuario }}.jpg"
                              alt="{{ post.nome_tutor }}"
-                             class="rounded-circle shadow mb-3"
-                             style="width: 120px; height: 120px; object-fit: cover;"
+                             class="avatar-xl shadow mb-3"
                              onerror="this.src='/static/img/default-avatar.jpg'">
                     </div>
 

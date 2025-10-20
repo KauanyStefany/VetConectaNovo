@@ -1,4 +1,5 @@
 from typing import List, Optional, Union
+from datetime import datetime, date
 from jinja2 import FileSystemLoader
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
@@ -58,9 +59,110 @@ def criar_templates(diretorio_especifico: Optional[Union[str, List[str]]] = None
 
 def _adicionar_funcoes_globais(templates: Jinja2Templates) -> None:
     """
-    Adiciona funções globais ao ambiente Jinja2
+    Adiciona funções globais e filtros ao ambiente Jinja2
     """
     from util.mensagens import obter_mensagens
 
     # Adicionar obter_mensagens como função global
     templates.env.globals['obter_mensagens'] = obter_mensagens
+
+    # Adicionar filtros de formatação de data/hora pt-BR
+    templates.env.filters['data_br'] = formatar_data_br
+    templates.env.filters['hora_br'] = formatar_hora_br
+    templates.env.filters['data_hora_br'] = formatar_data_hora_br
+
+
+def formatar_data_br(valor) -> str:
+    """
+    Formata uma data para o formato brasileiro (dd/mm/yyyy).
+
+    Args:
+        valor: Pode ser datetime, date, ou string no formato ISO (YYYY-MM-DD)
+
+    Returns:
+        String formatada no padrão dd/mm/yyyy
+    """
+    if valor is None:
+        return ""
+
+    if isinstance(valor, str):
+        valor = valor.strip()
+        # Se for string, tenta converter
+        try:
+            # Tenta formato ISO completo (YYYY-MM-DD HH:MM:SS)
+            if len(valor) > 10:
+                valor = datetime.strptime(valor[:19], "%Y-%m-%d %H:%M:%S")
+            else:
+                # Formato apenas data (YYYY-MM-DD)
+                valor = datetime.strptime(valor[:10], "%Y-%m-%d")
+        except (ValueError, TypeError):
+            return str(valor)
+
+    if isinstance(valor, datetime):
+        return valor.strftime("%d/%m/%Y")
+    elif isinstance(valor, date):
+        return valor.strftime("%d/%m/%Y")
+
+    return str(valor)
+
+
+def formatar_hora_br(valor) -> str:
+    """
+    Formata uma hora para o formato brasileiro (HH:MM).
+
+    Args:
+        valor: Pode ser datetime ou string no formato ISO
+
+    Returns:
+        String formatada no padrão HH:MM
+    """
+    if valor is None:
+        return ""
+
+    if isinstance(valor, str):
+        valor = valor.strip()
+        try:
+            # Tenta formato completo primeiro
+            if len(valor) > 10:
+                valor = datetime.strptime(valor[:19], "%Y-%m-%d %H:%M:%S")
+            else:
+                # Se for apenas data, retorna 00:00
+                valor = datetime.strptime(valor[:10], "%Y-%m-%d")
+        except (ValueError, TypeError):
+            return str(valor)
+
+    if isinstance(valor, datetime):
+        return valor.strftime("%H:%M")
+
+    return str(valor)
+
+
+def formatar_data_hora_br(valor) -> str:
+    """
+    Formata uma data e hora para o formato brasileiro (dd/mm/yyyy HH:MM).
+
+    Args:
+        valor: Pode ser datetime ou string no formato ISO
+
+    Returns:
+        String formatada no padrão dd/mm/yyyy HH:MM
+    """
+    if valor is None:
+        return ""
+
+    if isinstance(valor, str):
+        valor = valor.strip()
+        try:
+            # Tenta formato completo primeiro
+            if len(valor) > 10:
+                valor = datetime.strptime(valor[:19], "%Y-%m-%d %H:%M:%S")
+            else:
+                # Se for apenas data, assume 00:00:00
+                valor = datetime.strptime(valor[:10], "%Y-%m-%d")
+        except (ValueError, TypeError):
+            return str(valor)
+
+    if isinstance(valor, datetime):
+        return valor.strftime("%d/%m/%Y %H:%M")
+
+    return str(valor)

@@ -5,6 +5,28 @@ from sql.postagem_feed_sql import *
 from util.db_util import get_connection
 
 
+def _parse_datetime(data_string: str) -> datetime:
+    """
+    Parse de data/hora que aceita múltiplos formatos.
+
+    Tenta primeiro datetime completo, depois apenas data.
+    Se for apenas data, assume meia-noite (00:00:00).
+    """
+    data_string = data_string.strip()
+
+    # Tenta formato completo primeiro (YYYY-MM-DD HH:MM:SS)
+    try:
+        return datetime.strptime(data_string[:19], "%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        pass
+
+    # Tenta formato apenas data (YYYY-MM-DD)
+    try:
+        return datetime.strptime(data_string[:10], "%Y-%m-%d")
+    except ValueError:
+        raise ValueError(f"Formato de data/hora inválido: {data_string}")
+
+
 def criar_tabela() -> bool:
     try:
         with get_connection() as conn:
@@ -49,7 +71,7 @@ def obter_pagina(pagina: int, tamanho_pagina: int) -> List[PostagemFeed]:
                 id_postagem_feed=row["id_postagem_feed"],
                 id_tutor=row["id_tutor"],
                 descricao=row["descricao"],
-                data_postagem=datetime.strptime(row["data_postagem"][:10], "%Y-%m-%d").date(),
+                data_postagem=_parse_datetime(row["data_postagem"]),
                 visualizacoes=row["visualizacoes"],
             )
             for row in rows
@@ -66,7 +88,7 @@ def obter_por_id(id_postagem_feed: int) -> Optional[PostagemFeed]:
                 id_postagem_feed=row["id_postagem_feed"],
                 id_tutor=row["id_tutor"],
                 descricao=row["descricao"],
-                data_postagem=datetime.strptime(row["data_postagem"][:10], "%Y-%m-%d").date(),
+                data_postagem=_parse_datetime(row["data_postagem"]),
                 visualizacoes=row["visualizacoes"],
             )
         return None

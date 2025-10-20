@@ -798,5 +798,389 @@
     "conteudo": "Gatos são territoriais e a introdução inadequada de novos membros pode causar estresse crônico, agressão e problemas comportamentais. O processo deve ser gradual: inicialmente, mantenha o novo gato em cômodo separado com recursos próprios (caixa de areia, comedouros, água, arranhador). Troque odores entre os gatos usando toalhas. Após alguns dias, permita visualização através de barreira (porta entreaberta, grade). Quando houver aceitação visual, permita contato supervisionado breve, aumentando gradualmente. Ofereça recompensas durante interações positivas. Mantenha recursos suficientes: n+1 caixas de areia, múltiplos pontos de alimentação/água, arranhadores e áreas de descanso. O processo pode levar semanas a meses.",
     "id_categoria_artigo": 2,
     "visualizacoes": 498
+  },
+  {
+    "id_postagem_artigo": 101,
+    "id_veterinario": 5,
+    "titulo": "Alimentação adequada para calopsitas",
+    "conteudo": "Calopsitas necessitam de dieta variada e balanceada para manter saúde plena. A base deve ser ração extrusada específica (60-70%), complementada com sementes (girassol, painço) em quantidade moderada. Ofereça vegetais diariamente: couve, almeirão, cenoura, brócolis. Frutas com moderação: maçã, banana, mamão. Evite abacate (tóxico), chocolate, sal, açúcar e alimentos processados. Disponibilize osso de siba para cálcio. Troque água diariamente. Evite dietas exclusivas de sementes, que causam obesidade e deficiências nutricionais (hipovitaminose A). Observe fezes: devem ser firmes com centro escuro e borda branca. Mudanças de dieta devem ser graduais.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 156
+  },
+  {
+    "id_postagem_artigo": 102,
+    "id_veterinario": 5,
+    "titulo": "Doenças respiratórias em aves domésticas",
+    "conteudo": "Problemas respiratórios são comuns em aves e podem ser fatais se não tratados. Sinais incluem: respiração ofegante, bico aberto para respirar, secreção nasal, espirros, mudança na voz, penas eriçadas, letargia. Causas: infecções bacterianas (E. coli, Mycoplasma), fúngicas (aspergilose), virais (psitacose), ácaros traqueais, deficiências nutricionais, ambiente inadequado (poeira, fumaça, produtos de limpeza). Prevenção: ventilação adequada sem correntes de ar, umidade controlada (40-60%), evitar exposição a fumaças (teflon superaquecido é letal), limpeza regular do ambiente. Ao menor sinal de problema respiratório, consulte veterinário especializado em aves. Tratamento precoce é crucial.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 189
+  },
+  {
+    "id_postagem_artigo": 103,
+    "id_veterinario": 7,
+    "titulo": "Enriquecimento ambiental para papagaios",
+    "conteudo": "Papagaios são aves extremamente inteligentes que requerem estimulação mental constante para evitar problemas comportamentais como autodepilação e gritos excessivos. Ofereça brinquedos variados: forrageiros (esconder alimento em compartimentos), destrutíveis (madeira não tóxica, papel), sonoros (sinos) e de manipulação (cordas, correntes). Rotacione brinquedos semanalmente para manter novidade. Dedique tempo diário para interação social - papagaios são animais de bando. Ensine truques simples usando reforço positivo. Proporcione banhos regulares (borrifador ou banheira rasa). Permita voos supervisionados em ambiente seguro. Ambiente enriquecido previne tédio e mantém saúde psicológica.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 104,
+    "id_veterinario": 9,
+    "titulo": "Problemas de bico e unhas em aves",
+    "conteudo": "Bicos e unhas crescem continuamente em aves e requerem desgaste natural adequado. Bicos saudáveis se mantêm através de alimentação variada, brinquedos para roer e poleiros de diferentes texturas. Problemas incluem: crescimento excessivo (má oclusão, dieta inadequada), fraturas, infecções fúngicas/bacterianas, ácaros de bico (periquitos). Unhas longas podem enroscar e causar fraturas. Ofereça poleiros de diâmetros variados e texturas diferentes (madeira natural rugosa). Evite poleiros lisos ou de mesmo diâmetro. Aparas devem ser feitas por profissionais - vasos sanguíneos são difíceis de visualizar. Sangramento de bico/unha é emergência. Osso de siba e bloco mineral auxiliam desgaste natural do bico.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 178
+  },
+  {
+    "id_postagem_artigo": 105,
+    "id_veterinario": 11,
+    "titulo": "Reprodução de canários: cuidados essenciais",
+    "conteudo": "A reprodução de canários requer planejamento e cuidados específicos. Época reprodutiva: primavera-verão (fotoperíodo de 14-16h luz). Casais devem ser saudáveis, não consanguíneos e ter pelo menos 10-12 meses. Forneça ninho apropriado, material para construção (fibras, pelos) e ambiente tranquilo. Dieta deve ser enriquecida com proteína (ovo cozido, farinhada) e cálcio extra. Fêmea põe 3-5 ovos, incubação dura 13-14 dias. Filhotes saem do ninho com 18-21 dias mas ainda dependem dos pais. Problemas comuns: retenção de ovo, abandono de ninho, canibalismo. Monitore constantemente e tenha veterinário de referência. Evite reprodução excessiva - permite no máximo 2-3 ninhadas por ano.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 106,
+    "id_veterinario": 13,
+    "titulo": "Psitacose: doença zoonótica em aves",
+    "conteudo": "Psitacose ou clamidiose aviária é causada pela bactéria Chlamydia psittaci e pode infectar humanos (zoonose). Aves infectadas podem ser assintomáticas ou apresentar: letargia, anorexia, diarreia, secreção ocular/nasal, dificuldade respiratória, penas eriçadas. Transmissão ocorre por inalação de poeira de fezes secas, secreções ou penas contaminadas. Diagnóstico por PCR ou sorologia. Tratamento: antibióticos específicos (doxiciclina) por período prolongado. Prevenção: quarentena de novas aves, higiene rigorosa, ventilação adequada. Tutores com sintomas respiratórios após contato com aves devem informar médico. Doença é de notificação obrigatória. Aves de origem duvidosa representam maior risco.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 198
+  },
+  {
+    "id_postagem_artigo": 107,
+    "id_veterinario": 15,
+    "titulo": "Manejo sanitário em criatórios de aves",
+    "conteudo": "Criatórios comerciais ou amadores de aves requerem protocolo sanitário rigoroso para prevenir surtos de doenças. Medidas essenciais: quarentena de 30-45 dias para novos animais em área isolada, exames laboratoriais antes da introdução, controle de pragas (roedores, insetos), acesso restrito, pedilúvio e troca de roupas/calçados, limpeza e desinfecção regular de instalações. Ventilação adequada previne doenças respiratórias. Densidade populacional adequada reduz estresse. Programa de vacinação conforme espécie. Descarte adequado de carcaças e material contaminado. Registro de dados (nascimentos, mortes, tratamentos) permite detecção precoce de problemas. Assessoria veterinária regular é fundamental.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 145
+  },
+  {
+    "id_postagem_artigo": 108,
+    "id_veterinario": 17,
+    "titulo": "Anestesia em aves: particularidades e cuidados",
+    "conteudo": "Aves apresentam anatomia e fisiologia únicas que tornam anestesia desafiadora. Sistema respiratório com sacos aéreos (sem diafragma) requer ventilação assistida durante anestesia inalatória. Metabolismo acelerado demanda monitoramento constante. Jejum pré-anestésico: 2-4h para pequenas aves, 4-6h para grandes (diferente de mamíferos - evitar hipoglicemia). Isoflurano ou sevoflurano são gases de escolha. Intubação pode ser necessária. Manter temperatura corporal é crítico - aves perdem calor rapidamente (usar almofadas térmicas). Monitorar frequência cardíaca, respiratória e reflexos. Recuperação deve ser em ambiente aquecido e silencioso. Complicações incluem hipotermia, hipoglicemia, parada respiratória. Experiência do anestesista é fundamental.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 212
+  },
+  {
+    "id_postagem_artigo": 109,
+    "id_veterinario": 19,
+    "titulo": "Terapias naturais para aves domésticas",
+    "conteudo": "Abordagens integrativas podem complementar medicina convencional em aves. Fitoterapia: camomila para ansiedade, equinácea para imunidade (sempre sob orientação - muitas plantas são tóxicas para aves). Aromaterapia: óleos essenciais devem ser evitados - sistema respiratório aviário é extremamente sensível. Homeopatia: pode auxiliar em transtornos comportamentais e como suporte imunológico. Acupuntura adaptada para aves tem mostrado resultados em dor crônica e distúrbios neurológicos. Terapia floral para manejo de estresse. Importante: terapias naturais não substituem tratamentos convencionais em doenças graves. Sempre consulte veterinário especializado em aves antes de usar qualquer terapia alternativa. Automedicação pode ser fatal.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 187
+  },
+  {
+    "id_postagem_artigo": 110,
+    "id_veterinario": 1,
+    "titulo": "Transporte seguro de aves",
+    "conteudo": "Transporte inadequado causa estresse extremo e pode ser fatal para aves. Use caixa de transporte apropriada: tamanho adequado (ave em pé sem encostar a cabeça), ventilação adequada, poleiro firme ou fundo antiderrapante. Forre com papel (nunca areia/maravalha que pode ser inalada). Evite transportar em dias muito quentes ou frios. Nunca deixe transportadora ao sol ou em carro fechado. Para viagens longas: ofereça água (bebedouros anti-vazamento) e alimento. Cubra parcialmente a caixa para reduzir estímulos visuais estressantes. Em viagens aéreas, verifique regulamentos da companhia. Para aves doentes: aquecimento suplementar pode ser necessário. Minimize tempo de transporte. Ao chegar, permita que ave se acalme antes de manusear.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 221
+  },
+  {
+    "id_postagem_artigo": 111,
+    "id_veterinario": 3,
+    "titulo": "Prevenção de intoxicações em aves domésticas",
+    "conteudo": "Aves são extremamente sensíveis a toxinas devido ao eficiente sistema respiratório e metabolismo acelerado. Riscos comuns: teflon/antiaderente superaquecido (libera gases letais), fumaça de cigarro/velas/incenso, produtos de limpeza, inseticidas, plantas tóxicas (comigo-ninguém-pode, lírio, azaleia), metais pesados (zinco de gaiolas galvanizadas, chumbo), chocolate, abacate, sal, álcool. Sinais de intoxicação: vômito, diarreia, convulsões, incoordenação, letargia súbita. Intoxicação é emergência - procure veterinário imediatamente. Prevenção: mantenha ave em área livre de fumaças, use panelas de aço inox/cerâmica, evite produtos perfumados, supervisione aves soltas, ofereça apenas alimentos seguros. Liste plantas tóxicas e remova da casa.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 243
+  },
+  {
+    "id_postagem_artigo": 112,
+    "id_veterinario": 4,
+    "titulo": "Muda de penas: processo natural em aves",
+    "conteudo": "A muda é processo fisiológico de troca de penas, essencial para manutenção de plumagem saudável. Ocorre geralmente 1-2 vezes ao ano. Durante muda: ave pode ficar mais quieta, coceira aumentada (não confundir com autodepilação patológica), aumento de apetite (formação de penas demanda energia). Penas novas aparecem envoltas em bainha de queratina. Suporte nutricional: dieta rica em proteínas, aminoácidos (especialmente metionina) e vitaminas A, B, D e E. Ofereça banhos para aliviar coceira. Sinais de muda anormal: perda excessiva, áreas calvas, penas que não crescem, automutilação, muda contínua. Causas patológicas: deficiências nutricionais, parasitas, doenças virais (PBFD), estresse crônico. Muda normal não deixa áreas extensas sem penas.",
+    "id_categoria_artigo": 4,
+    "visualizacoes": 276
+  },
+  {
+    "id_postagem_artigo": 113,
+    "id_veterinario": 6,
+    "titulo": "Qualidade da água em aquários de água doce",
+    "conteudo": "Parâmetros adequados de água são fundamentais para saúde dos peixes. pH: varia conforme espécie (6.0-8.0), mantenha estável - flutuações bruscas causam estresse. Temperatura: 24-28°C para tropicais, termostato é essencial. Amônia e nitrito: devem ser zero (tóxicos). Nitrato: abaixo de 40ppm (trocas parciais de água). Dureza (GH/KH): conforme necessidade das espécies. Cloro/cloramina: neutralize com condicionador antes de adicionar água. Realize ciclagem do aquário (4-6 semanas) antes de introduzir peixes - estabelece bactérias benéficas. Teste água semanalmente com kits confiáveis. Trocas parciais: 20-30% semanalmente. Evite troca total que elimina bactérias benéficas. Sinais de água inadequada: peixes ofegantes na superfície, letargia, perda de apetite.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 114,
+    "id_veterinario": 8,
+    "titulo": "Doenças comuns em peixes ornamentais",
+    "conteudo": "Peixes ornamentais são suscetíveis a várias doenças. Íctio (doença dos pontos brancos): parasita Ichthyophthirius, causa pontos brancos, tratamento com sal ou medicamentos específicos. Fungos: aspecto de algodão, comum após lesões, tratar com antifúngicos. Podridão de nadadeiras: bordas esbranquiçadas/necrosadas, causada por bactérias, antibióticos indicados. Hidropisia: abdômen distendido, escamas eriçadas, prognóstico grave. Parasitas externos: âncora, vermes, causam coceira e lesões. Prevenção: quarentena de novos peixes (2-4 semanas), qualidade de água, densidade adequada, alimentação balanceada, evite estresse. Sinais de doença: mudança de comportamento, perda de apetite, manchas anormais, nado irregular. Isole peixes doentes para tratamento.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 115,
+    "id_veterinario": 10,
+    "titulo": "Alimentação balanceada para peixes tropicais",
+    "conteudo": "Nutrição adequada é essencial para saúde, crescimento e coloração vibrante. Tipos de alimentos: flocos/grânulos (base da dieta), alimentos vivos (artêmia, dáfnia - estimulam comportamento de caça), congelados (bloodworms - ricos em proteína), vegetais (para herbívoros - abobrinha, pepino, ervilha). Frequência: adultos 1-2x/dia, jovens 2-3x/dia. Quantidade: o que consomem em 2-3 minutos (excesso degrada água). Varie a dieta - monotonia causa deficiências. Espécies carnívoras: mais proteína. Herbívoras: algas, spirulina. Onívoras: dieta balanceada. Jejum 1x/semana pode ser benéfico. Alimentos específicos realçam cores (astaxantina para vermelhos). Evite superalimentação - principal causa de mortalidade e problemas de qualidade de água.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 116,
+    "id_veterinario": 12,
+    "titulo": "Montagem e ciclagem de aquário marinho",
+    "conteudo": "Aquários marinhos requerem planejamento cuidadoso e paciência. Equipamentos essenciais: aquário (mínimo 200L para iniciantes), filtro adequado (sump com skimmer é ideal), iluminação específica (LED para corais), aquecedor, termômetro, bomba de circulação, teste de parâmetros. Substrato: areia viva aragonita. Rochas vivas introduzem bactérias benéficas. Salinidade: 1.023-1.025 (densímetro ou refratômetro). Ciclagem: processo de 6-8 semanas estabelecendo colônias bacterianas. Adicione fonte de amônia (alimento ou amônia pura). Teste amônia, nitrito, nitrato regularmente. Quando amônia e nitrito zerados por semana consecutiva, sistema ciclado. Comece com peixes resistentes. Adições graduais evitam sobrecarga biológica. Paciência é fundamental - pressa é principal erro de iniciantes.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 117,
+    "id_veterinario": 14,
+    "titulo": "Bettas: cuidados específicos",
+    "conteudo": "Bettas (Betta splendens) são peixes labirínticos com necessidades específicas. Aquário: mínimo 20L (mito do copinho - espaço pequeno causa estresse e doenças). Filtro com fluxo suave (nadadeiras longas dificultam nado em correnteza forte). Aquecedor: 25-27°C (são tropicais). Tampa: bettas saltam. Decoração: plantas naturais ou seda (plástico rasga nadadeiras), esconderijos. Água: pH 6.5-7.5, trocas parciais semanais. Alimentação: ração específica para bettas, variar com alimentos vivos/congelados. Não superalimentar (obesidade/constipação). Machos são territoriais - 1 por aquário. Fêmeas podem viver em grupos (sorority) com espaço adequado. Principais doenças: podridão de nadadeiras, hidropisia, íctio. Comportamento normal: construção de ninho de bolhas, exibição de nadadeiras.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 334
+  },
+  {
+    "id_postagem_artigo": 118,
+    "id_veterinario": 16,
+    "titulo": "Compatibilidade entre espécies de peixes",
+    "conteudo": "Misturar espécies incompatíveis causa estresse, agressão e mortes. Fatores a considerar: tamanho (peixes grandes podem predador pequenos), temperamento (agressivos vs pacíficos), parâmetros de água (pH, temperatura, dureza), nível de nado (superfície, meio, fundo - distribuir para evitar competição), dieta. Espécies comunitárias pacíficas: tetras, corydoras, rasboras, guppys, platies. Evitar com espécies agressivas: bettas machos, ciclídeos territoriais, oscares. Peixes de cardume (néons, mato-grosso) precisam grupo mínimo (6+). Bottomfeeders (cascudos, coridoras) limpam sobras. Pesquise antes de comprar - compatibilidade é essencial. Observar primeiros dias após introdução. Sinais de incompatibilidade: nadadeiras mordidas, perseguição constante, peixes escondidos/estressados. Aquário comunitário bem planejado é harmonioso e vibrante.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 301
+  },
+  {
+    "id_postagem_artigo": 119,
+    "id_veterinario": 18,
+    "titulo": "Reprodução de guppys em aquário",
+    "conteudo": "Guppys (Poecilia reticulata) são ovovivíparos de reprodução fácil, ideais para iniciantes. Maturidade sexual: 3-4 meses. Proporção ideal: 2-3 fêmeas por macho (evita perseguição excessiva). Gestação: 21-30 dias. Fêmea grávida apresenta mancha gravídica escura e abdômen distendido. Parto: 20-100 alevinos minúsculos, já nadando. Pais podem comer filhotes - use plantas densas (musgo de java) ou maternidade separadora. Alimentação alevinos: ração específica em pó, náuplios de artêmia, gema de ovo cozida peneirada. Trocas de água frequentes e pequenas. Crescimento: 6-8 semanas até coloração adulta. Seleção: escolha melhores exemplares para manter qualidade genética. Rápida reprodução pode superpovoar aquário - planeje destino dos filhotes. Cruzamentos seletivos produzem variedades de cores e caudas.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 278
+  },
+  {
+    "id_postagem_artigo": 120,
+    "id_veterinario": 20,
+    "titulo": "Filtragem eficiente em aquários",
+    "conteudo": "Sistema de filtragem adequado é fundamental para aquário saudável. Tipos de filtração: mecânica (remove partículas - espumas, perlon), biológica (bactérias convertem amônia→nitrito→nitrato - ceramicas, bioballs), química (carvão ativado remove medicamentos, odores - uso temporário). Tipos de filtros: hang-on (externo pendurado), canister (externo com múltiplos compartimentos), interno (submerso), sump (aquário auxiliar - mais versátil). Vazão adequada: 3-5x o volume do aquário por hora. Limpeza de filtro: nunca lave todo mídia de uma vez (elimina bactérias benéficas). Lave esponjas/cerâmicas com água do próprio aquário (sem cloro). Substitua mídias mecânicas mensalmente. Biológicas duram anos. Carvão: trocar mensalmente quando em uso. Filtração inadequada: água turva, amônia/nitrito detectáveis, peixes ofegantes.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 256
+  },
+  {
+    "id_postagem_artigo": 121,
+    "id_veterinario": 2,
+    "titulo": "Iluminação adequada para aquários plantados",
+    "conteudo": "Iluminação correta é essencial para crescimento saudável de plantas aquáticas. Intensidade: medida em lumens ou PAR (radiação fotossinteticamente ativa). Baixa intensidade: 20-40 lumens/L para plantas de baixa demanda. Média: 40-60 lumens/L. Alta: >60 lumens/L para plantas exigentes e carpetes. Espectro: luz branca fria (6500K) estimula crescimento. Vermelha e azul são absorvidas eficientemente. LED modernas são eficientes e ajustáveis. Fotoperíodo: 8-10h diárias consistentes (timer automático). Excesso causa algas. Distribuição uniforme evita áreas sombreadas. Plantas de fundo precisam luz mais intensa. CO2 e fertilização devem acompanhar aumento de luz. Sinais de iluminação inadequada: plantas amareladas/esbranquiçadas (pouca luz), explosão de algas (excesso). Atualizar lâmpadas antigas - perdem eficiência com tempo.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 122,
+    "id_veterinario": 5,
+    "titulo": "Aquários de quarentena: importância e montagem",
+    "conteudo": "Aquário de quarentena (hospital) é essencial para prevenir introdução de doenças em aquário principal. Duração: mínimo 2-4 semanas para novos peixes. Setup básico: aquário 40-80L, filtro esponja (não remove medicamentos), aquecedor, termômetro, decoração mínima (PVC para esconderijos - fácil desinfecção). Sem substrato (facilita limpeza) ou areia esterilizada. Observar sinais de doença: pontos brancos, fungos, comportamento anormal, perda de apetite. Tratar isoladamente evita contaminar sistema principal e permite dosagem precisa. Após tratamento, manter 2 semanas assintomático antes de transferir. Desinfecção entre usos: limpeza completa, solução de água sanitária diluída (enxaguar muito bem), secar completamente. Investimento pequeno previne perdas significativas e surtos devastadores em aquário comunitário.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 123,
+    "id_veterinario": 7,
+    "titulo": "Peixes limpa-vidros: escolha e cuidados",
+    "conteudo": "Peixes limpa-vidros ajudam controlar algas mas têm necessidades específicas. Espécies populares: cascudos (Ancistrus, Hypostomus), otocinclus (pequenos, delicados), plecostomus (podem crescer muito - pesquise tamanho adulto). Não sobrevivem apenas de algas - suplementar com ração de fundo, wafers de algas, vegetais (abobrinha, pepino, ervilha). Muitos são noturnos - alimente à noite. Territoriais entre si - ofereça tocas suficientes. Oxigenação adequada importante para maioria. Otocinclus são sensíveis - apenas em aquários estabelecidos, em grupos (6+). Cascudos maiores produzem muitos dejetos - filtragem eficiente necessária. Não são 'faxineiros' dispensando manutenção - aquário ainda precisa de trocas de água e limpeza. Escolha espécie compatível com tamanho do aquário e parâmetros de água.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 124,
+    "id_veterinario": 9,
+    "titulo": "Controle de algas em aquários",
+    "conteudo": "Algas são naturais mas excesso indica desequilíbrio. Tipos comuns: verdes (pontuais, filamentosas), marrons (diatomáceas - comum em aquários novos), azuis-verdes (cianobactérias - perigosas), barba-preta (persistentes). Causas: excesso de luz (reduzir fotoperíodo), nutrientes em excesso (superalimentação, superpopulação, falta de trocas de água), CO2 inadequado em plantados. Controle: manual (remoção física), reduzir luz direta solar, trocas parciais regulares, não superalimentar, plantas saudáveis (competem por nutrientes), alguívoros (otocinclus, camarões, caracóis), ajustar fertilização. Evite alguicidas químicos quando possível - tratam sintoma, não causa, e podem prejudicar plantas/invertebrados. Paciência e ajustes graduais. Aquário balanceado tem algas mínimas. Blackout (3-4 dias escuridão total) pode controlar explosões, mas é medida extrema.",
+    "id_categoria_artigo": 6,
+    "visualizacoes": 312
+  },
+  {
+    "id_postagem_artigo": 125,
+    "id_veterinario": 11,
+    "titulo": "Alimentação adequada para hamsters",
+    "conteudo": "Hamsters são onívoros com necessidades nutricionais específicas. Base da dieta: mix de sementes comercial de qualidade (evitar misturas com excesso de girassol - gorduroso). Complementar diariamente com vegetais frescos: brócolis, cenoura, pepino, couve (pequenas porções). Proteína 2-3x/semana: grilo desidratado, tenébrio, ovo cozido, frango cozido sem tempero. Frutas com moderação (açúcar): maçã, morango, banana. Evite: chocolate, cebola, alho, alimentos salgados/doces, frutas cítricas, alface (diarreia). Água fresca sempre disponível em bebedouro. Quantidade: 1-2 colheres de sopa de mix diário. Hamsters armazenam comida em bochechas - é comportamento normal. Remova alimentos perecíveis não consumidos após algumas horas. Obesidade é problema comum - monitore peso.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 243
+  },
+  {
+    "id_postagem_artigo": 126,
+    "id_veterinario": 13,
+    "titulo": "Habitação adequada para coelhos domésticos",
+    "conteudo": "Coelhos precisam de espaço amplo para exercício e bem-estar. Gaiola mínima: 4x o tamanho do coelho esticado (maior é melhor). Ideal: área livre da casa coelho-segura com gaiola como 'base'. Piso: evite gradeado (lesões nas patas), use tapetes/papelão. Cama: feno, aparas de madeira apropriadas (evite pinho/cedro - problemas respiratórios), pellets de papel. Caixa de areia: coelhos podem ser treinados, use substrato seguro se ingerido. Esconderijos: tocas, túneis (comportamento natural). Área de exercício: mínimo 3-4h diárias fora da gaiola, em espaço seguro (fios elétricos protegidos, plantas tóxicas removidas, saídas bloqueadas). Enriquecimento: brinquedos de madeira para roer, túneis, plataformas. Limpeza regular previne problemas respiratórios e parasitas. Ar fresco mas protegido de correntes de ar e temperatura extrema.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 127,
+    "id_veterinario": 15,
+    "titulo": "Doenças dentárias em coelhos e roedores",
+    "conteudo": "Dentes de coelhos e roedores crescem continuamente (3-5mm/semana em coelhos). Má oclusão é problema comum e grave. Causas: genética, dieta inadequada (falta de fibra/desgaste), trauma. Sinais: salivação excessiva (babando), dificuldade para comer, perda de peso, seleção de alimentos macios, abscesso facial. Prevenção: dieta rica em feno (timothy, coast-cross - 80% dieta de coelhos), vegetais fibrosos, evitar excesso de pellets/sementes, oferecer brinquedos de madeira para roer. Tratamento: desgaste dentário sob sedação por veterinário especializado, antibióticos se infecção. Casos graves: extração dentária. Acompanhamento regular necessário - problema tende a recorrer. Observe sinais precoces - tratamento tardio pode ser irreversível. Exame dentário em consultas de rotina é essencial.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 128,
+    "id_veterinario": 17,
+    "titulo": "Porquinhos-da-índia: cuidados essenciais",
+    "conteudo": "Porquinhos-da-índia (cobaias) são roedores sociais que requerem companhia (manter ao menos 2, preferencialmente mesmo sexo ou castrados). Dieta: feno ilimitado (timothy), pellets específicos com vitamina C (10-30mg/kg/dia - não sintetizam), vegetais frescos diários ricos em vitamina C (pimentão, couve, salsa), frutas com moderação. Água fresca sempre disponível. Habitação: espaçosa (mínimo 0.7m² para 2), sem piso gradeado, com áreas de esconderijo. São presas - assustam facilmente, precisam sentir-se seguras. Vocalização variada é normal. Unhas crescem continuamente - aparar regularmente. Raças de pelo longo requerem escovação diária. Problemas comuns: deficiência de vitamina C (escorbuto), má oclusão dentária, infecções respiratórias. Vida média: 5-7 anos. Veterinário especializado em exóticos essencial.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 298
+  },
+  {
+    "id_postagem_artigo": 129,
+    "id_veterinario": 19,
+    "titulo": "Comportamento natural de chinchilas",
+    "conteudo": "Chinchilas são roedores crepusculares/noturnos de origem andina com comportamentos únicos. Banhos de areia: essenciais para limpeza e saúde da pelagem densa - ofereça recipiente com areia vulcânica específica 2-3x/semana por 10-15min (não deixar permanente - resseca pele). Saltos impressionantes: até 1.5m - precisam espaço vertical com prateleiras. Mastigação constante: dentes crescem continuamente, oferecer madeira segura (maçã, salgueiro), pedra-pomes. Temperatura: sensíveis ao calor (ideal <20°C, máximo 25°C) - pelagem densa impede dissipação de calor. Sociais: vivem melhor em pares/grupos do mesmo sexo (castração possível). Vocalização: diversos sons comunicam estado emocional. Spray urinário quando assustados. Vida longa: 10-20 anos. Tímidos inicialmente - ganhar confiança requer paciência. Ambiente tranquilo longe de predadores (cães, gatos).",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 256
+  },
+  {
+    "id_postagem_artigo": 130,
+    "id_veterinario": 1,
+    "titulo": "Reprodução responsável de hamsters",
+    "conteudo": "Reprodução de hamsters requer conhecimento e responsabilidade. Maturidade sexual: 6-8 semanas (esperar até 4 meses para primeira reprodução). Ciclo estral: 4 dias. Gestação: 16-18 dias (Syrian), 18-21 (dwarf). Ninhada: 4-12 filhotes. Preparação: fêmea saudável, não obesa, gaiola limpa com material para ninho, ambiente tranquilo. Durante gestação: não manusear fêmea, dieta rica em proteína. Parto: geralmente noturno, sem intervenção. Filhotes: nascem cegos, sem pelo, totalmente dependentes. NÃO TOCAR primeiros 7-10 dias - mãe pode canibalizar se estressada. Desmame: 21-28 dias. Separar machos/fêmeas com 4-5 semanas. Considere: hamsters se reproduzem rapidamente, consanguinidade causa problemas, destino dos filhotes. Reprodução não é essencial para saúde - faça apenas se puder garantir lares para todos.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 131,
+    "id_veterinario": 3,
+    "titulo": "Enriquecimento ambiental para ratos domésticos",
+    "conteudo": "Ratos são animais inteligentes, sociais e curiosos que necessitam estimulação mental e física. Sociais: NUNCA manter isolados - mínimo 2 (mesmo sexo ou castrados). Gaiola: grande, multi-níveis com rampas/escadas. Enriquecimento: túneis, redes para escalar, caixas de papelão (adoram destruir), rolos de papel higiênico, brinquedos rotacionados. Forrageiras: esconder comida em bolas, papel amassado. Tempo fora da gaiola: mínimo 1h diária em área segura, supervisionado. Treinamento: ratos aprendem truques facilmente com reforço positivo. Interação social: ratos formam vínculos fortes com tutores, muitos adoram ficar no ombro/colo. Observar hierarquia do grupo - dominância é normal, mas separar se houver agressão com ferimentos. Ambiente enriquecido previne estresse, estereotipias e obesidade.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 278
+  },
+  {
+    "id_postagem_artigo": 132,
+    "id_veterinario": 4,
+    "titulo": "Sinais de doença em coelhos",
+    "conteudo": "Coelhos são presas e escondem sinais de doença - observação atenta é crucial. Sinais de alerta: anorexia (não comer >12h é emergência - estase gastrointestinal), ausência de fezes/fezes pequenas, diarreia, ranger de dentes (dor), postura curvada, isolamento, respiração ofegante, secreção nasal/ocular, inclinação de cabeça, perda de equilíbrio, convulsões. Comportamentos normais: comer cecotrofos (fezes especiais - essencial), dentes rangendo suave quando relaxados. Doenças comuns: estase GI (potencialmente fatal - requer tratamento imediato), má oclusão dentária, infecções respiratórias, abcessos, mixomatose, doença hemorrágica viral. Prevenção: dieta adequada (feno ilimitado), vacinação, higiene, veterinário especializado. Check-up anual mínimo. Ao menor sinal de anorexia ou letargia, procure veterinário urgentemente - coelhos deterioram rapidamente.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 301
+  },
+  {
+    "id_postagem_artigo": 133,
+    "id_veterinario": 6,
+    "titulo": "Castração em coelhos e roedores",
+    "conteudo": "Castração traz benefícios significativos para coelhos e alguns roedores. Benefícios em coelhos: fêmeas - redução drástica de risco de câncer uterino (80% fêmeas não castradas desenvolvem após 5 anos), elimina pseudogestações; machos - reduz agressividade, marcação urinária, permite convivência com fêmeas. Em roedores: principalmente recomendada para permitir grupos mistos, reduz agressividade em alguns casos. Procedimento: anestesia inalatória (mais segura), orquiectomia em machos, ovariohisterectomia em fêmeas (mais complexa). Idade ideal: coelhos 4-6 meses. Riscos: anestésicos (escolher veterinário experiente em exóticos essencial), pós-operatório (monitoramento próximo). Recuperação: manter aquecido, monitorar alimentação (deve voltar a comer em 12h), analgesia adequada. Cuidados pós: evitar saltos por 10-14 dias, usar roupa cirúrgica se lamber pontos. Benefícios superam riscos quando feito por profissional qualificado.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 245
+  },
+  {
+    "id_postagem_artigo": 134,
+    "id_veterinario": 8,
+    "titulo": "Estresse térmico em roedores e lagomorfos",
+    "conteudo": "Muitos pequenos mamíferos são sensíveis a temperaturas extremas. Faixas ideais: coelhos 15-21°C, chinchilas <20°C, hamsters 18-24°C, porquinhos-da-índia 18-24°C, ratos 18-26°C. Sinais de superaquecimento: respiração ofegante, salivação, letargia extrema, orelhas vermelhas (coelhos dissipam calor pelas orelhas), convulsões (emergência). Prevenção no calor: ambiente climatizado ou ventilado, garrafas congeladas envoltas em toalha, cerâmicas/pedras refrigeradas, banhos de orelhas frescas (coelhos), água fresca sempre disponível, evitar exposição ao sol. Hipotermia: também perigosa, principalmente filhotes. Sinais: tremores, letargia, extremidades frias. Aquecimento gradual com bolsas térmicas. Animais idosos, doentes ou muito jovens são mais vulneráveis. Temperatura adequada é essencial - desvios causam estresse grave podendo ser fatal. Monitorar temperatura ambiente com termômetro.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 135,
+    "id_veterinario": 10,
+    "titulo": "Escolha de substrato para roedores",
+    "conteudo": "Substrato adequado é importante para conforto, higiene e saúde. Opções seguras: aparas de madeira de álamo/aspen (evitar cedro/pinho - óleos aromáticos causam problemas respiratórios), papel reciclado/pellets de papel (baixa poeira, absorvente, seguro se ingerido), pellets de madeira compactada, fleece/tecido (lavável, confortável - requer limpeza frequente), hemp (cânhamo - absorvente, baixa poeira). Evitar: serragem fina (poeira causa problemas respiratórios), areia para gatos (ingestão causa impactação), jornal (tinta pode ser tóxica), feno como cama principal (deve estar disponível para alimentação). Profundidade: 5-8cm permite comportamento de escavação. Trocar completamente semanalmente (ou quando necessário), limpeza spot diária. Para animais com problemas respiratórios, preferir opções sem poeira. Alguns animais têm preferências - observe conforto.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 223
+  },
+  {
+    "id_postagem_artigo": 136,
+    "id_veterinario": 12,
+    "titulo": "Parasitas em coelhos e roedores",
+    "conteudo": "Parasitas podem afetar pequenos mamíferos mesmo em ambiente doméstico. Externos: pulgas (transmitidas por outros pets), ácaros (sarna - coceira intensa, perda de pelo), piolhos, moscas (miíase - larvas em feridas/área suja, grave). Internos: coccídios (protozoários - diarreia, principalmente jovens), oxiúros (vermes intestinais), Encephalitozoon cuniculi (coelhos - pode causar problemas neurológicos/renais). Sinais: coceira, perda de pelo, feridas, diarreia, perda de peso, distensão abdominal, inclinação de cabeça. Diagnóstico: exame físico, raspado de pele, exame de fezes. Tratamento: antiparasitários específicos conforme agente. Prevenção: higiene rigorosa, evitar contato com animais infectados, quarentena de novos animais, controlar parasitas em outros pets da casa. Coelhos externos: vermifugação regular. Ambiente limpo e seco reduz risco significativamente.",
+    "id_categoria_artigo": 3,
+    "visualizacoes": 289
+  },
+  {
+    "id_postagem_artigo": 137,
+    "id_veterinario": 14,
+    "titulo": "Temperatura corporal ideal para iguanas",
+    "conteudo": "Iguanas são répteis ectotérmicos - dependem do ambiente para regulação térmica. Sistema de termorregulação por gradiente térmico é essencial. Área de aquecimento (basking): 35-40°C - lâmpada de aquecimento/spot direcionada a galho ou plataforma elevada. Lado quente: 28-32°C. Lado frio: 24-27°C. Noturno: pode cair para 21-24°C (desligar luzes). Medir temperatura com termômetros digitais com sonda em diferentes pontos. Fontes de calor: lâmpadas incandescentes/halógenas durante o dia (ciclo dia/noite é importante), cerâmicas/painéis para calor noturno sem luz. Evitar pedras aquecedoras - causam queimaduras graves. Termorregulação inadequada causa: letargia, anorexia, imunossupressão, problemas digestivos. Jovens precisam temperaturas ligeiramente mais altas. Umidade também importante: 65-75%. Equipamento adequado é investimento essencial.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 198
+  },
+  {
+    "id_postagem_artigo": 138,
+    "id_veterinario": 16,
+    "titulo": "Alimentação de serpentes em cativeiro",
+    "conteudo": "Serpentes são carnívoras com necessidades específicas. Presas: roedores (camundongos, ratos) criados para alimentação - nunca capturados (parasitas, doenças). Tamanho da presa: aproximadamente diâmetro da parte mais larga da serpente. Congelado vs vivo: congelado-descongelado é mais seguro (presas vivas podem ferir serpente), mais prático e humanitário. Descongelar completamente em água morna (nunca micro-ondas). Frequência: jovens semanalmente, adultos a cada 10-21 dias (varia por espécie). Método: pinças para oferecer, em recipiente separado evita ingestão de substrato. Jejum pré-ecdise é normal. Sinais de subnutrição: costelas visíveis, perda de massa muscular. Obesidade: dobras de pele, corpo arredondado. Regurgitação: esperar 10-14 dias antes de nova alimentação, investigar causas (temperatura inadequada, estresse, doença). Nunca manusear 48h após alimentação.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 139,
+    "id_veterinario": 18,
+    "titulo": "Montagem de terrário para pogona (dragão barbudo)",
+    "conteudo": "Pogonas são lagartos populares que requerem setup específico. Terrário: mínimo 120x60x60cm para adultos (maiores são mais ativos). Substrato: areia própria para répteis compactável, papel, tapete reptil (evitar areia solta - impactação). Aquecimento: gradiente 24°C (frio) a 40-43°C (basking). Lâmpadas: spot de aquecimento + UVB (10-12% essencial para síntese vitamina D3 e metabolismo cálcio). Trocar UVB a cada 6-12 meses. Fotoperíodo: 12-14h luz. Decoração: galhos para escalar e basking, esconderijos em ambos lados (quente/frio), tigela rasa de água. Umidade: 30-40% (baixa). Limpeza: spot diária, completa quinzenal. Pogonas são diurnas, terrestres-arborícolas, onívoras (insetos + vegetais). Jovens: mais insetívoros. Adultos: 70-80% vegetais. Animais robustos mas requerem cuidados apropriados para prosperar.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 140,
+    "id_veterinario": 20,
+    "titulo": "Iluminação UVB para répteis",
+    "conteudo": "Iluminação UVB adequada é vital para répteis diurnos. UVB permite síntese de vitamina D3, essencial para absorção de cálcio. Deficiência causa doença metabólica óssea (DMO): ossos moles, deformidades, fraturas, convulsões. Tipos de lâmpadas: fluorescentes tubulares (5.0 para tropicais, 10.0 para deserto), compactas (menor área cobertura), vapor de mercúrio (UVB + calor + luz visível - ideais para terrários grandes). Posicionamento: dentro do terrário ou sobre tela (vidro bloqueia UVB), distância apropriada conforme especificações (geralmente 20-30cm). Substituição: a cada 6-12 meses mesmo se ainda acendem (UVB degrada). Fotoperíodo: 10-14h conforme espécie/estação. Medir UVB: medidores específicos permitem verificação. Espécies noturnas não necessitam UVB. Suplementação de cálcio+D3 complementa mas não substitui UVB em espécies diurnas.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 245
+  },
+  {
+    "id_postagem_artigo": 141,
+    "id_veterinario": 2,
+    "titulo": "Doença metabólica óssea (DMO) em répteis",
+    "conteudo": "DMO é condição grave resultante de desequilíbrio cálcio/fósforo/vitamina D3. Causas: deficiência de UVB, dieta pobre em cálcio, excesso de fósforo, doenças renais/hepáticas. Sinais precoces: diminuição de apetite, letargia, fraqueza membros posteriores. Avançados: ossos moles, mandíbula 'borrachuda', deformidades esqueléticas, fraturas patológicas, tremores, convulsões (hipocalcemia severa), paralisia. Diagnóstico: histórico, exame físico, radiografias (diminuição densidade óssea), exames de sangue (cálcio, fósforo). Tratamento: correção de UVB/temperatura, suplementação intensiva de cálcio injetável/oral, vitamina D3 (com cautela - tóxica em excesso), manejo nutricional. Prognóstico: bom se inicial, reservado se avançado (deformidades permanentes). Prevenção: UVB adequado, dieta balanceada, suplementação apropriada. Verificações veterinárias regulares detectam precocemente.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 221
+  },
+  {
+    "id_postagem_artigo": 142,
+    "id_veterinario": 5,
+    "titulo": "Hidratação adequada de répteis",
+    "conteudo": "Necessidades hídricas variam conforme espécie/habitat natural. Espécies de ambiente árido: podem obter água principalmente de alimento, bebem pouco. Tropicais: requerem alta umidade, bebem ativamente. Métodos de fornecimento: tigelas de água (trocar diariamente, muitos bebem durante banho), borrifação (gotas em folhas para espécies arborícolas - camaleões, alguns geckos), sistema de gotejamento, nebulizadores/foggers (aumentam umidade). Banhos: benéficos para maioria, auxiliam hidratação e ecdise, 15-20min em água morna rasa 1-2x/semana. Sinais de desidratação: olhos fundos, pele não retorna rapidamente quando pinçada, letargia, urato amarelado/alaranjado (deve ser branco). Filhotes/animais doentes são mais vulneráveis. Répteis podem desidratar rapidamente. Emergência: fluidoterapia subcutânea/intracelomática por veterinário. Umidade ambiental adequada é preventivo - higrômetro para monitorar.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 256
+  },
+  {
+    "id_postagem_artigo": 143,
+    "id_veterinario": 7,
+    "titulo": "Ecdise (troca de pele) em répteis",
+    "conteudo": "Ecdise é processo natural de crescimento onde pele antiga é substituída. Frequência: jovens frequentemente (crescem rápido), adultos menos. Varia por espécie: serpentes em peça única, lagartos em pedaços. Sinais de pré-ecdise: opacidade ocular (serpentes - 'olhos azuis'), coloração pálida, inapetência, comportamento recluso. Duração: 1-2 semanas. Ecdise normal: pele sai completa ou em grandes pedaços, inclui óculos oculares (serpentes), dedos sem retenções. Problemas: ecdise retida (pele não sai completamente) - causas: baixa umidade, desidratação, desnutrição, doenças, falta de estruturas para fricção. Áreas críticas: dedos (retenção pode causar necrose/perda), cauda, olhos. Auxílio: aumentar umidade, banhos mornos, úmida hide, fricção suave com pano úmido. Nunca puxar pele forçadamente. Retenções frequentes indicam problema - ajustar parâmetros ambientais.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 234
+  },
+  {
+    "id_postagem_artigo": 144,
+    "id_veterinario": 9,
+    "titulo": "Infecções respiratórias em répteis",
+    "conteudo": "Infecções respiratórias (IRs) são comuns e potencialmente fatais. Causas: temperaturas inadequadas (principal fator - compromete imunidade), baixa umidade, estresse, má ventilação, exposição a agentes infecciosos. Agentes: bactérias (mais comum), vírus, fungos, parasitas. Sinais: respiração com boca aberta (fora do basking), secreção nasal/oral, sons respiratórios (chiado, estalo), letargia, anorexia, pescoço estendido, flutuação anormal (tartarugas aquáticas). Diagnóstico: exame físico, radiografias, cultura/sensibilidade de secreções, exames de sangue. Tratamento: antibióticos sistêmicos (duração prolongada), correção de temperatura/umidade, suporte (fluidoterapia, nutrição assistida se necessário), nebulização. Prognóstico: bom se tratamento precoce, pode ser fatal se avançado. Prevenção: parâmetros ambientais corretos, quarentena, higiene, evitar estresse. IRs avançam rapidamente - busque veterinário ao primeiro sinal.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 278
+  },
+  {
+    "id_postagem_artigo": 145,
+    "id_veterinario": 11,
+    "titulo": "Quarentena para novos répteis",
+    "conteudo": "Quarentena é protocolo essencial ao adquirir novos répteis. Duração: mínimo 60-90 dias (algumas doenças têm período de incubação longo). Setup separado: terrário próprio em cômodo diferente (evitar contaminação cruzada), equipamentos exclusivos (pinças, tigelas). Objetivos: observar sinais de doença, permitir aclimatação sem estresse adicional, prevenir transmissão de patógenos para coleção existente. Durante quarentena: monitorar alimentação, fezes, comportamento, ecdises; realizar exames: fezes para parasitas, swab oral/cloacal se possível; tratar problemas identificados. Higiene rigorosa: lavar mãos, trocar roupas entre animais, limpar equipamentos do animal em quarentena por último. Após período assintomático e exames negativos: introdução gradual. Animais capturados da natureza (desencorajado): quarentena estendida, exames mais extensivos. Pular quarentena pode devastar coleção inteira com doenças contagiosas.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 198
+  },
+  {
+    "id_postagem_artigo": 146,
+    "id_veterinario": 13,
+    "titulo": "Suplementação nutricional para répteis",
+    "conteudo": "Suplementação adequada previne deficiências nutricionais comuns. Cálcio: essencial para metabolismo ósseo, contração muscular, coagulação. Polvilhar insetos/alimento 2-3x/semana (jovens/gestantes podem precisar diariamente). Cálcio COM vs SEM D3: usar com D3 se UVB inadequado/ausente, sem D3 se UVB apropriado (excesso D3 é tóxico). Multivitamínico: 1x/semana, contém vitamina A, E, complexo B. Não exagerar - hipervitaminose também é prejudicial. Gut-loading: alimentar insetos com nutrientes de qualidade 24-48h antes - transfere nutrição para réptil. Dusting: polvilhar suplementos em presa/alimento imediatamente antes de oferecer. Espécies herbívoras: oferecer vegetais ricos em cálcio (couve, mostarda, dente-de-leão), evitar excesso de espinafre/couve-flor (oxalatos). Necessidades variam por espécie, idade, status reprodutivo. Excesso pode ser tão prejudicial quanto deficiência.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 267
+  },
+  {
+    "id_postagem_artigo": 147,
+    "id_veterinario": 15,
+    "titulo": "Reprodução de leopard geckos",
+    "conteudo": "Leopard geckos (Eublepharis macularius) são lagartos populares com reprodução relativamente simples. Maturidade: 10-12 meses, peso mínimo 45g (fêmeas). Resfriamento (brumação opcional mas estimula): 6-8 semanas a 15-18°C. Acasalamento: apresentar macho à fêmea, supervisionar (agressão rara). Gestação: 3-4 semanas. Sinais: abdômen distendido, ovos visíveis através da pele. Postura: 2 ovos por clutch, até 8 clutches por estação. Nest box: recipiente com substrato úmido (vermiculita, perlita). Incubação: 32-33°C produz machos, 26-28°C fêmeas, 30°C ambos (determinação sexual por temperatura). Umidade 80-90%. Período: 35-90 dias. Filhotes: 7-10cm, cuidados similares a adultos mas menor espaçamento de alimentação. Não reproduzir fêmeas consecutivamente sem intervalo - desgaste de cálcio. Ter plano para filhotes antes de reproduzir.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 245
+  },
+  {
+    "id_postagem_artigo": 148,
+    "id_veterinario": 17,
+    "titulo": "Manejo de tartarugas aquáticas em cativeiro",
+    "conteudo": "Tartarugas aquáticas (Trachemys, Podocnemis) requerem setup aquático/terrestre. Aquário/lago: 10x comprimento da carapaça em área (ex: tartaruga 20cm precisa mínimo 200cm comprimento). Profundidade: permite natação completa. Área seca (basking): plataforma estável, totalmente seca, facilmente acessível. Aquecimento: água 24-28°C (termostato submersível), área basking 30-35°C (lâmpada). UVB: essencial, 10-12%. Filtragem potente: tartarugas poluem muito - canister é ideal, 2-3x capacidade do volume. Trocas parciais semanais. Alimentação: jovens carnívoras (pellets, peixes, insetos), adultas onívoras (adicionar vegetais - 50% dieta). Não superalimentar. Substrato opcional (areia, cascalho grande - evitar ingestão). Principais problemas: DMO, infecções oculares/respiratórias, parasitas, podridão de casco. Podem viver 30+ anos - compromisso longo prazo.",
+    "id_categoria_artigo": 5,
+    "visualizacoes": 289
   }
 ]
