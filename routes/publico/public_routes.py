@@ -1,9 +1,9 @@
 import logging
 from fastapi import APIRouter, Request, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 
 from util.template_util import criar_templates
-from util.auth_decorator import obter_usuario_logado
+from util.auth_decorator import obter_usuario_logado, requer_autenticacao
 from repo import postagem_artigo_repo, veterinario_repo, categoria_artigo_repo, curtida_artigo_repo, postagem_feed_repo, curtida_feed_repo
 
 
@@ -124,9 +124,23 @@ async def get_detalhes_artigo(request: Request, id_postagem_artigo: int):
         "veterinario": veterinario,
         "categoria": categoria,
         "total_curtidas": total_curtidas,
-        "usuario_curtiu": usuario_curtiu,
+        "usuario_curtiu": usuario_curtiu
     }
+    # Verificar se usuário curtiu
+    usuario_curtiu = False
+    if usuario:
+        from repo import curtida_artigo_repo
+        curtida = curtida_artigo_repo.obter_por_id(usuario['id'], id_postagem_artigo)
+        usuario_curtiu = curtida is not None
 
+    # Adicionar ao context:
+    return templates.TemplateResponse("publico/detalhes_artigo.html", {
+        "request": request,
+        "artigo": artigo,
+        "total_curtidas": total_curtidas,
+        "usuario_curtiu": usuario_curtiu,  # ADICIONAR ESTA LINHA
+        "usuario_logado": usuario
+    })
     return templates.TemplateResponse("publico/detalhes_artigo.html", context)
 
 
@@ -188,3 +202,56 @@ async def get_detalhes_post(request: Request, id_postagem_feed: int):
     }
 
     return templates.TemplateResponse("publico/detalhes_post.html", context)
+
+@router.post("/petgram/{id_post}/curtir")
+@requer_autenticacao()
+async def curtir_feed(request: Request, id_postagem_feed: int, usuario_logado: dict = None):
+    from model.curtida_feed_model import CurtidaFeed
+    from repo import curtida_feed_repo
+    from datetime import datetime
+    from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_info
+
+    curtida_existente = curtida_feed_repo.obter_por_id(usuario_logado['id'], id_postagem_feed)
+
+    if curtida_existente:
+        # Descurtir
+        curtida_feed_repo.excluir(usuario_logado['id'], id_postagem_feed)
+        adicionar_mensagem_info(request, "Curtida removida.")
+    else:
+        # Curtir
+        curtida = CurtidaFeed(
+            id_usuario=usuario_logado['id'],
+            id_postagem_feed=id_postagem_feed,
+            data_curtida=datetime.now()
+        )
+        curtida_feed_repo.inserir(curtida)
+        adicionar_mensagem_sucesso(request, "Post curtido!")
+
+    return RedirectResponse(f"/petgram/{id_postagem_feed}", status_code=303)
+
+
+@router.post("/artigos/{id_artigo}/curtir")
+@requer_autenticacao()
+async def curtir_artigo(request: Request, id_artigo: int, usuario_logado: dict = None):
+    from model.curtida_artigo_model import CurtidaArtigo
+    from repo import curtida_artigo_repo
+    from datetime import datetime
+    from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_info
+
+    curtida_existente = curtida_artigo_repo.obter_por_id(usuario_logado['id'], id_artigo)
+
+    if curtida_existente:
+        # Descurtir
+        curtida_artigo_repo.excluir(usuario_logado['id'], id_artigo)
+        adicionar_mensagem_info(request, "Curtida removida.")
+    else:
+        # Curtir
+        curtida = CurtidaArtigo(
+            id_usuario=usuario_logado['id'],
+            id_postagem_artigo=id_artigo,
+            data_curtida=datetime.now()
+        )
+        curtida_artigo_repo.inserir(curtida)
+        adicionar_mensagem_sucesso(request, "Artigo curtido!")
+
+    return RedirectResponse(f"/artigos/{id_artigo}", status_code=303)
