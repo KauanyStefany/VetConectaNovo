@@ -96,7 +96,7 @@ CLAUDE.md
 
 node_modules/
 dados.db
-codebase_default.md
+codebase*
 docs/antigos/
 .aidigestignore
 *.temp
