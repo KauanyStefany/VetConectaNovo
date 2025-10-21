@@ -1,85 +1,57 @@
-{# TODO: Template de Alteração de Senha
+{% extends "base_publica.html" %}
 
-   DESCRIÇÃO:
-   Formulário para o usuário alterar sua senha.
-   Requer senha atual, nova senha e confirmação.
+{% block titulo %}Alterar Senha{% endblock %}
 
-   PASSOS PARA IMPLEMENTAÇÃO:
-
-   1. ESTRUTURA BASE:
-      - Estender {% extends "base_publica.html" %}
-      - Definir {% block titulo %}Alterar Senha{% endblock %}
-      - Container centralizado: col-md-6
-
-   2. TÍTULO:
-      - <h2 class="mb-4">Alterar Senha</h2>
-
-   3. EXIBIR MENSAGENS:
-      - Mensagem de erro (se existir):
-        {% if erro %}
-          <div class="alert alert-danger">{{ erro }}</div>
-        {% endif %}
-
-      - Mensagem de sucesso (se existir):
-        {% if sucesso %}
-          <div class="alert alert-success">{{ sucesso }}</div>
-        {% endif %}
-
-   4. FORMULÁRIO:
-      - method="post" action="/perfil/alterar-senha"
-
-   5. CAMPOS DO FORMULÁRIO (3 campos):
-
-      a) Senha Atual:
-         - Label: "Senha Atual"
-         - Input: type="password" name="senha_atual" required
-
-      b) Nova Senha:
-         - Label: "Nova Senha"
-         - Input: type="password" name="senha_nova" required
-         - Small text: "Mínimo 6 caracteres"
-         - Classe small: <small class="form-text text-muted">
-
-      c) Confirmar Nova Senha:
-         - Label: "Confirmar Nova Senha"
-         - Input: type="password" name="confirmar_senha" required
-
-   6. BOTÕES DE AÇÃO:
-      - Salvar: <button type="submit" class="btn btn-roxo">Alterar Senha</button>
-      - Cancelar: <a href="/perfil" class="btn btn-outline-secondary">Cancelar</a>
-
-   7. ESTRUTURA RECOMENDADA:
-      <div class="container my-5">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <!-- Título, alertas e formulário aqui -->
-          </div>
+{% block conteudo %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Alterar Senha</h2>
+            {% if erro %}
+            <div class="alert alert-danger">{{ erro }}</div>
+            {% endif %}
+      {% if sucesso %}
+            <div class="alert alert-success">{{ sucesso }}</div>
+            {% endif %}
+            <form method="post" action="/perfil/alterar-senha" novalidate>
+                <div class="form-group mb-3">
+                    <label for="senha_atual">Senha Atual</label>
+                    <input
+                        id="senha_atual"
+                        name="senha_atual"
+                        type="password"
+                        class="form-control"
+                        required
+                    >
+                </div>
+                <div class="form-group mb-3">
+                    <label for="senha_nova">Nova Senha</label>
+                    <input
+                        id="senha_nova"
+                        name="senha_nova"
+                        type="password"
+                        class="form-control"
+                        required
+                        minlength="6"
+                    >
+                    <small class="form-text text-muted">Mínimo 6 caracteres</small>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="confirmar_senha">Confirmar Nova Senha</label>
+                    <input
+                        id="confirmar_senha"
+                        name="confirmar_senha"
+                        type="password"
+                        class="form-control"
+                        required
+                    >
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-roxo">Alterar Senha</button>
+                    <a href="/perfil" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
         </div>
-      </div>
-
-   VARIÁVEIS RECEBIDAS DO BACKEND:
-   - request: Objeto Request
-   - erro: String com mensagem de erro (opcional)
-   - sucesso: String com mensagem de sucesso (opcional)
-
-   EXEMPLO DE REFERÊNCIA:
-   Ver templates/publico/redefinir_senha.html para estrutura similar
-
-   VALIDAÇÕES (feitas no backend):
-   - Senha atual deve ser correta
-   - Nova senha e confirmação devem coincidir
-   - Nova senha deve ter mínimo 6 caracteres
-
-   FLUXO:
-   1. Usuário preenche 3 campos
-   2. Backend valida (routes/publico/perfil_routes.py linha 160)
-   3. Se erro: retorna com mensagem em variável 'erro'
-   4. Se sucesso: retorna com mensagem em variável 'sucesso'
-
-   ATENÇÃO:
-   - Todos os campos são type="password" (não type="text")
-   - Todos os campos são obrigatórios (required)
-   - Adicionar dica de "mínimo 6 caracteres" abaixo do campo nova senha
-#}
-
-{# Seu código HTML aqui #}
+    </div>
+</div>
+{% endblock %}
