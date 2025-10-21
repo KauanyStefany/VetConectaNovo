@@ -1,4 +1,4 @@
-{# TODO: Formulário de Novo Artigo
+<!-- {# TODO: Formulário de Novo Artigo
    - Título: "Novo Artigo"
    - Form: method="post" action="/veterinario/cadastrar_postagem_artigo" enctype="multipart/form-data"
    - Campo 1: Título (type="text" name="titulo" required)
@@ -15,4 +15,77 @@
    ATENÇÃO: enctype="multipart/form-data" é OBRIGATÓRIO!
    VALIDAÇÃO: Título min 2 palavras, Conteúdo min 10 palavras (DTO)
    Referência: templates/tutor/fazer_postagem_feed.html e templates/publico/cadastro.html
-#}
+#} -->
+{% extends "base_publica.html" %}
+
+{% block titulo %}Novo Artigo{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="col-md-10 mx-auto bg-white p-4 rounded shadow-sm">
+        <h2 class="mb-4">Novo Artigo</h2>
+        {% if erro %}
+        <div class="alert alert-danger">{{ erro }}</div>
+        {% endif %}
+    {% if sucesso %}
+        <div class="alert alert-success">{{ sucesso }}</div>
+        {% endif %}
+        <form method="post" action="/veterinario/cadastrar_postagem_artigo" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input
+                    id="titulo"
+                    name="titulo"
+                    type="text"
+                    class="form-control"
+                    placeholder="Título do artigo"
+                    required
+                >
+                <small class="form-text text-muted">Mínimo: 2 palavras.</small>
+            </div>
+            <div class="mb-3">
+                <label for="id_categoria_artigo" class="form-label">Categoria</label>
+                <select
+                    id="id_categoria_artigo"
+                    name="id_categoria_artigo"
+                    class="form-select"
+                    required
+                >
+                    <option value="">Selecione uma categoria</option>
+                    {% for categoria in categorias %}
+                    <option value="{{ categoria.id_categoria_artigo }}">{{ categoria.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="conteudo" class="form-label">Conteúdo</label>
+                <textarea
+                    id="conteudo"
+                    name="conteudo"
+                    class="form-control"
+                    rows="15"
+                    placeholder="Escreva o conteúdo do artigo..."
+                    required
+                ></textarea>
+                <small class="form-text text-muted">Mínimo: 10 palavras.</small>
+            </div>
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto do Artigo</label>
+                <input
+                    id="foto"
+                    name="foto"
+                    type="file"
+                    accept="image/*"
+                    class="form-control"
+                    required
+                >
+                <small class="form-text text-muted">Tamanho máximo: 5MB. Será salva como imagem do artigo.</small>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-roxo">Publicar</button>
+                <a href="/veterinario/listar_postagem_artigo" class="btn btn-outline-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

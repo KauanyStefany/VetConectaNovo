@@ -1,0 +1,54 @@
+<!-- {# TODO: Formulário de Edição de Post (apenas descrição)
+   - Título: "Editar Post"
+   - Mostrar imagem atual: /static/img/feeds/{{ '%08d' % post.id_postagem_feed }}.jpg
+   - Form: method="post" action="/tutor/editar_postagem_feed"
+   - Hidden: <input type="hidden" name="id_postagem" value="{{ post.id_postagem_feed }}">
+   - Campo: Descrição (textarea com value="{{ post.descricao }}" required)
+   - Botões: Salvar (btn-laranja) e Cancelar
+   Variáveis: request, post (objeto PostagemFeed)
+   NOTA: Não permite trocar foto, apenas descrição
+   Referência: Ver templates/admin/alterar_categoria.html
+#} -->
+
+{% extends "base_publica.html" %}
+
+{% block titulo %}Editar Post{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4">Editar Post</h2>
+            <!-- Imagem atual -->
+            <div class="mb-4 text-center">
+                <img
+                    src="/static/img/feeds/{{ '%08d' % post.id_postagem_feed }}.jpg"
+                    alt="Imagem do Post"
+                    class="img-fluid rounded"
+                    style="max-height: 400px;"
+                    onerror="this.src='/static/img/default-feed.jpg'"
+                >
+            </div>
+            <!-- Formulário: apenas descrição -->
+            <form method="post" action="/tutor/editar_postagem_feed">
+                <input type="hidden" name="id_postagem" value="{{ post.id_postagem_feed }}">
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Descrição</label>
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        class="form-control"
+                        rows="6"
+                        required
+                    >{{ post.descricao }}</textarea>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-laranja">Salvar</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
