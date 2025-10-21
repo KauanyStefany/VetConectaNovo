@@ -1,4 +1,4 @@
-{# TODO: Solicitar Verificação de CRMV
+<!-- {# TODO: Solicitar Verificação de CRMV
    - Título: "Solicitar Verificação de CRMV"
    - Card com informações:
      <div class="card mb-4 bg-light">
@@ -17,4 +17,43 @@
    Variáveis: request, crmv (string do CRMV do veterinário logado)
    NOTA: O CRMV já está cadastrado no perfil, esta página apenas envia solicitação
    Referência: templates/admin/excluir_categoria.html (confirmação simples)
-#}
+#} -->
+
+{% extends "base_publica.html" %}
+
+{% block titulo %}Solicitar Verificação de CRMV{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="col-md-8 mx-auto bg-white p-4 rounded shadow-sm">
+        <h2 class="mb-3">Solicitar Verificação de CRMV</h2>
+        {% if erro %}
+        <div class="alert alert-danger">{{ erro }}</div>
+        {% endif %}
+    {% if sucesso %}
+        <div class="alert alert-success">{{ sucesso }}</div>
+        {% endif %}
+        <div class="card mb-4 bg-light">
+            <div class="card-body">
+                <h5>O que é a verificação de CRMV?</h5>
+                <p>A verificação confirma que você é um veterinário registrado e concede o selo verificado ao seu perfil.</p>
+                <p>
+                    <strong>Seu CRMV cadastrado:</strong>
+                    <span class="badge bg-secondary">{{ crmv }}</span>
+                </p>
+            </div>
+        </div>
+        <div class="alert alert-warning">
+            <strong>Atenção:</strong>
+            Certifique-se de que seu CRMV está correto antes de solicitar.
+        </div>
+        <p class="text-muted">Após solicitar, um administrador verificará seu CRMV e você receberá uma resposta por e-mail.</p>
+        <form method="post" action="/veterinario/fazer_solicitacao_crmv">
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-verde">Confirmar Solicitação</button>
+                <a href="/veterinario/obter_solicitacao_crmv" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

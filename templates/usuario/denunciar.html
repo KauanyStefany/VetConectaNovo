@@ -1,4 +1,4 @@
-{# TODO: Formulário de Denúncia de Conteúdo
+<!-- {# TODO: Formulário de Denúncia de Conteúdo
    - Título: "Denunciar Conteúdo"
    - Alert warning: "Use denúncias apenas para conteúdo inapropriado, spam ou violações."
    - Card mostrando informações do conteúdo denunciado:
@@ -13,4 +13,46 @@
    CHAMADA: Esta página é acessada via query params: ?tipo=artigo&id_conteudo=123
    VALIDAÇÃO DTO: Motivo min 5 palavras
    Referência: templates/usuario/solicitar_chamado.html (form similar)
-#}
+#} -->
+{% extends "base_publica.html" %}
+
+{% block titulo %}Denunciar Conteúdo{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <h2 class="mb-3 text-danger">Denunciar Conteúdo</h2>
+    <div class="alert alert-warning">
+        Use denúncias apenas para conteúdo inapropriado, spam ou violações.
+    </div>
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="mb-1">
+                <strong>Tipo:</strong> {{ tipo|capitalize }}
+            </p>
+            <p class="mb-0">
+                <strong>ID:</strong> {{ id_conteudo }}
+            </p>
+        </div>
+    </div>
+    <form method="post" action="/usuario/denunciar">
+        <input type="hidden" name="tipo" value="{{ tipo }}">
+        <input type="hidden" name="id_conteudo" value="{{ id_conteudo }}">
+        <div class="mb-3">
+            <label for="motivo" class="form-label">Motivo</label>
+            <textarea
+                id="motivo"
+                name="motivo"
+                class="form-control"
+                rows="5"
+                placeholder="Descreva o motivo da denúncia..."
+                required
+            ></textarea>
+            <small class="form-text text-muted">Seja claro e objetivo. Motivo mínimo: 5 palavras.</small>
+        </div>
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">Enviar Denúncia</button>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

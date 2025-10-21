@@ -1,4 +1,4 @@
-{# TODO: Confirmação de Exclusão de Artigo
+<!-- {# TODO: Confirmação de Exclusão de Artigo
    - Título: "Excluir Artigo" (text-danger)
    - Alert warning: "Esta ação não pode ser desfeita. Curtidas e comentários também serão removidos."
    - Card mostrando:
@@ -13,4 +13,121 @@
    - Link: Cancelar
    Variáveis: request, artigo
    Referência: templates/admin/excluir_categoria.html
-#}
+#} -->
+// ...existing code...
+{% extends "base_publica.html" %}
+
+{% block titulo %}Excluir Artigo{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="text-danger mb-3">Excluir Artigo</h2>
+            <div class="alert alert-warning">
+                <strong>Atenção:</strong>
+                Esta ação não pode ser desfeita. Curtidas e comentários também serão removidos.
+            </div>
+            <div class="card mb-4">
+                <div class="row g-0">
+                    <div class="col-md-4 text-center p-3">
+                        <img
+                            src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg"
+                            alt="Imagem do Artigo"
+                            class="img-fluid rounded"
+                            style="max-height:220px;"
+                            onerror="this.src='/static/img/default-artigo.jpg'"
+                        >
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artigo.titulo }}</h5>
+                            {% set categoria_nome = artigo.nome_categoria or artigo.categoria or artigo.categoria_nome or 'Sem categoria' %}
+                            <p class="mb-2">
+                                <span class="badge bg-secondary">{{ categoria_nome }}</span>
+                            </p>
+                            <p class="small text-muted mb-1">
+                                {{ artigo.data_publicacao | data_br if artigo.data_publicacao else (artigo.criado_em | data_br if artigo.criado_em else '') }}
+                            </p>
+                            <p class="small text-muted mb-3">Visualizações: {{ artigo.visualizacoes or 0 }}</p>
+                            <p class="card-text">
+                                {{ (artigo.conteudo or '')[:200] }}{% if artigo.conteudo and artigo.conteudo|length > 200 %}...{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" action="/veterinario/excluir_postagem_artigo" onsubmit="return confirm('Confirma exclusão deste artigo? Esta ação não pode ser desfeita.');">
+                <input type="hidden" name="id_postagem" value="{{ artigo.id_postagem_artigo }}">
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-2"></i>
+                        Confirmar Exclusão
+                    </button>
+                    <a href="/veterinario/listar_postagem_artigo" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+...existing code...
+```// filepath: c:\Users\20221imi021\VETATUALIZADO\VetConectaNovo\templates\veterinario\excluir_postagem_artigo.html
+// ...existing code...
+{% extends "base_publica.html" %}
+
+{% block titulo %}Excluir Artigo{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="text-danger mb-3">Excluir Artigo</h2>
+            <div class="alert alert-warning">
+                <strong>Atenção:</strong>
+                Esta ação não pode ser desfeita. Curtidas e comentários também serão removidos.
+            </div>
+            <div class="card mb-4">
+                <div class="row g-0">
+                    <div class="col-md-4 text-center p-3">
+                        <img
+                            src="/static/img/artigos/{{ '%08d' % artigo.id_postagem_artigo }}.jpg"
+                            alt="Imagem do Artigo"
+                            class="img-fluid rounded"
+                            style="max-height:220px;"
+                            onerror="this.src='/static/img/default-artigo.jpg'"
+                        >
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artigo.titulo }}</h5>
+                            {% set categoria_nome = artigo.nome_categoria or artigo.categoria or artigo.categoria_nome or 'Sem categoria' %}
+                            <p class="mb-2">
+                                <span class="badge bg-secondary">{{ categoria_nome }}</span>
+                            </p>
+                            <p class="small text-muted mb-1">
+                                {{ artigo.data_publicacao | data_br if artigo.data_publicacao else (artigo.criado_em | data_br if artigo.criado_em else '') }}
+                            </p>
+                            <p class="small text-muted mb-3">Visualizações: {{ artigo.visualizacoes or 0 }}</p>
+                            <p class="card-text">
+                                {{ (artigo.conteudo or '')[:200] }}{% if artigo.conteudo and artigo.conteudo|length > 200 %}...{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" action="/veterinario/excluir_postagem_artigo" onsubmit="return confirm('Confirma exclusão deste artigo? Esta ação não pode ser desfeita.');">
+                <input type="hidden" name="id_postagem" value="{{ artigo.id_postagem_artigo }}">
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-2"></i>
+                        Confirmar Exclusão
+                    </button>
+                    <a href="/veterinario/listar_postagem_artigo" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+...existing code...

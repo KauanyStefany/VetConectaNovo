@@ -1,4 +1,4 @@
-{# TODO: Listagem de Artigos do Veterinário
+<!-- {# TODO: Listagem de Artigos do Veterinário
    - Título: "Meus Artigos" com botão "Novo Artigo" (btn btn-roxo)
    - Tabela responsiva com colunas: ID | Título | Categoria | Visualizações | Data | Ações
    - Loop: {% for artigo in artigos %}
@@ -13,4 +13,71 @@
    - Botão Excluir: href="/veterinario/excluir_postagem_artigo/{{ artigo.id_postagem_artigo }}"
    Variáveis: request, artigos (lista de PostagemArtigo com dados de categoria)
    Referência: templates/admin/listar_categorias.html
-#}
+#} -->
+
+{% extends "base_publica.html" %}
+
+{% block titulo %}Meus Artigos{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Meus Artigos</h2>
+        <a href="/veterinario/cadastrar_postagem_artigo" class="btn btn-roxo">
+            <i class="bi bi-plus-circle me-2"></i>
+            Novo Artigo
+        </a>
+    </div>
+    {% if artigos and artigos|length > 0 %}
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Categoria</th>
+                    <th class="text-end">Visualizações</th>
+                    <th>Data</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artigo in artigos %}
+                <tr>
+                    <td>{{ artigo.id_postagem_artigo }}</td>
+                    <td>{{ artigo.titulo }}</td>
+                    <td>
+                        {% set cor = artigo.cor_categoria or '#6c757d' %}
+                        <span class="badge" style="background-color: {{ cor }};">
+                            {{ artigo.nome_categoria or artigo.categoria or 'Sem categoria' }}
+                        </span>
+                    </td>
+                    <td class="text-end">{{ artigo.visualizacoes|default(0) }}</td>
+                    <td>
+                        {% if artigo.data_publicacao %}
+              {{ artigo.data_publicacao | data_br }}
+            {% elif artigo.criado_em %}
+              {{ artigo.criado_em | data_br }}
+            {% else %}
+              {{ artigo.data | default('') }}
+            {% endif %}
+                    </td>
+                    <td class="text-end">
+                        <a href="/veterinario/alterar_postagem_artigo/{{ artigo.id_postagem_artigo }}" class="btn btn-sm btn-outline-roxo me-2">Editar</a>
+                        <a href="/veterinario/excluir_postagem_artigo/{{ artigo.id_postagem_artigo }}" class="btn btn-sm btn-outline-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="bi bi-file-earmark-text text-muted icon-lg"></i>
+        <h4 class="text-muted mt-3">Nenhum artigo encontrado.</h4>
+        <a href="/veterinario/cadastrar_postagem_artigo" class="btn btn-roxo mt-3">Criar primeiro artigo</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
