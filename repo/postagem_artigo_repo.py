@@ -164,4 +164,26 @@ def contar_por_categoria(id_categoria: int) -> int:
         row = cursor.fetchone()
         return row["total"] if row else 0
 
-def obter_por_veterinario()
+
+def obter_por_veterinario(id_veterinario: int) -> list[PostagemArtigo]:
+    """Retorna todos os artigos de um veterinário ordenados por data de publicação"""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT pa.*, u.nome as nome_veterinario, v.numero_crmv
+            FROM postagem_artigo pa
+            JOIN veterinario v ON pa.id_veterinario = v.id_veterinario
+            JOIN usuario u ON v.id_veterinario = u.id_usuario
+            WHERE pa.id_veterinario = ?
+            ORDER BY pa.data_publicacao DESC
+        """, (id_veterinario,))
+        rows = cursor.fetchall()
+        return [PostagemArtigo(
+            id_postagem_artigo=row["id_postagem_artigo"],
+            id_veterinario=row["id_veterinario"],
+            titulo=row["titulo"],
+            conteudo=row["conteudo"],
+            id_categoria_artigo=row["id_categoria_artigo"],
+            data_publicacao=datetime.strptime(row["data_publicacao"], "%Y-%m-%d %H:%M:%S").date(),
+            visualizacoes=row["visualizacoes"]
+        ) for row in rows]
