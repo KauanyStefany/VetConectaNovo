@@ -1,4 +1,4 @@
-{# TODO: Listagem de Posts do Tutor
+<!-- {# TODO: Listagem de Posts do Tutor
    - Título: "Meus Posts" com botão "Novo Post" (btn btn-laranja)
    - Grid row com col-md-4 para cada post
    - Cada card deve ter: imagem, descrição, data, botões Editar e Excluir
@@ -7,4 +7,46 @@
    - Botão Excluir: href="/tutor/excluir_postagem_feed/{{ post.id_postagem_feed }}"
    Variáveis: request, posts (lista de PostagemFeed)
    Referência: Ver templates/publico/petgram.html
-#}
+#} -->
+
+{% extends "base_publica.html" %}
+
+{% block title %}Meus Posts{% endblock %}
+
+{% block conteudo %}
+  <div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Meus Posts</h2>
+      <a href="/tutor/fazer_postagem_feed" class="btn btn-laranja">
+        <i class="bi bi-plus-circle me-2"></i>Novo Post
+      </a>
+    </div>
+
+    {% if posts %}
+    <div class="row g-4">
+      {% for post in posts %}
+      <div class="col-md-4">
+        <div class="card h-100">
+          <img src="/static/img/feeds/{{ '%08d' % post.id_postagem_feed }}.jpg" class="card-img-top" alt="Post image" onerror="this.src='/static/img/default-feed.jpg'">
+          <div class="card-body d-flex flex-column">
+            <p class="card-text">{{ post.descricao }}</p>
+            <p class="text-muted small mt-auto">{{ post.data_postagem.strftime('%d/%m/%Y %H:%M') if post.data_postagem else '' }}</p>
+            <div class="mt-3 d-flex gap-2">
+              <a href="/tutor/editar_postagem_feed/{{ post.id_postagem_feed }}" class="btn btn-sm btn-outline-roxo">Editar</a>
+              <a href="/tutor/excluir_postagem_feed/{{ post.id_postagem_feed }}" class="btn btn-sm btn-outline-danger">Excluir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <div class="text-center py-5">
+        <i class="bi bi-camera text-muted icon-lg"></i>
+        <h4 class="text-muted mt-3">Você ainda não publicou nenhum post</h4>
+        <a href="/tutor/fazer_postagem_feed" class="btn btn-laranja mt-3">Criar primeiro post</a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+

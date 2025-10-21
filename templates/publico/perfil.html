@@ -1,4 +1,4 @@
-{# TODO: Template de Visualização de Perfil do Usuário
+<!-- {# TODO: Template de Visualização de Perfil do Usuário
 
    DESCRIÇÃO:
    Esta página exibe as informações do perfil do usuário logado (Tutor ou Veterinário).
@@ -63,6 +63,63 @@
    - A rota POST /perfil/alterar-foto já está implementada em routes/publico/perfil_routes.py
    - Não esquecer enctype="multipart/form-data" no form de upload
    - Usar {% if usuario.perfil == 'tutor' %} para condicionar exibição
-#}
+#} -->
 
-{# Seu código HTML aqui #}
+{% extends "base_publica.html" %}
+
+{% block title %}Meu Perfil{% endblock %}
+
+{% block conteudo %}
+   <div class="container my-5">
+      {% set sucesso = request.query_params.get('sucesso') %}
+      {% set foto_sucesso = request.query_params.get('foto_sucesso') %}
+      {% set erro = request.query_params.get('erro') %}
+
+      {% if sucesso == '1' %}
+         <div class="alert alert-success">Dados atualizados com sucesso!</div>
+      {% endif %}
+      {% if foto_sucesso == '1' %}
+         <div class="alert alert-success">Foto alterada com sucesso!</div>
+      {% endif %}
+      {% if erro %}
+         <div class="alert alert-danger">{{ erro }}</div>
+      {% endif %}
+
+      <div class="row">
+         <div class="col-md-4 text-center">
+            <img src="/static/img/usuarios/{{ '%08d' % usuario.id_usuario }}.jpg" alt="Avatar" class="avatar-xl rounded-circle mb-3" onerror="this.src='/static/img/default-avatar.jpg'">
+
+            <form method="post" action="/perfil/alterar-foto" enctype="multipart/form-data">
+               <div class="mb-3">
+                  <input type="file" name="foto" accept="image/*" class="form-control">
+               </div>
+               <button type="submit" class="btn btn-roxo">Enviar Foto</button>
+            </form>
+         </div>
+
+         <div class="col-md-8">
+            <h3>{{ usuario.nome }}</h3>
+            <p class="mb-1"><strong>Email:</strong> {{ usuario.email }}</p>
+            <p class="mb-3"><strong>Perfil:</strong> {{ usuario.perfil|capitalize }}</p>
+
+            {% if usuario.perfil == 'tutor' %}
+               <p><strong>Quantidade de pets:</strong> {{ usuario.quantidade_pets }}</p>
+            {% elif usuario.perfil == 'veterinario' %}
+               <p><strong>CRMV:</strong> {{ usuario.crmv }}</p>
+               <p><strong>Status verificado:</strong>
+                  {% if usuario.verificado %}
+                     <span class="badge bg-success">Verificado</span>
+                  {% else %}
+                     <span class="badge bg-secondary">Pendente</span>
+                  {% endif %}
+               </p>
+            {% endif %}
+
+            <div class="mt-4">
+               <a href="/perfil/alterar" class="btn btn-outline-roxo">Editar Dados</a>
+               <a href="/perfil/alterar-senha" class="btn btn-outline-laranja ms-2">Alterar Senha</a>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}
