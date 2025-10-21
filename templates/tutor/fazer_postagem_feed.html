@@ -9,3 +9,35 @@
    ATENÇÃO: enctype="multipart/form-data" é OBRIGATÓRIO para upload!
    Referência: Ver templates/publico/perfil.html (form de upload de foto)
 #}
+
+{% extends "base_publica.html" %}
+
+{% block title %}Nova Postagem no Petgram{% endblock %}
+
+{% block conteudo %}
+  <div class="container my-5">
+    <div class="col-md-8 mx-auto bg-white p-4 rounded shadow-sm">
+      <h2 class="mb-4">Nova Postagem no Petgram</h2>
+
+      {% if mensagem %}
+        <div class="alert alert-danger">{{ mensagem }}</div>
+      {% endif %}
+
+      <form method="post" action="/tutor/fazer_postagem_feed" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label">Foto do Pet</label>
+          <input type="file" name="foto" accept="image/*" class="form-control" required>
+          <small class="form-text text-muted">Tamanho máximo: 5MB. Formatos: JPG, PNG, WEBP</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Descrição</label>
+          <textarea name="descricao" class="form-control" rows="4" placeholder="Escreva uma legenda para sua foto" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-laranja">Publicar</button>
+        <a href="/tutor/" class="btn btn-outline-secondary ms-2">Cancelar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,4 +1,4 @@
-{# TODO: Confirmação de Exclusão de Categoria
+<!-- {# TODO: Confirmação de Exclusão de Categoria
 
    DESCRIÇÃO:
    Página de confirmação antes de excluir uma categoria.
@@ -72,4 +72,47 @@
    - Campo hidden com ID é obrigatório
 #}
 
-{# Seu código HTML aqui #}
+{# Seu código HTML aqui #} -->
+
+
+{% extends "base_publica.html" %}
+
+{% block head %}
+<title>Excluir Categoria - VetConecta</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container mt-5 mb-5">
+  <h2 class="mb-4 text-danger">Excluir Categoria</h2>
+
+  <div class="alert alert-warning">
+    <strong>Atenção!</strong> Esta ação não pode ser desfeita.  
+    Artigos vinculados a esta categoria podem ser afetados.
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5>Categoria a ser excluída:</h5>
+      <p><strong>Nome:</strong> {{ categoria_artigo.nome }}</p>
+      <p><strong>Cor:</strong>
+        <span class="badge" style="background-color: {{ categoria_artigo.cor }}">
+          {{ categoria_artigo.cor }}
+        </span>
+      </p>
+      <p><strong>ID:</strong> {{ categoria_artigo.id_categoria_artigo }}</p>
+    </div>
+  </div>
+
+  <form method="post" action="/administrador/excluir_categoria" class="mt-3">
+    <input type="hidden" name="id_categoria" value="{{ categoria_artigo.id_categoria_artigo }}">
+
+    <button type="submit" class="btn btn-danger">
+      <i class="bi bi-trash"></i> Confirmar Exclusão
+    </button>
+
+    <a href="/administrador/listar_categorias" class="btn btn-outline-secondary">
+      Cancelar
+    </a>
+  </form>
+</div>
+{% endblock %}
