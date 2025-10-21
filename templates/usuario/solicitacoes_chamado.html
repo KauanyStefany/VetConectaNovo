@@ -1,4 +1,4 @@
-{# TODO: Lista de Chamados do Usuário
+<!-- {# TODO: Lista de Chamados do Usuário
    - Título: "Meus Chamados" com botão "Novo Chamado" (btn btn-roxo)
    - Tabela responsiva: ID | Título | Status | Data | Respostas
    - Loop: {% for chamado in chamados %}
@@ -10,4 +10,75 @@
    Variáveis: request, chamados (lista de Chamado)
    EXPANSÃO FUTURA: Adicionar página de detalhes mostrando histórico de respostas
    Referência: templates/admin/listar_chamados.html (estrutura de tabela)
-#}
+#} -->
+{% extends "base_publica.html" %}
+
+{% block titulo %}Meus Chamados{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Meus Chamados</h2>
+        <a href="/usuario/solicitar_chamado" class="btn btn-roxo">
+            <i class="bi bi-plus-circle me-2"></i>
+            Novo Chamado
+        </a>
+    </div>
+    {% if chamados and chamados|length > 0 %}
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Data</th>
+                    <th scope="col" class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chamado in chamados %}
+                <tr>
+                    <td>{{ chamado.id_chamado or chamado.id }}</td>
+                    <td>{{ chamado.titulo }}</td>
+                    <td>
+                        {% set status = (chamado.status or '').lower() %}
+            {% if status == 'aberto' %}
+                        <span class="badge bg-success">Aberto</span>
+                        {% elif status == 'em andamento' or status == 'em_andamento' %}
+                        <span class="badge bg-warning text-dark">Em andamento</span>
+                        {% elif status == 'respondido' %}
+                        <span class="badge bg-info text-dark">Respondido</span>
+                        {% elif status == 'fechado' %}
+                        <span class="badge bg-secondary">Fechado</span>
+                        {% else %}
+                        <span class="badge bg-light text-dark">{{ chamado.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if chamado.data_criacao %}
+              {{ chamado.data_criacao|date("d/m/Y H:i") }}
+            {% elif chamado.criado_em %}
+              {{ chamado.criado_em|date("d/m/Y H:i") }}
+            {% else %}
+              {{ chamado.data|default('') }}
+            {% endif %}
+                    </td>
+                    <td class="text-end">
+                        <a href="/usuario/chamado/{{ chamado.id_chamado or chamado.id }}" class="btn btn-sm btn-outline-roxo me-2">Ver Detalhes</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="bi bi-life-preserver text-muted icon-lg"></i>
+        <h4 class="mt-3 text-muted">Você ainda não tem chamados</h4>
+        <p class="text-muted">Precisa de ajuda? Abra um chamado para nossa equipe.</p>
+        <a href="/usuario/solicitar_chamado" class="btn btn-roxo mt-3">Abrir Chamado</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

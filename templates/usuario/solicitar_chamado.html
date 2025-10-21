@@ -1,4 +1,4 @@
-{# TODO: Formulário para Criar Chamado de Suporte
+<!-- {# TODO: Formulário para Criar Chamado de Suporte
    - Título: "Abrir Chamado de Suporte"
    - Descrição: "Precisa de ajuda? Descreva seu problema e nossa equipe responderá em breve."
    - Form: method="post" action="/usuario/solicitar_chamado"
@@ -10,4 +10,52 @@
    Variáveis: request
    VALIDAÇÃO DTO: Título min 2 palavras, Descrição min 5 palavras
    Referência: templates/admin/responder_chamado.html (form similar)
-#}
+#} -->
+{% extends "base_publica.html" %}
+
+{% block titulo %}Abrir Chamado de Suporte{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="col-md-8 mx-auto bg-white p-4 rounded shadow-sm">
+        <h2 class="mb-3">Abrir Chamado de Suporte</h2>
+        <p class="text-muted mb-4">Precisa de ajuda? Descreva seu problema e nossa equipe responderá em breve.</p>
+        {% if erro %}
+        <div class="alert alert-danger">{{ erro }}</div>
+        {% endif %}
+    {% if sucesso %}
+        <div class="alert alert-success">{{ sucesso }}</div>
+        {% endif %}
+        <form method="post" action="/usuario/solicitar_chamado">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input
+                    id="titulo"
+                    name="titulo"
+                    type="text"
+                    class="form-control"
+                    placeholder="Resumo do problema"
+                    required
+                >
+                <small class="form-text text-muted">Mínimo: 2 palavras.</small>
+            </div>
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                    class="form-control"
+                    rows="6"
+                    placeholder="Descreva seu problema em detalhes..."
+                    required
+                ></textarea>
+                <small class="form-text text-muted">Mínimo: 5 palavras. Forneça o máximo de informações úteis possível.</small>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-roxo">Enviar Chamado</button>
+                <a href="/usuario/solicitacoes_chamado" class="btn btn-outline-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
