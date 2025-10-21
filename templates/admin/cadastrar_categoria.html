@@ -1,4 +1,4 @@
-{# TODO: Formulário de Cadastro de Categoria
+<!-- {# TODO: Formulário de Cadastro de Categoria
 
    DESCRIÇÃO:
    Formulário para criar uma nova categoria de artigos.
@@ -76,4 +76,60 @@
    - Campo imagem aceita apenas o nome do arquivo, não upload
 #}
 
-{# Seu código HTML aqui #}
+{# Seu código HTML aqui #} -->
+
+
+{% extends "base_publica.html" %}
+
+{% block conteudo %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Título -->
+            <h2 class="mb-4">Nova Categoria</h2>
+
+            <!-- Mensagem de Erro -->
+            {% if mensagem %}
+            <div class="alert alert-danger">{{ mensagem }}</div>
+            {% endif %}
+
+            <!-- Formulário -->
+            <form method="post" action="/administrador/cadastrar_categoria">
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" 
+                           name="nome" 
+                           class="form-control" 
+                           required 
+                           placeholder="Ex: Saúde Animal">
+                </div>
+
+                <!-- Cor -->
+                <div class="mb-3">
+                    <label class="form-label">Cor (hexadecimal)</label>
+                    <input type="color" 
+                           name="cor" 
+                           class="form-control" 
+                           required>
+                </div>
+
+                <!-- Imagem -->
+                <div class="mb-3">
+                    <label class="form-label">Imagem (nome do arquivo)</label>
+                    <input type="text" 
+                           name="imagem" 
+                           class="form-control" 
+                           required 
+                           placeholder="Ex: 01.jpg">
+                    <small class="form-text text-muted">Arquivo deve estar em static/img/categorias/</small>
+                </div>
+
+                <!-- Botões -->
+                <button type="submit" class="btn btn-roxo">Cadastrar</button>
+                <a href="/administrador/listar_categorias" class="btn btn-outline-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
