@@ -1,4 +1,4 @@
-{# TODO: Dashboard de Estatísticas do Veterinário
+<!-- {# TODO: Dashboard de Estatísticas do Veterinário
    - Título: "Minhas Estatísticas"
    - Grid com 4 cards de métricas (row com col-md-3):
      * Total de Artigos: {{ total_artigos }}
@@ -23,4 +23,99 @@
    FILTRO JINJA2: [:10] pega apenas os 10 primeiros
    FILTRO JINJA2: |round(1) arredonda para 1 casa decimal
    Referência: templates/admin/home_administrador.html (cards) e listar_categorias.html (tabela)
-#}
+#} -->
+
+{% extends "base_publica.html" %}
+
+{% block titulo %}Minhas Estatísticas{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Minhas Estatísticas</h2>
+        </div>
+    </div>
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-file-earmark-text icon-lg text-roxo"></i>
+                    <h6 class="mt-2">Total de Artigos</h6>
+                    <p class="display-6 mb-0">{{ total_artigos|default(0) }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-eye icon-lg text-secondary"></i>
+                    <h6 class="mt-2">Total de Visualizações</h6>
+                    <p class="display-6 mb-0">{{ total_visualizacoes|default(0) }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-heart icon-lg text-danger"></i>
+                    <h6 class="mt-2">Total de Curtidas</h6>
+                    <p class="display-6 mb-0">{{ total_curtidas|default(0) }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-bar-chart-line icon-lg text-laranja"></i>
+                    <h6 class="mt-2">Média de Visualizações</h6>
+                    <p class="display-6 mb-0">
+                        {{ (total_visualizacoes / total_artigos)|round(1) if (total_artigos|default(0)) > 0 else 0 }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if artigo_mais_visto %}
+    <div class="alert alert-success">
+        Seu artigo mais visto é:
+        <strong>{{ artigo_mais_visto.titulo }}</strong>
+        com {{ artigo_mais_visto.visualizacoes }} visualizações!
+    </div>
+    {% endif %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Artigos Mais Populares</h5>
+        </div>
+        <div class="card-body p-0">
+            {% if artigos and artigos|length > 0 %}
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th class="text-end">Visualizações</th>
+                            <th class="text-end">Curtidas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for artigo in artigos|sort(attribute='visualizacoes', reverse=True)[:10] %}
+                        <tr>
+                            <td>{{ artigo.titulo }}</td>
+                            <td class="text-end">{{ artigo.visualizacoes|default(0) }}</td>
+                            <td class="text-end">{{ artigo.total_curtidas|default(0) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="p-4 text-center text-muted">
+                Nenhum artigo disponível para exibir estatísticas.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
