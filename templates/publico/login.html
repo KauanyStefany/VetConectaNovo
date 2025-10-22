@@ -17,7 +17,8 @@
 
                             <!-- Campo oculto para redirecionamento -->
                             {% if redirect %}
-                            <input type="hidden" name="next" value="{{ redirect }}">
+                            <!-- ✅ CORRIGIDO: Mudado de 'next' para 'redirect' -->
+                            <input type="hidden" name="redirect" value="{{ redirect }}">
                             {% endif %}
 
                             <!-- Alerta de erro geral -->

@@ -92,55 +92,38 @@ async def get_detalhes_artigo(request: Request, id_postagem_artigo: int):
     if not artigo:
         raise HTTPException(status_code=404, detail="Artigo não encontrado")
 
-    # Buscar informações do veterinário
+    # Buscar dados relacionados
     veterinario = veterinario_repo.obter_por_id(artigo.id_veterinario)
-    if not veterinario:
-        raise HTTPException(status_code=404, detail="Veterinário não encontrado")
-
-    # Buscar informações da categoria
     categoria = categoria_artigo_repo.obter_por_id(artigo.id_categoria_artigo)
-    if not categoria:
-        raise HTTPException(status_code=404, detail="Categoria não encontrada")
 
-    # Contar curtidas do artigo
+    # Contar curtidas
     total_curtidas = curtida_artigo_repo.contar_curtidas_por_artigo(id_postagem_artigo)
 
-    # Verificar se usuário logado curtiu o artigo
+    # Usuário logado e se curtiu
+    usuario_logado = obter_usuario_logado(request)
     usuario_curtiu = False
-    usuario = obter_usuario_logado(request)
-    if usuario:
-        id_usuario = usuario.get('id_usuario')
-        if id_usuario and isinstance(id_usuario, int):
+    if usuario_logado:
+        id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
+        if id_usuario is not None:
             curtida = curtida_artigo_repo.obter_por_id(id_usuario, id_postagem_artigo)
             usuario_curtiu = curtida is not None
 
-    # Incrementar visualizações
-    postagem_artigo_repo.incrementar_visualizacoes(id_postagem_artigo)
+    # Incrementar visualizações (não bloquear em erro)
+    try:
+        postagem_artigo_repo.incrementar_visualizacoes(id_postagem_artigo)
+    except Exception as e:
+        logger.exception("Erro ao incrementar visualizações: %s", e)
 
-    # Preparar dados para o template
     context = {
         "request": request,
         "artigo": artigo,
         "veterinario": veterinario,
         "categoria": categoria,
         "total_curtidas": total_curtidas,
-        "usuario_curtiu": usuario_curtiu
+        "usuario_curtiu": usuario_curtiu,
+        "usuario_logado": usuario_logado
     }
-    # Verificar se usuário curtiu
-    usuario_curtiu = False
-    if usuario:
-        from repo import curtida_artigo_repo
-        curtida = curtida_artigo_repo.obter_por_id(usuario['id'], id_postagem_artigo)
-        usuario_curtiu = curtida is not None
 
-    # Adicionar ao context:
-    return templates.TemplateResponse("publico/detalhes_artigo.html", {
-        "request": request,
-        "artigo": artigo,
-        "total_curtidas": total_curtidas,
-        "usuario_curtiu": usuario_curtiu,  # ADICIONAR ESTA LINHA
-        "usuario_logado": usuario
-    })
     return templates.TemplateResponse("publico/detalhes_artigo.html", context)
 
 
@@ -179,18 +162,21 @@ async def get_detalhes_post(request: Request, id_postagem_feed: int):
     if not post:
         raise HTTPException(status_code=404, detail="Post não encontrado")
 
-    # Incrementar visualizações
-    postagem_feed_repo.incrementar_visualizacoes(id_postagem_feed)
+    # Incrementar visualizações (silencioso em erro)
+    try:
+        postagem_feed_repo.incrementar_visualizacoes(id_postagem_feed)
+    except Exception:
+        logger.exception("Erro ao incrementar visualizações para post %s", id_postagem_feed)
 
     # Contar curtidas do post
     total_curtidas = curtida_feed_repo.contar_curtidas_por_postagem(id_postagem_feed)
 
     # Verificar se usuário logado curtiu o post
+    usuario_logado = obter_usuario_logado(request)
     usuario_curtiu = False
-    usuario = obter_usuario_logado(request)
-    if usuario:
-        id_usuario = usuario.get('id')
-        if id_usuario and isinstance(id_usuario, int):
+    if usuario_logado:
+        id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
+        if id_usuario is not None:
             curtida = curtida_feed_repo.obter_por_id(id_usuario, id_postagem_feed)
             usuario_curtiu = curtida is not None
 
@@ -199,35 +185,10 @@ async def get_detalhes_post(request: Request, id_postagem_feed: int):
         "post": post,
         "total_curtidas": total_curtidas,
         "usuario_curtiu": usuario_curtiu,
+        "usuario_logado": usuario_logado,
     }
 
     return templates.TemplateResponse("publico/detalhes_post.html", context)
-
-@router.post("/petgram/{id_post}/curtir")
-@requer_autenticacao()
-async def curtir_feed(request: Request, id_postagem_feed: int, usuario_logado: dict = None):
-    from model.curtida_feed_model import CurtidaFeed
-    from repo import curtida_feed_repo
-    from datetime import datetime
-    from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_info
-
-    curtida_existente = curtida_feed_repo.obter_por_id(usuario_logado['id'], id_postagem_feed)
-
-    if curtida_existente:
-        # Descurtir
-        curtida_feed_repo.excluir(usuario_logado['id'], id_postagem_feed)
-        adicionar_mensagem_info(request, "Curtida removida.")
-    else:
-        # Curtir
-        curtida = CurtidaFeed(
-            id_usuario=usuario_logado['id'],
-            id_postagem_feed=id_postagem_feed,
-            data_curtida=datetime.now()
-        )
-        curtida_feed_repo.inserir(curtida)
-        adicionar_mensagem_sucesso(request, "Post curtido!")
-
-    return RedirectResponse(f"/petgram/{id_postagem_feed}", status_code=303)
 
 
 @router.post("/artigos/{id_artigo}/curtir")
@@ -255,3 +216,32 @@ async def curtir_artigo(request: Request, id_artigo: int, usuario_logado: dict =
         adicionar_mensagem_sucesso(request, "Artigo curtido!")
 
     return RedirectResponse(f"/artigos/{id_artigo}", status_code=303)
+
+@router.post("/petgram/{id_postagem_feed}/curtir")
+@requer_autenticacao()
+async def curtir_feed(request: Request, id_postagem_feed: int, usuario_logado: dict = None):
+    from model.curtida_feed_model import CurtidaFeed
+    from repo import curtida_feed_repo
+    from datetime import datetime
+    from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_info
+
+    # ✅ CORRIGIDO: Obter id de forma consistente
+    id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
+    
+    curtida_existente = curtida_feed_repo.obter_por_id(id_usuario, id_postagem_feed)
+
+    if curtida_existente:
+        # Descurtir
+        curtida_feed_repo.excluir(id_usuario, id_postagem_feed)
+        adicionar_mensagem_info(request, "Curtida removida.")
+    else:
+        # Curtir
+        curtida = CurtidaFeed(
+            id_usuario=id_usuario,
+            id_postagem_feed=id_postagem_feed,
+            data_curtida=datetime.now()
+        )
+        curtida_feed_repo.inserir(curtida)
+        adicionar_mensagem_sucesso(request, "Post curtido!")
+
+    return RedirectResponse(f"/petgram/{id_postagem_feed}", status_code=303)

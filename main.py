@@ -25,6 +25,7 @@ from routes.veterinario import (
     solicitacao_crmv_routes,
     estatisticas_routes
 )
+
 from routes.usuario import usuario_routes
 # Carregar variáveis de ambiente
 load_dotenv()
