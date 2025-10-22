@@ -225,16 +225,19 @@ async def curtir_feed(request: Request, id_postagem_feed: int, usuario_logado: d
     from datetime import datetime
     from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_info
 
-    curtida_existente = curtida_feed_repo.obter_por_id(usuario_logado['id_usuario'], id_postagem_feed)
+    # ✅ CORRIGIDO: Obter id de forma consistente
+    id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
+    
+    curtida_existente = curtida_feed_repo.obter_por_id(id_usuario, id_postagem_feed)
 
     if curtida_existente:
         # Descurtir
-        curtida_feed_repo.excluir(usuario_logado['id_usuario'], id_postagem_feed)
+        curtida_feed_repo.excluir(id_usuario, id_postagem_feed)
         adicionar_mensagem_info(request, "Curtida removida.")
     else:
         # Curtir
         curtida = CurtidaFeed(
-            id_usuario=usuario_logado['id_usuario'],
+            id_usuario=id_usuario,
             id_postagem_feed=id_postagem_feed,
             data_curtida=datetime.now()
         )

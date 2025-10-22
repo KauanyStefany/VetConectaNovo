@@ -59,7 +59,6 @@
                 </div>
             </div>
             {% endif %}
-
             <!-- Botão de Curtir -->
             {% if request.session.get('usuario') %}
             <div class="card border-0 shadow-sm mb-4">
@@ -70,9 +69,11 @@
                         <i class="bi bi-heart-fill me-2"></i>Você curtiu este post
                     </button>
                     {% else %}
-                    <button class="btn btn-outline-danger btn-lg px-5" onclick="alert('Funcionalidade de curtir em breve!')">
-                        <i class="bi bi-heart me-2"></i>Curtir este post
-                    </button>
+                    <form method="post" action="/petgram/{{ post.id_postagem_feed }}/curtir" style="display: inline;">
+                        <button type="submit" class="btn btn-outline-danger btn-lg px-5">
+                            <i class="bi bi-heart me-2"></i>Curtir este post
+                        </button>
+                    </form>
                     {% endif %}
                     <p class="mt-3 mb-0 small text-muted">
                         {{ total_curtidas }} pessoa{{ 's' if total_curtidas != 1 else '' }} curti{{ 'ram' if total_curtidas != 1 else 'u' }} este post
@@ -89,6 +90,7 @@
                 </div>
             </div>
             {% endif %}
+
 
             <!-- Seção de Comentários (Placeholder) -->
             <div class="card border-0 shadow-sm mb-4">
@@ -129,25 +131,6 @@
                     </div>
 
                     <!-- Informações do Tutor -->
-                    <div class="mb-3 p-3 bg-light rounded">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <small class="text-muted">
-                                <i class="bi bi-envelope me-1"></i>Email
-                            </small>
-                        </div>
-                        <small class="text-break">{{ post.email_tutor }}</small>
-                    </div>
-
-                    {% if post.telefone_tutor %}
-                    <div class="mb-3 p-3 bg-light rounded">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <small class="text-muted">
-                                <i class="bi bi-telephone me-1"></i>Telefone
-                            </small>
-                        </div>
-                        <small>{{ post.telefone_tutor }}</small>
-                    </div>
-                    {% endif %}
 
                     {% if post.quantidade_pets %}
                     <div class="mb-3 p-3 bg-light rounded">
