@@ -54,7 +54,16 @@ class CadastroBaseDTO(BaseDTO):
     @field_validator("perfil")
     @classmethod
     def validar_perfil(cls, v: str) -> str:
-        return validar_enum_valor(v, PerfilUsuario)
+        # ✅ CORRIGIDO: Validar apenas perfis públicos (tutor e veterinario)
+        v = v.strip().lower()
+        perfis_permitidos = [PerfilUsuario.TUTOR.value, PerfilUsuario.VETERINARIO.value]
+        
+        if v not in perfis_permitidos:
+            raise ValueError(
+                f"Valor deve ser uma das opções: {', '.join(perfis_permitidos)}"
+            )
+        
+        return v
 
     @model_validator(mode="after")
     def validar_senhas_coincidem_model(self):

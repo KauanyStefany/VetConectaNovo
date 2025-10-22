@@ -3,6 +3,7 @@ from model.chamado_model import Chamado
 from model.enums import ChamadoStatus
 from sql.chamado_sql import *
 from util.db_util import get_connection
+import asyncio
 
 
 def criar_tabela() -> bool:
@@ -82,3 +83,23 @@ def obter_por_id(id_chamado: int) -> Optional[Chamado]:
                 data=row["data"],
             )
         return None
+
+
+async def contar_total(status: str = None) -> int:
+    """Conta o total de chamados, opcionalmente filtrado por status"""
+    try:
+        query = "SELECT COUNT(*) FROM chamados"
+        params = []
+        
+        if status:
+            query += " WHERE status = ?"
+            params.append(status)
+            
+        async with get_connection() as conn:
+            async with conn.cursor() as cursor:
+                await cursor.execute(query, params)
+                (total,) = await cursor.fetchone()
+                return total
+                
+    except Exception as erro:
+        raise Exception(f"Erro ao contar total de chamados: {str(erro)}")
