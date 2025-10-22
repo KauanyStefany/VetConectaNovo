@@ -122,6 +122,9 @@
                                 value="{{ usuario.telefone or '' }}"
                             >
                         </div>
+
+                        {# Mostrar apenas para tutores #}
+                        {% if usuario.tipo == 'tutor' %}
                         <div class="mb-3">
                             <label for="qtd_pets" class="form-label">Quantidade de Pets</label>
                             <input
@@ -132,6 +135,7 @@
                                 value="{{ usuario.qtd_pets or '' }}"
                             >
                         </div>
+                        {% endif %}
                         
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-outline-roxo">Salvar Alterações</button>
