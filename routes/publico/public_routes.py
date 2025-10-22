@@ -92,42 +92,39 @@ async def get_detalhes_artigo(request: Request, id_postagem_artigo: int):
     if not artigo:
         raise HTTPException(status_code=404, detail="Artigo não encontrado")
 
-    # Buscar informações do veterinário
+    # Buscar dados relacionados
     veterinario = veterinario_repo.obter_por_id(artigo.id_veterinario)
-    if not veterinario:
-        raise HTTPException(status_code=404, detail="Veterinário não encontrado")
-
-    # Buscar informações da categoria
     categoria = categoria_artigo_repo.obter_por_id(artigo.id_categoria_artigo)
-    if not categoria:
-        raise HTTPException(status_code=404, detail="Categoria não encontrada")
 
-    # Contar curtidas do artigo
+    # Contar curtidas
     total_curtidas = curtida_artigo_repo.contar_curtidas_por_artigo(id_postagem_artigo)
 
-    # Verificar se usuário logado curtiu o artigo
-    usuario = obter_usuario_logado(request)
+    # Usuário logado e se curtiu
+    usuario_logado = obter_usuario_logado(request)
     usuario_curtiu = False
-    if usuario:
-        id_usuario = usuario.get('id_usuario')
-        if id_usuario and isinstance(id_usuario, int):
+    if usuario_logado:
+        id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
+        if id_usuario is not None:
             curtida = curtida_artigo_repo.obter_por_id(id_usuario, id_postagem_artigo)
             usuario_curtiu = curtida is not None
 
-    # Incrementar visualizações
-    postagem_artigo_repo.incrementar_visualizacoes(id_postagem_artigo)
-    # Verificar se usuário curtiu
+    # Incrementar visualizações (não bloquear em erro)
+    try:
+        postagem_artigo_repo.incrementar_visualizacoes(id_postagem_artigo)
+    except Exception as e:
+        logger.exception("Erro ao incrementar visualizações: %s", e)
 
-    # Retornar template com o contexto
-    return templates.TemplateResponse("publico/detalhes_artigo.html", {
+    context = {
         "request": request,
         "artigo": artigo,
         "veterinario": veterinario,
         "categoria": categoria,
         "total_curtidas": total_curtidas,
         "usuario_curtiu": usuario_curtiu,
-        "usuario_logado": usuario
-    })
+        "usuario_logado": usuario_logado
+    }
+
+    return templates.TemplateResponse("publico/detalhes_artigo.html", context)
 
 
 @router.get("/petgram", response_class=HTMLResponse)
@@ -165,18 +162,21 @@ async def get_detalhes_post(request: Request, id_postagem_feed: int):
     if not post:
         raise HTTPException(status_code=404, detail="Post não encontrado")
 
-    # Incrementar visualizações
-    postagem_feed_repo.incrementar_visualizacoes(id_postagem_feed)
+    # Incrementar visualizações (silencioso em erro)
+    try:
+        postagem_feed_repo.incrementar_visualizacoes(id_postagem_feed)
+    except Exception:
+        logger.exception("Erro ao incrementar visualizações para post %s", id_postagem_feed)
 
     # Contar curtidas do post
     total_curtidas = curtida_feed_repo.contar_curtidas_por_postagem(id_postagem_feed)
 
     # Verificar se usuário logado curtiu o post
+    usuario_logado = obter_usuario_logado(request)
     usuario_curtiu = False
-    usuario = obter_usuario_logado(request)
-    if usuario:
-        id_usuario = usuario.get('id')
-        if id_usuario and isinstance(id_usuario, int):
+    if usuario_logado:
+        id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
+        if id_usuario is not None:
             curtida = curtida_feed_repo.obter_por_id(id_usuario, id_postagem_feed)
             usuario_curtiu = curtida is not None
 
@@ -185,23 +185,10 @@ async def get_detalhes_post(request: Request, id_postagem_feed: int):
         "post": post,
         "total_curtidas": total_curtidas,
         "usuario_curtiu": usuario_curtiu,
+        "usuario_logado": usuario_logado,
     }
-    # Verificar se usuário curtiu
-        usuario_curtiu = False
-        if usuario:
-            from repo import curtida_feed_repo
-            curtida = curtida_feed_repo.obter_por_id(usuario['id'], id_postagem_feed)
-            usuario_curtiu = curtida is not None
 
-        # Adicionar ao context:
-        return templates.TemplateResponse("publico/detalhes_feed.html", {
-            "request": request,
-            "total_curtidas": total_curtidas,
-            "usuario_curtiu": usuario_curtiu,  # ADICIONAR ESTA LINHA
-            "usuario_logado": usuario
-        })
     return templates.TemplateResponse("publico/detalhes_post.html", context)
-
 
 
 @router.post("/artigos/{id_artigo}/curtir")
