@@ -67,21 +67,21 @@ async def post_login(
 
         # Buscar usuário pelo email
         usuario = administrador_repo.obter_por_email(login_dto.email)
-        usuario.perfil = PerfilUsuario.ADMIN.value
-        usuario.id_usuario = usuario.id_admin
-        usuario.telefone = ""
-
-        if not usuario:
+        if usuario:
+            usuario.perfil = PerfilUsuario.ADMIN.value
+            usuario.id_usuario = usuario.id_admin
+            usuario.telefone = ""
+        else:
             usuario = usuario_repo.obter_por_email(login_dto.email)
 
         # Verificar credenciais
         if not usuario or not verificar_senha(login_dto.senha, usuario.senha):
             return templates.TemplateResponse(
-                "publico/login.html",
+                "login.html",  # ✅ CORRIGIDO: removido 'publico/'
                 {
                     "request": request,
                     "erros": {"geral": "Credenciais inválidas."},
-                    "email": email,
+                    "dados": dados_formulario,
                     "redirect": redirect,
                 },
             )
@@ -121,7 +121,7 @@ async def post_login(
 
         # Retornar template com erros
         return templates.TemplateResponse(
-            "publico/login.html",
+            "login.html",  # ✅ CORRIGIDO: removido 'publico/'
             {
                 "request": request,
                 "erros": erros,
@@ -130,14 +130,14 @@ async def post_login(
             },
         )
     
-    # Processar erros de validação do DTO
+    # Processar erros gerais
     except Exception as e:        
         # Logar os erros de validação para auditoria
-        logger.warning(f"Erros geral: {str(e)}")
+        logger.error(f"Erro geral no login: {str(e)}", exc_info=True)  # ✅ MELHORADO: mudado para logger.error
 
         # Retornar template com erros
         return templates.TemplateResponse(
-            "publico/login.html",
+            "login.html",  # ✅ CORRIGIDO: removido 'publico/'
             {
                 "request": request,
                 "erros": {"geral": "Ocorreu um erro ao processar o login."},
@@ -161,7 +161,7 @@ async def get_cadastro(request: Request):
         return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
 
     # Retornar o template de cadastro
-    return templates.TemplateResponse("publico/cadastro.html", {"request": request})
+    return templates.TemplateResponse("cadastro.html", {"request": request})  # ✅ CORRIGIDO
 
 
 @router.post("/cadastro")
@@ -194,7 +194,7 @@ async def post_cadastro(
         if usuario_repo.obter_por_email(email.strip().lower()):
             logger.warning(f"Tentativa de cadastro com email existente: {email}")
             return templates.TemplateResponse(
-                "publico/cadastro.html",
+                "cadastro.html",  # ✅ CORRIGIDO
                 {
                     "request": request,
                     "erros": {
@@ -291,9 +291,25 @@ async def post_cadastro(
 
         # Retornar template com erros
         return templates.TemplateResponse(
-            "publico/cadastro.html",
+            "cadastro.html",  # ✅ CORRIGIDO
             {"request": request, "erros": erros, "dados": dados_formulario},
             status_code=status.HTTP_400_BAD_REQUEST,
+        )
+    
+    # ✅ NOVO: Processar erros gerais
+    except Exception as e:
+        # Logar o erro para auditoria
+        logger.error(f"Erro geral no cadastro: {str(e)}", exc_info=True)
+
+        # Retornar template com erro genérico
+        return templates.TemplateResponse(
+            "cadastro.html",
+            {
+                "request": request,
+                "erros": {"geral": "Ocorreu um erro ao processar o cadastro."},
+                "dados": dados_formulario,
+            },
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
 
@@ -301,7 +317,7 @@ async def post_cadastro(
 async def get_esqueci_senha(request: Request):
     # Retornar o template de esquecimento de senha
     return templates.TemplateResponse(
-        "publico/esqueci_senha.html",
+        "esqueci_senha.html",
         {"request": request},
     )
 
@@ -336,7 +352,7 @@ async def post_esqueci_senha(
 
             # Retornar template com mensagem de sucesso fictícia
             return templates.TemplateResponse(
-                "publico/esqueci_senha.html", {"request": request, "mensagem": mensagem}
+                "esqueci_senha.html", {"request": request, "mensagem": mensagem}
             )
 
         # Se encontrar o usuário, gerar token e enviar email
@@ -367,7 +383,7 @@ async def post_esqueci_senha(
 
             # Retornar template com mensagem de sucesso
             return templates.TemplateResponse(
-                "publico/esqueci_senha.html", response_data
+                "esqueci_senha.html", response_data
             )
 
     # Processar erros de validação do DTO
@@ -382,7 +398,7 @@ async def post_esqueci_senha(
 
         # Retornar template com erros
         return templates.TemplateResponse(
-            "publico/esqueci_senha.html",
+            "esqueci_senha.html",
             {"request": request, "erros": erros, "dados": dados_formulario},
             status_code=status.HTTP_400_BAD_REQUEST,
         )
@@ -466,7 +482,7 @@ async def post_redefinir_senha(
 
         # Retornar template com erros
         return templates.TemplateResponse(
-            "publico/redefinir_senha.html",
+            "redefinir_senha.html",
             {
                 "request": request,
                 "erros": erros,
