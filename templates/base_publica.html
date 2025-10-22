@@ -33,14 +33,30 @@
                     </a>
                 </div>
                 <div class="row w-100 align-items-center bg-roxo p-4">
-                    <!-- Coluna Esquerda: Link "Quem Somos" -->
+                    <!-- Coluna Esquerda: Links -->
                     <div class="col-12 col-lg-3 text-center text-lg-start">
                         <div class="d-flex justify-content-center justify-content-lg-start gap-3">
-                            <a href="/artigos" class="text-decoration-none text-white">Artigos</a>
-                            <span class="text-white">|</span>
-                            <a href="/petgram" class="text-decoration-none text-white">Petgram</a>
-                            <span class="text-white">|</span>
-                            <a href="/quemsomos" class="text-decoration-none text-white">Quem Somos</a>
+                            {% if request.url.path.startswith('/perfil') and request.session.get('usuario') %}
+                                <!-- Menu específico do perfil -->
+                                {% if request.session.get('usuario').perfil == 'veterinario' %}
+                                    <a href="/artigos/novo" class="text-decoration-none text-white">Novo Artigo</a>
+                                    <span class="text-white">|</span>
+                                    <a href="/perfil/artigos-curtidos" class="text-decoration-none text-white">Curtida Artigo</a>
+                                {% else %}
+                                    <a href="/petgram/novo" class="text-decoration-none text-white">Nova Postagem</a>
+                                    <span class="text-white">|</span>
+                                    <a href="/perfil/artigos-curtidos" class="text-decoration-none text-white">Curtida Artigo</a>
+                                {% endif %}
+                                <span class="text-white">|</span>
+                                <a href="/perfil/posts-curtidos" class="text-decoration-none text-white">Curtida Feed</a>
+                            {% else %}
+                                <!-- Menu padrão -->
+                                <a href="/artigos" class="text-decoration-none text-white">Artigos</a>
+                                <span class="text-white">|</span>
+                                <a href="/petgram" class="text-decoration-none text-white">Petgram</a>
+                                <span class="text-white">|</span>
+                                <a href="/quemsomos" class="text-decoration-none text-white">Quem Somos</a>
+                            {% endif %}
                         </div>
                     </div>
 
