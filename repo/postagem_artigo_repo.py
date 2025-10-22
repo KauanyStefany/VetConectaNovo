@@ -3,7 +3,7 @@ from typing import Optional, List
 from model.postagem_artigo_model import PostagemArtigo
 from sql.postagem_artigo_sql import *
 from util.db_util import get_connection
-
+from routes.veterinario import postagem_artigo_routes
 
 def criar_tabela() -> bool:
     try:

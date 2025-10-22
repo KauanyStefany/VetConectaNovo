@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Request
+from tkinter.tix import Form
+from fastapi import APIRouter, File, Request, UploadFile
 from fastapi.templating import Jinja2Templates
 
 from repo import postagem_artigo_repo
@@ -37,6 +38,38 @@ async def get_alterar_postagem_artigo(request: Request, id_postagem_artigo: int)
 @requer_autenticacao(perfis_autorizados=["veterinario"])
 async def get_cadastrar_postagem_artigo(request: Request):
     return templates.TemplateResponse("veterinario/cadastrar_postagem_artigo.html", {"request": request})
+
+@router.post("/cadastrar_postagem_artigo")
+@requer_autenticacao(perfis_autorizados=["veterinario"])
+async def post_cadastrar_artigo(
+    request: Request,
+    titulo: str = Form(...),
+    conteudo: str = Form(...),
+    id_categoria_artigo: int = Form(...),
+    foto: UploadFile = File(...),
+    usuario_logado: dict = None
+):
+    from model.postagem_artigo_model import PostagemArtigo
+    from util.file_util import salvar_arquivo
+
+    # Salvar foto
+    caminho_foto = salvar_arquivo(foto, "static/uploads/artigos")
+
+    # Criar nova postagem de artigo
+    novo_artigo = PostagemArtigo(
+        id_postagem_artigo=0,
+        id_veterinario=usuario_logado['id'],
+        id_categoria_artigo=id_categoria_artigo,
+        titulo=titulo,
+        conteudo=conteudo,
+        foto=caminho_foto,
+        data_publicacao=datetime.now(),
+        visualizacoes=0
+    )
+    postagem_artigo_repo.salvar(novo_artigo)
+
+    adicionar_mensagem_sucesso(request, "Artigo cadastrado com sucesso!")
+    return RedirectResponse("/veterinario/listar_postagem_artigo", status_code=303)
 
 @router.get("/excluir_postagem_artigo/{id_postagem_artigo}")
 @requer_autenticacao(perfis_autorizados=["veterinario"])
