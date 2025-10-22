@@ -26,8 +26,6 @@ from routes.veterinario import (
     estatisticas_routes
 )
 
-from routes.veterinario import postagem_artigo_routes
-
 from routes.usuario import usuario_routes
 # Carregar variáveis de ambiente
 load_dotenv()
@@ -96,7 +94,6 @@ app.include_router(postagem_feed_routes.router, prefix="/tutor", tags=["tutor"])
 app.include_router(postagem_artigo_routes.router, prefix="/veterinario", tags=["veterinario-artigos"])
 app.include_router(solicitacao_crmv_routes.router, prefix="/veterinario", tags=["veterinario-crmv"])
 app.include_router(estatisticas_routes.router, prefix="/veterinario", tags=["veterinario-stats"])
-app.include_router(postagem_artigo_routes.router, prefix="/veterinario", tags=["veterinario"])
 
 # Rotas usuário
 app.include_router(usuario_routes.router, prefix="/usuario", tags=["usuario"])
