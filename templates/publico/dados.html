@@ -122,6 +122,17 @@
                                 value="{{ usuario.telefone or '' }}"
                             >
                         </div>
+                        <div class="mb-3">
+                            <label for="qtd_pets" class="form-label">Quantidade de Pets</label>
+                            <input
+                                id="qtd_pets"
+                                name="qtd_pets"
+                                type="text"
+                                class="form-control"
+                                value="{{ usuario.qtd_pets or '' }}"
+                            >
+                        </div>
+                        
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-outline-roxo">Salvar Alterações</button>
                             <a href="/perfil" class="btn btn-outline-secondary">Cancelar</a>
