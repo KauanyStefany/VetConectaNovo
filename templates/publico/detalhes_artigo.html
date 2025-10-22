@@ -62,26 +62,17 @@
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body p-4 text-center">
                     <p class="mb-3 text-muted">Gostou deste artigo?</p>
-                    {% if usuario_curtiu %}
-                    <button class="btn btn-danger btn-lg px-5" disabled>
-                        <i class="bi bi-heart-fill me-2"></i>Você curtiu este artigo
-                    </button>
-                    {% else %}
-                    {% if usuario_logado %}
-                    <form method="post" action="/artigos/{{ artigo.id_postagem_artigo }}/curtir"
-                        style="display: inline;">
-                        <button type="submit"
-                            class="btn {{ 'btn-laranja' if usuario_curtiu else 'btn-outline-laranja' }}">
-                            <i class="bi bi-heart{{ '-fill' if usuario_curtiu else '' }}"></i>
-                            {{ total_curtidas }}
+                    <form method="post" action="/artigos/{{ artigo.id_postagem_artigo }}/curtir" style="display: inline;">
+                        {% if usuario_curtiu %}
+                        <button type="submit" class="btn btn-danger btn-lg px-5">
+                            <i class="bi bi-heart-fill me-2"></i>Remover curtida
                         </button>
+                        {% else %}
+                        <button type="submit" class="btn btn-outline-laranja btn-lg px-5">
+                            <i class="bi bi-heart me-2"></i>Curtir este artigo
+                        </button>
+                        {% endif %}
                     </form>
-                    {% else %}
-                    <a href="/login" class="btn btn-outline-laranja">
-                        <i class="bi bi-heart"></i> {{ total_curtidas }}
-                    </a>
-                    {% endif %}
-                    {% endif %}
                     <p class="mt-3 mb-0 small text-muted">
                         {{ total_curtidas }} pessoa{{ 's' if total_curtidas != 1 else '' }} curtiu{{ '' if
                         total_curtidas != 1 else '' }} este artigo
@@ -98,7 +89,6 @@
                 </div>
             </div>
             {% endif %}
-        </div>
 
         <!-- Sidebar - Informações do Autor -->
         <div class="col-lg-4">

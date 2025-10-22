@@ -199,21 +199,35 @@ async def curtir_artigo(request: Request, id_artigo: int, usuario_logado: dict =
     from datetime import datetime
     from util.mensagens import adicionar_mensagem_sucesso, adicionar_mensagem_info
 
-    curtida_existente = curtida_artigo_repo.obter_por_id(usuario_logado['id'], id_artigo)
+    # ✅ Obter id de forma consistente
+    id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
+    
+    # ✅ DEBUG: Log para verificar
+    logger.info(f"Tentando curtir/descurtir artigo - Usuario: {id_usuario}, Artigo: {id_artigo}")
+    
+    curtida_existente = curtida_artigo_repo.obter_por_id(id_usuario, id_artigo)
+    
+    logger.info(f"Curtida existente: {curtida_existente}")
 
     if curtida_existente:
         # Descurtir
-        curtida_artigo_repo.excluir(usuario_logado['id'], id_artigo)
+        resultado = curtida_artigo_repo.excluir(id_usuario, id_artigo)
+        logger.info(f"Resultado da exclusão: {resultado}")
         adicionar_mensagem_info(request, "Curtida removida.")
     else:
         # Curtir
-        curtida = CurtidaArtigo(
-            id_usuario=usuario_logado['id'],
-            id_postagem_artigo=id_artigo,
-            data_curtida=datetime.now()
-        )
-        curtida_artigo_repo.inserir(curtida)
-        adicionar_mensagem_sucesso(request, "Artigo curtido!")
+        try:
+            curtida = CurtidaArtigo(
+                id_usuario=id_usuario,
+                id_postagem_artigo=id_artigo,
+                data_curtida=datetime.now()
+            )
+            resultado = curtida_artigo_repo.inserir(curtida)
+            logger.info(f"Resultado da inserção: {resultado}")
+            adicionar_mensagem_sucesso(request, "Artigo curtido!")
+        except Exception as e:
+            logger.error(f"Erro ao curtir artigo: {e}", exc_info=True)
+            adicionar_mensagem_info(request, "Erro ao curtir o artigo.")
 
     return RedirectResponse(f"/artigos/{id_artigo}", status_code=303)
 
@@ -228,20 +242,31 @@ async def curtir_feed(request: Request, id_postagem_feed: int, usuario_logado: d
     # ✅ CORRIGIDO: Obter id de forma consistente
     id_usuario = usuario_logado.get("id_usuario") or usuario_logado.get("id")
     
+    # ✅ DEBUG: Log para verificar
+    logger.info(f"Tentando curtir/descurtir - Usuario: {id_usuario}, Post: {id_postagem_feed}")
+    
     curtida_existente = curtida_feed_repo.obter_por_id(id_usuario, id_postagem_feed)
+    
+    logger.info(f"Curtida existente: {curtida_existente}")
 
     if curtida_existente:
         # Descurtir
-        curtida_feed_repo.excluir(id_usuario, id_postagem_feed)
+        resultado = curtida_feed_repo.excluir(id_usuario, id_postagem_feed)
+        logger.info(f"Resultado da exclusão: {resultado}")
         adicionar_mensagem_info(request, "Curtida removida.")
     else:
         # Curtir
-        curtida = CurtidaFeed(
-            id_usuario=id_usuario,
-            id_postagem_feed=id_postagem_feed,
-            data_curtida=datetime.now()
-        )
-        curtida_feed_repo.inserir(curtida)
-        adicionar_mensagem_sucesso(request, "Post curtido!")
+        try:
+            curtida = CurtidaFeed(
+                id_usuario=id_usuario,
+                id_postagem_feed=id_postagem_feed,
+                data_curtida=datetime.now()
+            )
+            resultado = curtida_feed_repo.inserir(curtida)
+            logger.info(f"Resultado da inserção: {resultado}")
+            adicionar_mensagem_sucesso(request, "Post curtido!")
+        except Exception as e:
+            logger.error(f"Erro ao curtir post: {e}", exc_info=True)
+            adicionar_mensagem_info(request, "Erro ao curtir o post.")
 
     return RedirectResponse(f"/petgram/{id_postagem_feed}", status_code=303)
