@@ -64,17 +64,17 @@
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body p-4 text-center">
                     <p class="mb-3 text-muted">Gostou deste post?</p>
-                    {% if usuario_curtiu %}
-                    <button class="btn btn-danger btn-lg px-5" disabled>
-                        <i class="bi bi-heart-fill me-2"></i>Você curtiu este post
-                    </button>
-                    {% else %}
                     <form method="post" action="/petgram/{{ post.id_postagem_feed }}/curtir" style="display: inline;">
+                        {% if usuario_curtiu %}
+                        <button type="submit" class="btn btn-danger btn-lg px-5">
+                            <i class="bi bi-heart-fill me-2"></i>Remover curtida
+                        </button>
+                        {% else %}
                         <button type="submit" class="btn btn-outline-danger btn-lg px-5">
                             <i class="bi bi-heart me-2"></i>Curtir este post
                         </button>
+                        {% endif %}
                     </form>
-                    {% endif %}
                     <p class="mt-3 mb-0 small text-muted">
                         {{ total_curtidas }} pessoa{{ 's' if total_curtidas != 1 else '' }} curti{{ 'ram' if total_curtidas != 1 else 'u' }} este post
                     </p>
@@ -90,7 +90,6 @@
                 </div>
             </div>
             {% endif %}
-
 
             <!-- Seção de Comentários (Placeholder) -->
             <div class="card border-0 shadow-sm mb-4">
