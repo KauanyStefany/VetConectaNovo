@@ -187,3 +187,29 @@ def obter_por_veterinario(id_veterinario: int) -> list[PostagemArtigo]:
             data_publicacao=datetime.strptime(row["data_publicacao"], "%Y-%m-%d %H:%M:%S").date(),
             visualizacoes=row["visualizacoes"]
         ) for row in rows]
+    
+    
+# def buscar_por_termo(termo: str) -> list[PostagemArtigo]:
+#     """Busca artigos por título ou conteúdo"""
+#     with get_connection() as conn:
+#         cursor = conn.cursor()
+#         cursor.execute("""
+#             SELECT pa.*, v.nome as nome_veterinario, ca.nome as nome_categoria, ca.cor as cor_categoria
+#             FROM postagem_artigo pa
+#             JOIN veterinario vet ON pa.id_veterinario = vet.id_veterinario
+#             JOIN usuario v ON vet.id_veterinario = v.id_usuario
+#             JOIN categoria_artigo ca ON pa.id_categoria_artigo = ca.id_categoria_artigo
+#             WHERE pa.titulo LIKE ? OR pa.conteudo LIKE ?
+#             ORDER BY pa.data_publicacao DESC
+#             LIMIT 50
+#         """, (f"%{termo}%", f"%{termo}%"))
+#         return [PostagemArtigo(**row) for row in cursor.fetchall()]
+
+def buscar_por_termo(termo: str, limite: int = 50) -> List[dict]:
+    """Busca artigos por termo no título ou conteúdo com dados completos."""
+    termo_busca = f"%{termo}%"
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(BUSCAR_POR_TERMO, (termo_busca, termo_busca, limite))
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]

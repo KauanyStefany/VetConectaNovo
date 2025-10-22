@@ -1,5 +1,5 @@
 import logging
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Query, Request, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 
 from util.template_util import criar_templates
@@ -242,3 +242,85 @@ async def curtir_feed(request: Request, id_postagem_feed: int, usuario_logado: d
         adicionar_mensagem_sucesso(request, "Post curtido!")
 
     return RedirectResponse(f"/petgram/{id_postagem_feed}", status_code=303)
+
+
+# @router.get("/buscar")
+# async def buscar(request: Request, q: str = Query(None), tipo: str = Query("artigos")):
+#     if not q or len(q.strip()) < 3:
+#         return templates.TemplateResponse("publico/buscar.html", {
+#             "request": request,
+#             "erro": "Digite pelo menos 3 caracteres."
+#         })
+
+#     termo = q.strip()
+#     resultados = []
+
+#     if tipo == "artigos":
+#         from repo import postagem_artigo_repo
+#         resultados = postagem_artigo_repo.buscar_por_termo(termo)
+#     elif tipo == "petgram":
+#         from repo import postagem_feed_repo
+#         resultados = postagem_feed_repo.buscar_por_termo(termo)
+
+#     return templates.TemplateResponse("publico/buscar.html", {
+#         "request": request,
+#         "termo": termo,
+#         "tipo": tipo,
+#         "resultados": resultados,
+#         "total": len(resultados)
+#     })
+
+@router.get("/buscar", response_class=HTMLResponse)
+async def get_buscar(request: Request, q: str = None, tipo: str = "artigos"):
+    """Busca em artigos ou posts do Petgram."""
+    
+    # Validar termo de busca
+    if not q or len(q.strip()) < 3:
+        return templates.TemplateResponse("publico/buscar.html", {
+            "request": request,
+            "termo": q or "",
+            "tipo": tipo,
+            "resultados": [],
+            "total": 0,
+            "erro": "Digite pelo menos 3 caracteres para buscar."
+        })
+    
+    termo = q.strip()
+    resultados = []
+    
+    try:
+        # Buscar conforme o tipo selecionado
+        if tipo == "artigos":
+            resultados = postagem_artigo_repo.buscar_por_termo(termo, limite=50)
+            # Adicionar contagem de curtidas
+            for artigo in resultados:
+                artigo['total_curtidas'] = curtida_artigo_repo.contar_curtidas_por_artigo(
+                    artigo['id_postagem_artigo']
+                )
+        
+        elif tipo == "petgram":
+            resultados = postagem_feed_repo.buscar_por_termo(termo, limite=50)
+            # Adicionar contagem de curtidas
+            for post in resultados:
+                post['total_curtidas'] = curtida_feed_repo.contar_curtidas_por_postagem(
+                    post['id_postagem_feed']
+                )
+        
+        return templates.TemplateResponse("publico/buscar.html", {
+            "request": request,
+            "termo": termo,
+            "tipo": tipo,
+            "resultados": resultados,
+            "total": len(resultados)
+        })
+    
+    except Exception as e:
+        logger.exception(f"Erro na busca: {e}")
+        return templates.TemplateResponse("publico/buscar.html", {
+            "request": request,
+            "termo": termo,
+            "tipo": tipo,
+            "resultados": [],
+            "total": 0,
+            "erro": "Erro ao realizar a busca. Tente novamente."
+        })

@@ -172,3 +172,28 @@ def obter_por_tutor(id_tutor: int) -> list[PostagemFeed]:
         """, (id_tutor,))
         rows = cursor.fetchall()
         return [PostagemFeed(**row) for row in rows]
+    
+# def buscar_por_termo(termo: str) -> list[PostagemFeed]:
+#     """Busca posts por descrição"""
+#     with get_connection() as conn:
+#         cursor = conn.cursor()
+#         cursor.execute("""
+#             SELECT pf.*, t.nome as nome_tutor, t.quantidade_pets
+#             FROM postagem_feed pf
+#             JOIN tutor tut ON pf.id_tutor = tut.id_tutor
+#             JOIN usuario t ON tut.id_tutor = t.id_usuario
+#             WHERE pf.descricao LIKE ?
+#             ORDER BY pf.data_postagem DESC
+#             LIMIT 50
+#         """, (f"%{termo}%",))
+#         return [PostagemFeed(**row) for row in cursor.fetchall()]
+
+
+def buscar_por_termo(termo: str, limite: int = 50) -> List[dict]:
+    """Busca posts do feed por termo na descrição com dados completos."""
+    termo_busca = f"%{termo}%"
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(BUSCAR_POR_TERMO, (termo_busca, limite))
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]

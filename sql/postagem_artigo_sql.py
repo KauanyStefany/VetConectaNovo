@@ -157,3 +157,25 @@ JOIN categoria_artigo ca ON pa.id_categoria_artigo = ca.id_categoria_artigo
 WHERE u.id_usuario = ?
 ORDER BY pa.data_publicacao DESC;
 """
+
+BUSCAR_POR_TERMO = """
+SELECT
+    pa.id_postagem_artigo,
+    pa.id_veterinario,
+    pa.titulo,
+    pa.conteudo,
+    pa.id_categoria_artigo,
+    pa.data_publicacao,
+    pa.visualizacoes,
+    u.nome as nome_veterinario,
+    ca.nome as nome_categoria,
+    ca.cor as cor_categoria
+FROM postagem_artigo pa
+JOIN veterinario v ON pa.id_veterinario = v.id_veterinario
+JOIN usuario u ON v.id_veterinario = u.id_usuario
+JOIN categoria_artigo ca ON pa.id_categoria_artigo = ca.id_categoria_artigo
+WHERE pa.titulo LIKE ? OR pa.conteudo LIKE ?
+ORDER BY pa.data_publicacao DESC
+LIMIT ?;
+"""
+

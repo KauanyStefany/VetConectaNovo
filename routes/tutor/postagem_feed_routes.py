@@ -189,3 +189,36 @@ async def post_excluir_postagem(
         adicionar_mensagem_erro(request, "Erro ao excluir.")
 
     return RedirectResponse("/tutor/listar_postagem_feed", status_code=303)
+
+
+from fastapi import Query
+
+@router.get("/buscar_postagens")
+@requer_autenticacao(perfis_autorizados=["tutor"])
+async def get_buscar_postagens(
+    request: Request,
+    q: str = Query(None, min_length=3),
+    usuario_logado: dict = None
+):
+    """Busca nas postagens do tutor logado"""
+    if not q:
+        return templates.TemplateResponse("tutor/buscar_postagens.html", {
+            "request": request,
+            "termo": "",
+            "posts": []
+        })
+    
+    # Buscar todos os posts
+    posts = postagem_feed_repo.buscar_por_termo(q.strip())
+    
+    # Filtrar apenas os do tutor logado
+    posts_filtrados = [
+        p for p in posts 
+        if p['id_tutor'] == usuario_logado['id']
+    ]
+    
+    return templates.TemplateResponse("tutor/buscar_postagens.html", {
+        "request": request,
+        "termo": q.strip(),
+        "posts": posts_filtrados
+    })

@@ -114,3 +114,20 @@ JOIN tutor t ON pf.id_tutor = t.id_tutor
 JOIN usuario u ON t.id_tutor = u.id_usuario
 WHERE pf.id_postagem_feed = ?;
 """
+
+BUSCAR_POR_TERMO = """
+SELECT
+    pf.id_postagem_feed,
+    pf.id_tutor,
+    pf.descricao,
+    pf.data_postagem,
+    pf.visualizacoes,
+    u.nome as nome_tutor,
+    t.quantidade_pets
+FROM postagem_feed pf
+JOIN tutor t ON pf.id_tutor = t.id_tutor
+JOIN usuario u ON t.id_tutor = u.id_usuario
+WHERE pf.descricao LIKE ?
+ORDER BY pf.data_postagem DESC
+LIMIT ?;
+"""

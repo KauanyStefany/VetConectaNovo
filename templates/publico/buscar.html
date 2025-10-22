@@ -89,6 +89,7 @@
 #}
 
 {# Seu código HTML aqui #} -->
+
 {% extends "base_publica.html" %}
 
 {% block titulo %}Busca: {{ termo }}{% endblock %}
@@ -98,7 +99,7 @@
     {% if erro %}
     <div class="alert alert-warning">{{ erro }}</div>
     {% else %}
-    <h2 class="mb-3">Resultados da busca: "{{ termo }}"</h2>
+    <h2 class="mb-4">Resultados da busca: "{{ termo }}"</h2>
     <p class="text-muted">{{ total }} resultado(s) encontrado(s) em {{ tipo }}</p>
     {% if total == 0 %}
     <div class="alert alert-info">Nenhum resultado encontrado. Tente outros termos.</div>

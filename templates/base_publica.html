@@ -47,14 +47,16 @@
                     <!-- Coluna Central: Logo e Barra de Pesquisa -->
                     <div class="col-12 col-lg-6 text-center my-3 my-lg-0">
                         <!-- Barra de Pesquisa -->
-                        <form class="d-flex justify-content-center" role="search">
-                            <div class="input-group content-container">
-                                <input class="form-control rounded-0 border-0" type="search"
-                                    placeholder="O que seu pet necessita?" aria-label="Pesquisar">
-                                <button class="btn btn-light rounded-0 border-0" type="submit">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </div>
+                        <form method="get" action="/buscar" class="d-flex">
+                            <input class="form-control me-2" type="search" name="q"
+                                placeholder="Buscar..." required minlength="3">
+                            <select name="tipo" class="form-select me-2" style="max-width: 120px;">
+                                <option value="artigos">Artigos</option>
+                                <option value="petgram">Petgram</option>
+                            </select>
+                            <button class="btn btn-outline-laranja" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
                         </form>
                     </div>
 
