@@ -31,7 +31,8 @@ async def get_listar_categorias(request: Request):
     # PASSO 2: Adicionar a variável 'categorias' no context do template
     # EXEMPLO: categorias = categoria_artigo_repo.obter_todos()
     #          return templates.TemplateResponse("...", {"request": request, "categorias": categorias})
-    return templates.TemplateResponse("administrador/listar_categorias.html", {"request": request})
+    categorias = categoria_artigo_repo.obter_todos()
+    return templates.TemplateResponse("administrador/listar_categorias.html", {"request": request, "categorias": categorias})
 
 @router.get("/alterar_categoria/{id_categoria}")
 @requer_autenticacao(perfis_autorizados=["admin"])
