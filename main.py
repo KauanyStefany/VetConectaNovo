@@ -13,6 +13,7 @@ from util.db_util import inicializar_banco
 from routes.publico import auth_routes, public_routes
 from util.middlewares import configurar_middlewares
 from routes.admin import (
+    admin_routes,
     categoria_artigo_routes,
     chamado_routes,
     comentario_admin_routes,
@@ -81,6 +82,7 @@ app.include_router(auth_routes.router)
 app.include_router(perfil_routes.router, prefix="/perfil", tags=["perfil"])
 
 # Rotas admin
+app.include_router(admin_routes.router, prefix="/admin", tags=["admin"])
 app.include_router(categoria_artigo_routes.router, prefix="/administrador", tags=["admin-categorias"])
 app.include_router(chamado_routes.router, prefix="/administrador", tags=["admin-chamados"])
 app.include_router(comentario_admin_routes.router, prefix="/administrador", tags=["admin-comentarios"])

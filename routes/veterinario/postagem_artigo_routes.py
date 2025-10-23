@@ -1,5 +1,4 @@
-from tkinter.tix import Form
-from fastapi import APIRouter, File, Request, UploadFile
+from fastapi import APIRouter, File, Form, Request, UploadFile
 from fastapi.params import Query
 from fastapi.templating import Jinja2Templates
 
