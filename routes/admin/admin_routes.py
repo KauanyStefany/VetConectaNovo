@@ -10,6 +10,6 @@ templates = criar_templates()
 async def get_dashboard(request: Request, usuario_logado: dict = None):
     """Dashboard principal do administrador"""
     return templates.TemplateResponse(
-        "administrador/home_administrador_simple.html", 
+        "administrador/home_administrador.html", 
         {"request": request}
     )
