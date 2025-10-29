@@ -14,6 +14,7 @@ from dtos.auth_dto import (
     CadastroVeterinarioDTO,
     RedefinirSenhaDTO,
 )
+from util.email_service import email_service
 from model.enums import PerfilUsuario
 from model.tutor_model import Tutor
 from model.veterinario_model import Veterinario
@@ -272,8 +273,9 @@ async def post_cadastro(
             raise Exception("Falha ao criar usuário no banco de dados.")
 
         logger.info(f"✅ Cadastro concluído com sucesso! ID: {id_usuario}, Email: {email}")
+        email_service.enviar_boas_vindas(email, nome)
         return RedirectResponse("/login?cadastro=sucesso", status.HTTP_303_SEE_OTHER)
-
+        
     # Erros de validação do DTO (Pydantic)
     except ValidationError as e:
         erros = processar_erros_validacao(e)
