@@ -46,5 +46,11 @@ OBTER_POR_ID = """
 SELECT *
 FROM chamado
 WHERE id_chamado = ?;
-
 """
+
+
+CONTAR_TOTAL = """
+SELECT COUNT(*) as total FROM chamados
+"""
+
+

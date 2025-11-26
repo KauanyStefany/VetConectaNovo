@@ -103,3 +103,11 @@ async def contar_total(status: str = None) -> int:
                 
     except Exception as erro:
         raise Exception(f"Erro ao contar total de chamados: {str(erro)}")
+    
+def contar_total() -> int:
+    """Conta o total de chamados no banco de dados."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(CONTAR_TOTAL)  # Usando constante
+        resultado = cursor.fetchone()
+        return resultado["total"] if resultado else 0

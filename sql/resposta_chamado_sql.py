@@ -38,5 +38,11 @@ OBTER_POR_ID = """
 SELECT *
 FROM resposta_chamado
 WHERE id_resposta_chamado = ?;
+"""
 
+OBTER_POR_CHAMADO = """
+SELECT id_resposta_chamado, id_chamado, titulo, descricao, data
+FROM respostas_chamado
+WHERE id_chamado = ?
+ORDER BY data ASC
 """

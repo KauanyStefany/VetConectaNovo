@@ -2,7 +2,7 @@ from datetime import datetime
 from fastapi import APIRouter, Form, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
-from repo import chamado_repo
+from repo import chamado_repo, resposta_chamado_repo
 
 from dtos.resposta_chamado_dto import RespostaChamadoDTO
 from model.resposta_chamado_model import RespostaChamado
@@ -18,21 +18,35 @@ async def get_root(request: Request):
     response = templates.TemplateResponse("administrador/home_administrador.html", {"request": request})
     return response
 
-@router.get("/listar_chamados")
-@requer_autenticacao(perfis_autorizados=["admin"])
-async def get_listar_chamados(request: Request):
-    # TODO: Implementar listagem de chamados
-    chamados = chamado_repo.obter_pagina(limite=20, offset=0)
+# @router.get("/listar_chamados")
+# @requer_autenticacao(perfis_autorizados=["admin"])
+# async def get_listar_chamados(request: Request):
+    # TODO FEITO: Implementar listagem de chamados
+    # chamados = chamado_repo.obter_pagina(limite=20, offset=0)
     #   3. Contar total: total = chamado_repo.contar_total() (criar esta função em repo/chamado_repo.py)
     #   4. Passar para template: {"request": request, "chamados": chamados, "total": total}
     # OPCIONAL: Implementar filtro por status com query param ?status=...
     # Ver PENDENCIAS.md seção 4.2 para código completo
-    return templates.TemplateResponse("administrador/listar_chamados.html", {"request": request})
+    # return templates.TemplateResponse("administrador/listar_chamados.html", {"request": request})
 
-@router.get("/responder_chamado/{id_chamado}")
+@router.get("/listar_chamados")
 @requer_autenticacao(perfis_autorizados=["admin"])
-async def get_responder_chamado(request: Request, id_chamado: int):
-    # TODO: Implementar GET para responder chamado
+async def get_listar_chamados(request: Request, usuario_logado: dict = None):
+    """Lista todos os chamados com paginação"""
+    chamados = chamado_repo.obter_pagina(limite=20, offset=0)
+    total = chamado_repo.contar_total()  # Precisa criar esta função
+
+    return templates.TemplateResponse("admin/listar_chamados.html", {
+        "request": request,
+        "chamados": chamados,
+        "total": total
+    })
+
+
+# @router.get("/responder_chamado/{id_chamado}")
+# @requer_autenticacao(perfis_autorizados=["admin"])
+# async def get_responder_chamado(request: Request, id_chamado: int):
+    # TODO FEITO: Implementar GET para responder chamado
     # PASSOS:
     #   1. Importar: from repo import chamado_repo, resposta_chamado_repo
     #   2. Buscar chamado: chamado = chamado_repo.obter_por_id(id_chamado)
@@ -41,7 +55,62 @@ async def get_responder_chamado(request: Request, id_chamado: int):
     #      ATENÇÃO: Criar função obter_por_chamado() em repo/resposta_chamado_repo.py
     #   5. Retornar template com: chamado e respostas
     # Ver PENDENCIAS.md seção 4.2 para código completo
-    return templates.TemplateResponse("administrador/responder_chamado.html", {"request": request})
+    # return templates.TemplateResponse("administrador/responder_chamado.html", {"request": request})
+
+@router.get("/responder_chamado/{id_chamado}")
+@requer_autenticacao(perfis_autorizados=["admin"])
+async def get_responder_chamado(request: Request, id_chamado: int, usuario_logado: dict = None):
+    """Exibe formulário para responder chamado"""
+    chamado = chamado_repo.obter_por_id(id_chamado)
+    if not chamado:
+        adicionar_mensagem_erro(request, "Chamado não encontrado.")
+        return RedirectResponse("/administrador/listar_chamados", status_code=303)
+
+    # Buscar respostas anteriores
+    respostas = resposta_chamado_repo.obter_por_chamado(id_chamado)  # Criar função
+
+    return templates.TemplateResponse("admin/responder_chamado.html", {
+        "request": request,
+        "chamado": chamado,
+        "respostas": respostas
+    })
+
+@router.post("/responder_chamado")
+@requer_autenticacao(perfis_autorizados=["admin"])
+async def post_responder_chamado(
+    request: Request,
+    id_chamado: int = Form(...),
+    titulo: str = Form(...),
+    descricao: str = Form(...),
+    usuario_logado: dict = None
+):
+    """Salva resposta do administrador"""
+    from dtos.resposta_chamado_dto import RespostaChamadoDTO
+
+    # Validar com DTO
+    try:
+        dto = RespostaChamadoDTO(titulo=titulo, descricao=descricao)
+    except Exception as e:
+        adicionar_mensagem_erro(request, str(e))
+        return RedirectResponse(f"/administrador/responder_chamado/{id_chamado}", status_code=303)
+
+    # Criar resposta
+    resposta = RespostaChamado(
+        id_resposta_chamado=0,
+        id_chamado=id_chamado,
+        titulo=dto.titulo,
+        descricao=dto.descricao,
+        data=datetime.now()
+    )
+
+    if resposta_chamado_repo.inserir(resposta):
+        # Atualizar status do chamado para "em_andamento"
+        chamado_repo.atualizar_status(id_chamado, "em_andamento")
+        adicionar_mensagem_sucesso(request, "Resposta enviada com sucesso!")
+    else:
+        adicionar_mensagem_erro(request, "Erro ao enviar resposta.")
+
+    return RedirectResponse("/administrador/listar_chamados", status_code=303)
 
 @router.post("/responder_chamado")
 @requer_autenticacao(perfis_autorizados=["admin"])

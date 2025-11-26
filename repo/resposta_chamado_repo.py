@@ -87,3 +87,20 @@ def obter_por_id(id_resposta: int) -> Optional[RespostaChamado]:
                 data=row["data"],
             )
         return None
+
+def obter_por_chamado(id_chamado: int) -> List[RespostaChamado]:
+    """Obtém todas as respostas de um chamado específico."""
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(OBTER_POR_CHAMADO, (id_chamado,))
+        rows = cursor.fetchall()
+        return [
+            RespostaChamado(
+                id_resposta_chamado=row["id_resposta_chamado"],
+                id_chamado=row["id_chamado"],
+                titulo=row["titulo"],
+                descricao=row["descricao"],
+                data=row["data"],
+            )
+            for row in rows
+        ]
