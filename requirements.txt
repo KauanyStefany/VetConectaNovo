@@ -23,3 +23,4 @@ Pillow>=10.0.0
 pytest
 pytest-asyncio
 pytest-cov
+resend
