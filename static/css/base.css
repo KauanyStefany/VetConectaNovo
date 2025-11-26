@@ -9,6 +9,13 @@
     --cor-bege: #ffe6ba;
     --cor-bege-claro: #fff9ef;
     --cor-rosa: #CA567C;
+
+    --fonte-titulo: 'Vidaloka ', cursive;
+}
+
+.titulo-principal {
+    font-family: var(--fonte-titulo) !important;
+    font-weight: 600 !important;
 }
 
 body {
