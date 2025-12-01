@@ -126,7 +126,8 @@ def requer_autenticacao(perfis_autorizados: Optional[List[str]] = None):
                     )
             
             # Adiciona o usuário aos kwargs para fácil acesso na rota
-            kwargs['usuario_logado'] = usuario
+            # kwargs['usuario_logado'] = usuario
+            request.state.usuario_logado = usuario
             
             # Chama a função original
             if asyncio.iscoroutinefunction(func):

@@ -10,7 +10,7 @@
     --cor-bege-claro: #fff9ef;
     --cor-rosa: #CA567C;
 
-    --fonte-titulo: 'Vidaloka ', cursive;
+    --fonte-titulo: 'Vidaloka', cursive;
 }
 
 .titulo-principal {
@@ -69,27 +69,36 @@ body {
 
 /* Cores de Textos */
 
+.text-dark {
+    font-family: var(--fonte-titulo) !important;
+    color: #000 !important;
+}
 .text-branco {
     color: #fff !important;
 }
 
 .text-roxo {
+    font-family: var(--fonte-titulo) !important;
     color: var(--cor-roxo) !important;
 }
 
 .text-laranja {
+    font-family: var(--fonte-titulo) !important;
     color: var(--cor-laranja) !important;
 }
 
 .text-verde {
+    font-family: var(--fonte-titulo) !important;
     color: var(--cor-verde) !important;
 }
 
 .text-bege {
+    font-family: var(--fonte-titulo) !important;
     color: var(--cor-bege) !important;
 }
 
 .text-rosa {
+    font-family: var(--fonte-titulo) !important;
     color: var(--cor-rosa) !important;
 }
 
